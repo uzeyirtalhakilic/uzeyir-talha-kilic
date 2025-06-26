@@ -80,6 +80,7 @@ const Footer: React.FC<FooterProps> = ({
           className="flex items-center px-3 py-0.5 mr-2.5 rounded-r-full rounded-l-2xl bg-gradient-to-b from-[#60b044] to-[#388a2f] border border-[#356a1a] shadow-[inset_0_1px_0_#a4e17e] cursor-pointer select-none active:brightness-90"
           style={{ minWidth: 70 }}
         >
+          
           <img
             src="/icons/win-xp-icon.png"
             alt="start"
