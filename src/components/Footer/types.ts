@@ -8,7 +8,6 @@ export interface App {
 }
 
 export interface FooterProps {
-  onMouseDownApp: (id: string) => void;
   apps: Array<{
     id: string;
     header: {

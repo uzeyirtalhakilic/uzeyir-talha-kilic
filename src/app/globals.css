@@ -23,6 +23,34 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Tahoma', sans-serif;
+  cursor: url('/cursors/default_arrow.cur'), auto;
+}
+
+/* Cursor styles */
+a, button, [role="button"], .clickable {
+  cursor: url('/cursors/default_link.cur'), pointer;
+}
+
+input, textarea, [contenteditable="true"] {
+  cursor: url('/cursors/default_arrow.cur'), text;
+}
+
+.draggable, .window-header {
+  cursor: url('/cursors/default_move.cur'), move;
+}
+
+.loading, .processing {
+  cursor: url('/cursors/default_wait.cur'), wait;
+}
+
+.disabled {
+  cursor: url('/cursors/default_no.cur'), not-allowed !important;
+  opacity: 0.5;
+}
+
+/* Hover effect for disabled items */
+.disabled:hover {
+  cursor: url('/cursors/default_no.cur'), not-allowed !important;
 }
 
 @font-face {

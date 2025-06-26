@@ -60,7 +60,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <div className="h-px bg-[#2b5aa0] my-1" />
           <Item
             style={
-              hovering === 'All Programs'
+              hovering === 'Tüm Programlar'
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
@@ -69,7 +69,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
             }
             text={
               <div className="flex items-center">
-                All Programs
+                Tüm Programlar
                 <img
                   src="/icons/all-programs.ico"
                   alt=""
@@ -79,7 +79,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
             }
             icon="/icons/empty.png"
           >
-            {hovering === 'All Programs' && (
+            {hovering === 'Tüm Programlar' && (
               <SubMenu data={AllPrograms} onClick={onClick} />
             )}
           </Item>
@@ -88,24 +88,24 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <Item text="My Documents" icon="/icons/documents.png" onClick={onClick} />
           <Item
             style={
-              hovering === 'My Recent Documents'
+              hovering === 'Son Belgelerim'
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
                   }
                 : {}
             }
-            text="My Recent Documents"
+            text="Son Belgelerim"
             icon="/icons/recent-documents.png"
           >
             <div
               style={{
                 borderLeftColor:
-                  hovering === 'My Recent Documents' ? '#FFF' : '#00136b',
+                  hovering === 'Son Belgelerim' ? '#FFF' : '#00136b',
               }}
               className="absolute right-1 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
             />
-            {hovering === 'My Recent Documents' && (
+            {hovering === 'Son Belgelerim' && (
               <SubMenu
                 left="153px"
                 data={MyRecentDocuments}
@@ -126,28 +126,28 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
             onClick={onClick}
             items={[
               { icon: '/icons/control-panel.png', text: 'Control Panel' },
-              { icon: '/icons/access.png', text: 'Set Program Access and Defaults' },
+              { icon: '/icons/access.png', text: 'Program Erişimi ve Varsayılanları Ayarla' },
             ]}
           />
           <Item
             style={
-              hovering === 'Connect To'
+              hovering === 'Bağlan'
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
                   }
                 : {}
             }
-            text="Connect To"
+            text="Bağlan"
             icon="/icons/connection.png"
           >
             <div
               style={{
-                borderLeftColor: hovering === 'Connect To' ? '#FFF' : '#00136b',
+                borderLeftColor: hovering === 'Bağlan' ? '#FFF' : '#00136b',
               }}
               className="absolute right-1 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
             />
-            {hovering === 'Connect To' && (
+            {hovering === 'Bağlan' && (
               <SubMenu left="153px" data={ConnectTo} onClick={onClick} />
             )}
           </Item>

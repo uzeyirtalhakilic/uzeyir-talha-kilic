@@ -23,7 +23,6 @@ const getTime = () => {
 };
 
 const Footer: React.FC<FooterProps> = ({
-  onMouseDownApp,
   apps,
   focusedAppId,
   onMouseDown = () => {},

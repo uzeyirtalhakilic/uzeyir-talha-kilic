@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import Footer from "./Footer/index";
+import Footer from "../Footer/index";
 
 interface TaskbarProps {
-  onMouseDownApp: (id: string) => void;
   apps: Array<{
     id: string;
     header: {
@@ -19,7 +18,6 @@ interface TaskbarProps {
 }
 
 const Taskbar: React.FC<TaskbarProps> = ({
-  onMouseDownApp,
   apps,
   focusedAppId,
   onMouseDown,
@@ -27,7 +25,6 @@ const Taskbar: React.FC<TaskbarProps> = ({
 }) => {
   return (
     <Footer
-      onMouseDownApp={onMouseDownApp}
       apps={apps}
       focusedAppId={focusedAppId}
       onMouseDown={onMouseDown}
