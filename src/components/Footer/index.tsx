@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FooterProps, FooterWindowProps } from './types';
 import FooterMenu from './FooterMenu';
+import { useTranslations } from 'next-intl';
 
 const getTime = () => {
   const date = new Date();
@@ -31,6 +32,7 @@ const Footer: React.FC<FooterProps> = ({
   const [time, setTime] = useState("");
   const [menuOn, setMenuOn] = useState(false);
   const menu = useRef<HTMLDivElement>(null);
+  const tDesktop = useTranslations('desktop');
 
   function toggleMenu() {
     setMenuOn(on => !on);
@@ -85,7 +87,7 @@ const Footer: React.FC<FooterProps> = ({
             draggable={false}
           />
           <span className="text-white font-bold text-[15px] drop-shadow-[0_1px_0_#356a1a] font-['Tahoma',sans-serif] tracking-wide">
-            Start
+            {tDesktop('start')}
           </span>
         </div>
         {Array.isArray(apps) && apps.map(

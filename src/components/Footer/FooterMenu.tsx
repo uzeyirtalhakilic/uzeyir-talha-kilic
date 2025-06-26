@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { FooterMenuProps, ItemProps, ItemsProps, SubMenuProps } from './types';
 import { AllPrograms, ConnectTo, MyRecentDocuments } from './FooterMenuData';
+import { useTranslations } from 'next-intl';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
   return (
@@ -19,6 +20,10 @@ const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
   const [hovering, setHovering] = useState('');
+  const t = useTranslations('footer');
+  const tMenu = useTranslations('menu');
+  const tGames = useTranslations('games');
+  const tDocs = useTranslations('documents');
 
   function onMouseOver(e: React.MouseEvent) {
     const item = (e.target as HTMLElement).closest('.menu__item');
@@ -38,29 +43,29 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
       <section className="flex w-full menu" onMouseOver={onMouseOver}>
         <hr className="border-t border-orange-500" />
         <div className="w-[150px] flex flex-col">
-          <Item onClick={onClick} text="Internet" icon="/icons/ie.png">
-            <div className="text-[10px] text-gray-600">Internet Explorer</div>
+          <Item onClick={onClick} text={t('internet')} icon="/icons/ie.png">
+            <div className="text-[10px] text-gray-600">{tMenu('internetExplorer')}</div>
           </Item>
-          <Item onClick={onClick} text="E-mail" icon="/icons/outlook.png">
-            <div className="text-[10px] text-gray-600">Outlook Express</div>
+          <Item onClick={onClick} text={t('email')} icon="/icons/outlook.png">
+            <div className="text-[10px] text-gray-600">{tMenu('outlookExpress')}</div>
           </Item>
           <div className="h-px bg-[#2b5aa0] my-1" />
           <Items
             onClick={onClick}
             items={[
-              { icon: '/icons/minesweeper.png', text: 'Minesweeper' },
-              { icon: '/icons/notepad.png', text: 'Notepad' },
-              { icon: '/icons/winamp.png', text: 'Winamp' },
-              { icon: '/icons/paint.png', text: 'Paint' },
-              { icon: '/icons/media-player.png', text: 'Windows Media Player' },
-              { icon: '/icons/msn.png', text: 'Windows Messenger' },
+              { icon: '/icons/minesweeper.png', text: tGames('minesweeper') },
+              { icon: '/icons/notepad.png', text: tGames('notepad') },
+              { icon: '/icons/winamp.png', text: tGames('winamp') },
+              { icon: '/icons/paint.png', text: tGames('paint') },
+              { icon: '/icons/media-player.png', text: tGames('windowsMediaPlayer') },
+              { icon: '/icons/msn.png', text: tGames('windowsMessenger') },
             ]}
           />
           <div className="flex-1" />
           <div className="h-px bg-[#2b5aa0] my-1" />
           <Item
             style={
-              hovering === 'Tüm Programlar'
+              hovering === t('allPrograms')
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
@@ -69,7 +74,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
             }
             text={
               <div className="flex items-center">
-                Tüm Programlar
+                {t('allPrograms')}
                 <img
                   src="/icons/all-programs.ico"
                   alt=""
@@ -79,36 +84,36 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
             }
             icon="/icons/empty.png"
           >
-            {hovering === 'Tüm Programlar' && (
-              <SubMenu data={AllPrograms} onClick={onClick} />
+            {hovering === t('allPrograms') && (
+              <SubMenu data={AllPrograms.map(item => ({...item, text: tMenu(item.text) }))} onClick={onClick} />
             )}
           </Item>
         </div>
         <div className="w-[150px] flex flex-col border-l border-[#2b5aa0]">
-          <Item text="My Documents" icon="/icons/documents.png" onClick={onClick} />
+          <Item text={t('myDocuments')} icon="/icons/documents.png" onClick={onClick} />
           <Item
             style={
-              hovering === 'Son Belgelerim'
+              hovering === t('myRecentDocuments')
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
                   }
                 : {}
             }
-            text="Son Belgelerim"
+            text={t('myRecentDocuments')}
             icon="/icons/recent-documents.png"
           >
             <div
               style={{
                 borderLeftColor:
-                  hovering === 'Son Belgelerim' ? '#FFF' : '#00136b',
+                  hovering === t('myRecentDocuments') ? '#FFF' : '#00136b',
               }}
               className="absolute right-1 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
             />
-            {hovering === 'Son Belgelerim' && (
+            {hovering === t('myRecentDocuments') && (
               <SubMenu
                 left="153px"
-                data={MyRecentDocuments}
+                data={MyRecentDocuments.map((item, i) => ({...item, text: tDocs(`document${i+1}`)}))}
                 onClick={onClick}
               />
             )}
@@ -116,49 +121,49 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <Items
             onClick={onClick}
             items={[
-              { icon: '/icons/pictures.png', text: 'My Pictures' },
-              { icon: '/icons/music.png', text: 'My Music' },
-              { icon: '/icons/computer.png', text: 'My Computer' },
+              { icon: '/icons/pictures.png', text: t('myPictures') },
+              { icon: '/icons/music.png', text: t('myMusic') },
+              { icon: '/icons/computer.png', text: t('myComputer') },
             ]}
           />
           <div className="h-px bg-[#2b5aa0] my-1" />
           <Items
             onClick={onClick}
             items={[
-              { icon: '/icons/control-panel.png', text: 'Control Panel' },
-              { icon: '/icons/access.png', text: 'Program Erişimi ve Varsayılanları Ayarla' },
+              { icon: '/icons/control-panel.png', text: t('controlPanel') },
+              { icon: '/icons/access.png', text: t('setProgramAccess') },
             ]}
           />
           <Item
             style={
-              hovering === 'Bağlan'
+              hovering === t('connectTo')
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
                   }
                 : {}
             }
-            text="Bağlan"
+            text={t('connectTo')}
             icon="/icons/connection.png"
           >
             <div
               style={{
-                borderLeftColor: hovering === 'Bağlan' ? '#FFF' : '#00136b',
+                borderLeftColor: hovering === t('connectTo') ? '#FFF' : '#00136b',
               }}
               className="absolute right-1 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
             />
-            {hovering === 'Bağlan' && (
-              <SubMenu left="153px" data={ConnectTo} onClick={onClick} />
+            {hovering === t('connectTo') && (
+              <SubMenu left="153px" data={ConnectTo.map(item => ({...item, text: t(item.text)}))} onClick={onClick} />
             )}
           </Item>
-          <Item onClick={onClick} text="Printers and Faxes" icon="/icons/printer.png" />
+          <Item onClick={onClick} text={t('printersAndFaxes')} icon="/icons/printer.png" />
           <div className="h-px bg-[#2b5aa0] my-1" />
           <Items
             onClick={onClick}
             items={[
-              { icon: '/icons/help.png', text: 'Help and Support' },
-              { icon: '/icons/search.png', text: 'Search' },
-              { icon: '/icons/run.png', text: 'Run...' },
+              { icon: '/icons/help.png', text: t('helpAndSupport') },
+              { icon: '/icons/search.png', text: t('search') },
+              { icon: '/icons/run.png', text: t('run') },
             ]}
           />
         </div>
@@ -166,17 +171,17 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
       <footer className="w-full flex justify-between px-2 py-1 bg-[#2b5aa0] border-t border-[#1a4c8b]">
         <div 
           className="flex items-center text-white cursor-pointer px-2 py-1 hover:bg-[#2f71cd]"
-          onClick={() => onClick('Log Off')}
+          onClick={() => onClick(t('logOff'))}
         >
           <img className="h-4 w-4 mr-2" src="/icons/lock.png" alt="" />
-          <span>Log Off</span>
+          <span>{t('logOff')}</span>
         </div>
         <div
           className="flex items-center text-white cursor-pointer px-2 py-1 hover:bg-[#2f71cd]"
-          onClick={() => onClick('Turn Off Computer')}
+          onClick={() => onClick(t('turnOffComputer'))}
         >
           <img className="h-4 w-4 mr-2" src="/icons/shutdown.png" alt="" />
-          <span>Turn Off Computer</span>
+          <span>{t('turnOffComputer')}</span>
         </div>
       </footer>
     </div>

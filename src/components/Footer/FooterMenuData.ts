@@ -6,80 +6,80 @@ interface MenuItem {
 export const MyRecentDocuments: MenuItem[] = [
   {
     icon: '/icons/document.png',
-    text: 'Document1.txt',
+    text: 'document1',
   },
   {
     icon: '/icons/document.png',
-    text: 'Document2.txt',
+    text: 'document2',
   },
   {
     icon: '/icons/document.png',
-    text: 'Document3.txt',
+    text: 'document3',
   },
 ];
 
 export const ConnectTo: MenuItem[] = [
   {
     icon: '/icons/network.png',
-    text: 'Network Connection',
+    text: 'networkConnection',
   },
   {
     icon: '/icons/wireless.png',
-    text: 'Wireless Network Connection',
+    text: 'wirelessNetworkConnection',
   },
 ];
 
 export const AllPrograms: MenuItem[] = [
   {
     icon: '/icons/accessories.png',
-    text: 'Accessories',
+    text: 'accessories',
   },
   {
     icon: '/icons/games.png',
-    text: 'Games',
+    text: 'games',
   },
   {
     icon: '/icons/startup.png',
-    text: 'Startup',
+    text: 'startup',
   },
 ];
 
 export const AllProgramsDetails: MenuItem[] = [
   {
     icon: '/icons/access.png',
-    text: 'Set Program Access and Defaults',
+    text: 'setProgramAccessAndDefaults',
   },
   {
     icon: '/icons/catalog.png',
-    text: 'Windows Catalog',
+    text: 'windowsCatalog',
   },
   {
     icon: '/icons/update.png',
-    text: 'Windows Update',
+    text: 'windowsUpdate',
   },
   {
     icon: '/icons/accessories.png',
-    text: 'Accessories',
+    text: 'accessories',
   },
   {
     icon: '/icons/games.png',
-    text: 'Games',
+    text: 'games',
   },
   {
     icon: '/icons/ie.png',
-    text: 'Internet Explorer',
+    text: 'internetExplorer',
   },
   {
     icon: '/icons/outlook.png',
-    text: 'Outlook Express',
+    text: 'outlookExpress',
   },
   {
     icon: '/icons/remote-desktop.png',
-    text: 'Remote Desktop Connection',
+    text: 'remoteDesktopConnection',
   },
   {
     icon: '/icons/movie-maker.png',
-    text: 'Windows Movie Maker',
+    text: 'windowsMovieMaker',
   },
 ];
 
