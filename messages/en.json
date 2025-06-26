@@ -1,0 +1,69 @@
+{
+  "layout": {
+    "title": "Üzeyir Talha Kılıç - Windows XP Style Portfolio",
+    "description": "Üzeyir Talha Kılıç's Windows XP style personal website"
+  },
+  "desktop": {
+    "projects": "Projects",
+    "start": "Start",
+    "whoAmI": "Who Am I?",
+    "hobbies": "Hobbies",
+    "myComputer": "My Computer",
+    "recycleBin": "Recycle Bin",
+    "myDocuments": "My Documents",
+    "networkNeighborhood": "Network Neighborhood"
+  },
+  "footer": {
+    "internet": "Internet",
+    "email": "E-mail",
+    "myDocuments": "My Documents",
+    "myRecentDocuments": "My Recent Documents",
+    "myPictures": "My Pictures",
+    "myMusic": "My Music",
+    "myComputer": "My Computer",
+    "controlPanel": "Control Panel",
+    "setProgramAccess": "Set Program Access and Defaults",
+    "helpAndSupport": "Help and Support",
+    "search": "Search",
+    "run": "Run...",
+    "printersAndFaxes": "Printers and Faxes",
+    "connectTo": "Connect To",
+    "networkConnection": "Network Connection",
+    "wirelessNetworkConnection": "Wireless Network Connection",
+    "logOff": "Log Off",
+    "turnOffComputer": "Turn Off Computer",
+    "allPrograms": "All Programs"
+  },
+  "menu": {
+    "accessories": "Accessories",
+    "games": "Games",
+    "startup": "Startup",
+    "setProgramAccessAndDefaults": "Set Program Access and Defaults",
+    "windowsCatalog": "Windows Catalog",
+    "windowsUpdate": "Windows Update",
+    "internetExplorer": "Internet Explorer",
+    "outlookExpress": "Outlook Express",
+    "remoteDesktopConnection": "Remote Desktop Connection",
+    "windowsMovieMaker": "Windows Movie Maker"
+  },
+  "games": {
+    "minesweeper": "Minesweeper",
+    "notepad": "Notepad",
+    "winamp": "Winamp",
+    "paint": "Paint",
+    "windowsMediaPlayer": "Windows Media Player",
+    "windowsMessenger": "Windows Messenger"
+  },
+  "documents": {
+    "document1": "Document1.txt",
+    "document2": "Document2.txt",
+    "document3": "Document3.txt"
+  },
+  "language": {
+    "languageSelection": "Language Selection",
+    "selectLanguage": "Select Language",
+    "turkish": "Turkish",
+    "english": "English",
+    "continue": "Continue"
+  }
+} 

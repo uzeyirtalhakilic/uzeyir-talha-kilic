@@ -5,9 +5,11 @@ import Taskbar from "./Taskbar";
 import { desktopItems, FileSystemItem } from "../../data/filesystem";
 import React, { useState } from "react";
 import XpWindow from "./XpWindow";
+import { useTranslations } from "next-intl";
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState<FileSystemItem[]>([]);
+  const t = useTranslations('desktop');
 
   const handleOpen = (item: FileSystemItem) => {
     // Aynı pencereyi tekrar açma
@@ -15,6 +17,20 @@ export default function Desktop() {
       setOpenWindows((prev) => [...prev, item]);
     }
   };
+
+  // Use next-intl translations instead of hardcoded Turkish labels
+  const translatedItems = desktopItems.map(item => ({
+    ...item,
+    label: item.translationKey ? 
+      (item.translationKey === 'desktop.1' ? t('whoAmI') :
+       item.translationKey === 'desktop.2' ? t('projects') :
+       item.translationKey === 'desktop.3' ? t('hobbies') :
+       item.translationKey === 'desktop.myComputer' ? t('myComputer') :
+       item.translationKey === 'desktop.recycleBin' ? t('recycleBin') :
+       item.translationKey === 'desktop.myDocuments' ? t('myDocuments') :
+       item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
+       item.label) : item.label
+  }));
 
   return (
     <div className="relative w-screen h-screen min-h-screen overflow-hidden font-sans">
@@ -26,7 +42,7 @@ export default function Desktop() {
       />
 
       <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
-        {desktopItems.map((item) => (
+        {translatedItems.map((item) => (
           <DesktopIcon
             key={item.id}
             label={item.label}

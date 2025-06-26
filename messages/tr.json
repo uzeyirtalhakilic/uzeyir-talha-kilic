@@ -1,0 +1,69 @@
+{
+  "layout": {
+    "title": "Üzeyir Talha Kılıç - Windows XP Tarzı Portfolio",
+    "description": "Üzeyir Talha Kılıç'ın Windows XP tarzında tasarlanmış kişisel web sitesi"
+  },
+  "desktop": {
+    "projects": "Projeler",
+    "start": "Başlat",
+    "whoAmI": "Ben Kimim?",
+    "hobbies": "Hobilerim",
+    "myComputer": "Bilgisayarım",
+    "recycleBin": "Geri Dönüşüm Kutusu",
+    "myDocuments": "Belgelerim",
+    "networkNeighborhood": "Ağ Komşuları"
+  },
+  "footer": {
+    "internet": "İnternet",
+    "email": "E-posta",
+    "myDocuments": "Belgelerim",
+    "myRecentDocuments": "Son Kullanılan Belgeler",
+    "myPictures": "Resimlerim",
+    "myMusic": "Müziğim",
+    "myComputer": "Bilgisayarım",
+    "controlPanel": "Denetim Masası",
+    "setProgramAccess": "Program Erişimi ve Varsayılanları Ayarla",
+    "helpAndSupport": "Yardım ve Destek",
+    "search": "Ara",
+    "run": "Çalıştır...",
+    "printersAndFaxes": "Yazıcılar ve Faks",
+    "connectTo": "Bağlan",
+    "networkConnection": "Ağ Bağlantısı",
+    "wirelessNetworkConnection": "Kablosuz Ağ Bağlantısı",
+    "logOff": "Oturumu Kapat",
+    "turnOffComputer": "Bilgisayarı Kapat",
+    "allPrograms": "Tüm Programlar"
+  },
+  "menu": {
+    "accessories": "Donatılar",
+    "games": "Oyunlar",
+    "startup": "Başlangıç",
+    "setProgramAccessAndDefaults": "Program Erişimi ve Varsayılanları Ayarla",
+    "windowsCatalog": "Windows Kataloğu",
+    "windowsUpdate": "Windows Güncelleştirme",
+    "internetExplorer": "Internet Explorer",
+    "outlookExpress": "Outlook Express",
+    "remoteDesktopConnection": "Uzak Masaüstü Bağlantısı",
+    "windowsMovieMaker": "Windows Movie Maker"
+  },
+  "games": {
+    "minesweeper": "Mayın Tarlası",
+    "notepad": "Not Defteri",
+    "winamp": "Winamp",
+    "paint": "Paint",
+    "windowsMediaPlayer": "Windows Media Player",
+    "windowsMessenger": "Windows Messenger"
+  },
+  "documents": {
+    "document1": "Belge1.txt",
+    "document2": "Belge2.txt",
+    "document3": "Belge3.txt"
+  },
+  "language": {
+    "languageSelection": "Dil Seçimi",
+    "selectLanguage": "Dil Seçiniz",
+    "turkish": "Türkçe",
+    "english": "İngilizce",
+    "continue": "Devam Et"
+  }
+} 
