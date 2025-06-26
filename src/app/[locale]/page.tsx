@@ -1,5 +1,4 @@
 import {use} from 'react';
-import {useTranslations} from 'next-intl';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import Desktop from "@/components/Desktop/Desktop";
 

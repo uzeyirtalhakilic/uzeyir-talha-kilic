@@ -8,7 +8,7 @@ interface XpWindowProps {
   path?: string; // Adres çubuğu için
 }
 
-const XpWindow: React.FC<XpWindowProps> = ({ item, onClose, path }) => {
+const XpWindow: React.FC<XpWindowProps> = ({  onClose }) => {
   // Şimdilik sadece MyComputer arayüzünü gösteriyoruz
   return <MyComputer onClose={onClose} />;
 };
