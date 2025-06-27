@@ -1,7 +1,7 @@
 {
   "layout": {
-    "title": "Üzeyir Talha Kılıç - Windows XP Style Portfolio",
-    "description": "Üzeyir Talha Kılıç's Windows XP style personal website"
+    "title": "Üzeyir Talha Kılıç",
+    "description": "Üzeyir Talha Kılıç's personal website"
   },
   "desktop": {
     "projects": "Projects",
@@ -65,5 +65,106 @@
     "turkish": "Turkish",
     "english": "English",
     "continue": "Continue"
+  },
+  "folderView": {
+    "addressBar": {
+      "address": "Address",
+      "myComputer": "My Computer",
+      "go": "Go"
+    },
+    "toolbar": {
+      "file": "File",
+      "edit": "Edit",
+      "view": "View",
+      "favorites": "Favorites",
+      "tools": "Tools",
+      "help": "Help"
+    },
+    "sidebar": {
+      "systemTasks": "System Tasks",
+      "viewSystemInformation": "View system information",
+      "addOrRemovePrograms": "Add or remove programs",
+      "changeASetting": "Change a setting",
+      "otherPlaces": "Other Places",
+      "myNetworkPlaces": "My Network Places",
+      "myDocuments": "My Documents",
+      "sharedDocuments": "Shared Documents",
+      "controlPanel": "Control Panel"
+    },
+    "contentGrid": {
+      "filesStoredOnThisComputer": "Files Stored on This Computer",
+      "sharedDocuments": "Shared Documents",
+      "usersDocuments": "User's Documents",
+      "hardDiskDrives": "Hard Disk Drives",
+      "localDiskC": "Local Disk (C:)",
+      "devicesWithRemovableStorage": "Devices with Removable Storage",
+      "cdDriveD": "CD Drive (D:)"
+    },
+    "myComputer": {
+      "back": "Back",
+      "forward": "Forward",
+      "search": "Search",
+      "folders": "Folders"
+    },
+    "dropdownMenu": {
+      "file": {
+        "createShortcut": "Create Shortcut",
+        "delete": "Delete",
+        "rename": "Rename",
+        "properties": "Properties",
+        "close": "Close"
+      },
+      "edit": {
+        "undo": "Undo",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "pasteShortcut": "Paste Shortcut",
+        "copyToFolder": "Copy To Folder...",
+        "moveToFolder": "Move To Folder...",
+        "selectAll": "Select All",
+        "invertSelection": "Invert Selection"
+      },
+      "view": {
+        "toolbars": "Toolbars",
+        "standardButtons": "Standard Buttons",
+        "addressBar": "Address Bar",
+        "links": "Links",
+        "lockTheToolbars": "Lock the Toolbars",
+        "customize": "Customize...",
+        "statusBar": "Status Bar",
+        "explorerBar": "Explorer Bar",
+        "search": "Search",
+        "favorites": "Favorites",
+        "history": "History",
+        "folders": "Folders",
+        "tipOfTheDay": "Tip of the Day",
+        "thumbnails": "Thumbnails",
+        "tiles": "Tiles",
+        "icons": "Icons",
+        "list": "List",
+        "details": "Details",
+        "arrangeIconsBy": "Arrange Icons by",
+        "name": "Name",
+        "size": "Size",
+        "type": "Type",
+        "modified": "Modified",
+        "chooseDetails": "Choose Details..."
+      },
+      "favorites": {
+        "addToFavorites": "Add to Favorites...",
+        "organizeFavorites": "Organize Favorites..."
+      },
+      "tools": {
+        "mapNetworkDrive": "Map Network Drive...",
+        "disconnectNetworkDrive": "Disconnect Network Drive",
+        "synchronize": "Synchronize",
+        "folderOptions": "Folder Options..."
+      },
+      "help": {
+        "helpTopics": "Help Topics",
+        "aboutWindows": "About Windows"
+      }
+    }
   }
 } 

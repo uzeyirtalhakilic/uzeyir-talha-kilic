@@ -1,49 +1,42 @@
 import React from "react";
+import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import "../../styles/desktop.css";
 
 interface ToolbarProps {
   onClose: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ onClose }) => (
-  <div className="flex items-center h-9 bg-[#eaf1fb] border-b border-[#b5cbe9] px-2 shadow-sm select-none">
-    <div className="flex-1 flex items-center gap-1">
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/back.png" alt="Back" className="w-4 h-4" />
-        <span className="text-xs">Back</span>
-      </button>
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/forward.png" alt="Forward" className="w-4 h-4" />
-        <span className="text-xs">Forward</span>
-      </button>
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/up.png" alt="Up" className="w-4 h-4" />
-        <span className="text-xs">Up</span>
-      </button>
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/refresh.png" alt="Refresh" className="w-4 h-4" />
-        <span className="text-xs">Refresh</span>
-      </button>
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/stop.png" alt="Stop" className="w-4 h-4" />
-        <span className="text-xs">Stop</span>
-      </button>
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/search.png" alt="Search" className="w-4 h-4" />
-        <span className="text-xs">Search</span>
-      </button>
-      <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-[#dbeafe] transition">
-        <img src="/icons/foldericon.png" alt="Folders" className="w-4 h-4" />
-        <span className="text-xs">Folders</span>
-      </button>
+const Toolbar: React.FC<ToolbarProps> = ({ onClose }) => {
+  const t = useTranslations('folderView.toolbar');
+
+  const handleMenuClick = (item: string) => {
+    switch (item) {
+      case 'Close':
+        onClose();
+        break;
+      default:
+        console.log('Menu item clicked:', item);
+    }
+  };
+
+  return (
+    <div className="toolbar-section">
+      <div className="toolbar-content">
+        <div className="toolbar-menu">
+          <span>{t('file')}</span>
+          <span>{t('edit')}</span>
+          <span>{t('view')}</span>
+          <span>{t('favorites')}</span>
+          <span>{t('tools')}</span>
+          <span>{t('help')}</span>
+        </div>
+      </div>
+      <div className="toolbar-windows-icon">
+        <Image src="/icons/win-xp-icon.png" alt="Windows" width={16} height={16} />
+      </div>
     </div>
-    <button
-      onClick={onClose}
-      className="ml-2 flex items-center gap-1 bg-[#e57373] hover:bg-[#d32f2f] text-white rounded px-2 py-1 font-bold shadow border border-[#b71c1c] transition"
-      title="Close"
-    >
-      <img src="/icons/close.png" alt="Close" className="w-4 h-4" />
-    </button>
-  </div>
-);
+  );
+};
 
 export default Toolbar; 

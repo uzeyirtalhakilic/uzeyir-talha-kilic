@@ -1,1 +1,840 @@
 /* Masaüstü için özel stiller buraya eklenecek */ 
+
+/* Windows XP Desktop Styles */
+
+/* Cursor Styles for Windows XP */
+.title-bar {
+  cursor: url('/cursors/default_move.cur'), move !important;
+}
+
+.title-bar-button {
+  cursor: url('/cursors/default_link.cur'), pointer !important;
+}
+
+.resize-handle {
+  cursor: url('/cursors/default_arrow.cur'), auto !important;
+}
+
+.resize-handle.resize-n {
+  cursor: url('/cursors/default_size4.cur'), n-resize !important;
+}
+
+.resize-handle.resize-s {
+  cursor: url('/cursors/default_size4.cur'), s-resize !important;
+}
+
+.resize-handle.resize-e {
+  cursor: url('/cursors/default_size3.cur'), e-resize !important;
+}
+
+.resize-handle.resize-w {
+  cursor: url('/cursors/default_size3.cur'), w-resize !important;
+}
+
+.resize-handle.resize-ne {
+  cursor: url('/cursors/default_size1.cur'), ne-resize !important;
+}
+
+.resize-handle.resize-nw {
+  cursor: url('/cursors/default_size2.cur'), nw-resize !important;
+}
+
+.resize-handle.resize-se {
+  cursor: url('/cursors/default_size2.cur'), se-resize !important;
+}
+
+.resize-handle.resize-sw {
+  cursor: url('/cursors/default_size1.cur'), sw-resize !important;
+}
+
+/* Folder and file hover effects */
+.folder-item, .file-item {
+  cursor: url('/cursors/default_link.cur'), pointer !important;
+  transition: all 0.1s ease;
+}
+
+.folder-item:hover, .file-item:hover {
+  background-color: rgba(0, 120, 212, 0.1);
+  border: 1px solid rgba(0, 120, 212, 0.3);
+}
+
+/* Menu items cursor */
+.menu-item, .dropdown-item {
+  cursor: url('/cursors/default_link.cur'), pointer !important;
+}
+
+/* Disabled items */
+.disabled, .menu-item.disabled {
+  cursor: url('/cursors/default_no.cur'), not-allowed !important;
+  opacity: 0.5;
+}
+
+/* Text selection cursor */
+.text-selectable, input, textarea, [contenteditable="true"] {
+  cursor: url('/cursors/default_arrow.cur'), text !important;
+}
+
+/* Help cursor */
+.help-item {
+  cursor: url('/cursors/default_helpsel.cur'), help !important;
+}
+
+/* Busy cursor */
+.loading, .processing, .busy {
+  cursor: url('/cursors/default_busy.cur'), wait !important;
+}
+
+/* Wait cursor */
+.waiting {
+  cursor: url('/cursors/default_wait.cur'), wait !important;
+}
+
+/* Pen cursor for drawing/editing */
+.drawing, .pen-tool {
+  cursor: url('/cursors/default_pen.cur'), crosshair !important;
+}
+
+/* DVD cursor for media */
+.media-item, .dvd-item {
+  cursor: url('/cursors/default_dvd.cur'), pointer !important;
+}
+
+/* Box selection cursor */
+.box-select {
+  cursor: url('/cursors/default_box.cur'), crosshair !important;
+}
+
+/* Up arrow cursor */
+.scroll-up, .up-button {
+  cursor: url('/cursors/default_up.cur'), pointer !important;
+}
+
+/* Size cursors for different resize operations */
+.size-ns {
+  cursor: url('/cursors/default_size1.cur'), n-resize !important;
+}
+
+.size-ew {
+  cursor: url('/cursors/default_size2.cur'), e-resize !important;
+}
+
+.size-nwse {
+  cursor: url('/cursors/default_size3.cur'), nw-resize !important;
+}
+
+.size-nesw {
+  cursor: url('/cursors/default_size4.cur'), ne-resize !important;
+}
+
+/* Scroll cursors */
+.scroll-n {
+  cursor: url('/cursors/default_scroll_n.cur'), n-resize !important;
+}
+
+.scroll-s {
+  cursor: url('/cursors/default_scroll_s.cur'), s-resize !important;
+}
+
+.scroll-e {
+  cursor: url('/cursors/default_scroll_e.cur'), e-resize !important;
+}
+
+.scroll-w {
+  cursor: url('/cursors/default_scroll_w.cur'), w-resize !important;
+}
+
+.scroll-ne {
+  cursor: url('/cursors/default_scroll_ne.cur'), ne-resize !important;
+}
+
+.scroll-nw {
+  cursor: url('/cursors/default_scroll_nw.cur'), nw-resize !important;
+}
+
+.scroll-se {
+  cursor: url('/cursors/default_scroll_se.cur'), se-resize !important;
+}
+
+.scroll-sw {
+  cursor: url('/cursors/default_scroll_sw.cur'), sw-resize !important;
+}
+
+.scroll-move {
+  cursor: url('/cursors/default_scroll_move.cur'), move !important;
+}
+
+/* Title Bar Styles */
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  background: linear-gradient(to right, #245edb 0%, #3a6ea5 100%);
+  border-bottom: 1px solid #1e4b8f;
+  cursor: move;
+  user-select: none;
+  padding: 0 8px;
+  border-radius: 8px 8px 0 0;
+}
+
+.title-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.title-bar-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-bar-text {
+  font-family: 'Tahoma', Arial, sans-serif;
+}
+
+.title-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.title-bar-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: all 0.1s ease;
+}
+
+.title-bar-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.title-bar-button.close:hover {
+  background-color: #e81123;
+}
+
+.title-bar-button.minimize:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.title-bar-button.maximize:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.window-content {
+  background: white;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.resize-handle {
+  position: absolute;
+  background: transparent;
+  z-index: 10;
+}
+
+.resize-handle.resize-n {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  cursor: n-resize;
+}
+
+.resize-handle.resize-s {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  cursor: s-resize;
+}
+
+.resize-handle.resize-e {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: e-resize;
+}
+
+.resize-handle.resize-w {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: w-resize;
+}
+
+.resize-handle.resize-ne {
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  cursor: ne-resize;
+}
+
+.resize-handle.resize-nw {
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  cursor: nw-resize;
+}
+
+.resize-handle.resize-se {
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  cursor: se-resize;
+}
+
+.resize-handle.resize-sw {
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  cursor: sw-resize;
+}
+
+.resize-handle:hover {
+  background-color: rgba(0, 120, 212, 0.1);
+}
+
+.xp-window {
+  position: absolute;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.xp-window:focus-within {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(0, 120, 212, 0.5);
+}
+
+.xp-window.maximized {
+  border-radius: 0;
+}
+
+.xp-window.maximized .title-bar {
+  border-radius: 0;
+}
+
+.xp-window.minimizing {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.xp-window.dragging {
+  transition: none;
+  user-select: none;
+}
+
+.xp-window.resizing {
+  transition: none;
+  user-select: none;
+}
+
+.window-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.window-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-left: 1px solid #d4d4d4;
+}
+
+.window-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border: 1px solid #a8a8a8;
+  border-radius: 2px;
+}
+
+.window-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.xp-button {
+  background: linear-gradient(to bottom, #f0f0f0 0%, #e3e3e3 50%, #d7d7d7 100%);
+  border: 1px solid #7a7a7a;
+  border-radius: 3px;
+  padding: 4px 12px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.xp-button:hover {
+  background: linear-gradient(to bottom, #e3e3e3 0%, #d7d7d7 50%, #c7c7c7 100%);
+}
+
+.xp-button:active {
+  background: linear-gradient(to bottom, #d7d7d7 0%, #c7c7c7 50%, #b7b7b7 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.xp-input {
+  border: 1px solid #7a7a7a;
+  border-radius: 2px;
+  padding: 2px 4px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  background: white;
+}
+
+.xp-input:focus {
+  border-color: #0078d4;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(0, 120, 212, 0.3);
+}
+
+.xp-dropdown {
+  border: 1px solid #7a7a7a;
+  border-radius: 2px;
+  padding: 2px 4px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  background: white;
+  cursor: pointer;
+}
+
+.xp-dropdown:hover {
+  border-color: #0078d4;
+}
+
+.xp-dropdown:focus {
+  border-color: #0078d4;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(0, 120, 212, 0.3);
+}
+
+/* Windows XP MyComputer Full CSS Styles */
+
+.mycomputer-container {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  background: linear-gradient(to right, #edede5, #ede8cd);
+}
+
+/* Toolbar Section */
+.toolbar-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+
+.toolbar-content {
+  height: 23px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  flex: 1;
+}
+
+.toolbar-menu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+}
+
+.toolbar-menu span {
+  margin-right: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: color 0.2s ease;
+}
+
+.toolbar-menu span:hover {
+  text-decoration: underline;
+  color: #0066cc;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.toolbar-windows-icon {
+  height: 100%;
+  border-left: 1px solid white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+/* Function Bar Section - Enhanced text visibility */
+.function-bar {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 0 4px;
+  padding-top: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.function-button {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.function-button:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.function-button:disabled {
+  opacity: 0.7;
+  filter: grayscale(100%);
+  color: #666;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.function-button-icon {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.function-button-small-icon {
+  height: 22px;
+  width: 22px;
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.function-button-text {
+  margin-right: 4px;
+  font-weight: 600;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.function-button-dropdown {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 4px;
+}
+
+.function-button-dropdown-arrow {
+  border-top: 3px solid black;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+}
+
+.function-separator {
+  height: 90%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 0 2px;
+}
+
+/* Address Bar Section */
+.address-bar {
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  box-shadow: inset 1px 1px 1px #b0b0b0;
+}
+
+.address-label {
+  line-height: 1;
+  color: #333;
+  padding: 6px;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.address-input {
+  border: 1px solid rgba(122, 122, 255, 0.6);
+  height: 100%;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  background: white;
+  position: relative;
+}
+
+.address-input-icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+}
+
+.address-input-text {
+  white-space: nowrap;
+  position: absolute;
+  white-space: nowrap;
+  left: 16px;
+  right: 16px;
+  font-weight: 600;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.address-input-dropdown {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 2px;
+  cursor: pointer;
+}
+
+.address-input-dropdown:hover {
+  filter: brightness(1.1);
+}
+
+.address-go-button {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  height: 100%;
+  position: relative;
+  font-weight: 600;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.address-go-icon {
+  height: 95%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content Section */
+.content-section {
+  flex: 1;
+  border-left: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+  border-top: none;
+  border-bottom: none;
+  background: linear-gradient(to bottom, #748aff, #4057d3);
+  overflow: auto;
+  font-size: 12px;
+  position: relative;
+  min-height: 0;
+  height: 100%; 
+}
+
+.content-container {
+  display: flex;
+  height: 100%;
+  overflow: auto;
+  min-height: 0;
+}
+
+/* Left Sidebar - MyComputer specific */
+.mycomputer-container .sidebar {
+  width: 180px;
+  height: 100%;
+  background: transparent;
+  overflow: auto;
+  padding: 10px;
+  min-height: 0;
+}
+
+.sidebar-card {
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.sidebar-card-header {
+  display: flex;
+  align-items: center;
+  height: 23px;
+  padding: 2px 12px;
+  cursor: pointer;
+  background: linear-gradient(to right, rgb(240,240,255), rgb(240,240,255), rgb(168,188,255));
+}
+
+.sidebar-card-title {
+  font-weight: 700;
+  color: #0c327d;
+  flex: 1;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+}
+
+.sidebar-card-icon {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+}
+
+.sidebar-card-content {
+  padding: 6px;
+  background: linear-gradient(to right, rgb(180,200,251), rgb(164,185,251), rgb(180,200,251));
+}
+
+.sidebar-item {
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.sidebar-item-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.sidebar-item-text {
+  font-size: 12px;
+  line-height: 14px;
+  color: #0c327d;
+  cursor: pointer;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+}
+
+.sidebar-item-text:hover {
+  color: #2b72ff;
+  text-decoration: underline;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+}
+
+/* Right Content - MyComputer specific */
+.mycomputer-container .content-main {
+  height: 100%;
+  overflow: auto;
+  background: white;
+  flex: 1;
+  min-height: 0;
+}
+
+.content-card {
+  width: 300px;
+}
+
+.content-card-title {
+  font-weight: 700;
+  padding: 2px 12px;
+  position: relative;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+}
+
+.content-card-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -12px;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, #70bfff, white);
+}
+
+.content-card-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 16px;
+  padding-right: 0;
+}
+
+.content-item {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.content-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.content-item.selected {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.content-item-icon {
+  width: 45px;
+  height: 45px;
+  margin-right: 4px;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-item-text {
+  white-space: nowrap;
+  font-weight: 600;
+  color: #000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mycomputer-container .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .content-card {
+    width: 100%;
+  }
+} 

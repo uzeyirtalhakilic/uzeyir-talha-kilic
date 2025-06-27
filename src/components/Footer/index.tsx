@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { FooterProps, FooterWindowProps } from './types';
 import FooterMenu from './FooterMenu';
 import { useTranslations } from 'next-intl';
@@ -81,9 +82,11 @@ const Footer: React.FC<FooterProps> = ({
           style={{ minWidth: 70 }}
         >
           
-          <img
+          <Image
             src="/icons/win-xp-icon.png"
             alt="start"
+            width={20}
+            height={20}
             className="h-5 w-5 mr-2"
             draggable={false}
           />
@@ -107,9 +110,9 @@ const Footer: React.FC<FooterProps> = ({
       </div>
 
       <div className="flex-shrink-0 h-full flex items-center px-2.5 ml-2.5 bg-gradient-to-b from-[#0c59b9] via-[#0d9ff1] to-[#095bc9] border-l border-[#1042af] shadow-[inset_1px_0_1px_#18bbff]">
-        <img className="h-[15px] w-[15px] mr-2" src="/icons/sound.png" alt="sound" />
-        <img className="h-[15px] w-[15px] mr-2" src="/icons/usb.png" alt="usb" />
-        <img className="h-[15px] w-[15px] mr-2" src="/icons/risk.png" alt="security" />
+        <Image className="h-[15px] w-[15px] mr-2" src="/icons/sound.png" alt="sound" width={15} height={15} />
+        <Image className="h-[15px] w-[15px] mr-2" src="/icons/usb.png" alt="usb" width={15} height={15} />
+        <Image className="h-[15px] w-[15px] mr-2" src="/icons/risk.png" alt="security" width={15} height={15} />
         <div className="relative w-0 h-0">
         </div>
         {time && (
@@ -140,7 +143,7 @@ const FooterWindow: React.FC<FooterWindowProps> = ({
         ${isFocus ? 'hover:active:shadow-[inset_0_0_1px_1px_rgba(0,0,0,0.3),inset_1px_0_1px_rgba(0,0,0,0.7)]' : 'hover:active:shadow-[inset_0_0_1px_1px_rgba(0,0,0,0.3),inset_1px_0_1px_rgba(0,0,0,0.7)]'}
       `}
     >
-      <img className="h-[15px] w-[15px] mr-2" src={icon} alt={title} />
+      <Image className="h-[15px] w-[15px] mr-2" src={icon} alt={title} width={15} height={15} />
       <div className="absolute left-[27px] right-2 whitespace-nowrap overflow-hidden text-ellipsis">{title}</div>
     </div>
   );

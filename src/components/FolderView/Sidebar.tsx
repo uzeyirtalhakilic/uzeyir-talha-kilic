@@ -1,57 +1,76 @@
 import React from "react";
+import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import "../../styles/desktop.css";
 
-const sidebarItems = [
-  {
-    title: "System Tasks",
-    items: [
-      { icon: "/icons/MyComputer.png", label: "View system information" },
-      { icon: "/icons/refresh.png", label: "Refresh" },
-      { icon: "/icons/stop.png", label: "Stop" },
-    ],
-  },
-  {
-    title: "Other Places",
-    items: [
-      { icon: "/icons/mynetworkplaces.ico", label: "My Network Places" },
-      { icon: "/icons/folderdocument.png", label: "My Documents" },
-      { icon: "/icons/foldericon.png", label: "Shared Documents" },
-      { icon: "/icons/restore.ico", label: "Control Panel" },
-    ],
-  },
-  {
-    title: "Details",
-    items: [
-      { icon: "/icons/win-xp-icon.png", label: "-" },
-    ],
-  },
-];
+const Sidebar: React.FC = () => {
+  const t = useTranslations('folderView.sidebar');
 
-const Sidebar: React.FC = () => (
-  <div
-    className="w-56 p-3 border-r border-[#3a6ea5] shadow-inner"
-    style={{
-      background: "linear-gradient(180deg, #eaf1fb 0%, #b5cbe9 100%)",
-      color: "#1a237e",
-      fontFamily: "Tahoma, Arial, sans-serif",
-      minHeight: "100%",
-    }}
-  >
-    {sidebarItems.map((section, idx) => (
-      <div key={section.title} className={idx < sidebarItems.length - 1 ? "mb-6" : ""}>
-        <div className="font-bold mb-2 text-sm text-[#2050a0] flex items-center">
-          <span className="mr-2">{section.title}</span>
+  return (
+    <div className="sidebar">
+      {/* System Tasks Card */}
+      <div className="sidebar-card">
+        <div className="sidebar-card-header">
+          <div className="sidebar-card-title">{t('systemTasks')}</div>
+          <span className="sidebar-card-icon">▼</span>
         </div>
-        <ul className="ml-1">
-          {section.items.map((item, i) => (
-            <li key={i} className="flex items-center mb-2 hover:bg-[#dbeafe] rounded px-1 cursor-pointer transition">
-              <img src={item.icon} alt={item.label} className="w-5 h-5 mr-2" />
-              <span className="text-xs">{item.label}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="sidebar-card-content">
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/ie-book.png" alt="View info" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('viewSystemInformation')}</div>
+          </div>
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/close.png" alt="Remove" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('addOrRemovePrograms')}</div>
+          </div>
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/networksecurity.png" alt="Settings" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('changeASetting')}</div>
+          </div>
+        </div>
       </div>
-    ))}
-  </div>
-);
+
+      {/* Other Places Card */}
+      <div className="sidebar-card">
+        <div className="sidebar-card-header">
+          <div className="sidebar-card-title">{t('otherPlaces')}</div>
+          <span className="sidebar-card-icon">▼</span>
+        </div>
+        <div className="sidebar-card-content">
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/mynetworkplaces.ico" alt="Network" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('myNetworkPlaces')}</div>
+          </div>
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/folderdocument.png" alt="Documents" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('myDocuments')}</div>
+          </div>
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/foldericon.png" alt="Shared" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('sharedDocuments')}</div>
+          </div>
+          <div className="sidebar-item">
+            <span className="sidebar-item-icon">
+              <Image src="/icons/networksecurity.png" alt="Control Panel" width={14} height={14} />
+            </span>
+            <div className="sidebar-item-text">{t('controlPanel')}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Sidebar; 

@@ -1,5 +1,4 @@
 "use client";
-// TODO: <img> yerine Next.js'in <Image /> bileşenini kullan! Daha iyi performans ve uyarıların kaybolması için bunu değiştir.
 // TODO: Klasör yapısını tamamla ve ingizlicelerini yaz.
 // TODO: Sağ alt ekrana bir uyarı yazısı yaz. Yazının içine "Radio Button" ???
 // TODO: PDF açıcı ekle ya da yan sekmede açılmasını sağla

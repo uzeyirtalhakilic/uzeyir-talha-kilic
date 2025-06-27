@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { FooterMenuProps, ItemProps, ItemsProps, SubMenuProps } from './types';
 import { AllPrograms, ConnectTo, MyRecentDocuments } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
@@ -37,7 +38,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
   return (
     <div className={`text-[11px] leading-[14px] flex flex-col items-center bg-[#4282d6] rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] ${className}`}>
       <header className="relative self-start flex items-center text-white h-[54px] px-[5px] py-[5px] w-full rounded-t-[5px] bg-gradient-to-b from-[#1868ce] via-[#1a6ed4] to-[#1868ce]">
-        <img className="h-8 w-8 mr-2" src="/icons/user.png" alt="avatar" />
+        <Image className="h-8 w-8 mr-2" src="/icons/user.png" alt="avatar" width={32} height={32} />
         <span className="text-[13px] font-bold">User</span>
       </header>
       <section className="flex w-full menu" onMouseOver={onMouseOver}>
@@ -75,9 +76,11 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
             text={
               <div className="flex items-center">
                 {t('allPrograms')}
-                <img
+                <Image
                   src="/icons/all-programs.ico"
                   alt=""
+                  width={18}
+                  height={18}
                   className="ml-[5px] h-[18px]"
                 />
               </div>
@@ -173,14 +176,14 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           className="flex items-center text-white cursor-pointer px-2 py-1 hover:bg-[#2f71cd]"
           onClick={() => onClick(t('logOff'))}
         >
-          <img className="h-4 w-4 mr-2" src="/icons/lock.png" alt="" />
+          <Image className="h-4 w-4 mr-2" src="/icons/lock.png" alt="" width={16} height={16} />
           <span>{t('logOff')}</span>
         </div>
         <div
           className="flex items-center text-white cursor-pointer px-2 py-1 hover:bg-[#2f71cd]"
           onClick={() => onClick(t('turnOffComputer'))}
         >
-          <img className="h-4 w-4 mr-2" src="/icons/shutdown.png" alt="" />
+          <Image className="h-4 w-4 mr-2" src="/icons/shutdown.png" alt="" width={16} height={16} />
           <span>{t('turnOffComputer')}</span>
         </div>
       </footer>
@@ -215,7 +218,7 @@ const Item: React.FC<ItemProps> = ({
       onClick={_onClick}
       onMouseEnter={onMouseEnter}
     >
-      <img className="h-4 w-4 mr-2" src={icon} alt={typeof text === 'string' ? text : ''} />
+      <Image className="h-4 w-4 mr-2" src={icon} alt={typeof text === 'string' ? text : ''} width={16} height={16} />
       <div className="flex-1">
         <div className="menu__item__text">{text}</div>
         {children}

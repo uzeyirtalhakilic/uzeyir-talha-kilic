@@ -1,7 +1,7 @@
 {
   "layout": {
-    "title": "Üzeyir Talha Kılıç - Windows XP Tarzı Portfolio",
-    "description": "Üzeyir Talha Kılıç'ın Windows XP tarzında tasarlanmış kişisel web sitesi"
+    "title": "Üzeyir Talha Kılıç ",
+    "description": "Üzeyir Talha Kılıç'ın kişisel web sitesi"
   },
   "desktop": {
     "projects": "Projeler",
@@ -65,5 +65,106 @@
     "turkish": "Türkçe",
     "english": "İngilizce",
     "continue": "Devam Et"
+  },
+  "folderView": {
+    "addressBar": {
+      "address": "Adres",
+      "myComputer": "Bilgisayarım",
+      "go": "Git"
+    },
+    "toolbar": {
+      "file": "Dosya",
+      "edit": "Düzenle",
+      "view": "Görünüm",
+      "favorites": "Sık Kullanılanlar",
+      "tools": "Araçlar",
+      "help": "Yardım"
+    },
+    "sidebar": {
+      "systemTasks": "Sistem Görevleri",
+      "viewSystemInformation": "Sistem bilgilerini görüntüle",
+      "addOrRemovePrograms": "Program ekle veya kaldır",
+      "changeASetting": "Bir ayarı değiştir",
+      "otherPlaces": "Diğer Yerler",
+      "myNetworkPlaces": "Ağ Komşularım",
+      "myDocuments": "Belgelerim",
+      "sharedDocuments": "Paylaşılan Belgeler",
+      "controlPanel": "Denetim Masası"
+    },
+    "contentGrid": {
+      "filesStoredOnThisComputer": "Bu Bilgisayarda Saklanan Dosyalar",
+      "sharedDocuments": "Paylaşılan Belgeler",
+      "usersDocuments": "Kullanıcının Belgeleri",
+      "hardDiskDrives": "Sabit Disk Sürücüleri",
+      "localDiskC": "Yerel Disk (C:)",
+      "devicesWithRemovableStorage": "Çıkarılabilir Depolama Aygıtları",
+      "cdDriveD": "CD Sürücüsü (D:)"
+    },
+    "myComputer": {
+      "back": "Geri",
+      "forward": "İleri",
+      "search": "Ara",
+      "folders": "Klasörler"
+    },
+    "dropdownMenu": {
+      "file": {
+        "createShortcut": "Kısayol Oluştur",
+        "delete": "Sil",
+        "rename": "Yeniden Adlandır",
+        "properties": "Özellikler",
+        "close": "Kapat"
+      },
+      "edit": {
+        "undo": "Geri Al",
+        "cut": "Kes",
+        "copy": "Kopyala",
+        "paste": "Yapıştır",
+        "pasteShortcut": "Kısayol Yapıştır",
+        "copyToFolder": "Klasöre Kopyala...",
+        "moveToFolder": "Klasöre Taşı...",
+        "selectAll": "Tümünü Seç",
+        "invertSelection": "Seçimi Tersine Çevir"
+      },
+      "view": {
+        "toolbars": "Araç Çubukları",
+        "standardButtons": "Standart Düğmeler",
+        "addressBar": "Adres Çubuğu",
+        "links": "Bağlantılar",
+        "lockTheToolbars": "Araç Çubuklarını Kilitle",
+        "customize": "Özelleştir...",
+        "statusBar": "Durum Çubuğu",
+        "explorerBar": "Gezgin Çubuğu",
+        "search": "Ara",
+        "favorites": "Sık Kullanılanlar",
+        "history": "Geçmiş",
+        "folders": "Klasörler",
+        "tipOfTheDay": "Günün İpucu",
+        "thumbnails": "Küçük Resimler",
+        "tiles": "Döşemeler",
+        "icons": "Simgeler",
+        "list": "Liste",
+        "details": "Ayrıntılar",
+        "arrangeIconsBy": "Simge Düzenleme",
+        "name": "Ad",
+        "size": "Boyut",
+        "type": "Tür",
+        "modified": "Değiştirilme",
+        "chooseDetails": "Ayrıntıları Seç..."
+      },
+      "favorites": {
+        "addToFavorites": "Sık Kullanılanlara Ekle...",
+        "organizeFavorites": "Sık Kullanılanları Düzenle..."
+      },
+      "tools": {
+        "mapNetworkDrive": "Ağ Sürücüsü Eşle...",
+        "disconnectNetworkDrive": "Ağ Sürücüsünü Bağlantısını Kes",
+        "synchronize": "Senkronize Et",
+        "folderOptions": "Klasör Seçenekleri..."
+      },
+      "help": {
+        "helpTopics": "Yardım Konuları",
+        "aboutWindows": "Windows Hakkında"
+      }
+    }
   }
 } 
