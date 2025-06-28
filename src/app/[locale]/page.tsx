@@ -18,4 +18,6 @@ export default function HomePage({params}: {params: Promise<{locale: string}>}) 
   // Enable static rendering
   setRequestLocale(locale);
   
-  return <Desktop />;}
+  // Trigger new deployment to fix ESLint error
+  return <Desktop />;
+}
