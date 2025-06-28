@@ -1,5 +1,4 @@
 "use client";
-// TODO: Klasör yapısını tamamla ve ingizlicelerini yaz.
 // TODO: Sağ alt ekrana bir uyarı yazısı yaz. Yazının içine "Radio Button" ???
 // TODO: Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim

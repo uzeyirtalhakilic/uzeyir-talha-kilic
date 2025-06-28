@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { FooterMenuProps, ItemProps, ItemsProps, SubMenuProps } from './types';
-import { AllPrograms, ConnectTo, MyRecentDocuments } from './FooterMenuData';
+import { FooterMenuProps, ItemProps, SubMenuProps, MenuItem } from './types';
+import { AllPrograms, MyRecentDocuments, ConnectTo } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
@@ -33,7 +33,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
 };
 
 const SubMenuItem: React.FC<{
-  item: any;
+  item: MenuItem;
   hover: boolean;
   onMouseEnter: () => void;
   onClick: (text: string) => void;
@@ -41,7 +41,7 @@ const SubMenuItem: React.FC<{
   const [showSubMenu, setShowSubMenu] = useState(false);
 
   const handleClick = () => {
-    if (item.type === 'item') {
+    if (item.type === 'item' && item.text) {
       onClick(item.text);
     }
   };
@@ -361,16 +361,6 @@ const Item: React.FC<ItemProps> = ({
       <span className="menu__item__text text-[11px] flex-1">{text}</span>
       {children}
     </div>
-  );
-};
-
-const Items: React.FC<ItemsProps> = ({ items, ...rest }) => {
-  return (
-    <>
-      {items.map((item, i) => (
-        <Item key={i} {...item} {...rest} />
-      ))}
-    </>
   );
 };
 
