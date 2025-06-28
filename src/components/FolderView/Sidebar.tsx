@@ -69,6 +69,28 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Github Card */}
+      <div className="sidebar-card">
+        <div className="sidebar-card-header">
+          <div className="sidebar-card-title">GitHub</div>
+          <span className="sidebar-card-icon">▼</span>
+        </div>
+        <div className="sidebar-card-content">
+          <div className="sidebar-item" style={{ justifyContent: 'center' }}>
+            <a href="https://github.com/uzeyirtalhakilic" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+              <span className="sidebar-item-icon" style={{ width: 60, height: 60, marginRight: 0 }}>
+                <Image src="/github-logo.png" alt="GitHub" width={60} height={60} />
+              </span>
+            </a>
+          </div>
+          <div className="sidebar-item" style={{ justifyContent: 'center' }}>
+          <a href="https://github.com/uzeyirtalhakilic" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+            <div className="sidebar-item-text">uzeyirtalhakilic</div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
