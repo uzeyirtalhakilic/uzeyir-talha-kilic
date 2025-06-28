@@ -7,34 +7,42 @@ import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import { useTranslations } from 'next-intl';
 
-
-interface XpWindowProps {
-  item: FileSystemItem;
-  onClose: () => void;
-  path?: string;
-}
-
 interface WindowState {
+  id: string;
+  item: FileSystemItem;
+  isMinimized: boolean;
+  isMaximized: boolean;
   x: number;
   y: number;
   width: number;
   height: number;
-  isMaximized: boolean;
-  isMinimized: boolean;
 }
 
-const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
+interface XpWindowProps {
+  item: FileSystemItem;
+  windowState: WindowState;
+  onClose: () => void;
+  onMinimize: () => void;
+  onMaximize: () => void;
+  onFocus: () => void;
+  onResize: (x: number, y: number, width: number, height: number) => void;
+  isFocused: boolean;
+  path?: string;
+}
+
+const XpWindow: React.FC<XpWindowProps> = ({ 
+  item, 
+  windowState, 
+  onClose, 
+  onMinimize, 
+  onMaximize, 
+  onFocus, 
+  onResize,
+  isFocused 
+}) => {
   const t = useTranslations('folderView.addressBar');
   const tDesktop = useTranslations('desktop');
-  const [windowState, setWindowState] = useState<WindowState>({
-    x: window.innerWidth / 2 - 500,
-    y: 50,
-    width: 1000,
-    height: 700,
-    isMaximized: false,
-    isMinimized: false,
-  });
-
+  
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [resizeDirection, setResizeDirection] = useState<string>("");
@@ -52,6 +60,7 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
   // Mouse event handlers
   const handleMouseDown = (e: React.MouseEvent, type: string) => {
     e.preventDefault();
+    onFocus(); // Pencereye tıklandığında focus'u al
     
     if (type === 'drag') {
       setIsDragging(true);
@@ -82,11 +91,8 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
       const clampedX = Math.max(0, Math.min(newX, window.innerWidth - windowState.width));
       const clampedY = Math.max(0, Math.min(newY, window.innerHeight - windowState.height));
       
-      setWindowState(prev => ({
-        ...prev,
-        x: clampedX,
-        y: clampedY,
-      }));
+      // Desktop bileşenine pozisyon değişikliğini bildir
+      onResize(clampedX, clampedY, windowState.width, windowState.height);
     } else if (isResizing && !windowState.isMaximized) {
       const deltaX = e.clientX - resizeStart.x;
       const deltaY = e.clientY - resizeStart.y;
@@ -117,49 +123,15 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
       const clampedX = Math.max(0, Math.min(newX, window.innerWidth - newWidth));
       const clampedY = Math.max(0, Math.min(newY, window.innerHeight - newHeight));
 
-      setWindowState(prev => ({
-        ...prev,
-        x: clampedX,
-        y: clampedY,
-        width: newWidth,
-        height: newHeight,
-      }));
+      // Desktop bileşenine boyut değişikliğini bildir
+      onResize(clampedX, clampedY, newWidth, newHeight);
     }
-  }, [isDragging, isResizing, windowState.isMaximized, windowState.width, windowState.height, dragStart, resizeStart, resizeDirection, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT]);
+  }, [isDragging, isResizing, windowState.isMaximized, windowState.width, windowState.height, dragStart, resizeStart, resizeDirection, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT, onResize]);
 
   const handleMouseUp = () => {
     setIsDragging(false);
     setIsResizing(false);
     setResizeDirection("");
-  };
-
-  // Window controls
-  const handleMinimize = () => {
-    setWindowState(prev => ({ ...prev, isMinimized: true }));
-  };
-
-  const handleMaximize = () => {
-    if (windowState.isMaximized) {
-      // Restore
-      setWindowState(prev => ({
-        ...prev,
-        isMaximized: false,
-        x: window.innerWidth / 2 - 500,
-        y: 50,
-        width: 1000,
-        height: 700,
-      }));
-    } else {
-      // Maximize
-      setWindowState(prev => ({
-        ...prev,
-        isMaximized: true,
-        x: 0,
-        y: 0,
-        width: window.innerWidth,
-        height: window.innerHeight - 40, // Taskbar için alan bırak
-      }));
-    }
   };
 
   // Event listeners
@@ -213,10 +185,6 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
     }
   };
 
-  if (windowState.isMinimized) {
-    return null; // Minimized durumda pencereyi gizle
-  }
-
   const windowStyle = {
     position: 'absolute' as const,
     left: windowState.x,
@@ -229,7 +197,7 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
     boxShadow: "0 8px 32px 0 rgba(60, 90, 170, 0.25)",
     border: "1px solid #b5cbe9",
     borderRadius: windowState.isMaximized ? "0" : "8px",
-    zIndex: 20,
+    zIndex: isFocused ? 20 : 19,
   };
 
   const windowClasses = [
@@ -237,6 +205,7 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
     windowState.isMaximized ? 'maximized' : '',
     isDragging ? 'dragging' : '',
     isResizing ? 'resizing' : '',
+    isFocused ? 'focused' : '',
   ].filter(Boolean).join(' ');
 
   return (
@@ -254,10 +223,10 @@ const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
           <div className="title-bar-text">{getWindowTitle()}</div>
         </div>
         <div className="title-bar-right">
-          <button className="title-bar-button minimize" onClick={handleMinimize}>
+          <button className="title-bar-button minimize" onClick={onMinimize}>
             <span>_</span>
           </button>
-          <button className="title-bar-button maximize" onClick={handleMaximize}>
+          <button className="title-bar-button maximize" onClick={onMaximize}>
             <span>{windowState.isMaximized ? '❐' : '□'}</span>
           </button>
           <button className="title-bar-button close" onClick={onClose}>

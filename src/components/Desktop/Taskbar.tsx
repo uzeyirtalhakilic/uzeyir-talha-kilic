@@ -15,6 +15,7 @@ interface TaskbarProps {
   focusedAppId: string | null;
   onMouseDown: () => void;
   onClickMenuItem: (name: string) => void;
+  onWindowClick: (windowId: string) => void;
 }
 
 const Taskbar: React.FC<TaskbarProps> = ({
@@ -22,6 +23,7 @@ const Taskbar: React.FC<TaskbarProps> = ({
   focusedAppId,
   onMouseDown,
   onClickMenuItem,
+  onWindowClick,
 }) => {
   return (
     <Footer
@@ -29,6 +31,7 @@ const Taskbar: React.FC<TaskbarProps> = ({
       focusedAppId={focusedAppId}
       onMouseDown={onMouseDown}
       onClickMenuItem={onClickMenuItem}
+      onWindowClick={onWindowClick}
     />
   );
 };

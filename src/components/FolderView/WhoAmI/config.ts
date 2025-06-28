@@ -64,7 +64,7 @@ export const whoAmIContentConfig: ContentCard[] = [
       {
         icon: '/icons/email.png',
         text: 'Email.txt',
-        href: 'mailto:uzeyir@example.com'
+        href: 'kilicuzeyirtalha@gmail.com'
       },
       {
         icon: '/icons/networksecurity.png',

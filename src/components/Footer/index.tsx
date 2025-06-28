@@ -29,13 +29,15 @@ const Footer: React.FC<FooterProps> = ({
   focusedAppId,
   onMouseDown = () => {},
   onClickMenuItem,
+  onWindowClick,
 }) => {
   const [time, setTime] = useState("");
   const [menuOn, setMenuOn] = useState(false);
   const menu = useRef<HTMLDivElement>(null);
   const tDesktop = useTranslations('desktop');
 
-  function toggleMenu() {
+  function toggleMenu(e: React.MouseEvent) {
+    e.stopPropagation();
     setMenuOn(on => !on);
   }
 
@@ -73,12 +75,16 @@ const Footer: React.FC<FooterProps> = ({
       onMouseDown={_onMouseDown}
     >
       <div className="flex-1 h-full flex items-center overflow-hidden">
-        <div ref={menu} className="relative">
+        <div ref={menu} className="relative z-[9999]">
           {menuOn && <FooterMenu onClick={_onClickMenuItem} />}
         </div>
         <div
           onMouseDown={toggleMenu}
-          className="flex items-center px-3 py-0.5 mr-2.5 rounded-r-full rounded-l-2xl bg-gradient-to-b from-[#60b044] to-[#388a2f] border border-[#356a1a] shadow-[inset_0_1px_0_#a4e17e] cursor-pointer select-none active:brightness-90"
+          className={`flex items-center px-3 py-0.5 mr-2.5 rounded-r-full rounded-l-2xl cursor-pointer select-none transition-all duration-150 flex-shrink-0 menu-item ${
+            menuOn 
+              ? 'bg-gradient-to-b from-[#4a9c3a] to-[#2d7a24] border border-[#2d5a1a] shadow-[inset_0_1px_0_#8cd17e]' 
+              : 'bg-gradient-to-b from-[#60b044] to-[#388a2f] border border-[#356a1a] shadow-[inset_0_1px_0_#a4e17e] hover:brightness-110 active:brightness-90'
+          }`}
           style={{ minWidth: 70 }}
         >
           
@@ -102,7 +108,7 @@ const Footer: React.FC<FooterProps> = ({
                 id={app.id}
                 icon={app.header.icon}
                 title={app.header.title}
-                onMouseDown={() => {}}
+                onMouseDown={() => onWindowClick?.(app.id)}
                 isFocus={focusedAppId === app.id}
               />
             ),
@@ -136,15 +142,16 @@ const FooterWindow: React.FC<FooterWindowProps> = ({
   return (
     <div
       onMouseDown={_onMouseDown}
-      className={`flex-1 max-w-[150px] text-white rounded-sm mt-0.5 px-2 h-[22px] text-[11px] bg-[#3c81f3] shadow-[inset_-1px_0px_rgba(0,0,0,0.3),inset_1px_1px_1px_rgba(255,255,255,0.2)] relative flex items-center
+      className={`footer__window flex-shrink-0 max-w-[260px] min-w-[120px] text-white rounded-sm mt-0.5 px-2 h-[28px] text-[12px] bg-[#3c81f3] shadow-[inset_-1px_0px_rgba(0,0,0,0.3),inset_1px_1px_1px_rgba(255,255,255,0.2)] relative flex items-center gap-2 menu-item
         ${isFocus ? 'focus' : 'cover'}
         ${isFocus ? 'hover:bg-[#3576f3]' : 'hover:bg-[#53a3ff]'}
         ${isFocus ? 'hover:active:bg-[#1e52b7]' : 'hover:active:bg-[#1e52b7]'}
         ${isFocus ? 'hover:active:shadow-[inset_0_0_1px_1px_rgba(0,0,0,0.3),inset_1px_0_1px_rgba(0,0,0,0.7)]' : 'hover:active:shadow-[inset_0_0_1px_1px_rgba(0,0,0,0.3),inset_1px_0_1px_rgba(0,0,0,0.7)]'}
       `}
+      title={title}
     >
-      <Image className="h-[15px] w-[15px] mr-2" src={icon} alt={title} width={15} height={15} />
-      <div className="absolute left-[27px] right-2 whitespace-nowrap overflow-hidden text-ellipsis">{title}</div>
+      <Image className="h-[18px] w-[18px] mr-1 flex-shrink-0" src={icon} alt={title} width={18} height={18} />
+      <span className="truncate block font-semibold" style={{maxWidth: '200px'}}>{title}</span>
     </div>
   );
 };

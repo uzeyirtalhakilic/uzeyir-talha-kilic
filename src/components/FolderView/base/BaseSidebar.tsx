@@ -36,7 +36,7 @@ const BaseSidebar: React.FC<BaseSidebarProps> = ({ cards, className = "sidebar" 
   };
 
   return (
-    <div className={className}>
+    <div className={className} style={{  }}>
       {cards.map((card, cardIndex) => (
         <div key={cardIndex} className="sidebar-card">
           <div className="sidebar-card-header">

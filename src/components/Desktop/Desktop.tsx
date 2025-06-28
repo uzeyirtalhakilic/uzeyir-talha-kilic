@@ -1,7 +1,6 @@
 "use client";
 // TODO: Klasör yapısını tamamla ve ingizlicelerini yaz.
 // TODO: Sağ alt ekrana bir uyarı yazısı yaz. Yazının içine "Radio Button" ???
-// TODO: PDF açıcı ekle ya da yan sekmede açılmasını sağla
 // TODO: Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim
 
@@ -12,15 +11,140 @@ import React, { useState } from "react";
 import XpWindow from "./XpWindow";
 import { useTranslations } from "next-intl";
 
+interface WindowState {
+  id: string;
+  item: FileSystemItem;
+  isMinimized: boolean;
+  isMaximized: boolean;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export default function Desktop() {
-  const [openWindows, setOpenWindows] = useState<FileSystemItem[]>([]);
+  const [windowStates, setWindowStates] = useState<WindowState[]>([]);
+  const [focusedWindowId, setFocusedWindowId] = useState<string | null>(null);
   const t = useTranslations('desktop');
   const tFooter = useTranslations('footer');
 
   const handleOpen = (item: FileSystemItem) => {
     // Aynı pencereyi tekrar açma
-    if (!openWindows.find((win) => win.id === item.id)) {
-      setOpenWindows((prev) => [...prev, item]);
+    if (!windowStates.find((win) => win.id === item.id)) {
+      const newWindow: WindowState = {
+        id: item.id,
+        item: item,
+        isMinimized: false,
+        isMaximized: false,
+        x: window.innerWidth / 2 - 500,
+        y: 50,
+        width: 1100,
+        height: 500,
+      };
+      setWindowStates((prev) => [...prev, newWindow]);
+      setFocusedWindowId(item.id);
+    } else {
+      // Eğer pencere minimize edilmişse, geri getir
+      const existingWindow = windowStates.find((win) => win.id === item.id);
+      if (existingWindow?.isMinimized) {
+        setWindowStates((prev) =>
+          prev.map((win) =>
+            win.id === item.id ? { ...win, isMinimized: false } : win
+          )
+        );
+        setFocusedWindowId(item.id);
+      }
+    }
+  };
+
+  const handleClose = (windowId: string) => {
+    setWindowStates((prev) => prev.filter((win) => win.id !== windowId));
+    if (focusedWindowId === windowId) {
+      setFocusedWindowId(null);
+    }
+  };
+
+  const handleMinimize = (windowId: string) => {
+    setWindowStates((prev) =>
+      prev.map((win) =>
+        win.id === windowId ? { ...win, isMinimized: true } : win
+      )
+    );
+    if (focusedWindowId === windowId) {
+      setFocusedWindowId(null);
+    }
+  };
+
+  const handleMaximize = (windowId: string) => {
+    setWindowStates((prev) =>
+      prev.map((win) => {
+        if (win.id === windowId) {
+          if (win.isMaximized) {
+            // Restore
+            return {
+              ...win,
+              isMaximized: false,
+              x: window.innerWidth / 2 - 500,
+              y: 50,
+              width: 1000,
+              height: 700,
+            };
+          } else {
+            // Maximize
+            return {
+              ...win,
+              isMaximized: true,
+              x: 0,
+              y: 0,
+              width: window.innerWidth,
+              height: window.innerHeight - 40, // Taskbar için alan bırak
+            };
+          }
+        }
+        return win;
+      })
+    );
+  };
+
+  const handleWindowFocus = (windowId: string) => {
+    setFocusedWindowId(windowId);
+    // Pencereyi en üste getir
+    setWindowStates((prev) => [
+      ...prev.filter((win) => win.id !== windowId),
+      ...prev.filter((win) => win.id === windowId),
+    ]);
+  };
+
+  const handleWindowResize = (windowId: string, x: number, y: number, width: number, height: number) => {
+    setWindowStates((prev) =>
+      prev.map((win) =>
+        win.id === windowId ? { ...win, x, y, width, height } : win
+      )
+    );
+  };
+
+  const handleTaskbarWindowClick = (windowId: string) => {
+    const window = windowStates.find((win) => win.id === windowId);
+    if (window) {
+      if (window.isMinimized) {
+        // Minimize edilmiş pencereyi geri getir
+        setWindowStates((prev) =>
+          prev.map((win) =>
+            win.id === windowId ? { ...win, isMinimized: false } : win
+          )
+        );
+        setFocusedWindowId(windowId);
+      } else {
+        // Açık pencereyi minimize et
+        setWindowStates((prev) =>
+          prev.map((win) =>
+            win.id === windowId ? { ...win, isMinimized: true } : win
+          )
+        );
+        if (focusedWindowId === windowId) {
+          setFocusedWindowId(null);
+        }
+      }
     }
   };
 
@@ -54,8 +178,8 @@ export default function Desktop() {
       };
     }
 
-    if (itemToOpen && !openWindows.find((win: FileSystemItem) => win.id === itemToOpen!.id)) {
-      setOpenWindows((prev) => [...prev, itemToOpen!]);
+    if (itemToOpen) {
+      handleOpen(itemToOpen);
     }
   };
 
@@ -72,6 +196,41 @@ export default function Desktop() {
        item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
        item.label) : item.label
   }));
+
+  // Taskbar için app listesi oluştur
+  const taskbarApps = windowStates.map((windowState) => ({
+    id: windowState.id,
+    header: {
+      icon: getWindowIcon(windowState.item),
+      title: getWindowTitle(windowState.item),
+      noFooterWindow: false,
+    },
+  }));
+
+  // Window title ve icon helper fonksiyonları
+  function getWindowTitle(item: FileSystemItem): string {
+    if (item.translationKey === 'desktop.myDocuments') {
+      return t('myDocuments');
+    } else if (item.translationKey === 'desktop.controlPanel') {
+      return t('controlPanel');
+    } else if (item.translationKey === 'desktop.1') {
+      return t('whoAmI');
+    } else {
+      return t('myComputer');
+    }
+  }
+
+  function getWindowIcon(item: FileSystemItem): string {
+    if (item.translationKey === 'desktop.myDocuments') {
+      return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.controlPanel') {
+      return "/icons/control-panel.png";
+    } else if (item.translationKey === 'desktop.1') {
+      return "/icons/msword.png";
+    } else {
+      return "/icons/MyComputer.png";
+    }
+  }
 
   return (
     <div className="relative w-screen h-screen min-h-screen overflow-hidden font-sans">
@@ -93,19 +252,28 @@ export default function Desktop() {
       </div>
 
       {/* Açık pencereleri göster */}
-      {openWindows.map((item: FileSystemItem) => (
-        <XpWindow
-          key={item.id}
-          item={item}
-          onClose={() => setOpenWindows((prev) => prev.filter((w: FileSystemItem) => w.id !== item.id))}
-        />
-      ))}
+      {windowStates
+        .filter((windowState) => !windowState.isMinimized)
+        .map((windowState) => (
+          <XpWindow
+            key={windowState.id}
+            item={windowState.item}
+            windowState={windowState}
+            onClose={() => handleClose(windowState.id)}
+            onMinimize={() => handleMinimize(windowState.id)}
+            onMaximize={() => handleMaximize(windowState.id)}
+            onFocus={() => handleWindowFocus(windowState.id)}
+            onResize={(x, y, width, height) => handleWindowResize(windowState.id, x, y, width, height)}
+            isFocused={focusedWindowId === windowState.id}
+          />
+        ))}
 
       <Taskbar
-        apps={[]}
-        focusedAppId={null}
+        apps={taskbarApps}
+        focusedAppId={focusedWindowId}
         onMouseDown={() => {}}
         onClickMenuItem={handleMenuItemClick}
+        onWindowClick={handleTaskbarWindowClick}
       />
     </div>
   );

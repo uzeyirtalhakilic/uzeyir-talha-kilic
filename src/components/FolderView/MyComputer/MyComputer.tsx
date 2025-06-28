@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { BaseFolderView, BaseSidebar, BaseContentGrid } from '../base';
 import { myComputerSidebarConfig, myComputerContentConfig } from './config';
 
@@ -12,6 +12,7 @@ const MyComputer: React.FC<MyComputerProps> = () => {
   const t = useTranslations('folderView.myComputer');
   const tSidebar = useTranslations('folderView.sidebar');
   const tContent = useTranslations('folderView.contentGrid');
+  const locale = useLocale();
 
   // Konfigürasyonları çevirilerle güncelle
   const localizedSidebarConfig = myComputerSidebarConfig.map(card => ({
@@ -26,10 +27,22 @@ const MyComputer: React.FC<MyComputerProps> = () => {
   const localizedContentConfig = myComputerContentConfig.map(card => ({
     ...card,
     title: tContent(card.title),
-    items: card.items.map(item => ({
-      ...item,
-      text: item.href ? tContent(item.text) : tContent(item.text)
-    }))
+    items: card.items.map(item => {
+      // Handle CV link based on locale
+      if (item.text === 'myCv') {
+        return {
+          ...item,
+          text: tContent(item.text),
+          href: locale === 'tr' 
+            ? '/pdfs/Üzeyir Talha Kılıç TR.pdf'
+            : '/pdfs/Uzeyir Talha Kilic EN.pdf'
+        };
+      }
+      return {
+        ...item,
+        text: item.href ? tContent(item.text) : tContent(item.text)
+      };
+    })
   }));
 
   // Function bar için özel butonlar

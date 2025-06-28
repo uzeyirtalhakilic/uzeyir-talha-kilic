@@ -19,6 +19,7 @@ export interface FooterProps {
   focusedAppId: string | null;
   onMouseDown: () => void;
   onClickMenuItem: (name: string) => void;
+  onWindowClick?: (windowId: string) => void;
 }
 
 export interface FooterWindowProps {
@@ -52,10 +53,7 @@ export interface ItemsProps {
 }
 
 export interface SubMenuProps {
-  data: Array<{
-    icon: string;
-    text: string;
-  }>;
+  data: MenuItem[];
   onClick: (text: string) => void;
   left?: string;
 }

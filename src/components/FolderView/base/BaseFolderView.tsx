@@ -26,7 +26,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
           <>
             <button className="function-button" disabled>
               <span className="function-button-icon">
-                <Image src="/icons/back.png" alt="Back" width={30} height={30} />
+                <Image src="/icons/back.png" alt="Back" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
               </span>
               <span className="function-button-text">Back</span>
               <div className="function-button-dropdown">
@@ -36,7 +36,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
 
             <button className="function-button" disabled>
               <span className="function-button-icon">
-                <Image src="/icons/forward.png" alt="Forward" width={30} height={30} />
+                <Image src="/icons/forward.png" alt="Forward" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
               </span>
               <div className="function-button-dropdown">
                 <div className="function-button-dropdown-arrow"></div>
@@ -45,7 +45,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
 
             <button className="function-button">
               <span className="function-button-small-icon">
-                <Image src="/icons/refresh.png" alt="Up" width={22} height={22} />
+                <Image src="/icons/refresh.png" alt="Up" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
               </span>
             </button>
 
@@ -53,14 +53,14 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
 
             <button className="function-button">
               <span className="function-button-small-icon">
-                <Image src="/icons/ie-book.png" alt="Search" width={22} height={22} />
+                <Image src="/icons/ie-book.png" alt="Search" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
               </span>
               <span>Search</span>
             </button>
 
             <button className="function-button">
               <span className="function-button-small-icon">
-                <Image src="/icons/foldericon.png" alt="Folders" width={22} height={22} />
+                <Image src="/icons/foldericon.png" alt="Folders" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
               </span>
               <span>Folders</span>
             </button>

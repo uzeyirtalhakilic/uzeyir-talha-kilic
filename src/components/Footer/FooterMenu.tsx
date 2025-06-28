@@ -7,16 +7,115 @@ import { AllPrograms, ConnectTo, MyRecentDocuments } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
+  const [hoverIndex, setHoverIndex] = useState(-1);
+
+  const handleMouseLeave = () => {
+    setHoverIndex(-1);
+  };
+
   return (
     <div 
-      className="absolute top-0 bg-[#4282d6] shadow-[2px_4px_2px_rgba(0,0,0,0.5)]"
+      className="absolute top-0 bg-white shadow-[2px_4px_2px_rgba(0,0,0,0.5)] border border-[#72ade9] min-w-[200px] z-[10000]"
       style={{ left }}
+      onMouseLeave={handleMouseLeave}
     >
-      {data.map((item, i) => (
-        <Item key={i} {...item} onClick={onClick} />
+      {data.map((item, index) => (
+        <SubMenuItem
+          key={index}
+          item={item}
+          hover={hoverIndex === index}
+          onMouseEnter={() => setHoverIndex(index)}
+          onClick={onClick}
+        />
       ))}
     </div>
   );
+};
+
+const SubMenuItem: React.FC<{
+  item: any;
+  hover: boolean;
+  onMouseEnter: () => void;
+  onClick: (text: string) => void;
+}> = ({ item, hover, onMouseEnter, onClick }) => {
+  const [showSubMenu, setShowSubMenu] = useState(false);
+
+  const handleClick = () => {
+    if (item.type === 'item') {
+      onClick(item.text);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    onMouseEnter();
+    if (item.type === 'menu') {
+      setShowSubMenu(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (item.type === 'menu') {
+      setShowSubMenu(false);
+    }
+  };
+
+  switch (item.type) {
+    case 'item':
+      return (
+        <div 
+          className={`flex items-center px-2 py-1 cursor-pointer relative text-black menu-item ${
+            hover ? 'bg-[#1b65cc] text-white' : 'bg-transparent text-black'
+          } hover:bg-[#1b65cc] hover:text-white`}
+          onClick={handleClick}
+        >
+          {item.icon && (
+            <Image 
+              src={item.icon} 
+              alt="" 
+              width={16} 
+              height={16} 
+              className="mr-1.5"
+            />
+          )}
+          <span className="text-[11px] flex-1 whitespace-nowrap">{item.text}</span>
+        </div>
+      );
+    case 'separator':
+      return (
+        <div className="h-0.5 bg-gradient-to-r from-transparent via-black/10 to-transparent my-0.5 shadow-[inset_3px_0_#4081ff]" />
+      );
+    case 'menu':
+      return (
+        <div
+          className={`flex items-center px-2 py-1 cursor-pointer relative text-black menu-item ${
+            hover ? 'bg-[#1b65cc] text-white' : 'bg-transparent text-black'
+          } hover:bg-[#1b65cc] hover:text-white`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {item.icon && (
+            <Image 
+              src={item.icon} 
+              alt="" 
+              width={16} 
+              height={16} 
+              className="mr-1.5"
+            />
+          )}
+          <span className="text-[11px] flex-1 whitespace-nowrap">{item.text}</span>
+          <span className="text-[8px] ml-1">▶</span>
+          {showSubMenu && (
+            <SubMenu
+              data={item.items || []}
+              onClick={onClick}
+              left="100%"
+            />
+          )}
+        </div>
+      );
+    default:
+      return null;
+  }
 };
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
@@ -36,34 +135,55 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
   }
 
   return (
-    <div className={`text-[11px] leading-[14px] flex flex-col items-center bg-[#4282d6] rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] ${className}`}>
-      <header className="relative self-start flex items-center text-white h-[54px] px-[5px] py-[5px] w-full rounded-t-[5px] bg-gradient-to-b from-[#1868ce] via-[#1a6ed4] to-[#1868ce]">
-        <Image className="h-8 w-8 mr-2" src="/icons/user.png" alt="avatar" width={32} height={32} />
-        <span className="text-[13px] font-bold">User</span>
+    <div className={`text-[11px] leading-[14px] flex flex-col items-center bg-white rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] border border-[#72ade9] ${className}`} style={{ bottom: '30px', animation: 'slideUp 0.2s ease-out', width: '400px', position: 'fixed', left: '0', zIndex: 9999 }}>
+      <style jsx>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+      
+      <header className="relative self-start flex items-center text-white h-[54px] px-3 py-2 w-full rounded-t-[5px] bg-gradient-to-r from-[#0a246a] to-[#1e3a8a]">
+        <Image
+          src="/icons/user.png"
+          alt="user"
+          width={32}
+          height={32}
+          className="mr-2"
+        />
+        <span className="text-[14px] font-bold">User</span>
       </header>
-      <section className="flex w-full menu" onMouseOver={onMouseOver}>
-        <hr className="border-t border-orange-500" />
-        <div className="w-[150px] flex flex-col">
-          <Item onClick={onClick} text={t('internet')} icon="/icons/ie.png">
-            <div className="text-[10px] text-gray-600">{tMenu('internetExplorer')}</div>
+
+      <div className="h-0.5 bg-gradient-to-r from-[#ff8c00] to-[#ffa500] w-full" />
+
+      <section className="flex w-full menu min-h-[300px]" onMouseOver={onMouseOver}>
+        <div className="flex-1 flex flex-col py-2 border-r border-[#ccc]">
+          <Item onClick={onClick} text={t('internet')} icon="/icons/ie-paper.png">
+            <div className="text-[9px] text-gray-600 ml-6 -mt-0.5">{tMenu('internetExplorer')}</div>
           </Item>
-          <Item onClick={onClick} text={t('email')} icon="/icons/outlook.png">
-            <div className="text-[10px] text-gray-600">{tMenu('outlookExpress')}</div>
+          
+          <Item onClick={onClick} text={t('email')} icon="/icons/msn.png">
+            <div className="text-[9px] text-gray-600 ml-6 -mt-0.5">{tMenu('outlookExpress')}</div>
           </Item>
-          <div className="h-px bg-[#2b5aa0] my-1" />
-          <Items
-            onClick={onClick}
-            items={[
-              { icon: '/icons/minesweeper.png', text: tGames('minesweeper') },
-              { icon: '/icons/notepad.png', text: tGames('notepad') },
-              { icon: '/icons/winamp.png', text: tGames('winamp') },
-              { icon: '/icons/paint.png', text: tGames('paint') },
-              { icon: '/icons/media-player.png', text: tGames('windowsMediaPlayer') },
-              { icon: '/icons/msn.png', text: tGames('windowsMessenger') },
-            ]}
-          />
+          
+          <div className="h-px bg-[#ccc] mx-3 my-1" />
+          
+          <Item onClick={onClick} text={tGames('minesweeper')} icon="/icons/solitaire.png" />
+          <Item onClick={onClick} text={tGames('notepad')} icon="/icons/notepad.png" />
+          <Item onClick={onClick} text={tGames('winamp')} icon="/icons/winamp.png" />
+          <Item onClick={onClick} text={tGames('paint')} icon="/icons/paint.png" />
+          <Item onClick={onClick} text={tGames('windowsMediaPlayer')} icon="/icons/846(32x32).png" />
+          <Item onClick={onClick} text={t('windowsMessenger')} icon="/icons/msn.png" />
+          
           <div className="flex-1" />
-          <div className="h-px bg-[#2b5aa0] my-1" />
+          <div className="h-px bg-[#ccc] mx-3 my-1" />
+          
           <Item
             style={
               hovering === t('allPrograms')
@@ -81,19 +201,25 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
                   alt=""
                   width={18}
                   height={18}
-                  className="ml-[5px] h-[18px]"
+                  className="ml-1"
                 />
               </div>
             }
-            icon="/icons/empty.png"
+            icon="/icons/all-programs.ico"
           >
             {hovering === t('allPrograms') && (
-              <SubMenu data={AllPrograms.map(item => ({...item, text: tMenu(item.text) }))} onClick={onClick} />
+              <SubMenu 
+                data={AllPrograms.map(item => ({...item, text: item.text && tMenu(item.text) ? tMenu(item.text) : '' }))} 
+                onClick={onClick} 
+                left="153px"
+              />
             )}
           </Item>
         </div>
-        <div className="w-[150px] flex flex-col border-l border-[#2b5aa0]">
-          <Item text={t('myDocuments')} icon="/icons/documents.png" onClick={onClick} />
+
+        <div className="flex-1 flex flex-col py-2">
+          <Item text={t('myDocuments')} icon="/icons/308(32x32).png" onClick={onClick} />
+          
           <Item
             style={
               hovering === t('myRecentDocuments')
@@ -104,39 +230,33 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
                 : {}
             }
             text={t('myRecentDocuments')}
-            icon="/icons/recent-documents.png"
+            icon="/icons/301(32x32).png"
           >
             <div
               style={{
                 borderLeftColor:
                   hovering === t('myRecentDocuments') ? '#FFF' : '#00136b',
               }}
-              className="absolute right-1 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
+              className="absolute right-2 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
             />
             {hovering === t('myRecentDocuments') && (
               <SubMenu
                 left="153px"
-                data={MyRecentDocuments.map((item, i) => ({...item, text: tDocs(`document${i+1}`)}))}
+                data={MyRecentDocuments.map((item, i) => ({...item, text: item.text ? tDocs(`document${i+1}`) : ''}))}
                 onClick={onClick}
               />
             )}
           </Item>
-          <Items
-            onClick={onClick}
-            items={[
-              { icon: '/icons/pictures.png', text: t('myPictures') },
-              { icon: '/icons/music.png', text: t('myMusic') },
-              { icon: '/icons/computer.png', text: t('myComputer') },
-            ]}
-          />
-          <div className="h-px bg-[#2b5aa0] my-1" />
-          <Items
-            onClick={onClick}
-            items={[
-              { icon: '/icons/control-panel.png', text: t('controlPanel') },
-              { icon: '/icons/access.png', text: t('setProgramAccess') },
-            ]}
-          />
+          
+          <Item onClick={onClick} text={t('myPictures')} icon="/icons/307(32x32).png" />
+          <Item onClick={onClick} text={t('myMusic')} icon="/icons/550(32x32).png" />
+          <Item onClick={onClick} text={t('myComputer')} icon="/icons/676(32x32).png" />
+          
+          <div className="h-px bg-[#ccc] mx-3 my-1" />
+          
+          <Item onClick={onClick} text={t('controlPanel')} icon="/icons/300(32x32).png" />
+          <Item onClick={onClick} text={t('setProgramAccess')} icon="/icons/227(32x32).png" />
+          
           <Item
             style={
               hovering === t('connectTo')
@@ -147,43 +267,54 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
                 : {}
             }
             text={t('connectTo')}
-            icon="/icons/connection.png"
+            icon="/icons/309(32x32).png"
           >
             <div
               style={{
                 borderLeftColor: hovering === t('connectTo') ? '#FFF' : '#00136b',
               }}
-              className="absolute right-1 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
+              className="absolute right-2 top-1/2 -translate-y-1/2 border-l-4 border-t-4 border-b-4 border-transparent"
             />
             {hovering === t('connectTo') && (
-              <SubMenu left="153px" data={ConnectTo.map(item => ({...item, text: t(item.text)}))} onClick={onClick} />
+              <SubMenu left="153px" data={ConnectTo.map(item => ({...item, text: item.text ? t(item.text) : ''}))} onClick={onClick} />
             )}
           </Item>
-          <Item onClick={onClick} text={t('printersAndFaxes')} icon="/icons/printer.png" />
-          <div className="h-px bg-[#2b5aa0] my-1" />
-          <Items
-            onClick={onClick}
-            items={[
-              { icon: '/icons/help.png', text: t('helpAndSupport') },
-              { icon: '/icons/search.png', text: t('search') },
-              { icon: '/icons/run.png', text: t('run') },
-            ]}
-          />
+          
+          <Item onClick={onClick} text={t('printersAndFaxes')} icon="/icons/549(32x32).png" />
+          
+          <div className="h-px bg-[#ccc] mx-3 my-1" />
+          
+          <Item onClick={onClick} text={t('helpAndSupport')} icon="/icons/747(32x32).png" />
+          <Item onClick={onClick} text={t('search')} icon="/icons/299(32x32).png" />
+          <Item onClick={onClick} text={t('run')} icon="/icons/743(32x32).png" />
         </div>
       </section>
-      <footer className="w-full flex justify-between px-2 py-1 bg-[#2b5aa0] border-t border-[#1a4c8b]">
+
+      <footer className="w-full flex justify-between px-3 py-2 bg-gradient-to-r from-[#0a246a] to-[#1e3a8a] border-t border-[#1e3a8a]">
         <div 
-          className="flex items-center text-white cursor-pointer px-2 py-1 hover:bg-[#2f71cd]"
+          className="flex items-center text-white cursor-pointer text-[11px] hover:underline"
           onClick={() => onClick(t('logOff'))}
         >
-          <Image className="h-4 w-4 mr-2" src="/icons/lock.png" alt="" width={16} height={16} />
+          <Image
+            src="/icons/546(32x32).png"
+            alt=""
+            width={16}
+            height={16}
+            className="mr-1.5"
+          />
           <span>{t('logOff')}</span>
         </div>
         <div
-          className="flex items-center text-white cursor-pointer px-2 py-1 hover:bg-[#2f71cd]"
+          className="flex items-center text-white cursor-pointer text-[11px] hover:underline"
           onClick={() => onClick(t('turnOffComputer'))}
         >
-          <Image className="h-4 w-4 mr-2" src="/icons/shutdown.png" alt="" width={16} height={16} />
+          <Image
+            src="/icons/310(32x32).png"
+            alt=""
+            width={16}
+            height={16}
+            className="mr-1.5"
+          />
           <span>{t('turnOffComputer')}</span>
         </div>
       </footer>
@@ -213,16 +344,22 @@ const Item: React.FC<ItemProps> = ({
 
   return (
     <div
-      className="flex items-center px-2 py-1 text-black cursor-pointer relative hover:bg-[#2f71cd] hover:text-white"
+      className={`menu__item flex items-center px-3 py-1 cursor-pointer relative text-black menu-item ${
+        style?.backgroundColor === '#2f71cd' ? 'bg-[#2f71cd] text-white' : 'hover:bg-[#2f71cd] hover:text-white'
+      }`}
       style={style}
       onClick={_onClick}
       onMouseEnter={onMouseEnter}
     >
-      <Image className="h-4 w-4 mr-2" src={icon} alt={typeof text === 'string' ? text : ''} width={16} height={16} />
-      <div className="flex-1">
-        <div className="menu__item__text">{text}</div>
-        {children}
-      </div>
+      <Image 
+        src={icon} 
+        alt="" 
+        width={16} 
+        height={16} 
+        className="mr-2"
+      />
+      <span className="menu__item__text text-[11px] flex-1">{text}</span>
+      {children}
     </div>
   );
 };
