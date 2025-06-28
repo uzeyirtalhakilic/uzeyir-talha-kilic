@@ -9,6 +9,13 @@ export type FileSystemItem = {
 
 export const desktopItems: FileSystemItem[] = [
   {
+    id: "my-documents-desktop",
+    type: "folder",
+    label: "My Documents",
+    translationKey: "desktop.myDocuments",
+    children: [],
+  },
+  {
     id: "1",
     type: "folder",
     label: "Who Am I?",

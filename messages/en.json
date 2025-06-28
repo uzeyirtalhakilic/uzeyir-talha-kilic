@@ -11,6 +11,7 @@
     "myComputer": "My Computer",
     "recycleBin": "Recycle Bin",
     "myDocuments": "My Documents",
+    "controlPanel": "Control Panel",
     "networkNeighborhood": "Network Neighborhood"
   },
   "footer": {
@@ -80,6 +81,11 @@
       "tools": "Tools",
       "help": "Help"
     },
+    "myDocuments": {
+      "address": "Address",
+      "myDocuments": "My Documents",
+      "go": "Go"
+    },
     "sidebar": {
       "systemTasks": "System Tasks",
       "viewSystemInformation": "View system information",
@@ -89,9 +95,13 @@
       "myNetworkPlaces": "My Network Places",
       "myDocuments": "My Documents",
       "sharedDocuments": "Shared Documents",
-      "controlPanel": "Control Panel"
+      "controlPanel": "Control Panel",
+      "GitHub": "GitHub",
+      "uzeyirtalhakilic": "uzeyirtalhakilic"
     },
     "contentGrid": {
+      "cv": "CV",
+      "myCv": "My CV",
       "filesStoredOnThisComputer": "Files Stored on This Computer",
       "sharedDocuments": "Shared Documents",
       "usersDocuments": "User's Documents",

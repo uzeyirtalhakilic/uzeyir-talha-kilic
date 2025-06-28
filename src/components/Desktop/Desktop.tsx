@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState<FileSystemItem[]>([]);
   const t = useTranslations('desktop');
+  const tFooter = useTranslations('footer');
 
   const handleOpen = (item: FileSystemItem) => {
     // Aynı pencereyi tekrar açma
@@ -23,8 +24,43 @@ export default function Desktop() {
     }
   };
 
+  // Handle menu item clicks from Taskbar/FooterMenu
+  const handleMenuItemClick = (menuItem: string) => {
+    let itemToOpen: FileSystemItem | null = null;
+
+    if (menuItem === t('myDocuments') || menuItem === tFooter('myDocuments')) {
+      itemToOpen = {
+        id: 'my-documents-menu',
+        type: 'folder',
+        label: t('myDocuments'),
+        translationKey: 'desktop.myDocuments',
+        children: []
+      };
+    } else if (menuItem === tFooter('controlPanel')) {
+      itemToOpen = {
+        id: 'control-panel-menu',
+        type: 'folder',
+        label: tFooter('controlPanel'),
+        translationKey: 'desktop.controlPanel',
+        children: []
+      };
+    } else if (menuItem === t('myComputer') || menuItem === tFooter('myComputer')) {
+      itemToOpen = {
+        id: 'my-computer-menu',
+        type: 'folder',
+        label: t('myComputer'),
+        translationKey: 'desktop.myComputer',
+        children: []
+      };
+    }
+
+    if (itemToOpen && !openWindows.find((win: FileSystemItem) => win.id === itemToOpen!.id)) {
+      setOpenWindows((prev) => [...prev, itemToOpen!]);
+    }
+  };
+
   // Use next-intl translations instead of hardcoded Turkish labels
-  const translatedItems = desktopItems.map(item => ({
+  const translatedItems = desktopItems.map((item: FileSystemItem) => ({
     ...item,
     label: item.translationKey ? 
       (item.translationKey === 'desktop.1' ? t('whoAmI') :
@@ -47,7 +83,7 @@ export default function Desktop() {
       />
 
       <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
-        {translatedItems.map((item) => (
+        {translatedItems.map((item: FileSystemItem) => (
           <DesktopIcon
             key={item.id}
             label={item.label}
@@ -57,11 +93,11 @@ export default function Desktop() {
       </div>
 
       {/* Açık pencereleri göster */}
-      {openWindows.map((item) => (
+      {openWindows.map((item: FileSystemItem) => (
         <XpWindow
           key={item.id}
           item={item}
-          onClose={() => setOpenWindows((prev) => prev.filter((w) => w.id !== item.id))}
+          onClose={() => setOpenWindows((prev) => prev.filter((w: FileSystemItem) => w.id !== item.id))}
         />
       ))}
 
@@ -69,7 +105,7 @@ export default function Desktop() {
         apps={[]}
         focusedAppId={null}
         onMouseDown={() => {}}
-        onClickMenuItem={() => {}}
+        onClickMenuItem={handleMenuItemClick}
       />
     </div>
   );

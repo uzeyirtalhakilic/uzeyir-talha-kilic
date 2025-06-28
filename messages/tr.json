@@ -11,6 +11,7 @@
     "myComputer": "Bilgisayarım",
     "recycleBin": "Geri Dönüşüm Kutusu",
     "myDocuments": "Belgelerim",
+    "controlPanel": "Denetim Masası",
     "networkNeighborhood": "Ağ Komşuları"
   },
   "footer": {
@@ -80,6 +81,11 @@
       "tools": "Araçlar",
       "help": "Yardım"
     },
+    "myDocuments": {
+      "address": "Adres",
+      "myDocuments": "Belgelerim",
+      "go": "Git"
+    },
     "sidebar": {
       "systemTasks": "Sistem Görevleri",
       "viewSystemInformation": "Sistem bilgilerini görüntüle",
@@ -89,9 +95,13 @@
       "myNetworkPlaces": "Ağ Komşularım",
       "myDocuments": "Belgelerim",
       "sharedDocuments": "Paylaşılan Belgeler",
-      "controlPanel": "Denetim Masası"
+      "controlPanel": "Denetim Masası",
+      "GitHub": "GitHub",
+      "uzeyirtalhakilic": "uzeyirtalhakilic"
     },
     "contentGrid": {
+      "cv": "CV",
+      "myCv": "CV'm",
       "filesStoredOnThisComputer": "Bu Bilgisayarda Saklanan Dosyalar",
       "sharedDocuments": "Paylaşılan Belgeler",
       "usersDocuments": "Kullanıcının Belgeleri",

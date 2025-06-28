@@ -1,10 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import "../../styles/desktop.css";
+import "../../../styles/desktop.css";
 
-const AddressBar: React.FC = () => {
+interface AddressBarProps {
+  customContent?: React.ReactNode;
+}
+
+const AddressBar: React.FC<AddressBarProps> = ({ customContent }) => {
   const t = useTranslations('folderView.addressBar');
+
+  if (customContent) {
+    return (
+      <section className="address-bar">
+        {customContent}
+      </section>
+    );
+  }
 
   return (
     <section className="address-bar">

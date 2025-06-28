@@ -1,24 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import "../../styles/desktop.css";
+import "../../../styles/desktop.css";
 
-interface ToolbarProps {
-  onClose: () => void;
-}
-
-const Toolbar: React.FC<ToolbarProps> = ({ onClose }) => {
+const Toolbar: React.FC = () => {
   const t = useTranslations('folderView.toolbar');
-
-  const handleMenuClick = (item: string) => {
-    switch (item) {
-      case 'Close':
-        onClose();
-        break;
-      default:
-        console.log('Menu item clicked:', item);
-    }
-  };
 
   return (
     <div className="toolbar-section">

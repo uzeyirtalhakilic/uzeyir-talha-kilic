@@ -1,7 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { FileSystemItem } from "../../data/filesystem";
 import Image from 'next/image';
-import MyComputer from "../FolderView/MyComputer";
+import MyComputer from "../FolderView/MyComputer/MyComputer";
+import MyDocuments from "../FolderView/MyDocuments/MyDocuments";
+import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
+import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import { useTranslations } from 'next-intl';
 
 
@@ -20,13 +23,14 @@ interface WindowState {
   isMinimized: boolean;
 }
 
-const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
+const XpWindow: React.FC<XpWindowProps> = ({ item, onClose }) => {
   const t = useTranslations('folderView.addressBar');
+  const tDesktop = useTranslations('desktop');
   const [windowState, setWindowState] = useState<WindowState>({
-    x: window.innerWidth / 2 - 410,
-    y: 100,
-    width: 820,
-    height: 520,
+    x: window.innerWidth / 2 - 500,
+    y: 50,
+    width: 1000,
+    height: 700,
     isMaximized: false,
     isMinimized: false,
   });
@@ -69,7 +73,7 @@ const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
     }
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (isDragging && !windowState.isMaximized) {
       const newX = e.clientX - dragStart.x;
       const newY = e.clientY - dragStart.y;
@@ -121,7 +125,7 @@ const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
         height: newHeight,
       }));
     }
-  };
+  }, [isDragging, isResizing, windowState.isMaximized, windowState.width, windowState.height, dragStart, resizeStart, resizeDirection, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT]);
 
   const handleMouseUp = () => {
     setIsDragging(false);
@@ -140,10 +144,10 @@ const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
       setWindowState(prev => ({
         ...prev,
         isMaximized: false,
-        x: window.innerWidth / 2 - 410,
-        y: 100,
-        width: 820,
-        height: 520,
+        x: window.innerWidth / 2 - 500,
+        y: 50,
+        width: 1000,
+        height: 700,
       }));
     } else {
       // Maximize
@@ -169,7 +173,45 @@ const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
         document.removeEventListener('mouseup', handleMouseUp);
       };
     }
-  }, [isDragging, isResizing, windowState, dragStart, resizeStart, resizeDirection]);
+  }, [isDragging, isResizing, windowState, dragStart, resizeStart, resizeDirection, handleMouseMove]);
+
+  // Determine which component to render based on item
+  const getWindowContent = () => {
+    if (item.translationKey === 'desktop.myDocuments') {
+      return <MyDocuments onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.controlPanel') {
+      return <ControlPanel onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.1') {
+      return <WhoAmI onClose={onClose} />;
+    } else {
+      return <MyComputer onClose={onClose} />;
+    }
+  };
+
+  // Get window title and icon based on item
+  const getWindowTitle = () => {
+    if (item.translationKey === 'desktop.myDocuments') {
+      return tDesktop('myDocuments');
+    } else if (item.translationKey === 'desktop.controlPanel') {
+      return tDesktop('controlPanel');
+    } else if (item.translationKey === 'desktop.1') {
+      return tDesktop('whoAmI');
+    } else {
+      return t('myComputer');
+    }
+  };
+
+  const getWindowIcon = () => {
+    if (item.translationKey === 'desktop.myDocuments') {
+      return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.controlPanel') {
+      return "/icons/control-panel.png";
+    } else if (item.translationKey === 'desktop.1') {
+      return "/icons/msword.png";
+    } else {
+      return "/icons/MyComputer.png";
+    }
+  };
 
   if (windowState.isMinimized) {
     return null; // Minimized durumda pencereyi gizle
@@ -207,9 +249,9 @@ const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
       >
         <div className="title-bar-left">
           <div className="title-bar-icon">
-            <Image src="/icons/MyComputer.png" alt="My Computer" width={16} height={16} />
+            <Image src={getWindowIcon()} alt={getWindowTitle()} width={16} height={16} />
           </div>
-          <div className="title-bar-text">{t('myComputer')}</div>
+          <div className="title-bar-text">{getWindowTitle()}</div>
         </div>
         <div className="title-bar-right">
           <button className="title-bar-button minimize" onClick={handleMinimize}>
@@ -227,7 +269,7 @@ const XpWindow: React.FC<XpWindowProps> = ({ onClose }) => {
       {/* Window Content */}
       <div className="window-content">
         <div style={{ width: '100%', height: '100%' }}>
-          <MyComputer onClose={onClose} />
+          {getWindowContent()}
         </div>
       </div>
 
