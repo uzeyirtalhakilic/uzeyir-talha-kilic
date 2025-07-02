@@ -55,29 +55,6 @@ export const myComputerSidebarConfig: SidebarCard[] = [
 
 export const myComputerContentConfig: ContentCard[] = [
   {
-    title: 'cv',
-    items: [
-      {
-        icon: '/file.svg',
-        text: 'myCv',
-        href: '/pdfs/Uzeyir Talha Kilic EN.pdf'
-      }
-    ]
-  },
-  {
-    title: 'filesStoredOnThisComputer',
-    items: [
-      {
-        icon: '/icons/foldericon.png',
-        text: 'sharedDocuments'
-      },
-      {
-        icon: '/icons/folderdocument.png',
-        text: 'usersDocuments'
-      }
-    ]
-  },
-  {
     title: 'hardDiskDrives',
     items: [
       {
@@ -94,5 +71,18 @@ export const myComputerContentConfig: ContentCard[] = [
         text: 'cdDriveD'
       }
     ]
-  }
+  },
+  {
+    title: 'filesStoredOnThisComputer',
+    items: [
+      {
+        icon: '/icons/foldericon.png',
+        text: 'sharedDocuments'
+      },
+      {
+        icon: '/icons/folderdocument.png',
+        text: 'usersDocuments'
+      }
+    ]
+  },
 ]; 

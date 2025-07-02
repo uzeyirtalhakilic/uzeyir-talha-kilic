@@ -1,63 +1,67 @@
 import { SidebarCard } from '../base/BaseSidebar';
 import { ContentCard } from '../base/BaseContentGrid';
 
-export const myDocumentsSidebarConfig: SidebarCard[] = [
+export const createMyDocumentsSidebarConfig = (t: any): SidebarCard[] => [
   {
-    title: 'Document Tasks',
+    title: t('documentTasks'),
     items: [
       {
         icon: '/icons/msword.png',
-        text: 'Create a new document'
+        text: t('createNewDocument')
       },
       {
         icon: '/icons/foldericon.png',
-        text: 'Publish this folder to the Web'
+        text: t('publishToWeb')
       },
       {
         icon: '/icons/folderdocument.png',
-        text: 'Share this folder'
+        text: t('shareFolder')
       }
     ]
   },
   {
-    title: 'Other Places',
+    title: t('otherPlaces'),
     items: [
       {
         icon: '/icons/MyComputer.png',
-        text: 'My Computer'
+        text: t('myComputer')
       },
       {
         icon: '/icons/foldericon.png',
-        text: 'Shared Documents'
+        text: t('sharedDocuments')
       },
       {
         icon: '/icons/networksecurity.png',
-        text: 'Control Panel'
+        text: t('controlPanel')
       }
     ]
   }
 ];
 
-export const myDocumentsContentConfig: ContentCard[] = [
+export const createMyDocumentsContentConfig = (t: any): ContentCard[] => [
   {
-    title: 'My Documents',
+    title: t('content.myDocuments'),
     items: [
       {
         icon: '/icons/msword.png',
-        text: 'Resume.docx'
+        text: t('content.resume')
       },
       {
         icon: '/icons/msword.png',
-        text: 'Cover Letter.docx'
+        text: t('content.coverLetter')
       },
       {
         icon: '/icons/folderdocument.png',
-        text: 'Projects'
+        text: t('content.projects')
       },
       {
         icon: '/icons/folderdocument.png',
-        text: 'Personal'
+        text: t('content.personal')
       }
     ]
   }
-]; 
+];
+
+// Legacy exports for backward compatibility
+export const myDocumentsSidebarConfig: SidebarCard[] = [];
+export const myDocumentsContentConfig: ContentCard[] = []; 

@@ -9,6 +9,7 @@ import { desktopItems, FileSystemItem } from "../../data/filesystem";
 import React, { useState } from "react";
 import XpWindow from "./XpWindow";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 interface WindowState {
   id: string;
@@ -37,7 +38,7 @@ export default function Desktop() {
         isMaximized: false,
         x: window.innerWidth / 2 - 500,
         y: 50,
-        width: 1100,
+        width: 1150,
         height: 500,
       };
       setWindowStates((prev) => [...prev, newWindow]);
@@ -175,6 +176,14 @@ export default function Desktop() {
         translationKey: 'desktop.myComputer',
         children: []
       };
+    } else if (menuItem === t('recycleBin') || menuItem === tFooter('recycleBin')) {
+      itemToOpen = {
+        id: 'recycle-bin-menu',
+        type: 'folder',
+        label: t('recycleBin'),
+        translationKey: 'desktop.recycleBin',
+        children: []
+      };
     }
 
     if (itemToOpen) {
@@ -214,6 +223,8 @@ export default function Desktop() {
       return t('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
       return t('whoAmI');
+    } else if (item.translationKey === 'desktop.recycleBin') {
+      return t('recycleBin');
     } else {
       return t('myComputer');
     }
@@ -225,7 +236,9 @@ export default function Desktop() {
     } else if (item.translationKey === 'desktop.controlPanel') {
       return "/icons/control-panel.png";
     } else if (item.translationKey === 'desktop.1') {
-      return "/icons/msword.png";
+      return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.recycleBin') {
+      return "/icons/recycle.png";
     } else {
       return "/icons/MyComputer.png";
     }
@@ -244,6 +257,7 @@ export default function Desktop() {
         {translatedItems.map((item: FileSystemItem) => (
           <DesktopIcon
             key={item.id}
+            icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
             label={item.label}
             onClick={() => handleOpen(item)}
           />

@@ -205,7 +205,6 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
                 />
               </div>
             }
-            icon="/icons/all-programs.ico"
           >
             {hovering === t('allPrograms') && (
               <SubMenu 
@@ -251,6 +250,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <Item onClick={onClick} text={t('myPictures')} icon="/icons/307(32x32).png" />
           <Item onClick={onClick} text={t('myMusic')} icon="/icons/550(32x32).png" />
           <Item onClick={onClick} text={t('myComputer')} icon="/icons/676(32x32).png" />
+          <Item onClick={onClick} text={t('recycleBin')} icon="/icons/recycle.png" />
           
           <div className="h-px bg-[#ccc] mx-3 my-1" />
           
@@ -351,13 +351,15 @@ const Item: React.FC<ItemProps> = ({
       onClick={_onClick}
       onMouseEnter={onMouseEnter}
     >
-      <Image 
-        src={icon} 
-        alt="" 
-        width={16} 
-        height={16} 
-        className="mr-2"
-      />
+      {icon && (
+        <Image 
+          src={icon} 
+          alt="" 
+          width={16} 
+          height={16} 
+          className="mr-2"
+        />
+      )}
       <span className="menu__item__text text-[11px] flex-1">{text}</span>
       {children}
     </div>

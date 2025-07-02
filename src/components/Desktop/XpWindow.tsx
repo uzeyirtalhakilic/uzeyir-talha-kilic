@@ -5,6 +5,7 @@ import MyComputer from "../FolderView/MyComputer/MyComputer";
 import MyDocuments from "../FolderView/MyDocuments/MyDocuments";
 import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
+import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
 import { useTranslations } from 'next-intl';
 
 interface WindowState {
@@ -155,6 +156,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <ControlPanel onClose={onClose} />;
     } else if (item.translationKey === 'desktop.1') {
       return <WhoAmI onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.recycleBin') {
+      return <RecycleBin onClose={onClose} />;
     } else {
       return <MyComputer onClose={onClose} />;
     }
@@ -168,6 +171,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tDesktop('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
       return tDesktop('whoAmI');
+    } else if (item.translationKey === 'desktop.recycleBin') {
+      return tDesktop('recycleBin');
     } else {
       return t('myComputer');
     }
@@ -179,7 +184,9 @@ const XpWindow: React.FC<XpWindowProps> = ({
     } else if (item.translationKey === 'desktop.controlPanel') {
       return "/icons/control-panel.png";
     } else if (item.translationKey === 'desktop.1') {
-      return "/icons/msword.png";
+      return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.recycleBin') {
+      return "/icons/recycle.png";
     } else {
       return "/icons/MyComputer.png";
     }

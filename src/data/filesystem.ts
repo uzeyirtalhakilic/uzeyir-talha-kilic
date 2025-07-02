@@ -4,76 +4,42 @@ export type FileSystemItem = {
   label: string;
   translationKey?: string; // Translation key for internationalization
   disabled?: boolean;
-  children?: FileSystemItem[]; // Sadece klasörler için
+  children?: FileSystemItem[]; // Only for folders
+  icon?: string; // Icon path for the item
 };
 
 export const desktopItems: FileSystemItem[] = [
+  {
+    id: "my-computer",
+    type: "folder",
+    label: "My Computer",
+    translationKey: "desktop.myComputer",
+    icon: "/icons/MyComputer.png",
+    children: [],
+  },
+  {
+    id: "recycle-bin",
+    type: "folder",
+    label: "Recycle Bin",
+    translationKey: "desktop.recycleBin",
+    icon: "/icons/recycle.png",
+    children: [],
+  },
+  {
+    id: "who-am-i",
+    type: "folder",
+    label: "Who Am I?",
+    translationKey: "desktop.1",
+    icon: "/icons/folderdocument.png",
+    children: [],
+  },
   {
     id: "my-documents-desktop",
     type: "folder",
     label: "My Documents",
     translationKey: "desktop.myDocuments",
+    icon: "/icons/folderdocument.png",
     children: [],
   },
-  {
-    id: "1",
-    type: "folder",
-    label: "Who Am I?",
-    translationKey: "desktop.1",
-    children: [
-      {
-        id: "my-documents",
-        type: "folder",
-        label: "My Documents",
-        translationKey: "desktop.myDocuments",
-        children: [],
-      },
-      {
-        id: "My CV",
-        type: "file",
-        label: "My CV.pdf",
-        disabled: true
-      },
-    ],
-  },
-  {
-    id: "2",
-    type: "folder",
-    label: "My Projects",
-    translationKey: "desktop.2",
-    children: [
-      {
-        id: "my-documents",
-        type: "folder",
-        label: "My Documents",
-        translationKey: "desktop.myDocuments",
-        children: [],
-      },
-      {
-        id: "readme",
-        type: "file",
-        label: "README.txt",
-      },
-    ],
-  },
-  {
-    id: "3",
-    type: "folder",
-    label: "My Hobbies",
-    translationKey: "desktop.3",
-    children: [
-      {
-        id: "my-documents",
-        type: "folder",
-        label: "My Documents",
-        translationKey: "desktop.myDocuments",
-        children: [],
-      },
-      {
-        id: "readme",
-        type: "file",
-        label: "README.txt",
-      },
-    ],
-  },
+  
 ]; 

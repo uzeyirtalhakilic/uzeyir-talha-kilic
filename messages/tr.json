@@ -22,6 +22,7 @@
     "myPictures": "Resimlerim",
     "myMusic": "Müziğim",
     "myComputer": "Bilgisayarım",
+    "recycleBin": "Geri Dönüşüm Kutusu",
     "controlPanel": "Denetim Masası",
     "setProgramAccess": "Program Erişimi ve Varsayılanları Ayarla",
     "helpAndSupport": "Yardım ve Destek",
@@ -86,16 +87,17 @@
     "windowsMessenger": "Windows Messenger"
   },
   "documents": {
-    "document1": "Belge1.txt",
-    "document2": "Belge2.txt",
-    "document3": "Belge3.txt"
+    "document1": "Belge1",
+    "document2": "Belge2",
+    "document3": "Belge3"
   },
   "language": {
-    "languageSelection": "Dil Seçimi",
+    "languageSelection": "Bilgisayarınız risk altında olabilir",
     "selectLanguage": "Dil Seçiniz",
     "turkish": "Türkçe",
     "english": "İngilizce",
-    "continue": "Devam Et"
+    "continue": "Devam Et",
+    "cancel": "İptal"
   },
   "folderView": {
     "addressBar": {
@@ -112,12 +114,60 @@
       "help": "Yardım"
     },
     "myDocuments": {
+      "back": "Geri",
+      "forward": "İleri",
+      "refresh": "Yenile",
+      "newDocument": "Yeni Belge",
+      "folders": "Klasörler",
+      "menu": "Menü",
       "address": "Adres",
       "myDocuments": "Belgelerim",
-      "go": "Git"
+      "go": "Git",
+      "documentTasks": "Belge Görevleri",
+      "createNewDocument": "Yeni bir belge oluştur",
+      "publishToWeb": "Bu klasörü Web'e yayınla",
+      "shareFolder": "Bu klasörü paylaş",
+      "otherPlaces": "Diğer Yerler",
+      "myComputer": "Bilgisayarım",
+      "sharedDocuments": "Paylaşılan Belgeler",
+      "controlPanel": "Denetim Masası",
+      "content": {
+        "myDocuments": "Belgelerim",
+        "resume": "Özgeçmiş.docx",
+        "coverLetter": "Ön Yazı.docx",
+        "projects": "Projeler",
+        "personal": "Kişisel"
+      }
+    },
+    "recycleBin": {
+      "address": "Adres",
+      "recycleBin": "Geri Dönüşüm Kutusu",
+      "go": "Git",
+      "restoreAllItems": "Tüm öğeleri geri yükle",
+      "emptyRecycleBin": "Geri Dönüşüm Kutusunu Boşalt",
+      "viewProperties": "Geri Dönüşüm Kutusu özelliklerini görüntüle",
+      "oldCVs": "Eski CV'ler",
+      "games": "Oyun",
+      "oldProjects": "Eski Projeler",
+      "certificates": "Sertifikalar",
+      "misc": "Çeşitli",
+      "files": {
+        "cv37": "CV 3.7",
+        "cvFinal": "CV_son_sürüm",
+        "cvLatest": "CV_SON2",
+        "gtaViceCity": "GTA Vice City",
+        "gtaCheats": "gta hile kodları",
+        "gamingSites": "oyun siteleri",
+        "testProject": "deneme1.java",
+        "brokenWebsite": "ÇALIŞMIYOR.html",
+        "udemyCert": "udemy kurs sertifikası",
+        "onlineCert": "online kurs tamamlama",
+        "oldNotes": "eski notlar",
+        "tempFiles": "geçici dosyalar"
+      }
     },
     "sidebar": {
-      "systemTasks": "Sistem Görevleri",
+      "systemTasks": "Sistem",
       "viewSystemInformation": "Sistem bilgilerini görüntüle",
       "addOrRemovePrograms": "Program ekle veya kaldır",
       "changeASetting": "Bir ayarı değiştir",
@@ -145,6 +195,26 @@
       "forward": "İleri",
       "search": "Ara",
       "folders": "Klasörler"
+    },
+    "whoAmI": {
+      "personalTasks": "Kişisel Görevler",
+      "editPersonalInfo": "Kişisel Bilgileri Düzenle",
+      "viewPhotos": "Fotoğrafları Görüntüle",
+      "readAboutMe": "Hakkımda Oku",
+      "otherPlaces": "Diğer Yerler",
+      "myComputer": "Bilgisayarım",
+      "myDocuments": "Belgelerim",
+      "controlPanel": "Denetim Masası",
+      "content": {
+        "personalInfo": "Kişisel Bilgiler",
+        "aboutMe": "Hakkımda",
+        "photos": "Fotoğraflar",
+        "resume": "Özgeçmiş",
+        "contactInfo": "İletişim Bilgileri",
+        "email": "E-posta",
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      }
     },
     "dropdownMenu": {
       "file": {
@@ -198,13 +268,27 @@
       "tools": {
         "mapNetworkDrive": "Ağ Sürücüsü Eşle...",
         "disconnectNetworkDrive": "Ağ Sürücüsünü Bağlantısını Kes",
-        "synchronize": "Senkronize Et",
+        "synchronize": "Eşitle...",
         "folderOptions": "Klasör Seçenekleri..."
       },
       "help": {
         "helpTopics": "Yardım Konuları",
         "aboutWindows": "Windows Hakkında"
       }
+    }
+  },
+  "error": {
+    "404": {
+      "title": "Sayfa Bulunamadı",
+      "message": "Aradığınız sayfa kaldırılmış, adı değiştirilmiş veya geçici olarak kullanılamıyor olabilir.",
+      "suggestion": "Şunları deneyin:",
+      "suggestions": [
+        "Tarayıcınızın adres çubuğunda görüntülenen Web sitesi adresinin doğru yazıldığından ve biçimlendirildiğinden emin olun.",
+        "Bu sayfaya bir bağlantıya tıklayarak ulaştıysanız, bağlantının yanlış biçimlendirildiğini bildirmek için Web sitesi yöneticisiyle iletişime geçin.",
+        "Başka bir bağlantı denemek için Geri düğmesine tıklayın."
+      ],
+      "goHome": "Ana Sayfaya Git",
+      "goBack": "Geri Git"
     }
   }
 } 

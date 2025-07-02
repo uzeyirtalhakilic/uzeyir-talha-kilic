@@ -22,6 +22,7 @@
     "myPictures": "My Pictures",
     "myMusic": "My Music",
     "myComputer": "My Computer",
+    "recycleBin": "Recycle Bin",
     "controlPanel": "Control Panel",
     "setProgramAccess": "Set Program Access and Defaults",
     "helpAndSupport": "Help and Support",
@@ -86,16 +87,17 @@
     "windowsMessenger": "Windows Messenger"
   },
   "documents": {
-    "document1": "Document1.txt",
-    "document2": "Document2.txt",
-    "document3": "Document3.txt"
+    "document1": "Document1",
+    "document2": "Document2",
+    "document3": "Document3"
   },
   "language": {
-    "languageSelection": "Language Selection",
+    "languageSelection": "Your computer might be at risk",
     "selectLanguage": "Select Language",
     "turkish": "Turkish",
     "english": "English",
-    "continue": "Continue"
+    "continue": "Continue",
+    "cancel": "Cancel"
   },
   "folderView": {
     "addressBar": {
@@ -112,12 +114,60 @@
       "help": "Help"
     },
     "myDocuments": {
+      "back": "Back",
+      "forward": "Forward",
+      "refresh": "Refresh",
+      "newDocument": "New Document",
+      "folders": "Folders",
+      "menu": "Menu",
       "address": "Address",
       "myDocuments": "My Documents",
-      "go": "Go"
+      "go": "Go",
+      "documentTasks": "Document Tasks",
+      "createNewDocument": "Create a new document",
+      "publishToWeb": "Publish this folder to the Web",
+      "shareFolder": "Share this folder",
+      "otherPlaces": "Other Places",
+      "myComputer": "My Computer",
+      "sharedDocuments": "Shared Documents",
+      "controlPanel": "Control Panel",
+      "content": {
+        "myDocuments": "My Documents",
+        "resume": "Resume.docx",
+        "coverLetter": "Cover Letter.docx",
+        "projects": "Projects",
+        "personal": "Personal"
+      }
+    },
+    "recycleBin": {
+      "address": "Address",
+      "recycleBin": "Recycle Bin",
+      "go": "Go",
+      "restoreAllItems": "Restore all items",
+      "emptyRecycleBin": "Empty Recycle Bin",
+      "viewProperties": "View Recycle Bin properties",
+      "oldCVs": "Old CVs",
+      "games": "Games",
+      "oldProjects": "Old Projects",
+      "certificates": "Certificates",
+      "misc": "Miscellaneous",
+      "files": {
+        "cv37": "CV 3.7",
+        "cvFinal": "CV_final_version",
+        "cvLatest": "CV_latest_edition",
+        "gtaViceCity": "GTA Vice City",
+        "gtaCheats": "GTA cheat codes",
+        "gamingSites": "Gaming websites",
+        "testProject": "test_project.java",
+        "brokenWebsite": "broken_website.html",
+        "udemyCert": "Udemy course certificate",
+        "onlineCert": "Online course completion",
+        "oldNotes": "Old notes",
+        "tempFiles": "Temporary files"
+      }
     },
     "sidebar": {
-      "systemTasks": "System Tasks",
+      "systemTasks": "System",
       "viewSystemInformation": "View system information",
       "addOrRemovePrograms": "Add or remove programs",
       "changeASetting": "Change a setting",
@@ -145,6 +195,26 @@
       "forward": "Forward",
       "search": "Search",
       "folders": "Folders"
+    },
+    "whoAmI": {
+      "personalTasks": "Personal Tasks",
+      "editPersonalInfo": "Edit Personal Information",
+      "viewPhotos": "View Photos",
+      "readAboutMe": "Read About Me",
+      "otherPlaces": "Other Places",
+      "myComputer": "My Computer",
+      "myDocuments": "My Documents",
+      "controlPanel": "Control Panel",
+      "content": {
+        "personalInfo": "Personal Information",
+        "aboutMe": "About Me",
+        "photos": "Photos",
+        "resume": "Resume",
+        "contactInfo": "Contact Information",
+        "email": "Email",
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      }
     },
     "dropdownMenu": {
       "file": {
@@ -198,13 +268,27 @@
       "tools": {
         "mapNetworkDrive": "Map Network Drive...",
         "disconnectNetworkDrive": "Disconnect Network Drive",
-        "synchronize": "Synchronize",
+        "synchronize": "Synchronize...",
         "folderOptions": "Folder Options..."
       },
       "help": {
         "helpTopics": "Help Topics",
         "aboutWindows": "About Windows"
       }
+    }
+  },
+  "error": {
+    "404": {
+      "title": "Page Not Found",
+      "message": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+      "suggestion": "Try the following:",
+      "suggestions": [
+        "Make sure that the Web site address displayed in the address bar of your browser is spelled and formatted correctly.",
+        "If you reached this page by clicking a link, contact the Web site administrator to alert them that the link is incorrectly formatted.",
+        "Click the Back button to try another link."
+      ],
+      "goHome": "Go to Home Page",
+      "goBack": "Go Back"
     }
   }
 } 

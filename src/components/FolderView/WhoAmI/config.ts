@@ -1,81 +1,86 @@
 import { SidebarCard } from '../base/BaseSidebar';
 import { ContentCard } from '../base/BaseContentGrid';
 
-export const whoAmISidebarConfig: SidebarCard[] = [
+export const createWhoAmISidebarConfig = (t: any): SidebarCard[] => [
   {
-    title: 'Personal Tasks',
+    title: t('personalTasks'),
     items: [
       {
         icon: '/icons/msword.png',
-        text: 'Edit Personal Information'
+        text: t('editPersonalInfo')
       },
       {
         icon: '/icons/folderphoto.png',
-        text: 'View Photos'
+        text: t('viewPhotos')
       },
       {
         icon: '/icons/ie-book.png',
-        text: 'Read About Me'
+        text: t('readAboutMe')
       }
     ]
   },
   {
-    title: 'Other Places',
+    title: t('otherPlaces'),
     items: [
       {
         icon: '/icons/MyComputer.png',
-        text: 'My Computer'
+        text: t('myComputer')
       },
       {
         icon: '/icons/folderdocument.png',
-        text: 'My Documents'
+        text: t('myDocuments')
       },
       {
         icon: '/icons/networksecurity.png',
-        text: 'Control Panel'
+        text: t('controlPanel')
       }
     ]
   }
 ];
 
-export const whoAmIContentConfig: ContentCard[] = [
+export const createWhoAmIContentConfig = (t: any): ContentCard[] => [
   {
-    title: 'Personal Information',
+    title: t('content.personalInfo'),
     items: [
       {
-        icon: '/icons/msword.png',
-        text: 'About Me.txt',
-        href: '#about-me'
+        icon: '/icons/327(32x32).png',
+        text: t('content.aboutMe'),
+      },
+      {
+        icon: '/icons/300(32x32).png',
+        text: t('content.resume'),
+        href: '/pdfs/Uzeyir Talha Kilic EN.pdf'
       },
       {
         icon: '/icons/folderphoto.png',
-        text: 'Photos'
+        text: t('content.photos')
       },
-      {
-        icon: '/file.svg',
-        text: 'Resume.pdf',
-        href: '/pdfs/Uzeyir Talha Kilic EN.pdf'
-      }
     ]
   },
   {
-    title: 'Contact Information',
+    title: t('content.contactInfo'),
     items: [
       {
-        icon: '/icons/email.png',
-        text: 'Email.txt',
-        href: 'kilicuzeyirtalha@gmail.com'
+        icon: '/icons/mail.png',
+        text: t('content.email'),
+        href: 'https://mail.google.com/mail/?view=cm&to=kilicuzeyirtalha@gmail.com',
+        target: '_blank',
+        rel: 'noopener noreferrer'
       },
       {
-        icon: '/icons/networksecurity.png',
-        text: 'LinkedIn',
+        icon: '/icons/linkedin.png',
+        text: t('content.linkedin'),
         href: 'https://linkedin.com/in/uzeyirtalhakilic'
       },
       {
         icon: '/github-logo.png',
-        text: 'GitHub',
+        text: t('content.github'),
         href: 'https://github.com/uzeyirtalhakilic'
       }
     ]
   }
-]; 
+];
+
+// Legacy exports for backward compatibility
+export const whoAmISidebarConfig: SidebarCard[] = [];
+export const whoAmIContentConfig: ContentCard[] = []; 

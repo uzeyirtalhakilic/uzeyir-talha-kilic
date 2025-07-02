@@ -2,6 +2,11 @@
 
 /* Windows XP Desktop Styles */
 
+/* Font classes */
+.font-tahoma {
+  font-family: 'Tahoma', Arial, sans-serif;
+}
+
 /* Cursor Styles for Windows XP */
 .title-bar {
   cursor: url('/cursors/default_move.cur'), move !important;
@@ -784,6 +789,7 @@
   align-items: flex-start;
   padding: 10px;
   height: 100%;
+  width: 100%;
   min-height: 0;
   background: white;
 }
@@ -894,4 +900,73 @@
   .footer__window {
     max-width: 120px !important;
   }
+}
+
+/* Recycle Bin Özel Stilleri */
+.recycle-bin-content {
+  padding: 8px !important;
+  background: white;
+}
+
+.recycle-bin-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.recycle-bin-items {
+  padding-left: 8px;
+}
+
+.recycle-bin-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 11px;
+  min-height: 20px;
+  transition: background-color 0.1s ease;
+}
+
+.recycle-bin-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.recycle-bin-item.selected {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.recycle-bin-item-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.recycle-bin-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Özellikle msword.png ikonu için daha büyük boyut */
+.recycle-bin-item-icon img[src*="msword.png"] {
+  width: 24px;
+  height: 24px;
+  margin: -2px;
+}
+
+.recycle-bin-item-text {
+  color: #000;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 } 

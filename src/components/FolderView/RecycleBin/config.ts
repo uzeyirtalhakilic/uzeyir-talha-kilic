@@ -1,0 +1,103 @@
+import { SidebarCard } from '../base/BaseSidebar';
+import { ContentCard } from '../base/BaseContentGrid';
+
+export const recycleBinSidebarConfig: SidebarCard[] = [
+  {
+    title: 'Tasks',
+    items: [
+      {
+        icon: '/icons/restore.ico',
+        text: 'restoreAllItems'
+      },
+      {
+        icon: '/icons/close.png',
+        text: 'emptyRecycleBin'
+      },
+      {
+        icon: '/icons/ie-book.png',
+        text: 'viewProperties'
+      }
+    ]
+  },
+  {
+    title: 'Other Places',
+    items: [
+      {
+        icon: '/icons/MyComputer.png',
+        text: 'My Computer'
+      },
+      {
+        icon: '/icons/folderdocument.png',
+        text: 'My Documents'
+      },
+      {
+        icon: '/icons/networksecurity.png',
+        text: 'Control Panel'
+      }
+    ]
+  }
+];
+
+export const recycleBinContentConfig: ContentCard[] = [
+  {
+    title: '',
+    items: [
+      {
+        icon: '/icons/paint.png',
+        text: 'udemyCert'
+      }
+    ]
+  },
+  {
+    title: 'oldCVs',
+    items: [
+      {
+        icon: '/icons/msword.png',
+        text: 'cv37'
+      },
+      {
+        icon: '/icons/301(32x32).png',
+        text: 'cvLatest'
+      },
+      {
+        icon: '/icons/301(32x32).png',
+        text: 'cvFinal'
+      },
+    ]
+  },
+  {
+    title: 'games',
+    items: [
+      {
+        icon: '/icons/gtavc.ico',
+        text: 'gtaViceCity'
+      },
+      {
+        icon: '/icons/msword.png',
+        text: 'gtaCheats'
+      }
+    ]
+  },
+  {
+    title: 'oldProjects',
+    items: [
+      {
+        icon: '/icons/301(32x32).png',
+        text: 'testProject'
+      },
+      {
+        icon: '/icons/301(32x32).png',
+        text: 'brokenWebsite'
+      }
+    ]
+  },
+  {
+    title: '',
+    items: [
+      {
+        icon: '/icons/msword.png',
+        text: 'gamingSites'
+      }
+    ]
+  }
+]; 

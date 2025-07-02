@@ -1,39 +1,33 @@
-import {NextIntlClientProvider, hasLocale} from 'next-intl';
-import {getMessages, setRequestLocale} from 'next-intl/server';
-import {notFound} from 'next/navigation';
-import {routing} from '@/i18n/routing';
+import { type ReactNode } from "react";
 import '../globals.css';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
-}
+// Define supported locales
+const locales = ['en', 'tr'];
 
-export default async function LocaleLayout({
-  children,
-  params
-}: {
-  children: React.ReactNode;
-  params: Promise<{locale: string}>;
+export default async function LocaleLayout(props: {
+  children: ReactNode;
+  params: { locale: string };
 }) {
-  // Ensure that the incoming `locale` is valid
-  const {locale} = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+  const { children } = props;
+  const { locale } = await props.params;
 
-  // Enable static rendering
-  setRequestLocale(locale);
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale as any)) notFound();
 
-  // Provide all messages to the client
+  // Providing all messages to the client
+  // side is the easiest way to get started
   const messages = await getMessages();
 
   return (
     <html lang={locale}>
       <body suppressHydrationWarning={true}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages} locale={locale}>
           {children}
         </NextIntlClientProvider>
       </body>
     </html>
   );
-}
+} 

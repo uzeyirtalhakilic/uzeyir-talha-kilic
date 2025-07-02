@@ -38,7 +38,7 @@ export interface FooterMenuProps {
 export interface ItemProps {
   style?: React.CSSProperties;
   text: string | React.ReactNode;
-  icon: string;
+  icon?: string;
   onHover?: (text: string) => void;
   onClick?: (text: string) => void;
   children?: React.ReactNode;
