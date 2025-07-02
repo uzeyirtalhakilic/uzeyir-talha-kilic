@@ -9,13 +9,13 @@ const locales = ['en', 'tr'];
 
 export default async function LocaleLayout(props: {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { children } = props;
   const { locale } = await props.params;
 
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
+  if (!locales.includes(locale)) notFound();
 
   // Providing all messages to the client
   // side is the easiest way to get started

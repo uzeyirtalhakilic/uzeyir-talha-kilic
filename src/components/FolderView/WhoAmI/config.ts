@@ -1,7 +1,7 @@
 import { SidebarCard } from '../base/BaseSidebar';
 import { ContentCard } from '../base/BaseContentGrid';
 
-export const createWhoAmISidebarConfig = (t: any): SidebarCard[] => [
+export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCard[] => [
   {
     title: t('personalTasks'),
     items: [
@@ -38,7 +38,7 @@ export const createWhoAmISidebarConfig = (t: any): SidebarCard[] => [
   }
 ];
 
-export const createWhoAmIContentConfig = (t: any): ContentCard[] => [
+export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCard[] => [
   {
     title: t('content.personalInfo'),
     items: [

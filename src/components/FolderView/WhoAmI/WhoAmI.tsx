@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { useLocale, useTranslations } from 'next-intl';
 import { BaseFolderView, BaseSidebar, BaseContentGrid } from '../base';
 import { createWhoAmISidebarConfig, createWhoAmIContentConfig } from './config';
-import { ContentCard } from '../base/BaseContentGrid';
+import { ContentCard, ContentItem } from '../base/BaseContentGrid';
 import AboutMeFile from './AboutMeFile';
 
 interface WhoAmIProps {
   onClose: () => void;
 }
 
-const WhoAmI: React.FC<WhoAmIProps> = ({ onClose }) => {
+const WhoAmI: React.FC<WhoAmIProps> = () => {
   const locale = useLocale();
   const t = useTranslations('folderView.whoAmI');
   const t2 = useTranslations('desktop');
@@ -18,7 +19,7 @@ const WhoAmI: React.FC<WhoAmIProps> = ({ onClose }) => {
   // Dynamically generate content config based on locale
   const dynamicContentConfig = createWhoAmIContentConfig(t).map((card: ContentCard) => ({
     ...card,
-    items: card.items.map((item: any) => {
+    items: card.items.map((item: ContentItem) => {
       if (item.text === t('content.resume')) {
         return {
           ...item,
@@ -42,7 +43,7 @@ const WhoAmI: React.FC<WhoAmIProps> = ({ onClose }) => {
   const addressBarContent = (
     <div className="address-input">
       <span className="address-input-icon">
-        <img src="/icons/folderdocument.png" alt="Who Am I" width={14} height={14} />
+        <Image src="/icons/folderdocument.png" alt="Who Am I" width={14} height={14} style={{ width: 'auto', height: 'auto' }} />
       </span>
       <div className="address-input-text">{t2('whoAmI') || 'Who Am I?'}</div>
       <span className="address-input-dropdown">▼</span>

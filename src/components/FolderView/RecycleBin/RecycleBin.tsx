@@ -85,7 +85,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
     </>
   );
 
-  const handleItemClick = (item: any) => {
+  const handleItemClick = (item: { onClick?: () => void; text?: string }) => {
     if (item.onClick) {
       item.onClick();
     } else if (item.text) {

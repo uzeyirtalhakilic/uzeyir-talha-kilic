@@ -23,7 +23,7 @@ export default function NotFound() {
         {/* Error Details */}
         <div className="space-y-4 text-lg">
           <p><strong>PAGE_NOT_FOUND_ERROR</strong></p>
-          <p>If this is the first time you've seen this Stop error screen, restart your computer. If this screen appears again, follow these steps:</p>
+          <p>If this is the first time you&apos;ve seen this Stop error screen, restart your computer. If this screen appears again, follow these steps:</p>
           
           <div className="ml-8 space-y-2">
             <p>• Check for viruses on your computer. Remove any newly installed hard drives or hard drive controllers.</p>

@@ -1,7 +1,7 @@
 import { SidebarCard } from '../base/BaseSidebar';
 import { ContentCard } from '../base/BaseContentGrid';
 
-export const createMyDocumentsSidebarConfig = (t: any): SidebarCard[] => [
+export const createMyDocumentsSidebarConfig = (t: (key: string) => string): SidebarCard[] => [
   {
     title: t('documentTasks'),
     items: [
@@ -38,7 +38,7 @@ export const createMyDocumentsSidebarConfig = (t: any): SidebarCard[] => [
   }
 ];
 
-export const createMyDocumentsContentConfig = (t: any): ContentCard[] => [
+export const createMyDocumentsContentConfig = (t: (key: string) => string): ContentCard[] => [
   {
     title: t('content.myDocuments'),
     items: [

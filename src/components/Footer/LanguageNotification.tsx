@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 
@@ -13,7 +12,7 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
   const [selectedLanguage, setSelectedLanguage] = useState<string>('');
   const [isVisible, setIsVisible] = useState(false);
   const [currentLocale, setCurrentLocale] = useState<string>('');
-  const t = useTranslations('language');
+
   const router = useRouter();
   const pathname = usePathname();
 
