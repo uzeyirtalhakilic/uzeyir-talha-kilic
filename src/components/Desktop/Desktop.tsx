@@ -1,5 +1,4 @@
 "use client";
-// TODO: SideBar sabit olmalı.
 //?      Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim
 
@@ -100,7 +99,7 @@ export default function Desktop() {
               x: window.innerWidth / 2 - 500,
               y: 50,
               width: 1000,
-              height: 700,
+              height: 500,
             };
           } else {
             // Maximize
@@ -129,9 +128,13 @@ export default function Desktop() {
   };
 
   const handleWindowResize = (windowId: string, x: number, y: number, width: number, height: number) => {
+    // Alt sınırı kontrol et
+    const maxHeight = window.innerHeight - 30 - y;
+    const adjustedHeight = Math.min(height, maxHeight);
+  
     setWindowStates((prev) =>
       prev.map((win) =>
-        win.id === windowId ? { ...win, x, y, width, height } : win
+        win.id === windowId ? { ...win, x, y, width, height: adjustedHeight } : win
       )
     );
   };

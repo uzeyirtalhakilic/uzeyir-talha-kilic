@@ -241,7 +241,7 @@
 .window-content {
   background: white;
   position: relative;
-  height: auto;
+  height: 100%;
   min-height: 0;
 }
 

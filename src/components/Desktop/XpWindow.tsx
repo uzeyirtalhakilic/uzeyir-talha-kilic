@@ -92,8 +92,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       
       // Ekran sınırlarını kontrol et
       const clampedX = Math.max(0, Math.min(newX, window.innerWidth - windowState.width));
-      const clampedY = Math.max(0, Math.min(newY, window.innerHeight - windowState.height));
-      
+      const clampedY = Math.max(0, Math.min(newY, window.innerHeight - 30 - windowState.height));
+            
       // Desktop bileşenine pozisyon değişikliğini bildir
       onResize(clampedX, clampedY, windowState.width, windowState.height);
     } else if (isResizing && !windowState.isMaximized) {
