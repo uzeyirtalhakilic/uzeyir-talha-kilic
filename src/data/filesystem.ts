@@ -41,9 +41,18 @@ export const desktopItems: FileSystemItem[] = [
     icon: "/icons/folderdocument.png",
     children: [],
   },
+  {
+    id: "read-me-txt",
+    type: "file",
+    label: "ReadMe.txt",
+    translationKey: "desktop.readme",
+    icon: "/icons/notepad.png",
+  },
+  
 ]; 
 
-export const FileItems: FileSystemItem[] = [  {
+export const FileItems: FileSystemItem[] = [  
+  {
   id: "about-me-txt",
   type: "file",
   label: "AboutMe.txt",

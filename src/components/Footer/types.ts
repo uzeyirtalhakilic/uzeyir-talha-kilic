@@ -7,21 +7,6 @@ export interface App {
   };
 }
 
-export interface FooterProps {
-  apps: Array<{
-    id: string;
-    header: {
-      icon: string;
-      title: string;
-      noFooterWindow?: boolean;
-    };
-  }>;
-  focusedAppId: string | null;
-  onMouseDown: () => void;
-  onClickMenuItem: (name: string) => void;
-  onWindowClick?: (windowId: string) => void;
-}
-
 export interface FooterWindowProps {
   id: string;
   icon: string;
@@ -42,6 +27,22 @@ export interface ItemProps {
   onHover?: (text: string) => void;
   onClick?: (text: string) => void;
   children?: React.ReactNode;
+}
+export interface FooterProps {
+  apps: Array<{
+    id: string;
+    header: {
+      icon: string;
+      title: string;
+      noFooterWindow?: boolean;
+    };
+  }>;
+  focusedAppId: string | null;
+  onMouseDown: () => void;
+  onClickMenuItem: (name: string) => void;
+  onWindowClick?: (windowId: string) => void;
+  menuOn?: boolean;
+  toggleMenu?: () => void;
 }
 
 export interface ItemsProps {

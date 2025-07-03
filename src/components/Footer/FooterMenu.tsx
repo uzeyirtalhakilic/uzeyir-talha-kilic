@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FooterMenuProps, ItemProps, SubMenuProps, MenuItem } from './types';
 import { AllPrograms, MyRecentDocuments, ConnectTo } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
+import { createPortal } from 'react-dom';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
   const [hoverIndex, setHoverIndex] = useState(-1);
@@ -134,8 +135,8 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
     }
   }
 
-  return (
-    <div className={`text-[11px] leading-[14px] flex flex-col items-center bg-white rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] border border-[#72ade9] ${className}`} style={{ bottom: '30px', animation: 'slideUp 0.2s ease-out', width: '400px', position: 'fixed', left: '0', zIndex: 9999 }}>
+  const menuContent = (
+    <div className={`text-[11px] leading-[14px] flex flex-col items-center bg-white rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] border border-[#72ade9] ${className}`} style={{ bottom: '30px', animation: 'slideUp 0.2s ease-out', width: '400px', position: 'fixed', left: '0', zIndex: 2147483647 }}>
       <style jsx>{`
         @keyframes slideUp {
           from {
@@ -320,6 +321,11 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
       </footer>
     </div>
   );
+
+  if (typeof window !== "undefined") {
+    return createPortal(menuContent, document.body);
+  }
+  return null;
 };
 
 const Item: React.FC<ItemProps> = ({

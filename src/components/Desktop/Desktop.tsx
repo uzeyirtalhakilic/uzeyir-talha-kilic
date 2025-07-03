@@ -1,13 +1,21 @@
 "use client";
+// TODO  İşaretçi seçimi ekle (Winxp tarzı).
+// TODO  README dosyasını ve AboutMe dosyasını güncelle. Neden?
+// TODO  Paint component ekle (Udemy sertifikası, fotoğraflar vs.)
+// TODO  Dosyaları Tekrar Düzenle son halini almasını sağla.
+// TODO  Türkçe ve ingilizceyi tam hale getir.
+// TODO  Cursors güncelle
 //?      Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim
 
 import DesktopIcon from "./DesktopIcon";
 import { desktopItems, FileSystemItem } from "../../data/filesystem";
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useRef, useEffect, useMemo, useCallback } from "react";
 import XpWindow from "./XpWindow";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Taskbar from "./Taskbar";
+import DashedBox from "../../DashedBox/DashedBox";
 
 interface WindowState {
   id: string;
@@ -25,9 +33,15 @@ export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem)
 export default function Desktop() {
   const [windowStates, setWindowStates] = useState<WindowState[]>([]);
   const [focusedWindowId, setFocusedWindowId] = useState<string | null>(null);
+  const [highlightedIconId, setHighlightedIconId] = useState<string | null>(null);
   const t = useTranslations('desktop');
   const tFooter = useTranslations('footer');
   const OFFSET = 32;
+  const [startPos, setStartPos] = useState<null | { x: number; y: number }>(null);
+  const [mouse, setMouse] = useState<{ docX: number; docY: number }>({ docX: 0, docY: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [highlightedByBox, setHighlightedByBox] = useState<string[]>([]);
 
   const handleOpen = (item: FileSystemItem) => {
     // Aynı pencereyi tekrar açma
@@ -208,7 +222,7 @@ export default function Desktop() {
   };
 
   // Use next-intl translations instead of hardcoded Turkish labels
-  const translatedItems = desktopItems.map((item: FileSystemItem) => ({
+  const translatedItems = useMemo(() => desktopItems.map((item: FileSystemItem) => ({
     ...item,
     label: item.translationKey ? 
       (item.translationKey === 'desktop.1' ? t('whoAmI') :
@@ -219,7 +233,7 @@ export default function Desktop() {
        item.translationKey === 'desktop.myDocuments' ? t('myDocuments') :
        item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
        item.label) : item.label
-  }));
+  })), [desktopItems, t, tFooter]);
 
   // Taskbar için app listesi oluştur
   const taskbarApps = windowStates.map((windowState) => ({
@@ -260,53 +274,159 @@ export default function Desktop() {
     }
   }
 
+  function handleMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    // Sadece sol tık için
+    if (e.button !== 0) return;
+    const target = e.target as HTMLElement;
+    // Eğer tıklanan yer bir pencere ise seçim başlatma
+    if (target.closest('.xp-window')) return;
+    // Eğer tıklanan yer footer veya footer içindeki bir eleman ise seçim başlatma
+    if (
+      target.closest('footer') ||
+      target.classList.contains('footer__window')
+    ) {
+      return;
+    }
+    // Eğer tıklanan yer bir DesktopIcon değilse highlight'ı kaldır
+    if (!target.closest('.desktop-icon')) {
+      setHighlightedIconId(null);
+    }
+    setHighlightedByBox([]);
+    setStartPos({ x: e.pageX, y: e.pageY });
+    setIsDragging(false);
+  }
+
+  // Document seviyesinde mousemove
+  const handleDocumentMouseMove = useCallback((e: MouseEvent) => {
+    setMouse(prev => {
+      if (!startPos) return prev;
+      const dx = Math.abs(e.pageX - startPos.x);
+      const dy = Math.abs(e.pageY - startPos.y);
+      const threshold = 3; // px
+      if (!isDragging && (dx > threshold || dy > threshold)) {
+        setIsDragging(true);
+        return { docX: e.pageX, docY: e.pageY };
+      } else if (isDragging) {
+        return { docX: e.pageX, docY: e.pageY };
+      }
+      return prev;
+    });
+  }, [startPos, isDragging]);
+
+  // Document seviyesinde mouseup
+  const handleDocumentMouseUp = useCallback(() => {
+    setStartPos(null);
+    setMouse({ docX: 0, docY: 0 });
+    setIsDragging(false);
+  }, []);
+
+  // Seçim kutusu aktifken event listener ekle/kaldır
+  useEffect(() => {
+    if (startPos !== null) {
+      document.addEventListener('mousemove', handleDocumentMouseMove);
+      document.addEventListener('mouseup', handleDocumentMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleDocumentMouseMove);
+        document.removeEventListener('mouseup', handleDocumentMouseUp);
+      };
+    }
+  }, [startPos, handleDocumentMouseMove, handleDocumentMouseUp]);
+
+  useEffect(() => {
+    if (isDragging && startPos && (mouse.docX !== startPos.x || mouse.docY !== startPos.y)) {
+      const x1 = Math.min(startPos.x, mouse.docX);
+      const y1 = Math.min(startPos.y, mouse.docY);
+      const x2 = Math.max(startPos.x, mouse.docX);
+      const y2 = Math.max(startPos.y, mouse.docY);
+      const highlighted: string[] = [];
+      iconRefs.current.forEach((ref, idx) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          // Desktop'ın sol üst köşesini referans al
+          const desktopRect = document.querySelector('.desktop-root')?.getBoundingClientRect();
+          const ix1 = rect.left - (desktopRect?.left || 0);
+          const iy1 = rect.top - (desktopRect?.top || 0);
+          const ix2 = ix1 + rect.width;
+          const iy2 = iy1 + rect.height;
+          if (x1 < ix2 && x2 > ix1 && y1 < iy2 && y2 > iy1) {
+            highlighted.push(translatedItems[idx].id);
+          }
+        }
+      });
+      setHighlightedByBox(highlighted);
+    }
+  }, [isDragging, startPos, mouse, translatedItems]);
+
   return (
     <DesktopContext.Provider value={{ handleOpen }}>
-      <div className="relative w-screen h-screen min-h-screen overflow-hidden font-sans">
-        <div 
-          className="absolute inset-0 -z-10 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url("/wallpapers/xp-bliss-placeholder.jpeg")'
-          }}
-        />
+      <div
+        className="desktop-root"
+        style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}
+        onMouseDown={handleMouseDown}
+      >
+        {isDragging && startPos && (mouse.docX !== startPos.x || mouse.docY !== startPos.y) && (
+          <DashedBox mouse={mouse} startPos={startPos} />
+        )}
+        <div className="relative w-screen h-screen min-h-screen overflow-hidden font-sans">
+          <div 
+            className="absolute inset-0 -z-10 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url("/wallpapers/xp-bliss-placeholder.jpeg")'
+            }}
+          />
 
-        <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
-          {translatedItems.map((item: FileSystemItem) => (
-            <DesktopIcon
-              key={item.id}
-              icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
-              label={item.label}
-              onClick={() => handleOpen(item)}
-            />
-          ))}
+          <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
+            {translatedItems.map((item: FileSystemItem, idx: number) => {
+              let highlighted = false;
+              if (highlightedByBox.includes(item.id)) {
+                highlighted = true;
+              }
+              if (highlightedIconId === item.id) {
+                highlighted = true;
+              }
+              return (
+                <div
+                  ref={el => { iconRefs.current[idx] = el; }}
+                  key={item.id}
+                >
+                  <DesktopIcon
+                    icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
+                    label={item.label}
+                    highlighted={highlighted}
+                    onHighlight={() => setHighlightedIconId(item.id)}
+                    onDoubleClick={() => handleOpen(item)}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Açık pencereleri göster */}
+          {windowStates
+            .filter((windowState) => !windowState.isMinimized)
+            .map((windowState) => (
+              <XpWindow
+                key={windowState.id}
+                item={windowState.item}
+                windowState={windowState}
+                onClose={() => handleClose(windowState.id)}
+                onMinimize={() => handleMinimize(windowState.id)}
+                onMaximize={() => handleMaximize(windowState.id)}
+                onFocus={() => handleWindowFocus(windowState.id)}
+                onResize={(x, y, width, height) => handleWindowResize(windowState.id, x, y, width, height)}
+                isFocused={focusedWindowId === windowState.id}
+              />
+            ))}
+
+          {/* Taskbar */}
+          <Taskbar
+            apps={taskbarApps}
+            focusedAppId={focusedWindowId}
+            onMouseDown={() => {}}
+            onClickMenuItem={handleMenuItemClick}
+            onWindowClick={handleTaskbarWindowClick}
+          />
         </div>
-
-        {/* Açık pencereleri göster */}
-        {windowStates
-          .filter((windowState) => !windowState.isMinimized)
-          .map((windowState) => (
-            <XpWindow
-              key={windowState.id}
-              item={windowState.item}
-              windowState={windowState}
-              onClose={() => handleClose(windowState.id)}
-              onMinimize={() => handleMinimize(windowState.id)}
-              onMaximize={() => handleMaximize(windowState.id)}
-              onFocus={() => handleWindowFocus(windowState.id)}
-              onResize={(x, y, width, height) => handleWindowResize(windowState.id, x, y, width, height)}
-              isFocused={focusedWindowId === windowState.id}
-            />
-          ))}
-
-        {/* Taskbar
-        <Taskbar
-          apps={taskbarApps}
-          focusedAppId={focusedWindowId}
-          onMouseDown={() => {}}
-          onClickMenuItem={handleMenuItemClick}
-          onWindowClick={handleTaskbarWindowClick}
-        />
-        */}
       </div>
     </DesktopContext.Provider>
   );

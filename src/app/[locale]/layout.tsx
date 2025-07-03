@@ -3,7 +3,6 @@ import '../globals.css';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
-import FooterWrapper from "@/components/Footer/FooterWrapper";
 
 // Define supported locales
 const locales = ['en', 'tr'];
@@ -27,7 +26,6 @@ export default async function LocaleLayout(props: {
       <body suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           {children}
-          <FooterWrapper />
         </NextIntlClientProvider>
       </body>
     </html>

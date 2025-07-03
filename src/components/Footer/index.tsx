@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { FooterWindowProps } from './types';
+import { FooterWindowProps, FooterProps } from './types';
 import FooterMenu from './FooterMenu';
 import LanguageNotification from './LanguageNotification';
 import { useTranslations } from 'next-intl';
@@ -25,35 +25,19 @@ const getTime = () => {
   return `${hour}:${min} ${hourPostFix}`;
 };
 
-interface FooterProps {
-  apps: Array<{
-    id: string;
-    header: {
-      icon: string;
-      title: string;
-      noFooterWindow?: boolean;
-    };
-  }>;
-  focusedAppId: string | null;
-  onMouseDown: () => void;
-  onClickMenuItem: (name: string) => void;
-  onWindowClick?: (windowId: string) => void;
-  menuOn?: boolean;
-  toggleMenu?: () => void;
-}
 
 const Footer: React.FC<FooterProps> = ({
   apps,
   focusedAppId,
   onMouseDown = () => {},
   onClickMenuItem,
-  onWindowClick,
-  menuOn = false,
-  toggleMenu = () => {},
+  onWindowClick
 }) => {
   const [time, setTime] = useState("");
   const [showLanguageNotification, setShowLanguageNotification] = useState(false);
+  const [menuOn, setMenuOn] = useState(false);
   const menu = useRef<HTMLDivElement>(null);
+  const startButtonRef = useRef<HTMLDivElement>(null);
   const tDesktop = useTranslations('desktop');
 
   function _onMouseDown(e: React.MouseEvent) {
@@ -63,6 +47,11 @@ const Footer: React.FC<FooterProps> = ({
 
   function _onClickMenuItem(name: string) {
     onClickMenuItem(name);
+    setMenuOn(false);
+  }
+
+  function toggleMenu() {
+    setMenuOn((on) => !on);
   }
 
   useEffect(() => {
@@ -82,6 +71,28 @@ const Footer: React.FC<FooterProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
+  // Dışarı tıklanınca menüyü kapat
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      setTimeout(() => {
+        if (
+          menu.current &&
+          !menu.current.contains(e.target as Node) &&
+          startButtonRef.current &&
+          !startButtonRef.current.contains(e.target as Node)
+        ) {
+          setMenuOn(false);
+        }
+      }, 0);
+    }
+    if (menuOn) {
+      window.addEventListener("mousedown", handleClick);
+    } else {
+      window.removeEventListener("mousedown", handleClick);
+    }
+    return () => window.removeEventListener("mousedown", handleClick);
+  }, [menuOn]);
+
   return (
     <>
       <footer 
@@ -89,10 +100,11 @@ const Footer: React.FC<FooterProps> = ({
         onMouseDown={_onMouseDown}
       >
         <div className="flex-1 h-full flex items-center overflow-hidden">
-          <div className="relative z-[9999]">
-            {/* FooterMenu artık dışarıdan yönetilecek */}
+          <div ref={menu} className="relative z-[9999]">
+            {menuOn && <FooterMenu onClick={_onClickMenuItem} />}
           </div>
           <div
+            ref={startButtonRef}
             onClick={(e) => {
               e.stopPropagation();
               toggleMenu();

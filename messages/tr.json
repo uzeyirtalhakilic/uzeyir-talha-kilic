@@ -5,6 +5,7 @@
   },
   "desktop": {
     "projects": "Projeler",
+    "readMe" : "Beni Oku",
     "start": "Başlat",
     "whoAmI": "Ben Kimim?",
     "hobbies": "Hobilerim",

@@ -1,0 +1,39 @@
+/* DashedBox.module.css */
+.dashedBox {
+  position: absolute;
+  border: 1px dotted gray;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.desktop-icon-highlighted {
+  background: rgba(0,120,212,0.3) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 0 0 2px #0078d4 !important;
+  transition: background 0.1s, box-shadow 0.1s;
+}
+
+.desktop-icon-highlighted-icon {
+  background: #cbe7fe !important; /* XP selected icon bg */
+  border: 1.5px solid #3a6ea5 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 6px 0 rgba(60, 90, 170, 0.10) !important;
+  transition: background 0.1s, box-shadow 0.1s;
+}
+
+.desktop-icon-highlighted-label {
+  background: #0054e3 !important;
+  color: #fff !important;
+  border: 1px solid #003399 !important;
+  border-radius: 0 !important;
+  padding: 2px 14px 2px 14px !important;
+  margin-top: 4px !important;
+  font-family: 'Tahoma', Arial, sans-serif !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+

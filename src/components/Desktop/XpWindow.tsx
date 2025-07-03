@@ -7,6 +7,7 @@ import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
 import AboutMeFile from "../FolderView/WhoAmI/AboutMeFile";
+import ReadMeFile from "../FolderView/ReadMe/ReadMeFile";
 import { useTranslations } from 'next-intl';
 
 interface WindowState {
@@ -131,11 +132,11 @@ const XpWindow: React.FC<XpWindowProps> = ({
     }
   }, [isDragging, isResizing, windowState.isMaximized, windowState.width, windowState.height, dragStart, resizeStart, resizeDirection, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT, onResize]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
     setIsResizing(false);
     setResizeDirection("");
-  };
+  }, []);
 
   // Event listeners
   useEffect(() => {
@@ -148,7 +149,7 @@ const XpWindow: React.FC<XpWindowProps> = ({
         document.removeEventListener('mouseup', handleMouseUp);
       };
     }
-  }, [isDragging, isResizing, windowState, dragStart, resizeStart, resizeDirection, handleMouseMove]);
+  }, [isDragging, isResizing, handleMouseMove, handleMouseUp]);
 
   // Determine which component to render based on item
   const getWindowContent = () => {
@@ -162,6 +163,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <RecycleBin onClose={onClose} />;
     } else if (item.id === 'about-me-txt') {
       return <AboutMeFile onClose={onClose} />;
+    } else if (item.id === 'read-me-txt') {
+      return <ReadMeFile onClose={onClose} />;
     } else {
       return <MyComputer onClose={onClose} />;
     }
@@ -179,6 +182,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tDesktop('recycleBin');
     } else if (item.translationKey === 'desktop.aboutme') {
       return tWhoAmI('content.aboutMe');
+    } else if (item.translationKey === 'desktop.readme') {
+      return tDesktop('readMe');
     } else {
       return t('myComputer');
     }
@@ -194,6 +199,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
     } else if (item.translationKey === 'desktop.aboutme') {
+      return "/icons/notepad.png";
+    } else if (item.translationKey === 'desktop.readme') {
       return "/icons/notepad.png";
     } else {
       return "/icons/MyComputer.png";
