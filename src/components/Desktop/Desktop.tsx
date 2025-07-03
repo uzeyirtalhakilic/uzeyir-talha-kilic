@@ -1,9 +1,8 @@
 "use client";
-// TODO  İşaretçi seçimi ekle (Winxp tarzı).
-// TODO  README dosyasını ve AboutMe dosyasını güncelle. Neden?
 // TODO  Paint component ekle (Udemy sertifikası, fotoğraflar vs.)
 // TODO  Dosyaları Tekrar Düzenle son halini almasını sağla.
 // TODO  Türkçe ve ingilizceyi tam hale getir.
+// TODO  README dosyasını ve AboutMe dosyasını güncelle. Neden?
 // TODO  Cursors güncelle
 //?      Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim
@@ -16,6 +15,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Taskbar from "./Taskbar";
 import DashedBox from "../../DashedBox/DashedBox";
+import DesktopContextMenu from "./DesktopContextMenu";
 
 interface WindowState {
   id: string;
@@ -28,7 +28,7 @@ interface WindowState {
   height: number;
 }
 
-export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem) => void } | undefined>(undefined);
+export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem) => void, refreshDesktop?: () => void } | undefined>(undefined);
 
 export default function Desktop() {
   const [windowStates, setWindowStates] = useState<WindowState[]>([]);
@@ -42,6 +42,10 @@ export default function Desktop() {
   const [isDragging, setIsDragging] = useState(false);
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [highlightedByBox, setHighlightedByBox] = useState<string[]>([]);
+  const [contextMenu, setContextMenu] = useState<{ x: number, y: number } | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  console.log("RENDER contextMenu", contextMenu);
 
   const handleOpen = (item: FileSystemItem) => {
     // Aynı pencereyi tekrar açma
@@ -275,6 +279,8 @@ export default function Desktop() {
   }
 
   function handleMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    // Sağ tık ise hiçbir şey yapma
+    if (e.button === 2) return;
     // Sadece sol tık için
     if (e.button !== 0) return;
     const target = e.target as HTMLElement;
@@ -357,13 +363,46 @@ export default function Desktop() {
     }
   }, [isDragging, startPos, mouse, translatedItems]);
 
+  useEffect(() => {
+    console.log("contextMenu CHANGED", contextMenu);
+  }, [contextMenu]);
+
+  const refreshDesktop = () => {
+    setIsRefreshing(true);
+    setTimeout(() => setIsRefreshing(false), 100); // 100ms refresh effect (much faster)
+  };
+
   return (
-    <DesktopContext.Provider value={{ handleOpen }}>
+    <DesktopContext.Provider value={{ handleOpen, refreshDesktop }}>
       <div
         className="desktop-root"
         style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}
         onMouseDown={handleMouseDown}
+        onContextMenu={e => {
+          e.preventDefault();
+          // Eğer sağ tıklanan yer bir pencere ise context menu açma
+          if ((e.target as HTMLElement).closest('.xp-window')) return;
+          setContextMenu({ x: e.clientX, y: e.clientY });
+        }}
       >
+        {contextMenu && (
+          <>
+            <div
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 9998,
+              }}
+              onClick={() => setContextMenu(null)}
+              onMouseDown={() => setContextMenu(null)}
+            />
+            <DesktopContextMenu
+              x={contextMenu.x}
+              y={contextMenu.y}
+              onClose={() => setContextMenu(null)}
+            />
+          </>
+        )}
         {isDragging && startPos && (mouse.docX !== startPos.x || mouse.docY !== startPos.y) && (
           <DashedBox mouse={mouse} startPos={startPos} />
         )}
@@ -376,7 +415,7 @@ export default function Desktop() {
           />
 
           <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
-            {translatedItems.map((item: FileSystemItem, idx: number) => {
+            {!isRefreshing && translatedItems.map((item: FileSystemItem, idx: number) => {
               let highlighted = false;
               if (highlightedByBox.includes(item.id)) {
                 highlighted = true;

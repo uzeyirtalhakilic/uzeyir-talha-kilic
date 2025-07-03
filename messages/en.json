@@ -291,5 +291,27 @@
       "goHome": "Go to Home Page",
       "goBack": "Go Back"
     }
+  },
+  "desktopContextMenu": {
+    "view": "View",
+    "largeIcons": "Large icons",
+    "mediumIcons": "Medium icons",
+    "smallIcons": "Small icons",
+    "autoArrangeIcons": "Auto arrange icons",
+    "alignIconsToGrid": "Align icons to grid",
+    "showDesktopIcons": "Show desktop icons",
+    "sortBy": "Sort By",
+    "name": "Name",
+    "size": "Size",
+    "itemType": "Item type",
+    "dateModified": "Date modified",
+    "refresh": "Refresh",
+    "new": "New",
+    "folder": "Folder",
+    "msWordDocument": "MS Word Document",
+    "msExcelSpreadsheet": "MS Excel Spreadsheet",
+    "msPowerPointPresentation": "MS PowerPoint Presentation",
+    "winrarArchive": "WinRAR archive",
+    "properties": "Properties"
   }
 } 

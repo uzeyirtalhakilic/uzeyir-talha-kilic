@@ -291,5 +291,27 @@
       "goHome": "Ana Sayfaya Git",
       "goBack": "Geri Git"
     }
+  },
+  "desktopContextMenu": {
+    "view": "Görünüm",
+    "largeIcons": "Büyük simgeler",
+    "mediumIcons": "Orta boy simgeler",
+    "smallIcons": "Küçük simgeler",
+    "autoArrangeIcons": "Simgeleri otomatik düzenle",
+    "alignIconsToGrid": "Simgeleri ızgaraya hizala",
+    "showDesktopIcons": "Masaüstü simgelerini göster",
+    "sortBy": "Sırala",
+    "name": "Ad",
+    "size": "Boyut",
+    "itemType": "Öğe türü",
+    "dateModified": "Değiştirilme tarihi",
+    "refresh": "Yenile",
+    "new": "Yeni",
+    "folder": "Klasör",
+    "msWordDocument": "MS Word Belgesi",
+    "msExcelSpreadsheet": "MS Excel Elektronik Tablosu",
+    "msPowerPointPresentation": "MS PowerPoint Sunusu",
+    "winrarArchive": "WinRAR arşivi",
+    "properties": "Özellikler"
   }
 } 
