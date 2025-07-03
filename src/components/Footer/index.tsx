@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { FooterProps, FooterWindowProps } from './types';
+import { FooterWindowProps } from './types';
 import FooterMenu from './FooterMenu';
 import LanguageNotification from './LanguageNotification';
 import { useTranslations } from 'next-intl';
@@ -25,23 +25,36 @@ const getTime = () => {
   return `${hour}:${min} ${hourPostFix}`;
 };
 
+interface FooterProps {
+  apps: Array<{
+    id: string;
+    header: {
+      icon: string;
+      title: string;
+      noFooterWindow?: boolean;
+    };
+  }>;
+  focusedAppId: string | null;
+  onMouseDown: () => void;
+  onClickMenuItem: (name: string) => void;
+  onWindowClick?: (windowId: string) => void;
+  menuOn?: boolean;
+  toggleMenu?: () => void;
+}
+
 const Footer: React.FC<FooterProps> = ({
   apps,
   focusedAppId,
   onMouseDown = () => {},
   onClickMenuItem,
   onWindowClick,
+  menuOn = false,
+  toggleMenu = () => {},
 }) => {
   const [time, setTime] = useState("");
-  const [menuOn, setMenuOn] = useState(false);
   const [showLanguageNotification, setShowLanguageNotification] = useState(false);
   const menu = useRef<HTMLDivElement>(null);
   const tDesktop = useTranslations('desktop');
-
-  function toggleMenu(e: React.MouseEvent) {
-    e.stopPropagation();
-    setMenuOn(on => !on);
-  }
 
   function _onMouseDown(e: React.MouseEvent) {
     if ((e.target as HTMLElement).closest('.footer__window')) return;
@@ -50,7 +63,6 @@ const Footer: React.FC<FooterProps> = ({
 
   function _onClickMenuItem(name: string) {
     onClickMenuItem(name);
-    setMenuOn(false);
   }
 
   useEffect(() => {
@@ -65,11 +77,11 @@ const Footer: React.FC<FooterProps> = ({
     const target = menu.current;
     if (!target) return;
     function onMouseDown(e: MouseEvent) {
-      if (!target?.contains(e.target as Node) && menuOn) setMenuOn(false);
+      if (!target?.contains(e.target as Node) && menuOn) toggleMenu();
     }
     window.addEventListener('mousedown', onMouseDown);
     return () => window.removeEventListener('mousedown', onMouseDown);
-  }, [menuOn]);
+  }, [menuOn, toggleMenu]);
 
   // Show language notification after 1 second
   useEffect(() => {
@@ -87,11 +99,11 @@ const Footer: React.FC<FooterProps> = ({
         onMouseDown={_onMouseDown}
       >
         <div className="flex-1 h-full flex items-center overflow-hidden">
-          <div ref={menu} className="relative z-[9999]">
-            {menuOn && <FooterMenu onClick={_onClickMenuItem} />}
+          <div className="relative z-[9999]">
+            {/* FooterMenu artık dışarıdan yönetilecek */}
           </div>
           <div
-            onMouseDown={toggleMenu}
+            onClick={toggleMenu}
             className={`flex items-center px-3 py-0.5 mr-2.5 rounded-r-full rounded-l-2xl cursor-pointer select-none transition-all duration-150 flex-shrink-0 menu-item ${
               menuOn 
                 ? 'bg-gradient-to-b from-[#4a9c3a] to-[#2d7a24] border border-[#2d5a1a] shadow-[inset_0_1px_0_#8cd17e]' 
@@ -99,7 +111,6 @@ const Footer: React.FC<FooterProps> = ({
             }`}
             style={{ minWidth: 70 }}
           >
-            
             <Image
               src="/icons/win-xp-icon.png"
               alt="start"

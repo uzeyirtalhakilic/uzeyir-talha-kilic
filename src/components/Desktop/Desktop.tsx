@@ -1,10 +1,10 @@
 "use client";
 // TODO: Sağ alt ekrana bir uyarı yazısı yaz. Yazının içine "Radio Button" ???
 // TODO: Gerekli Dosyaları/Videoları(Belki) Ekle
+// TODO: SlideBar sabit olmalı.
 //?      Belki yeni Icon tasarlayabilirim
 
 import DesktopIcon from "./DesktopIcon";
-import Taskbar from "./Taskbar";
 import { desktopItems, FileSystemItem } from "../../data/filesystem";
 import React, { useState } from "react";
 import XpWindow from "./XpWindow";
@@ -281,6 +281,7 @@ export default function Desktop() {
           />
         ))}
 
+      {/* Taskbar
       <Taskbar
         apps={taskbarApps}
         focusedAppId={focusedWindowId}
@@ -288,6 +289,7 @@ export default function Desktop() {
         onClickMenuItem={handleMenuItemClick}
         onWindowClick={handleTaskbarWindowClick}
       />
+      */}
     </div>
   );
 } 
