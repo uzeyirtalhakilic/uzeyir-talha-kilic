@@ -73,16 +73,6 @@ const Footer: React.FC<FooterProps> = ({
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    const target = menu.current;
-    if (!target) return;
-    function onMouseDown(e: MouseEvent) {
-      if (!target?.contains(e.target as Node) && menuOn) toggleMenu();
-    }
-    window.addEventListener('mousedown', onMouseDown);
-    return () => window.removeEventListener('mousedown', onMouseDown);
-  }, [menuOn, toggleMenu]);
-
   // Show language notification after 1 second
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -103,7 +93,10 @@ const Footer: React.FC<FooterProps> = ({
             {/* FooterMenu artık dışarıdan yönetilecek */}
           </div>
           <div
-            onClick={toggleMenu}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleMenu();
+            }}
             className={`flex items-center px-3 py-0.5 mr-2.5 rounded-r-full rounded-l-2xl cursor-pointer select-none transition-all duration-150 flex-shrink-0 menu-item ${
               menuOn 
                 ? 'bg-gradient-to-b from-[#4a9c3a] to-[#2d7a24] border border-[#2d5a1a] shadow-[inset_0_1px_0_#8cd17e]' 

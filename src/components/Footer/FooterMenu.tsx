@@ -292,7 +292,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
 
       <footer className="w-full flex justify-between px-3 py-2 bg-gradient-to-r from-[#0a246a] to-[#1e3a8a] border-t border-[#1e3a8a]">
         <div 
-          className="flex items-center text-white cursor-pointer text-[11px] hover:underline"
+          className=" menu-item  flex items-center text-white cursor-pointer text-[11px] hover:underline"
           onClick={() => onClick(t('logOff'))}
         >
           <Image
@@ -305,7 +305,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <span>{t('logOff')}</span>
         </div>
         <div
-          className="flex items-center text-white cursor-pointer text-[11px] hover:underline"
+          className=" menu-item  flex items-center text-white cursor-pointer text-[11px] hover:underline"
           onClick={() => onClick(t('turnOffComputer'))}
         >
           <Image

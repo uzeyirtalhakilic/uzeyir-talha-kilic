@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from 'next-intl';
 import { BaseFolderView, BaseSidebar, BaseContentGrid } from '../base';
 import { createWhoAmISidebarConfig, createWhoAmIContentConfig } from './config';
 import { ContentCard, ContentItem } from '../base/BaseContentGrid';
-import AboutMeFile from './AboutMeFile';
+import { DesktopContext } from '../../Desktop/Desktop';
+import { FileItems } from '../../../data/filesystem';
 
 interface WhoAmIProps {
   onClose: () => void;
@@ -14,8 +15,8 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
   const locale = useLocale();
   const t = useTranslations('folderView.whoAmI');
   const t2 = useTranslations('desktop');
-  const [showAboutMeFile, setShowAboutMeFile] = useState(false);
-  
+  const desktopContext = useContext(DesktopContext);
+
   // Dynamically generate content config based on locale
   const dynamicContentConfig = createWhoAmIContentConfig(t).map((card: ContentCard) => ({
     ...card,
@@ -32,7 +33,12 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
       if (item.text === t('content.aboutMe')) {
         return {
           ...item,
-          onClick: () => setShowAboutMeFile(true)
+          onClick: () => {
+            if (desktopContext) {
+              const aboutMeItem = FileItems.find(i => i.id === 'about-me-txt');
+              if (aboutMeItem) desktopContext.handleOpen(aboutMeItem);
+            }
+          }
         };
       }
       return item;
@@ -49,13 +55,6 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
       <span className="address-input-dropdown">▼</span>
     </div>
   );
-
-  // If about me file is open, show it instead of the folder view
-  if (showAboutMeFile) {
-    return (
-      <AboutMeFile onClose={() => setShowAboutMeFile(false)} />
-    );
-  }
 
   return (
     <BaseFolderView addressBarContent={addressBarContent}>

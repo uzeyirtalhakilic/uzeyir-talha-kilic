@@ -41,5 +41,13 @@ export const desktopItems: FileSystemItem[] = [
     icon: "/icons/folderdocument.png",
     children: [],
   },
-  
 ]; 
+
+export const FileItems: FileSystemItem[] = [  {
+  id: "about-me-txt",
+  type: "file",
+  label: "AboutMe.txt",
+  translationKey: "desktop.aboutme",
+  icon: "/icons/notepad.png",
+},
+]

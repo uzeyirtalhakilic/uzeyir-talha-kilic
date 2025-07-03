@@ -8,11 +8,13 @@ interface DesktopIconProps {
 }
 
 const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, onClick }) => (
-  <div className="flex flex-col items-center cursor-pointer group" onClick={onClick}>
+  <div className="flex flex-col items-center group" style={{ cursor: "url('/cursors/default_link.cur'), pointer" }} onClick={onClick}>
     <div className="w-12 h-12 flex items-center justify-center">
       {icon || <Image src="/icons/foldericon.png" alt="folder" className="w-8 h-8" width={32} height={32} />}
     </div>
-    <span className="mt-1 text-xs text-white drop-shadow group-hover:underline">{label}</span>
+    <span className="mt-1 text-xs text-white drop-shadow group-hover:underline text-center" style={{ whiteSpace: 'pre-line' }}>
+      {label}
+    </span>
   </div>
 );
 

@@ -241,7 +241,7 @@
 .window-content {
   background: white;
   position: relative;
-  height: 100%;
+  height: auto;
   min-height: 0;
 }
 
@@ -688,7 +688,7 @@
 /* Left Sidebar - MyComputer specific */
 .mycomputer-container .sidebar {
   width: 180px;
-  height: 100%;
+  height: calc(100vh - 30px);
   background: transparent;
   overflow: auto;
   padding: 10px;

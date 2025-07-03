@@ -10,9 +10,11 @@ export default function FooterWrapper() {
   // Dışarı tıklanınca menüyü kapat
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMenuOn(false);
-      }
+      setTimeout(() => {
+        if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+          setMenuOn(false);
+        }
+      }, 0);
     }
     if (menuOn) {
       window.addEventListener("mousedown", handleClick);
@@ -23,11 +25,14 @@ export default function FooterWrapper() {
   }, [menuOn]);
 
   function toggleMenu() {
-    setMenuOn((on) => !on);
+    setMenuOn((on) => {
+      if (on) return false;
+      return true;
+    });
   }
 
   return (
-    <>
+    <div ref={menuRef}>
       <Footer
         apps={[]}
         focusedAppId={null}
@@ -38,10 +43,8 @@ export default function FooterWrapper() {
         toggleMenu={toggleMenu}
       />
       {menuOn && (
-        <div ref={menuRef}>
-          <FooterMenu onClick={() => setMenuOn(false)} />
-        </div>
+        <FooterMenu onClick={() => setMenuOn(false)} />
       )}
-    </>
+    </div>
   );
 } 

@@ -1,44 +1,11 @@
 import React from "react";
+import TxtFile from "../base/TxtFile";
 
 interface AboutMeFileProps {
   onClose: () => void;
 }
 
-const AboutMeFile: React.FC<AboutMeFileProps> = ({ onClose }) => {
-  return (
-    <div className="w-full h-full flex flex-col border border-gray-400" style={{ fontFamily: 'Tahoma, Arial, sans-serif', background: '#ece9d8' }}>
-      {/* Title Bar */}
-      <div
-        className="flex items-center justify-between px-2"
-        style={{ background: 'linear-gradient(to bottom, #3a6ea5 0%, #245389 100%)', color: 'white', height: 28 }}
-      >
-        <div className="flex items-center gap-2">
-          <span style={{ fontWeight: 'bold', fontSize: 13 }}>Hakkımda - Notepad</span>
-        </div>
-        <button
-          onClick={onClose}
-          style={{ background: '#c0c0c0', color: 'black', border: '1px solid #888', borderRadius: 2, width: 22, height: 22, fontWeight: 'bold', fontSize: 16, lineHeight: '18px', marginLeft: 8 }}
-        >
-          ×
-        </button>
-      </div>
-
-      {/* Menu Bar */}
-      <div className="flex gap-4 px-2 text-xs" style={{ background: '#ece9d8', color: 'black', height: 22, borderBottom: '1px solid #b4b4b4', userSelect: 'none' }}>
-        <span className="hover:bg-blue-200 cursor-pointer px-1">File</span>
-        <span className="hover:bg-blue-200 cursor-pointer px-1">Edit</span>
-        <span className="hover:bg-blue-200 cursor-pointer px-1">Format</span>
-        <span className="hover:bg-blue-200 cursor-pointer px-1">View</span>
-        <span className="hover:bg-blue-200 cursor-pointer px-1">Help</span>
-      </div>
-
-      {/* Content Area */}
-      <div className="flex-1 overflow-auto" style={{ background: 'white', padding: 0 }}>
-        <textarea
-          className="w-full h-full p-2 text-sm"
-          style={{ resize: 'none', border: 'none', outline: 'none', background: 'white', fontFamily: 'Consolas, monospace', color: 'black', minHeight: '100%', minWidth: '100%' }}
-          defaultValue={
-`Merhabalar, ben Üzeyir Talha Kılıç.
+const aboutMeContent = `Merhabalar, ben Üzeyir Talha Kılıç.
 (Ayrı bir component yapmaya üşendim. Ekranı büyütebilirsiniz.)
 
 Kendimi tanıtmadan önce "Neden WinXP?" sorusuna cevap vermek istiyorum...
@@ -77,13 +44,15 @@ Belki de paylaşmam, bilmiyorum.
 
 Sanırım anlatacaklarım bu kadardı.
 Bana istediğiniz zaman mail yoluyla ulaşabilirsiniz.
-Daha detaylı bilgi için özgeçmişime göz atmayı unutmayın!
-`
-          }
-          readOnly
-        />
-      </div>
-    </div>
+Daha detaylı bilgi için özgeçmişime göz atmayı unutmayın!`;
+
+const AboutMeFile: React.FC<AboutMeFileProps> = ({ onClose }) => {
+  return (
+    <TxtFile
+      title="Hakkımda"
+      content={aboutMeContent}
+      onClose={onClose}
+    />
   );
 };
 

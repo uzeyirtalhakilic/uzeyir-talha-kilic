@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
+import ReactDOM from 'react-dom';
 
 interface LanguageNotificationProps {
   onClose: () => void;
@@ -51,16 +52,16 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
       return {
         languageSelection: "Your computer might be at risk.",
         selectLanguage: "Select Language",
-        turkish: "Turkish",
+        turkish: "Türkçe",
         english: "English"
       };
     } else {
       // Site İngilizce ise Türkçe metinler göster
       return {
-        languageSelection: "Bilgisayarınız risk altında olabilir.",
+        languageSelection: "Your computer might be at risk.",
         selectLanguage: "Dil Seçiniz",
         turkish: "Türkçe",
-        english: "İngilizce"
+        english: "English"
       };
     }
   };
@@ -69,7 +70,7 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
 
   if (!isVisible) return null;
 
-  return (
+  const notificationContent = (
     <div className={`language-balloon ${!isVisible ? 'fadeout' : ''}`}>
       <div className="language-balloon__container">
         <button 
@@ -88,7 +89,6 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
           <span style={{ color: 'black', fontFamily: 'Tahoma, sans-serif' }}>{oppositeText.languageSelection}</span>
         </div>
         
-        <p className="language-balloon__text" style={{ color: 'black', fontFamily: 'Tahoma, sans-serif' }}>{oppositeText.selectLanguage}</p>
         
         {/* Language Options */}
         <div className="language-balloon__options">
@@ -117,6 +117,11 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
       </div>
     </div>
   );
+
+  if (typeof window !== 'undefined') {
+    return ReactDOM.createPortal(notificationContent, document.body);
+  }
+  return null;
 };
 
 export default LanguageNotification; 

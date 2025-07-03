@@ -6,6 +6,7 @@ import MyDocuments from "../FolderView/MyDocuments/MyDocuments";
 import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
+import AboutMeFile from "../FolderView/WhoAmI/AboutMeFile";
 import { useTranslations } from 'next-intl';
 
 interface WindowState {
@@ -43,7 +44,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
 }) => {
   const t = useTranslations('folderView.addressBar');
   const tDesktop = useTranslations('desktop');
-  
+  const tWhoAmI = useTranslations('folderView.whoAmI');
+
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [resizeDirection, setResizeDirection] = useState<string>("");
@@ -55,8 +57,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
 
   const MIN_WIDTH = 400;
   const MIN_HEIGHT = 300;
-  const MAX_WIDTH = window.innerWidth - 50;
-  const MAX_HEIGHT = window.innerHeight - 100;
+  const MAX_WIDTH = window.innerWidth;
+  const MAX_HEIGHT = window.innerHeight - 30;
 
   // Mouse event handlers
   const handleMouseDown = (e: React.MouseEvent, type: string) => {
@@ -158,6 +160,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <WhoAmI onClose={onClose} />;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return <RecycleBin onClose={onClose} />;
+    } else if (item.id === 'about-me-txt') {
+      return <AboutMeFile onClose={onClose} />;
     } else {
       return <MyComputer onClose={onClose} />;
     }
@@ -173,6 +177,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tDesktop('whoAmI');
     } else if (item.translationKey === 'desktop.recycleBin') {
       return tDesktop('recycleBin');
+    } else if (item.translationKey === 'desktop.aboutme') {
+      return tWhoAmI('content.aboutMe');
     } else {
       return t('myComputer');
     }
@@ -187,6 +193,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
+    } else if (item.translationKey === 'desktop.aboutme') {
+      return "/icons/notepad.png";
     } else {
       return "/icons/MyComputer.png";
     }

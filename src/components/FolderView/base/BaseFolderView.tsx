@@ -16,7 +16,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
   addressBarContent 
 }) => {
   return (
-    <div className="mycomputer-container">
+    <div className="mycomputer-container" style={{ height: 'calc(100vh - 30px)', overflow: 'auto' }}>
       {/* Toolbar Section */}
       <Toolbar />
 
@@ -82,8 +82,20 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
 
       {/* Content Section */}
       <div className="content-section">
-        <div className="content-container">
-          {children}
+        <div className="content-container" style={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
+          {/* Sidebar'ı ve içeriği ayır */}
+          {Array.isArray(children) && children.length === 2 ? (
+            <>
+              <div style={{ width: 180, minWidth: 180, maxWidth: 180, height: '100%' }}>
+                {children[0]}
+              </div>
+              <div style={{ flex: 1, minWidth: 0, height: '100%' }}>
+                {children[1]}
+              </div>
+            </>
+          ) : (
+            children
+          )}
         </div>
       </div>
     </div>

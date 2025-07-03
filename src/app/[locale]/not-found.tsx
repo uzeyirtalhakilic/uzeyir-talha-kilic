@@ -7,8 +7,12 @@ export default function NotFound() {
   useEffect(() => {
     // Prevent scrolling on the blue screen
     document.body.style.overflow = 'hidden'
+    // Footer'ı gizle
+    const footer = document.querySelector('footer');
+    if (footer) footer.style.display = 'none';
     return () => {
       document.body.style.overflow = 'unset'
+      if (footer) footer.style.display = '';
     }
   }, [])
 

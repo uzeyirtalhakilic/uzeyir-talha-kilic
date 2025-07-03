@@ -82,12 +82,14 @@ input, textarea, [contenteditable="true"] {
 }
 
 .language-balloon {
-  position: absolute;
+  position: fixed;
+  bottom: 25px;
+  right: 105px;
   display: block;
   opacity: 0;
   animation: fadein 1s forwards;
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
-  z-index: 10000;
+  z-index: 2147483647;
 }
 
 .language-balloon.fadeout {
@@ -97,10 +99,10 @@ input, textarea, [contenteditable="true"] {
 .language-balloon__container {
   position: absolute;
   right: -4px;
-  bottom: 19px;
+  bottom: 15px;
   border: 1px solid black;
   border-radius: 7px;
-  padding: 6px 28px 10px 10px;
+  padding: 6px 28px 0px 10px;
   background-color: #ffffe1;
   font-size: 11px;
   white-space: nowrap;
@@ -134,7 +136,7 @@ input, textarea, [contenteditable="true"] {
 }
 
 .language-balloon__close:hover {
-  background-color: #ffa90c;
+  background-color: darkred;
   border-color: white;
   box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
 }

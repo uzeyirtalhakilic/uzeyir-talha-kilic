@@ -9,7 +9,7 @@
     "whoAmI": "Ben Kimim?",
     "hobbies": "Hobilerim",
     "myComputer": "Bilgisayarım",
-    "recycleBin": "Geri Dönüşüm Kutusu",
+    "recycleBin": "Geri Dönüşüm\nKutusu",
     "myDocuments": "Belgelerim",
     "controlPanel": "Denetim Masası",
     "networkNeighborhood": "Ağ Komşuları"
@@ -22,7 +22,7 @@
     "myPictures": "Resimlerim",
     "myMusic": "Müziğim",
     "myComputer": "Bilgisayarım",
-    "recycleBin": "Geri Dönüşüm Kutusu",
+    "recycleBin": "Geri Dönüşüm\nKutusu",
     "controlPanel": "Denetim Masası",
     "setProgramAccess": "Program Erişimi ve Varsayılanları Ayarla",
     "helpAndSupport": "Yardım ve Destek",
@@ -141,7 +141,7 @@
     },
     "recycleBin": {
       "address": "Adres",
-      "recycleBin": "Geri Dönüşüm Kutusu",
+      "recycleBin": "Geri Dönüşüm\nKutusu",
       "go": "Git",
       "restoreAllItems": "Tüm öğeleri geri yükle",
       "emptyRecycleBin": "Geri Dönüşüm Kutusunu Boşalt",

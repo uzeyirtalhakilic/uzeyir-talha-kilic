@@ -1,12 +1,11 @@
 "use client";
-// TODO: Sağ alt ekrana bir uyarı yazısı yaz. Yazının içine "Radio Button" ???
-// TODO: Gerekli Dosyaları/Videoları(Belki) Ekle
-// TODO: SlideBar sabit olmalı.
+// TODO: SideBar sabit olmalı.
+//?      Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim
 
 import DesktopIcon from "./DesktopIcon";
 import { desktopItems, FileSystemItem } from "../../data/filesystem";
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import XpWindow from "./XpWindow";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -22,22 +21,36 @@ interface WindowState {
   height: number;
 }
 
+export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem) => void } | undefined>(undefined);
+
 export default function Desktop() {
   const [windowStates, setWindowStates] = useState<WindowState[]>([]);
   const [focusedWindowId, setFocusedWindowId] = useState<string | null>(null);
   const t = useTranslations('desktop');
   const tFooter = useTranslations('footer');
+  const OFFSET = 32;
 
   const handleOpen = (item: FileSystemItem) => {
     // Aynı pencereyi tekrar açma
     if (!windowStates.find((win) => win.id === item.id)) {
+      // Calculate offset position
+      let baseX = window.innerWidth / 2 - 500;
+      let baseY = 50;
+      if (windowStates.length > 0) {
+        const lastWin = windowStates[windowStates.length - 1];
+        baseX = lastWin.x + OFFSET;
+        baseY = lastWin.y + OFFSET;
+        // Prevent going off screen
+        if (baseX + 1150 > window.innerWidth) baseX = 20;
+        if (baseY + 500 > window.innerHeight - 40) baseY = 20;
+      }
       const newWindow: WindowState = {
         id: item.id,
         item: item,
         isMinimized: false,
         isMaximized: false,
-        x: window.innerWidth / 2 - 500,
-        y: 50,
+        x: baseX,
+        y: baseY,
         width: 1150,
         height: 500,
       };
@@ -97,7 +110,7 @@ export default function Desktop() {
               x: 0,
               y: 0,
               width: window.innerWidth,
-              height: window.innerHeight - 40, // Taskbar için alan bırak
+              height: window.innerHeight - 30, // Taskbar için alan bırak
             };
           }
         }
@@ -245,51 +258,53 @@ export default function Desktop() {
   }
 
   return (
-    <div className="relative w-screen h-screen min-h-screen overflow-hidden font-sans">
-      <div 
-        className="absolute inset-0 -z-10 bg-cover bg-center"
-        style={{
-          backgroundImage: 'url("/wallpapers/xp-bliss-placeholder.jpeg")'
-        }}
-      />
+    <DesktopContext.Provider value={{ handleOpen }}>
+      <div className="relative w-screen h-screen min-h-screen overflow-hidden font-sans">
+        <div 
+          className="absolute inset-0 -z-10 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url("/wallpapers/xp-bliss-placeholder.jpeg")'
+          }}
+        />
 
-      <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
-        {translatedItems.map((item: FileSystemItem) => (
-          <DesktopIcon
-            key={item.id}
-            icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
-            label={item.label}
-            onClick={() => handleOpen(item)}
-          />
-        ))}
+        <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
+          {translatedItems.map((item: FileSystemItem) => (
+            <DesktopIcon
+              key={item.id}
+              icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
+              label={item.label}
+              onClick={() => handleOpen(item)}
+            />
+          ))}
+        </div>
+
+        {/* Açık pencereleri göster */}
+        {windowStates
+          .filter((windowState) => !windowState.isMinimized)
+          .map((windowState) => (
+            <XpWindow
+              key={windowState.id}
+              item={windowState.item}
+              windowState={windowState}
+              onClose={() => handleClose(windowState.id)}
+              onMinimize={() => handleMinimize(windowState.id)}
+              onMaximize={() => handleMaximize(windowState.id)}
+              onFocus={() => handleWindowFocus(windowState.id)}
+              onResize={(x, y, width, height) => handleWindowResize(windowState.id, x, y, width, height)}
+              isFocused={focusedWindowId === windowState.id}
+            />
+          ))}
+
+        {/* Taskbar
+        <Taskbar
+          apps={taskbarApps}
+          focusedAppId={focusedWindowId}
+          onMouseDown={() => {}}
+          onClickMenuItem={handleMenuItemClick}
+          onWindowClick={handleTaskbarWindowClick}
+        />
+        */}
       </div>
-
-      {/* Açık pencereleri göster */}
-      {windowStates
-        .filter((windowState) => !windowState.isMinimized)
-        .map((windowState) => (
-          <XpWindow
-            key={windowState.id}
-            item={windowState.item}
-            windowState={windowState}
-            onClose={() => handleClose(windowState.id)}
-            onMinimize={() => handleMinimize(windowState.id)}
-            onMaximize={() => handleMaximize(windowState.id)}
-            onFocus={() => handleWindowFocus(windowState.id)}
-            onResize={(x, y, width, height) => handleWindowResize(windowState.id, x, y, width, height)}
-            isFocused={focusedWindowId === windowState.id}
-          />
-        ))}
-
-      {/* Taskbar
-      <Taskbar
-        apps={taskbarApps}
-        focusedAppId={focusedWindowId}
-        onMouseDown={() => {}}
-        onClickMenuItem={handleMenuItemClick}
-        onWindowClick={handleTaskbarWindowClick}
-      />
-      */}
-    </div>
+    </DesktopContext.Provider>
   );
 } 
