@@ -35,7 +35,27 @@ export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCa
         text: t('controlPanel')
       }
     ]
-  }
+  },
+  {
+    title: t('content.contactInfo'),
+    items: [
+      {
+        icon: '/icons/mail.png',
+        text: t('content.email'),
+        href: 'https://mail.google.com/mail/?view=cm&to=kilicuzeyirtalha@gmail.com'
+      },
+      {
+        icon: '/icons/linkedin.png',
+        text: t('content.linkedin'),
+        href: 'https://linkedin.com/in/uzeyirtalhakilic'
+      },
+      {
+        icon: '/github-logo.png',
+        text: t('content.github'),
+        href: 'https://github.com/uzeyirtalhakilic'
+      }
+    ]
+  },
 ];
 
 export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCard[] => [
@@ -54,23 +74,6 @@ export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCa
         icon: '/icons/folderphoto.png',
         text: t('content.photos')
       },
-    ]
-  },
-  {
-    title: t('content.contactInfo'),
-    items: [
-      {
-        icon: '/icons/mail.png',
-        text: t('content.email'),
-      },
-      {
-        icon: '/icons/linkedin.png',
-        text: t('content.linkedin'),
-      },
-      {
-        icon: '/github-logo.png',
-        text: t('content.github'),
-      }
     ]
   }
 ];
