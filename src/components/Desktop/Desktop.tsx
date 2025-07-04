@@ -36,6 +36,7 @@ export default function Desktop() {
   const [highlightedIconId, setHighlightedIconId] = useState<string | null>(null);
   const t = useTranslations('desktop');
   const tFooter = useTranslations('footer');
+  const tGames = useTranslations('games');
   const OFFSET = 32;
   const [startPos, setStartPos] = useState<null | { x: number; y: number }>(null);
   const [mouse, setMouse] = useState<{ docX: number; docY: number }>({ docX: 0, docY: 0 });
@@ -218,6 +219,14 @@ export default function Desktop() {
         translationKey: 'desktop.recycleBin',
         children: []
       };
+    } else if (menuItem === tGames('paint')) {
+      itemToOpen = {
+        id: 'paint',
+        type: 'file',
+        label: t('paint'),
+        translationKey: 'desktop.paint',
+        icon: '/icons/680(32x32).png'
+      };
     }
 
     if (itemToOpen) {
@@ -235,6 +244,7 @@ export default function Desktop() {
        item.translationKey === 'desktop.myComputer' ? t('myComputer') :
        item.translationKey === 'desktop.recycleBin' ? t('recycleBin') :
        item.translationKey === 'desktop.myDocuments' ? t('myDocuments') :
+       item.translationKey === 'desktop.paint' ? t('paint') :
        item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
        item.label) : item.label
   })), [desktopItems, t, tFooter]);
@@ -259,6 +269,8 @@ export default function Desktop() {
       return t('whoAmI');
     } else if (item.translationKey === 'desktop.recycleBin') {
       return t('recycleBin');
+    } else if (item.translationKey === 'desktop.paint') {
+      return t('paint');
     } else {
       return t('myComputer');
     }
@@ -273,6 +285,8 @@ export default function Desktop() {
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
+    } else if (item.translationKey === 'desktop.paint') {
+      return "/icons/680(16x16).png";
     } else {
       return "/icons/MyComputer.png";
     }

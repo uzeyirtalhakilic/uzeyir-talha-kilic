@@ -8,6 +8,7 @@ import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
 import AboutMeFile from "../FolderView/WhoAmI/AboutMeFile";
 import ReadMeFile from "../FolderView/ReadMe/ReadMeFile";
+import Paint from "../Paint";
 import { useTranslations } from 'next-intl';
 
 interface WindowState {
@@ -161,6 +162,26 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <WhoAmI onClose={onClose} />;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return <RecycleBin onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.paint') {
+      // Check if it's the specific Udemy certificate paint window
+      if (item.id === 'paint-udemy-cert') {
+        return (
+          <Paint 
+            onClose={onClose} 
+            isFocus={isFocused} 
+            initialImagePath="https://i.postimg.cc/prwGnv48/Sn-zeyir-Tala-K-l.png"
+          />
+        );
+      } else {
+        // Default paint window
+        return (
+          <Paint 
+            onClose={onClose} 
+            isFocus={isFocused} 
+            initialImagePath="https://i.postimg.cc/8zxTZfWg/vesikal-k-pdf.png"
+          />
+        );
+      }
     } else if (item.id === 'about-me-txt') {
       return <AboutMeFile onClose={onClose} />;
     } else if (item.id === 'read-me-txt') {
@@ -180,6 +201,13 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tDesktop('whoAmI');
     } else if (item.translationKey === 'desktop.recycleBin') {
       return tDesktop('recycleBin');
+    } else if (item.translationKey === 'desktop.paint') {
+      // Check if it's the specific Udemy certificate paint window
+      if (item.id === 'paint-udemy-cert') {
+        return 'Udemy Certificate - Paint';
+      } else {
+        return tDesktop('paint');
+      }
     } else if (item.translationKey === 'desktop.aboutme') {
       return tWhoAmI('content.aboutMe');
     } else if (item.translationKey === 'desktop.readme') {
@@ -198,6 +226,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
+    } else if (item.translationKey === 'desktop.paint') {
+      return "/icons/680(16x16).png";
     } else if (item.translationKey === 'desktop.aboutme') {
       return "/icons/notepad.png";
     } else if (item.translationKey === 'desktop.readme') {

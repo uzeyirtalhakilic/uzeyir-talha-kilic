@@ -42,6 +42,13 @@ export const desktopItems: FileSystemItem[] = [
     children: [],
   },
   {
+    id: "paint",
+    type: "file",
+    label: "Paint",
+    translationKey: "desktop.paint",
+    icon: "/icons/680(32x32).png",
+  },
+  {
     id: "read-me-txt",
     type: "file",
     label: "ReadMe.txt",

@@ -44,7 +44,30 @@ export const recycleBinContentConfig: ContentCard[] = [
     items: [
       {
         icon: '/icons/paint.png',
-        text: 'udemyCert'
+        text: 'udemyCert',
+        originalText: 'udemyCert'
+      }
+    ]
+  },
+  {
+    title: 'games',
+    items: [
+      {
+        icon: '/icons/notepad.png',
+        text: 'gtaCheats'
+      },
+      {
+        icon: '/icons/gtavc.ico',
+        text: 'gtaViceCity'
+      },
+    ]
+  },
+  {
+    title: '',
+    items: [
+      {
+        icon: '/icons/msword.png',
+        text: 'gamingSites'
       }
     ]
   },
@@ -66,19 +89,6 @@ export const recycleBinContentConfig: ContentCard[] = [
     ]
   },
   {
-    title: 'games',
-    items: [
-      {
-        icon: '/icons/gtavc.ico',
-        text: 'gtaViceCity'
-      },
-      {
-        icon: '/icons/msword.png',
-        text: 'gtaCheats'
-      }
-    ]
-  },
-  {
     title: 'oldProjects',
     items: [
       {
@@ -91,13 +101,4 @@ export const recycleBinContentConfig: ContentCard[] = [
       }
     ]
   },
-  {
-    title: '',
-    items: [
-      {
-        icon: '/icons/msword.png',
-        text: 'gamingSites'
-      }
-    ]
-  }
 ]; 

@@ -33,9 +33,14 @@ const MyComputer: React.FC<MyComputerProps> = () => {
         return {
           ...item,
           text: tContent(item.text),
-          href: locale === 'tr' 
-            ? '/pdfs/Üzeyir Talha Kılıç TR.pdf'
-            : '/pdfs/Uzeyir Talha Kilic EN.pdf'
+          // Remove href and add onClick for double-click functionality
+          href: undefined,
+          onClick: () => {
+            const cvUrl = locale === 'tr' 
+              ? '/pdfs/Üzeyir Talha Kılıç TR.pdf'
+              : '/pdfs/Uzeyir Talha Kilic EN.pdf';
+            window.open(cvUrl, '_blank', 'noopener,noreferrer');
+          }
         };
       }
       return {

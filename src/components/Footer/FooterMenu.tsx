@@ -178,7 +178,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <Item onClick={onClick} text={tGames('minesweeper')} icon="/icons/solitaire.png" />
           <Item onClick={onClick} text={tGames('notepad')} icon="/icons/notepad.png" />
           <Item onClick={onClick} text={tGames('winamp')} icon="/icons/winamp.png" />
-          <Item onClick={onClick} text={tGames('paint')} icon="/icons/paint.png" />
+          <Item onClick={onClick} text={tGames('paint')} icon="/icons/680(16x16).png" />
           <Item onClick={onClick} text={tGames('windowsMediaPlayer')} icon="/icons/846(32x32).png" />
           <Item onClick={onClick} text={t('windowsMessenger')} icon="/icons/msn.png" />
           

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useRef } from "react";
 import Image from "next/image";
 import { BaseFolderView, BaseSidebar } from '../base';
 import { recycleBinSidebarConfig, recycleBinContentConfig } from './config';
 import { useTranslations } from 'next-intl';
+import { DesktopContext } from '../../Desktop/Desktop';
 
 interface RecycleBinProps {
   onClose: () => void;
@@ -11,6 +12,9 @@ interface RecycleBinProps {
 const RecycleBin: React.FC<RecycleBinProps> = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const t = useTranslations('folderView.recycleBin');
+  const desktopContext = useContext(DesktopContext);
+  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastClickedItemRef = useRef<string | null>(null);
 
   // Function bar için özel butonlar
   const functionBarButtons = (
@@ -85,13 +89,55 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
     </>
   );
 
-  const handleItemClick = (item: { onClick?: () => void; text?: string }) => {
-    if (item.onClick) {
-      item.onClick();
-    } else if (item.text) {
+  const handleItemClick = (item: { onClick?: () => void; text?: string; originalText?: string }) => {
+    // Single click - select item
+    if (item.text) {
       setSelectedItem(item.text);
     }
     console.log('Item clicked:', item.text);
+  };
+
+  const handleItemDoubleClick = (item: { onClick?: () => void; text?: string; originalText?: string }) => {
+    // Double click - open/execute item
+    if (item.onClick) {
+      item.onClick();
+    } else if (item.text) {
+      // If udemyCert is double-clicked, open Paint window
+      const isUdemyCert = item.originalText === 'udemyCert' || item.text === 'udemyCert';
+      
+      if (isUdemyCert && desktopContext?.handleOpen) {
+        const paintItem = {
+          id: 'paint-udemy-cert',
+          type: 'file' as const,
+          label: 'Udemy Certificate',
+          translationKey: 'desktop.paint',
+          icon: '/icons/paint.png'
+        };
+        desktopContext.handleOpen(paintItem);
+      }
+    }
+    console.log('Item double-clicked:', item.text);
+  };
+
+  const handleItemMouseDown = (item: { onClick?: () => void; text?: string; originalText?: string }) => {
+    // Clear any existing timeout
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+    }
+
+    // Check if this is the same item as last click
+    if (lastClickedItemRef.current === item.text) {
+      // This is a double click
+      handleItemDoubleClick(item);
+      lastClickedItemRef.current = null;
+    } else {
+      // This is a single click
+      lastClickedItemRef.current = item.text || null;
+      clickTimeoutRef.current = setTimeout(() => {
+        handleItemClick(item);
+        lastClickedItemRef.current = null;
+      }, 300); // 300ms delay to detect double click
+    }
   };
 
   // Translation'ları kullanarak sidebar config'ini güncelle
@@ -117,6 +163,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
            card.title,
     items: card.items.map(item => ({
       ...item,
+      originalText: item.originalText || item.text, // originalText'i koru
       text: item.text === 'cv37' ? t('files.cv37') :
             item.text === 'cvFinal' ? t('files.cvFinal') :
             item.text === 'cvLatest' ? t('files.cvLatest') :
@@ -142,7 +189,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
             <div 
               key={`${cardIndex}-${itemIndex}`}
               className={`recycle-bin-item ${selectedItem === item.text ? 'selected' : ''}`}
-              onClick={() => handleItemClick(item)}
+              onMouseDown={() => handleItemMouseDown(item)}
             >
               <span className="recycle-bin-item-icon">
                 <Image src={item.icon} alt={item.text} width={20} height={20} style={{ width: 'auto', height: 'auto' }} />

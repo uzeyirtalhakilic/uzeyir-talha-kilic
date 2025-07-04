@@ -49,7 +49,6 @@ export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCa
       {
         icon: '/icons/300(32x32).png',
         text: t('content.resume'),
-        href: '/pdfs/Uzeyir Talha Kilic EN.pdf'
       },
       {
         icon: '/icons/folderphoto.png',
@@ -63,19 +62,14 @@ export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCa
       {
         icon: '/icons/mail.png',
         text: t('content.email'),
-        href: 'https://mail.google.com/mail/?view=cm&to=kilicuzeyirtalha@gmail.com',
-        target: '_blank',
-        rel: 'noopener noreferrer'
       },
       {
         icon: '/icons/linkedin.png',
         text: t('content.linkedin'),
-        href: 'https://linkedin.com/in/uzeyirtalhakilic'
       },
       {
         icon: '/github-logo.png',
         text: t('content.github'),
-        href: 'https://github.com/uzeyirtalhakilic'
       }
     ]
   }

@@ -24,9 +24,14 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
       if (item.text === t('content.resume')) {
         return {
           ...item,
-          href: locale === 'tr' 
-            ? '/pdfs/Üzeyir Talha Kılıç TR.pdf'
-            : '/pdfs/Uzeyir Talha Kilic EN.pdf'
+          // Remove href and add onClick for double-click functionality
+          href: undefined,
+          onClick: () => {
+            const resumeUrl = locale === 'tr' 
+              ? '/pdfs/Üzeyir Talha Kılıç TR.pdf'
+              : '/pdfs/Uzeyir Talha Kilic EN.pdf';
+            window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+          }
         };
       }
       // Add onClick handler for about me item
@@ -38,6 +43,36 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
               const aboutMeItem = FileItems.find(i => i.id === 'about-me-txt');
               if (aboutMeItem) desktopContext.handleOpen(aboutMeItem);
             }
+          }
+        };
+      }
+      // Convert email link to onClick
+      if (item.text === t('content.email')) {
+        return {
+          ...item,
+          href: undefined,
+          onClick: () => {
+            window.open('https://mail.google.com/mail/?view=cm&to=kilicuzeyirtalha@gmail.com', '_blank', 'noopener,noreferrer');
+          }
+        };
+      }
+      // Convert LinkedIn link to onClick
+      if (item.text === t('content.linkedin')) {
+        return {
+          ...item,
+          href: undefined,
+          onClick: () => {
+            window.open('https://linkedin.com/in/uzeyirtalhakilic', '_blank', 'noopener,noreferrer');
+          }
+        };
+      }
+      // Convert GitHub link to onClick
+      if (item.text === t('content.github')) {
+        return {
+          ...item,
+          href: undefined,
+          onClick: () => {
+            window.open('https://github.com/uzeyirtalhakilic', '_blank', 'noopener,noreferrer');
           }
         };
       }
