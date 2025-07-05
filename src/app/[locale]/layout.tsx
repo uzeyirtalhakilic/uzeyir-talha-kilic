@@ -11,10 +11,10 @@ const locales = ['en', 'tr'];
 
 export const metadata: Metadata = {
   title: {
-    default: 'Üzeyir Talha Kılıç - Software Developer',
+    default: 'Üzeyir Talha Kılıç',
     template: '%s | Üzeyir Talha Kılıç'
   },
-  description: 'Üzeyir Talha Kılıç - Software Developer, Full Stack Developer, React, Next.js, TypeScript, Node.js',
+  description: 'Üzeyir Talha Kılıç - Software Developer',
   keywords: ['software developer', 'full stack developer', 'react', 'next.js', 'typescript', 'node.js', 'web development', 'frontend', 'backend'],
   authors: [{ name: 'Üzeyir Talha Kılıç' }],
   creator: 'Üzeyir Talha Kılıç',
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'tr_TR',
     url: 'https://uzeyirtalhakilic.dev',
-    title: 'Üzeyir Talha Kılıç - Software Developer',
-    description: 'Üzeyir Talha Kılıç - Software Developer, Full Stack Developer, React, Next.js, TypeScript, Node.js',
+    title: 'Üzeyir Talha Kılıç',
+    description: 'Üzeyir Talha Kılıç - Software Developer',
     siteName: 'Üzeyir Talha Kılıç',
     images: [
       {
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Üzeyir Talha Kılıç - Software Developer',
-    description: 'Üzeyir Talha Kılıç - Software Developer, Full Stack Developer, React, Next.js, TypeScript, Node.js',
+    title: 'Üzeyir Talha Kılıç',
+    description: 'Üzeyir Talha Kılıç - Software Developer',
     images: ['/github-logo.png'],
   },
   verification: {
