@@ -24,6 +24,7 @@ export default function LocalePage() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black relative">

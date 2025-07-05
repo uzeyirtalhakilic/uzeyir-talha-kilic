@@ -21,6 +21,7 @@ export default async function LocaleLayout(props: {
   // side is the easiest way to get started
   const messages = await getMessages();
 
+  
   return (
     <html lang={locale}>
       <body suppressHydrationWarning={true}>

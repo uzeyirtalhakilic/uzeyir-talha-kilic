@@ -16,6 +16,7 @@ export default function NotFound() {
     }
   }, [])
 
+  
   return (
     <div className="fixed inset-0 bg-[#000080] text-white font-['Tahoma', sans-serif] overflow-hidden flex flex-col">
       {/* Blue Screen Header */}
