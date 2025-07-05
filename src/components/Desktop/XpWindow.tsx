@@ -2,14 +2,16 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { FileSystemItem } from "../../data/filesystem";
 import Image from 'next/image';
 import MyComputer from "../FolderView/MyComputer/MyComputer";
-import MyDocuments from "../FolderView/MyDocuments/MyDocuments";
+import MyProjects from "../FolderView/MyProjects/MyProjects";
 import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
 import AboutMeFile from "../FolderView/WhoAmI/AboutMeFile";
 import ReadMeFile from "../FolderView/ReadMe/ReadMeFile";
+import GtaCheatsFile from "../FolderView/RecycleBin/GtaCheatsFile";
+import GtaViceCityFile from "../FolderView/RecycleBin/GtaViceCityFile";
 import Paint from "../Paint";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface WindowState {
   id: string;
@@ -32,6 +34,7 @@ interface XpWindowProps {
   onResize: (x: number, y: number, width: number, height: number) => void;
   isFocused: boolean;
   path?: string;
+  renderContent?: () => React.ReactNode;
 }
 
 const XpWindow: React.FC<XpWindowProps> = ({ 
@@ -42,11 +45,13 @@ const XpWindow: React.FC<XpWindowProps> = ({
   onMaximize, 
   onFocus, 
   onResize,
-  isFocused 
+  isFocused,
+  renderContent
 }) => {
   const t = useTranslations('folderView.addressBar');
   const tDesktop = useTranslations('desktop');
   const tWhoAmI = useTranslations('folderView.whoAmI');
+  const locale = useLocale();
 
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
@@ -154,8 +159,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
 
   // Determine which component to render based on item
   const getWindowContent = () => {
-    if (item.translationKey === 'desktop.myDocuments') {
-      return <MyDocuments onClose={onClose} />;
+    if (item.translationKey === 'desktop.myProjects') {
+      return <MyProjects onClose={onClose} />;
     } else if (item.translationKey === 'desktop.controlPanel') {
       return <ControlPanel onClose={onClose} />;
     } else if (item.translationKey === 'desktop.1') {
@@ -165,20 +170,24 @@ const XpWindow: React.FC<XpWindowProps> = ({
     } else if (item.translationKey === 'desktop.paint') {
       // Check if it's the specific Udemy certificate paint window
       if (item.id === 'paint-udemy-cert') {
+        const imageUrl = locale === 'tr' 
+          ? "https://i.ibb.co/nqQk899n/Sn-zeyir-Tala-K-l-2.png"  // Türkçe için
+          : "https://i.ibb.co/r2FLHhKC/Sn-zeyir-Tala-K-l.png";     // İngilizce için
         return (
           <Paint 
             onClose={onClose} 
             isFocus={isFocused} 
-            initialImagePath="https://i.postimg.cc/prwGnv48/Sn-zeyir-Tala-K-l.png"
+            initialImagePath={imageUrl}
           />
         );
       } else {
         // Default paint window
+        const imageUrl = "https://i.postimg.cc/8zxTZfWg/vesikal-k-pdf.png"   // Türkçe için
         return (
           <Paint 
             onClose={onClose} 
             isFocus={isFocused} 
-            initialImagePath="https://i.postimg.cc/8zxTZfWg/vesikal-k-pdf.png"
+            initialImagePath={imageUrl}
           />
         );
       }
@@ -186,6 +195,10 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <AboutMeFile onClose={onClose} />;
     } else if (item.id === 'read-me-txt') {
       return <ReadMeFile onClose={onClose} />;
+    } else if (item.id === 'gta-cheat-txt') {
+      return <GtaCheatsFile onClose={onClose} />;
+    } else if (item.id === 'gtaViceCity') {
+      return <GtaViceCityFile onClose={onClose} />;
     } else {
       return <MyComputer onClose={onClose} />;
     }
@@ -193,8 +206,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
 
   // Get window title and icon based on item
   const getWindowTitle = () => {
-    if (item.translationKey === 'desktop.myDocuments') {
-      return tDesktop('myDocuments');
+    if (item.translationKey === 'desktop.myProjects') {
+      return tDesktop('myProjects');
     } else if (item.translationKey === 'desktop.controlPanel') {
       return tDesktop('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
@@ -212,13 +225,19 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tWhoAmI('content.aboutMe');
     } else if (item.translationKey === 'desktop.readme') {
       return tDesktop('readMe');
+    } else if (item.id === 'read-me-txt') {
+      return tDesktop('readMe');
+    } else if (item.id === 'gta-cheat-txt') {
+      return tDesktop("gtaCheats");
+    } else if (item.id === 'gtaViceCity') {
+      return "GTA Vice City";
     } else {
       return t('myComputer');
     }
   };
 
   const getWindowIcon = () => {
-    if (item.translationKey === 'desktop.myDocuments') {
+    if (item.translationKey === 'desktop.myProjects') {
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.controlPanel') {
       return "/icons/control-panel.png";
@@ -232,6 +251,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return "/icons/notepad.png";
     } else if (item.translationKey === 'desktop.readme') {
       return "/icons/notepad.png";
+    } else if (item.id === 'gtaViceCity') {
+      return "/icons/gtavc.ico";
     } else {
       return "/icons/MyComputer.png";
     }
@@ -290,12 +311,12 @@ const XpWindow: React.FC<XpWindowProps> = ({
       {/* Window Content */}
       <div className="window-content">
         <div style={{ width: '100%', height: '100%' }}>
-          {getWindowContent()}
+          {renderContent ? renderContent() : getWindowContent()}
         </div>
       </div>
 
       {/* Resize Handles */}
-      {!windowState.isMaximized && (
+      {!windowState.isMaximized && !renderContent && (
         <>
           <div className="resize-handle resize-n" onMouseDown={(e) => handleMouseDown(e, 'resize-n')} />
           <div className="resize-handle resize-s" onMouseDown={(e) => handleMouseDown(e, 'resize-s')} />

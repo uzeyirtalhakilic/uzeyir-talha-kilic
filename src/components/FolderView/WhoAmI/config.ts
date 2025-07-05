@@ -28,7 +28,7 @@ export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCa
       },
       {
         icon: '/icons/folderdocument.png',
-        text: t('myDocuments')
+        text: t('myProjects')
       },
       {
         icon: '/icons/networksecurity.png',
@@ -70,12 +70,18 @@ export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCa
         icon: '/icons/300(32x32).png',
         text: t('content.resume'),
       },
-      {
-        icon: '/icons/folderphoto.png',
-        text: t('content.photos')
-      },
     ]
-  }
+  },
+  {
+    title: t('myProjects'),
+    items: [
+      {
+        icon: '/icons/folderdocument.png',
+        text: t('myProjects'),
+      },
+
+    ]
+  },
 ];
 
 // Legacy exports for backward compatibility

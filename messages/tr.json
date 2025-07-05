@@ -8,13 +8,19 @@
     "readMe" : "Beni Oku",
     "start": "Başlat",
     "whoAmI": "Ben Kimim?",
+    "myProjects": "Projelerim",
     "hobbies": "Hobilerim",
     "myComputer": "Bilgisayarım",
     "recycleBin": "Geri Dönüşüm\nKutusu",
     "myDocuments": "Belgelerim",
     "controlPanel": "Denetim Masası",
     "paint": "Paint",
-    "networkNeighborhood": "Ağ Komşuları"
+    "winamp": "Winamp",
+    "aboutme": "Hakkımda",
+    "gtaCheats": "gta hile kodları",
+    "networkNeighborhood": "Ağ Komşuları",
+    "back": "Geri",
+    "forward": "İleri"
   },
   "footer": {
     "internet": "İnternet",
@@ -24,6 +30,7 @@
     "myPictures": "Resimlerim",
     "myMusic": "Müziğim",
     "myComputer": "Bilgisayarım",
+    "myProjects": "Projelerim",
     "recycleBin": "Geri Dönüşüm\nKutusu",
     "controlPanel": "Denetim Masası",
     "setProgramAccess": "Program Erişimi ve Varsayılanları Ayarla",
@@ -115,7 +122,7 @@
       "tools": "Araçlar",
       "help": "Yardım"
     },
-    "myDocuments": {
+    "myProjects": {
       "back": "Geri",
       "forward": "İleri",
       "refresh": "Yenile",
@@ -123,7 +130,7 @@
       "folders": "Klasörler",
       "menu": "Menü",
       "address": "Adres",
-      "myDocuments": "Belgelerim",
+      "myProjects": "Projelerim",
       "go": "Git",
       "documentTasks": "Belge Görevleri",
       "createNewDocument": "Yeni bir belge oluştur",
@@ -133,20 +140,29 @@
       "myComputer": "Bilgisayarım",
       "sharedDocuments": "Paylaşılan Belgeler",
       "controlPanel": "Denetim Masası",
+      "soon":  "Yakında...",
+      "search": "Ara",
       "content": {
-        "myDocuments": "Belgelerim",
+        "applications": "Uygulamalar",
+        "machineLearning": "Makine Öğrenmesi",     
+        "dataScience": "Veri Bilimi",
         "resume": "Özgeçmiş.docx",
         "coverLetter": "Ön Yazı.docx",
         "projects": "Projeler",
-        "personal": "Kişisel"
+        "personal": "Kişisel",
+        "courierTracking": "Kurye Takip Sistemi",
+        "restaurantManagement":"Restoran Yönetim Sistemi",
+        "wholesalerApp": "Toptancı Mobil Uygulaması",
+        "veterinaryClinic": "Veteriner Kliniği Yönetim Sistemi",
+        "sentimentAnalysis": "Makine Öğrenmesi ile Duygu Analizi"
       }
     },
     "recycleBin": {
       "address": "Adres",
       "recycleBin": "Geri Dönüşüm\nKutusu",
       "go": "Git",
-      "restoreAllItems": "Tüm öğeleri geri yükle",
-      "emptyRecycleBin": "Geri Dönüşüm Kutusunu Boşalt",
+      "restoreAllItems": "Geri yükle",
+      "emptyRecycleBin": "Boşalt",
       "viewProperties": "Geri Dönüşüm Kutusu özelliklerini görüntüle",
       "oldCVs": "Eski CV'ler",
       "games": "Oyun",
@@ -179,7 +195,13 @@
       "sharedDocuments": "Paylaşılan Belgeler",
       "controlPanel": "Denetim Masası",
       "GitHub": "GitHub",
-      "uzeyirtalhakilic": "uzeyirtalhakilic"
+      "uzeyirtalhakilic": "uzeyirtalhakilic",
+      "restoreAllItems": "Tümünü Geri Yükle",
+      "emptyRecycleBin": "Geri Dönüşüm Kutusunu Boşalt",
+      "viewProperties": "Özellikleri Görüntüle",
+      "My Computer": "Bilgisayarım",
+      "My Projects": "Projelerim",
+      "Control Panel": "Denetim Masası"
     },
     "contentGrid": {
       "cv": "CV",
@@ -206,6 +228,7 @@
       "otherPlaces": "Diğer Yerler",
       "myComputer": "Bilgisayarım",
       "myDocuments": "Belgelerim",
+      "myProjects": "Projelerim",
       "controlPanel": "Denetim Masası",
       "content": {
         "personalInfo": "Kişisel Bilgiler",
@@ -216,6 +239,10 @@
         "email": "E-posta",
         "linkedin": "LinkedIn",
         "github": "GitHub"
+      },
+      "aboutMeContent": {
+        "title": "Hakkımda",
+        "content": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nŞu anda makine öğrenmesi ve veri bilimi alanlarında kendimi aktif olarak geliştiriyorum.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir ve sol taraftaki 'İletişim Bilgileri' kısmından bana ulaşabilirsiniz."
       }
     },
     "dropdownMenu": {
@@ -314,5 +341,91 @@
     "msPowerPointPresentation": "MS PowerPoint Sunusu",
     "winrarArchive": "WinRAR arşivi",
     "properties": "Özellikler"
+  },
+  "gtaCheats": {
+    "title": "GTA HİLE KODLARI",
+    "health": "Sağlık",
+    "armor": "Zırh",
+    "vehicles": "Araçlar",
+    "weapons": "Silahlar",
+    "effects": "Efektler",
+    "codes": {
+      "ASPIRINE": "Canı full yapar",
+      "PRECIOUSPROTECTION": "Zırhı full yapar",
+      "BIGBANG": "Etraftaki araçları patlatır",
+      "COMEFLYWITHME": "Arabalar uçar",
+      "PANZER": "Tank verir",
+      "SEAWAYS": "Arabalar suda yüzer",
+      "GRIPISEVERYTHING": "Arabalar yere yapışır",
+      "AHAIRDRESSERSCAR": "Pembe arabalar",
+      "IWANTITPAINTEDBLACK": "Siyah arabalar",
+      "LOADSOFLITTLETHINGS": "Spor arabalar",
+      "THELASTRIDE": "Cenaze arabası",
+      "ROCKANDROLLCAR": "Love Fist arabası",
+      "RUBBISHCAR": "Çöp kamyonu",
+      "GETTHEREFAST": "Spor araba verir",
+      "GETTHEREQUICKLY": "Spor araba (başka model)",
+      "GETTHEREVERYFASTINDEED": "Süper hızlı spor araba",
+      "GETTHEREAMAZINGLYFAST": "Turbo spor araba",
+      "LIFEISPASSINGMEBY": "Zaman hızlanır",
+      "BOOOOOORING": "Oyun yavaşlar",
+      "CHASESTAT": "Takip istatistiklerini göster",
+      "YOUWONTTAKEMEALIVE": "Polis seviyesi 6 yıldız",
+      "LEAVEMEALONE": "Polis seviyesi sıfırlanır",
+      "FANNYMAGNET": "Kadınlar seni takip eder",
+      "CERTAINDEATH": "Sigara içerken can kaybı",
+      "DEEPFRIEDMARSBARS": "Şişmanlatır",
+      "PROGRAMMER": "Zayıflatır",
+      "NUTTERTOOLS": "Ağır silahlar",
+      "PROFESSIONALTOOLS": "Orta seviye silahlar",
+      "THUGSTOOLS": "Hafif silahlar",
+      "ONSPEED": "Koşu hızı artar",
+      "BOINGBOINGBOING": "Süper zıplama",
+      "HOPINGIRL": "Kızlar arabaya biner",
+      "AIRSHIP": "Büyük lastikli araç",
+      "GREENLIGHT": "Tüm trafik ışıkları yeşil",
+      "MIAMITRAFFIC": "Delice sürülen arabalar",
+      "WELOVEOURDICK": "Tommy takım elbise giyer",
+      "CHEATSHAVEBEENCRACKED": "Tommy gangster gibi giyinir"
+    }
+  },
+  "txtFile": {
+    "menu": {
+      "file": "Dosya",
+      "edit": "Düzenle",
+      "format": "Biçim",
+      "view": "Görünüm",
+      "help": "Yardım"
+    },
+    "toolbar": {
+      "new": "Yeni",
+      "open": "Aç",
+      "save": "Kaydet",
+      "saveAs": "Farklı Kaydet",
+      "print": "Yazdır",
+      "exit": "Çıkış",
+      "undo": "Geri Al",
+      "redo": "Yinele",
+      "cut": "Kes",
+      "copy": "Kopyala",
+      "paste": "Yapıştır",
+      "find": "Bul",
+      "replace": "Değiştir",
+      "selectAll": "Tümünü Seç",
+      "wordWrap": "Kelime Kaydırma",
+      "font": "Yazı Tipi",
+      "statusBar": "Durum Çubuğu",
+      "about": "Hakkında"
+    }
+  },
+  "loading": {
+    "loading": "Yükleniyor..."
+  },
+  "mobile": {
+    "warning": "Bu web sitesi sadece masaüstünde çalışıyor...Şimdilik... (Alttaki tuş çalışmıyor)"
+  },
+  "readMeFile": {
+    "title": "Beni Oku",
+    "content": "Websiteme Hoşgeldiniz!!\n\nProje Hakkında\n==============\nProje: Hem İngilizce hem de Türkçe olarak çalışabilen, WinXP temasına sahip kişisel bir websitesi.\nBazı kısımlar sadece gösteriş olsun diye var (örn: Bilgisayarım klasörü).\nProjede çoğu buton çalışmasa da çok güzel şeyler eklediğimi düşünüyorum.\nBunların çoğu easter egg şeklinde ve bazıları İngilizcede farklı, Türkçede farklı şekilde çalışıyor.\nTürk kültürünü bildiğim için o kısmı daha güzel yaptığımı düşünüyorum.\nBu easter eggleri bulmak için kendinizi çok yormanıza gerek yok, ancak bulursanız güzel olabilir tabii.\nBulun lütfen. Projede çok uğraştım ve tek keyif aldığım yerler oralardı.\n\nNeden WinXP?\n============\nYıl 2008. Ben 5 yaşındayım. Sokakta futbol oynarken, babamın elinde kutularla eve bir şey getirdiğini gördüm.\nYanında da bilgisayarından bana şarkı açan komşumuz vardı.\nKutulardan bir şeyler çıktı ama ne olduğunu anlamamıştım.\nTa ki monitörü görene kadar... Onun, müzik dinlediğimiz ekran olduğunu anladım.\nBizi ilk karşılayan görüntü, o klasik görünüşüyle WinXP arka planı ve arayüzüydü.\nSabırsızlıkla bekledikten sonra, babamdan o şarkıyı açmasını istedim: Don Omar - Dale Don Dale.\n\nHer gün 1 saat oynama hakkım vardı.\nAncak abim, 'Abi yarış oyunu açsana,' sözümden sıkılmış olacak ki, 10 dakika sonra beni masadan kaldırırdı.\n(1 saatle 10 dakika arasındaki farkı bilmiyordum.)\n\nYıllar geçti... Oyunlar, hileler, internet kafeler derken bu arayüzün bende bu kadar etki bırakacağını bilemezdim.\n\nBirkaç tane proje geliştirdim ancak hiçbirini yayınlamadım. Ve merak ettim...\nHerkesin kullanımına açık bir web sitesi yapmaya karar verdim. (Evet, mobilde düzgün çalışmıyor.)\nSonrasında, bunun benim için de anlamı olan WinXP tarzında kişisel bir portföy olmasının motivasyonumu artıracağını fark ettim.\nVe işte buradayız..."
   }
 } 

@@ -3,7 +3,7 @@ import { ContentCard } from '../base/BaseContentGrid';
 
 export const recycleBinSidebarConfig: SidebarCard[] = [
   {
-    title: 'Tasks',
+    title: 'systemTasks',
     items: [
       {
         icon: '/icons/restore.ico',
@@ -20,7 +20,7 @@ export const recycleBinSidebarConfig: SidebarCard[] = [
     ]
   },
   {
-    title: 'Other Places',
+    title: 'otherPlaces',
     items: [
       {
         icon: '/icons/MyComputer.png',
@@ -28,7 +28,7 @@ export const recycleBinSidebarConfig: SidebarCard[] = [
       },
       {
         icon: '/icons/folderdocument.png',
-        text: 'My Documents'
+        text: 'My Projects'
       },
       {
         icon: '/icons/networksecurity.png',

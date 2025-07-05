@@ -34,13 +34,15 @@ export const desktopItems: FileSystemItem[] = [
     children: [],
   },
   {
-    id: "my-documents-desktop",
-    type: "folder",
-    label: "My Documents",
-    translationKey: "desktop.myDocuments",
-    icon: "/icons/folderdocument.png",
-    children: [],
+    id: "read-me-txt",
+    type: "file",
+    label: "ReadMe.txt",
+    translationKey: "desktop.readme",
+    icon: "/icons/notepad.png",
   },
+]; 
+
+export const FileItems: FileSystemItem[] = [  
   {
     id: "paint",
     type: "file",
@@ -49,21 +51,39 @@ export const desktopItems: FileSystemItem[] = [
     icon: "/icons/680(32x32).png",
   },
   {
-    id: "read-me-txt",
+    id: "winamp",
     type: "file",
-    label: "ReadMe.txt",
-    translationKey: "desktop.readme",
-    icon: "/icons/notepad.png",
+    label: "Winamp",
+    translationKey: "desktop.winamp",
+    icon: "/icons/winamp.png",
   },
-  
-]; 
-
-export const FileItems: FileSystemItem[] = [  
   {
-  id: "about-me-txt",
+    id: "about-me-txt",
   type: "file",
   label: "AboutMe.txt",
   translationKey: "desktop.aboutme",
   icon: "/icons/notepad.png",
+  },
+  {
+    id: "gta-cheat-txt",
+    type: "file",
+    label: "GTA Cheats.txt",
+    translationKey: "desktop.gtaCheats",
+    icon: "/icons/notepad.png",
+  },
+  {
+  id: "my-projects",
+  type: "folder",
+  label: "My Projects",
+  translationKey: "desktop.myProjects",
+  icon: "/icons/folderdocument.png",
+  children: [],
 },
+  {
+    id: "gtaViceCity",
+    type: "file",
+    label: "GTA Vice City",
+    translationKey: "desktop.gtaViceCity",
+    icon: "/icons/gtavc.ico",
+  },
 ]

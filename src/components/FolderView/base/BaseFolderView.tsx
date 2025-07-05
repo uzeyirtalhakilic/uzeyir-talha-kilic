@@ -3,6 +3,7 @@ import Image from "next/image";
 import Toolbar from "./Toolbar";
 import AddressBar from "./AddressBar";
 import "../../../styles/desktop.css";
+import { useTranslations } from 'next-intl';
 
 interface BaseFolderViewProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
   functionBarButtons,
   addressBarContent 
 }) => {
+  const t = useTranslations('folderView.myProjects');
   return (
     <div className="mycomputer-container" style={{ height: 'calc(100vh - 30px)', overflow: 'auto' }}>
       {/* Toolbar Section */}
@@ -28,7 +30,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
               <span className="function-button-icon">
                 <Image src="/icons/back.png" alt="Back" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
               </span>
-              <span className="function-button-text">Back</span>
+              <span className="function-button-text">{t('back')}</span>
               <div className="function-button-dropdown">
                 <div className="function-button-dropdown-arrow"></div>
               </div>
@@ -38,6 +40,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
               <span className="function-button-icon">
                 <Image src="/icons/forward.png" alt="Forward" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
               </span>
+              <span className="function-button-text">{t('forward')}</span>
               <div className="function-button-dropdown">
                 <div className="function-button-dropdown-arrow"></div>
               </div>
@@ -55,14 +58,14 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
               <span className="function-button-small-icon">
                 <Image src="/icons/ie-book.png" alt="Search" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
               </span>
-              <span>Search</span>
+              <span>{t('search')}</span>
             </button>
 
             <button className="function-button">
               <span className="function-button-small-icon">
                 <Image src="/icons/foldericon.png" alt="Folders" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
               </span>
-              <span>Folders</span>
+              <span>{t('folders')}</span>
             </button>
 
             <div className="function-separator"></div>

@@ -2,14 +2,14 @@ import React from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { BaseFolderView, BaseSidebar, BaseContentGrid } from '../base';
-import { createMyDocumentsSidebarConfig, createMyDocumentsContentConfig } from './config';
+import { createMyProjectsSidebarConfig, createMyProjectsContentConfig } from './config';
 
-interface MyDocumentsProps {
+interface MyProjectsProps {
   onClose: () => void;
 }
 
-const MyDocuments: React.FC<MyDocumentsProps> = () => {
-  const t = useTranslations('folderView.myDocuments');
+const MyProjects: React.FC<MyProjectsProps> = () => {
+  const t = useTranslations('folderView.myProjects');
 
   // Function bar için özel butonlar
   const functionBarButtons = (
@@ -72,9 +72,9 @@ const MyDocuments: React.FC<MyDocumentsProps> = () => {
       <div className="address-label">{t('address')}</div>
       <div className="address-input">
         <span className="address-input-icon">
-          <Image src="/icons/folderdocument.png" alt="My Documents" width={14} height={14} style={{ width: 'auto', height: 'auto' }} />
+          <Image src="/icons/folderdocument.png" alt="My Projects" width={14} height={14} style={{ width: 'auto', height: 'auto' }} />
         </span>
-        <div className="address-input-text">{t('myDocuments')}</div>
+        <div className="address-input-text">{t('myProjects')}</div>
         <span className="address-input-dropdown">▼</span>
       </div>
       <div className="address-go-button">
@@ -89,10 +89,10 @@ const MyDocuments: React.FC<MyDocumentsProps> = () => {
       functionBarButtons={functionBarButtons}
       addressBarContent={addressBarContent}
     >
-      <BaseSidebar cards={createMyDocumentsSidebarConfig(t)} />
-      <BaseContentGrid cards={createMyDocumentsContentConfig(t)} />
+      <BaseSidebar cards={createMyProjectsSidebarConfig(t)} />
+      <BaseContentGrid cards={createMyProjectsContentConfig(t)} />
     </BaseFolderView>
   );
 };
 
-export default MyDocuments; 
+export default MyProjects; 

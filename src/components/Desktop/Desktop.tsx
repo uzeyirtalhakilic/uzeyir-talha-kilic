@@ -1,9 +1,6 @@
 "use client";
-// TODO  Paint component ekle (Udemy sertifikası, fotoğraflar vs.)
-// TODO  Dosyaları Tekrar Düzenle son halini almasını sağla.
 // TODO  Türkçe ve ingilizceyi tam hale getir.
 // TODO  README dosyasını ve AboutMe dosyasını güncelle. Neden?
-// TODO  Cursors güncelle
 //?      Gerekli Dosyaları/Videoları(Belki) Ekle
 //?      Belki yeni Icon tasarlayabilirim
 
@@ -16,6 +13,7 @@ import Image from "next/image";
 import Taskbar from "./Taskbar";
 import DashedBox from "../../DashedBox/DashedBox";
 import DesktopContextMenu from "./DesktopContextMenu";
+import dynamic from "next/dynamic";
 
 interface WindowState {
   id: string;
@@ -30,6 +28,8 @@ interface WindowState {
 
 export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem) => void, refreshDesktop?: () => void } | undefined>(undefined);
 
+const WinampApp = dynamic(() => import("../Winamp/WinampApp"), { ssr: false });
+
 export default function Desktop() {
   const [windowStates, setWindowStates] = useState<WindowState[]>([]);
   const [focusedWindowId, setFocusedWindowId] = useState<string | null>(null);
@@ -37,6 +37,7 @@ export default function Desktop() {
   const t = useTranslations('desktop');
   const tFooter = useTranslations('footer');
   const tGames = useTranslations('games');
+  const tDesktop = useTranslations('desktop');
   const OFFSET = 32;
   const [startPos, setStartPos] = useState<null | { x: number; y: number }>(null);
   const [mouse, setMouse] = useState<{ docX: number; docY: number }>({ docX: 0, docY: 0 });
@@ -45,10 +46,16 @@ export default function Desktop() {
   const [highlightedByBox, setHighlightedByBox] = useState<string[]>([]);
   const [contextMenu, setContextMenu] = useState<{ x: number, y: number } | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
-
-  console.log("RENDER contextMenu", contextMenu);
+  const [showWinamp, setShowWinamp] = useState(false);
+  const [winampMinimized, setWinampMinimized] = useState(false);
 
   const handleOpen = (item: FileSystemItem) => {
+    if (item.id === "winamp") {
+      setShowWinamp(true);
+      setWinampMinimized(false);
+      setFocusedWindowId("winamp");
+      return;
+    }
     // Aynı pencereyi tekrar açma
     if (!windowStates.find((win) => win.id === item.id)) {
       // Calculate offset position
@@ -62,6 +69,12 @@ export default function Desktop() {
         if (baseX + 1150 > window.innerWidth) baseX = 20;
         if (baseY + 500 > window.innerHeight - 40) baseY = 20;
       }
+      let width = 1150;
+      let height = 500;
+      if (item.id === 'gtaViceCity') {
+        width = 512;
+        height = 340;
+      }
       const newWindow: WindowState = {
         id: item.id,
         item: item,
@@ -69,8 +82,8 @@ export default function Desktop() {
         isMaximized: false,
         x: baseX,
         y: baseY,
-        width: 1150,
-        height: 500,
+        width,
+        height,
       };
       setWindowStates((prev) => [...prev, newWindow]);
       setFocusedWindowId(item.id);
@@ -89,6 +102,12 @@ export default function Desktop() {
   };
 
   const handleClose = (windowId: string) => {
+    if (windowId === "winamp") {
+      setShowWinamp(false);
+      setWinampMinimized(false);
+      if (focusedWindowId === "winamp") setFocusedWindowId(null);
+      return;
+    }
     setWindowStates((prev) => prev.filter((win) => win.id !== windowId));
     if (focusedWindowId === windowId) {
       setFocusedWindowId(null);
@@ -96,6 +115,11 @@ export default function Desktop() {
   };
 
   const handleMinimize = (windowId: string) => {
+    if (windowId === "winamp") {
+      setWinampMinimized(true);
+      if (focusedWindowId === "winamp") setFocusedWindowId(null);
+      return;
+    }
     setWindowStates((prev) =>
       prev.map((win) =>
         win.id === windowId ? { ...win, isMinimized: true } : win
@@ -159,6 +183,16 @@ export default function Desktop() {
   };
 
   const handleTaskbarWindowClick = (windowId: string) => {
+    if (windowId === "winamp") {
+      if (winampMinimized) {
+        setWinampMinimized(false);
+        setFocusedWindowId("winamp");
+      } else {
+        setWinampMinimized(true);
+        setFocusedWindowId(null);
+      }
+      return;
+    }
     const window = windowStates.find((win) => win.id === windowId);
     if (window) {
       if (window.isMinimized) {
@@ -185,17 +219,22 @@ export default function Desktop() {
 
   // Handle menu item clicks from Taskbar/FooterMenu
   const handleMenuItemClick = (menuItem: string) => {
-    let itemToOpen: FileSystemItem | null = null;
+    console.log('handleMenuItemClick called with:', menuItem);
+    try {
+      let itemToOpen: FileSystemItem | null = null;
 
-    if (menuItem === t('myDocuments') || menuItem === tFooter('myDocuments')) {
+    // Handle items from filesystem.ts
+    if (
+      menuItem === t('myProjects') || menuItem === tFooter('myProjects') || menuItem === tDesktop('myProjects') || menuItem === "My Projects"
+    ) {
       itemToOpen = {
-        id: 'my-documents-menu',
+        id: 'my-projects-menu',
         type: 'folder',
-        label: t('myDocuments'),
-        translationKey: 'desktop.myDocuments',
+        label: t('myProjects'),
+        translationKey: 'desktop.myProjects',
         children: []
       };
-    } else if (menuItem === tFooter('controlPanel')) {
+    } else if (menuItem === tFooter('controlPanel') || menuItem === t('controlPanel')) {
       itemToOpen = {
         id: 'control-panel-menu',
         type: 'folder',
@@ -203,7 +242,9 @@ export default function Desktop() {
         translationKey: 'desktop.controlPanel',
         children: []
       };
-    } else if (menuItem === t('myComputer') || menuItem === tFooter('myComputer')) {
+    } else if (
+      menuItem === t('myComputer') || menuItem === tFooter('myComputer') || menuItem === tDesktop('myComputer')
+    ) {
       itemToOpen = {
         id: 'my-computer-menu',
         type: 'folder',
@@ -211,7 +252,9 @@ export default function Desktop() {
         translationKey: 'desktop.myComputer',
         children: []
       };
-    } else if (menuItem === t('recycleBin') || menuItem === tFooter('recycleBin')) {
+    } else if (
+      menuItem === t('recycleBin') || menuItem === tFooter('recycleBin') || menuItem === tDesktop('recycleBin')
+    ) {
       itemToOpen = {
         id: 'recycle-bin-menu',
         type: 'folder',
@@ -219,7 +262,39 @@ export default function Desktop() {
         translationKey: 'desktop.recycleBin',
         children: []
       };
-    } else if (menuItem === tGames('paint')) {
+    } else if (
+      menuItem === t('whoAmI') || menuItem === tDesktop('whoAmI') || menuItem === "Who Am I?"
+    ) {
+      itemToOpen = {
+        id: 'who-am-i-menu',
+        type: 'folder',
+        label: t('whoAmI'),
+        translationKey: 'desktop.1',
+        children: []
+      };
+    } else if (
+      menuItem === t('aboutme') || menuItem === tDesktop('aboutme') || menuItem === "About Me"
+    ) {
+      itemToOpen = {
+        id: 'about-me-txt',
+        type: 'file',
+        label: t('aboutme'),
+        translationKey: 'desktop.aboutme',
+        icon: '/icons/notepad.png'
+      };
+    } else if (
+      menuItem === t('readMe') || menuItem === tDesktop('readMe') || menuItem === "Read Me"
+    ) {
+      itemToOpen = {
+        id: 'read-me-txt',
+        type: 'file',
+        label: t('readMe'),
+        translationKey: 'desktop.readme',
+        icon: '/icons/notepad.png'
+      };
+    } else if (
+      menuItem === tGames('paint') || menuItem === t('paint') || menuItem === tDesktop('paint') || menuItem === "Paint"
+    ) {
       itemToOpen = {
         id: 'paint',
         type: 'file',
@@ -227,10 +302,22 @@ export default function Desktop() {
         translationKey: 'desktop.paint',
         icon: '/icons/680(32x32).png'
       };
+    } else if (menuItem === tGames('winamp') || menuItem === t('winamp') || menuItem === "Winamp") {
+      // Special handling for Winamp - it opens the Winamp component directly
+      setShowWinamp(true);
+      setWinampMinimized(false);
+      setFocusedWindowId("winamp");
+      return;
     }
 
     if (itemToOpen) {
+      console.log('Opening item:', itemToOpen);
       handleOpen(itemToOpen);
+    } else {
+      console.log('No item found for menuItem:', menuItem);
+    }
+    } catch (error) {
+      console.error('Error in handleMenuItemClick:', error);
     }
   };
 
@@ -243,26 +330,37 @@ export default function Desktop() {
        item.translationKey === 'desktop.3' ? t('hobbies') :
        item.translationKey === 'desktop.myComputer' ? t('myComputer') :
        item.translationKey === 'desktop.recycleBin' ? t('recycleBin') :
-       item.translationKey === 'desktop.myDocuments' ? t('myDocuments') :
+       item.translationKey === 'desktop.myProjects' ? t('myProjects') :
        item.translationKey === 'desktop.paint' ? t('paint') :
+       item.translationKey === 'desktop.readme' ? t('readMe') :
        item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
        item.label) : item.label
-  })), [desktopItems, t, tFooter]);
+  })), [desktopItems, t, tFooter, tDesktop]);
 
   // Taskbar için app listesi oluştur
-  const taskbarApps = windowStates.map((windowState) => ({
-    id: windowState.id,
-    header: {
-      icon: getWindowIcon(windowState.item),
-      title: getWindowTitle(windowState.item),
-      noFooterWindow: false,
-    },
-  }));
+  const taskbarApps = [
+    ...windowStates.map((windowState) => ({
+      id: windowState.id,
+      header: {
+        icon: getWindowIcon(windowState.item),
+        title: getWindowTitle(windowState.item),
+        noFooterWindow: false,
+      },
+    })),
+    ...(showWinamp ? [{
+      id: "winamp",
+      header: {
+        icon: "/icons/winamp.png",
+        title: "Winamp",
+        noFooterWindow: false,
+      },
+    }] : [])
+  ];
 
   // Window title ve icon helper fonksiyonları
   function getWindowTitle(item: FileSystemItem): string {
-    if (item.translationKey === 'desktop.myDocuments') {
-      return t('myDocuments');
+    if (item.translationKey === 'desktop.myProjects') {
+      return t('myProjects');
     } else if (item.translationKey === 'desktop.controlPanel') {
       return t('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
@@ -271,13 +369,21 @@ export default function Desktop() {
       return t('recycleBin');
     } else if (item.translationKey === 'desktop.paint') {
       return t('paint');
+    } else if (item.translationKey === 'desktop.aboutme') {
+      return t('aboutme');
+    } else if (item.translationKey === 'desktop.readme') {
+      return t('readMe');
+    } else if (item.translationKey === 'desktop.gtaCheats') {
+      return t('gtaCheats');
+    } else if (item.id === 'gtaViceCity') {
+      return 'GTA Vice City';
     } else {
       return t('myComputer');
     }
   }
 
   function getWindowIcon(item: FileSystemItem): string {
-    if (item.translationKey === 'desktop.myDocuments') {
+    if (item.translationKey === 'desktop.myProjects') {
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.controlPanel') {
       return "/icons/control-panel.png";
@@ -287,6 +393,14 @@ export default function Desktop() {
       return "/icons/recycle.png";
     } else if (item.translationKey === 'desktop.paint') {
       return "/icons/680(16x16).png";
+    } else if (item.translationKey === 'desktop.aboutme') {
+      return "/icons/notepad.png";
+    } else if (item.translationKey === 'desktop.readme') {
+      return "/icons/notepad.png";
+    } else if (item.translationKey === 'desktop.gtaCheats') {
+      return "/icons/notepad.png";
+    } else if (item.id === 'gtaViceCity') {
+      return "/icons/gtavc.ico";
     } else {
       return "/icons/MyComputer.png";
     }
@@ -386,6 +500,14 @@ export default function Desktop() {
     setTimeout(() => setIsRefreshing(false), 100); // 100ms refresh effect (much faster)
   };
 
+  // Winamp'ı kapatınca taskbar'dan da kaldıracak fonksiyon
+  const handleWinampClose = () => {
+    console.log('handleWinampClose çağrıldı');
+    setShowWinamp(false);
+    setWinampMinimized(false);
+    if (focusedWindowId === "winamp") setFocusedWindowId(null);
+  };
+
   return (
     <DesktopContext.Provider value={{ handleOpen, refreshDesktop }}>
       <div
@@ -453,6 +575,10 @@ export default function Desktop() {
               );
             })}
           </div>
+          {/* Winamp doğrudan arayüzü */}
+          {showWinamp && !winampMinimized && (
+            <WinampApp onClose={handleWinampClose} />
+          )}
 
           {/* Açık pencereleri göster */}
           {windowStates
@@ -470,6 +596,7 @@ export default function Desktop() {
                 isFocused={focusedWindowId === windowState.id}
               />
             ))}
+
 
           {/* Taskbar */}
           <Taskbar

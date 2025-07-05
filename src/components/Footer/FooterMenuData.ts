@@ -113,7 +113,7 @@ export const AllPrograms: MenuItem[] = [
         items: [
           { icon: '/icons/freecell.png', text: 'freeCell', type: 'item' },
           { icon: '/icons/heart.png', text: 'hearts', type: 'item' },
-          { icon: '/icons/solitaire.png', text: 'minesweeper', type: 'item' },
+          { icon: '/icons/mine-icon.png', text: 'minesweeper', type: 'item' },
           { icon: '/icons/pinball.png', text: 'pinball', type: 'item' },
           { icon: '/icons/solitaire.png', text: 'solitaire', type: 'item' },
           { icon: '/icons/spider.png', text: 'spiderSolitaire', type: 'item' },

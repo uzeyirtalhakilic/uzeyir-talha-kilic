@@ -1,1 +1,60 @@
 /* Mobil için özel stiller buraya eklenecek */ 
+
+/* Mobil için Windows XP teması stilleri */
+
+/* Windows XP tarzı buton stilleri */
+.xp-button {
+  background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+  border: 2px solid #c0c0c0;
+  border-radius: 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.xp-button:hover {
+  background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+  border-color: #a0a0a0;
+}
+
+.xp-button:active {
+  background: linear-gradient(to bottom, #d0d0d0 0%, #c0c0c0 100%);
+  border-color: #808080;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Windows XP tarzı pencere stilleri */
+.xp-window {
+  background: #ece9d8;
+  border: 2px solid #0054e3;
+  border-radius: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.xp-titlebar {
+  background: linear-gradient(to right, #0054e3 0%, #4a90e2 100%);
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Mobil uyarı kutusu için özel stiller */
+.mobile-warning {
+  font-family: 'Tahoma', 'Arial', sans-serif;
+  background: #ffffff;
+  border: 2px solid #c0c0c0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive tasarım için ek düzenlemeler */
+@media (max-width: 480px) {
+  .mobile-warning {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .xp-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+} 

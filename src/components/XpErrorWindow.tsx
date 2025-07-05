@@ -1,4 +1,13 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+
+function lineBreak(str: string) {
+  return str.split('\n').map((s: string, i: number) => (
+    <p key={i} className="error__message">
+      {s}
+    </p>
+  ));
+}
 
 interface XpErrorWindowProps {
   title?: string;
@@ -6,39 +15,88 @@ interface XpErrorWindowProps {
   onClose: () => void;
 }
 
-const XpErrorWindow: React.FC<XpErrorWindowProps> = ({ title = "C:\\", message, onClose }) => {
+const XpErrorWindow: React.FC<XpErrorWindowProps> = ({ title = "C:\\", message = "Something's wrong!", onClose }) => {
+  // Removed automatic audio play due to browser autoplay policies
+  // Audio will only play if user interacts with the page first
+
+  const handleClose = () => {
+    // Play error sound when user clicks OK button
+    try {
+      const audio = new Audio('/sounds/error.wav');
+      audio.play();
+    } catch (e) {
+      console.log('Audio play failed:', e);
+    }
+    onClose();
+  };
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-[#efefef] border border-[#0a246a] shadow-lg rounded flex flex-col" style={{ width: '300px'}}>
-        {/* Title Bar */}
-        <div className="flex items-center justify-between bg-[#0a246a] text-white text-xs font-bold px-2 py-1 rounded-t">
-          <span>{title}</span>
-          <button onClick={onClose} className="text-white hover:bg-red-600 w-4 h-4 flex items-center justify-center">X</button>
-        </div>
-        {/* Content */}
-        <div className="flex items-center p-4">
-          {/* Error Icon */}
-          <div className="mr-4 text-4xl text-red-600">
-            ❌
-          </div>
-          {/* Message */}
-          <div className="flex flex-col text-sm">
-            <span>C:\</span>
-            <span>{message}</span>
-          </div>
-        </div>
-        {/* Buttons */}
-        <div className="flex justify-center pb-4">
-          <button 
-            className="bg-[#e5eefa] border border-[#b5cbe9] rounded px-4 py-1 text-sm font-semibold shadow-sm hover:bg-[#d7e4f5]"
-            onClick={onClose}
-          >
-            OK
-          </button>
+    <Div>
+      <div className="error__top">
+        <img src="/icons/897(32x32).png" alt="error" className="error__img" />
+        <div className="error__messages">{lineBreak(message)}</div>
+      </div>
+      <div className="error__bottom">
+        <div onClick={handleClose} className="error__button">
+          <span className="error__confirm">OK</span>
         </div>
       </div>
-    </div>
+    </Div>
   );
 };
+
+const Div = styled.div`
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+  font-size: 11px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+  .error__top {
+    display: flex;
+    flex: 1;
+  }
+  .error__img {
+    width: 30px;
+    height: 30px;
+  }
+  .error__messages {
+    padding: 2px 20px 12px;
+    color: #000000;
+  }
+  .error__message {
+    line-height: 16px;
+    color: #000000;
+    margin: 0;
+  }
+  .error__bottom {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .error__button {
+    width: 80px;
+    height: 22px;
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset -1px -1px 1px black;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    &:hover:active {
+      box-shadow: inset 1px 1px 1px black;
+      & > * {
+        transform: translate(1px, 1px);
+      }
+    }
+  }
+  .error__confirm {
+    line-height: 11px;
+    color: #000000;
+  }
+`;
 
 export default XpErrorWindow; 

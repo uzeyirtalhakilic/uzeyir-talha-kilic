@@ -46,8 +46,16 @@ const Footer: React.FC<FooterProps> = ({
   }
 
   function _onClickMenuItem(name: string) {
-    onClickMenuItem(name);
-    setMenuOn(false);
+    console.log('Footer _onClickMenuItem called with:', name);
+    try {
+      onClickMenuItem(name);
+      // Menüyü daha uzun süre sonra kapat
+      setTimeout(() => {
+        setMenuOn(false);
+      }, 500);
+    } catch (error) {
+      console.error('Error in _onClickMenuItem:', error);
+    }
   }
 
   function toggleMenu() {
@@ -83,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({
         ) {
           setMenuOn(false);
         }
-      }, 0);
+      }, 200); // Daha uzun gecikme
     }
     if (menuOn) {
       window.addEventListener("mousedown", handleClick);

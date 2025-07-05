@@ -12,6 +12,8 @@ interface RecycleBinProps {
 const RecycleBin: React.FC<RecycleBinProps> = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const t = useTranslations('folderView.recycleBin');
+  const tSidebar = useTranslations('folderView.sidebar');
+  const tDesktop = useTranslations('desktop');
   const desktopContext = useContext(DesktopContext);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastClickedItemRef = useRef<string | null>(null);
@@ -23,7 +25,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
         <span className="function-button-icon">
           <Image src="/icons/back.png" alt="Back" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
         </span>
-        <span className="function-button-text">Back</span>
+        <span className="function-button-text">{tDesktop('back')}</span>
         <div className="function-button-dropdown">
           <div className="function-button-dropdown-arrow"></div>
         </div>
@@ -33,6 +35,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
         <span className="function-button-icon">
           <Image src="/icons/forward.png" alt="Forward" width={30} height={30} style={{ width: 'auto', height: 'auto' }} />
         </span>
+        <span className="function-button-text">{tDesktop('forward')}</span>
         <div className="function-button-dropdown">
           <div className="function-button-dropdown-arrow"></div>
         </div>
@@ -50,14 +53,14 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
         <span className="function-button-small-icon">
           <Image src="/icons/restore.ico" alt="Restore" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
         </span>
-        <span>Restore</span>
+        <span>{t('restoreAllItems')}</span>
       </button>
 
       <button className="function-button">
         <span className="function-button-small-icon">
           <Image src="/icons/close.png" alt="Empty" width={22} height={22} style={{ width: 'auto', height: 'auto' }} />
         </span>
-        <span>Empty</span>
+        <span>{t('emptyRecycleBin')}</span>
       </button>
 
       <div className="function-separator"></div>
@@ -115,6 +118,32 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
         };
         desktopContext.handleOpen(paintItem);
       }
+
+      // If gtaCheats is double-clicked, open GtaCheatsFile
+      const isGtaCheats = item.originalText === 'gtaCheats' || item.text === 'gtaCheats';
+      
+      if (isGtaCheats && desktopContext?.handleOpen) {
+        const gtaCheatsItem = {
+          id: 'gta-cheat-txt',
+          type: 'file' as const,
+          label: 'GTA Cheats',
+          translationKey: 'desktop.gtaCheats',
+          icon: '/icons/notepad.png'
+        };
+        desktopContext.handleOpen(gtaCheatsItem);
+      }
+
+      // If gtaViceCity is double-clicked, open GtaViceCityFile
+      const isGtaViceCity = item.originalText === 'gtaViceCity' || item.text === 'gtaViceCity';
+      if (isGtaViceCity && desktopContext?.handleOpen) {
+        const gtaViceCityItem = {
+          id: 'gtaViceCity',
+          type: 'file' as const,
+          label: 'GTA Vice City',
+          icon: '/icons/gtavc.ico',
+        };
+        desktopContext.handleOpen(gtaViceCityItem);
+      }
     }
     console.log('Item double-clicked:', item.text);
   };
@@ -140,17 +169,34 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
     }
   };
 
-  // Translation'ları kullanarak sidebar config'ini güncelle
-  const translatedSidebarConfig = recycleBinSidebarConfig.map(card => ({
-    ...card,
-    items: card.items.map(item => ({
-      ...item,
-      text: item.text === 'restoreAllItems' ? t('restoreAllItems') :
-            item.text === 'emptyRecycleBin' ? t('emptyRecycleBin') :
-            item.text === 'viewProperties' ? t('viewProperties') :
-            item.text
-    }))
-  }));
+  // Sidebar başlık ve item çevirileri
+  const translatedSidebarConfig = recycleBinSidebarConfig.map(card => {
+    let translatedTitle = card.title;
+    // Try sidebar first, then desktop, then fallback
+    if (tSidebar(card.title)) {
+      translatedTitle = tSidebar(card.title);
+    } else if (tDesktop(card.title)) {
+      translatedTitle = tDesktop(card.title);
+    }
+    return {
+      ...card,
+      title: translatedTitle,
+      items: card.items.map(item => {
+        let translatedText = item.text;
+        if (tSidebar(item.text)) {
+          translatedText = tSidebar(item.text);
+        } else if (tDesktop(item.text)) {
+          translatedText = tDesktop(item.text);
+        } else if (t(item.text)) {
+          translatedText = t(item.text);
+        }
+        return {
+          ...item,
+          text: translatedText
+        };
+      })
+    };
+  });
 
   // Translation'ları kullanarak content config'ini güncelle
   const translatedContentConfig = recycleBinContentConfig.map(card => ({

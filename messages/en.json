@@ -7,14 +7,19 @@
     "projects": "Projects",
     "start": "Start",
     "whoAmI": "Who Am I?",
+    "myProjects": "My Projects",
     "readMe" : "Read Me",
     "hobbies": "Hobbies",
     "myComputer": "My Computer",
     "recycleBin": "Recycle Bin",
-    "myDocuments": "My Documents",
     "controlPanel": "Control Panel",
     "paint": "Paint",
-    "networkNeighborhood": "Network Neighborhood"
+    "winamp": "Winamp",
+    "aboutme": "About Me",
+    "gtaCheats": "GTA Cheats",
+    "networkNeighborhood": "Network Neighborhood",
+    "back": "Back",
+    "forward": "Forward"
   },
   "footer": {
     "internet": "Internet",
@@ -24,6 +29,7 @@
     "myPictures": "My Pictures",
     "myMusic": "My Music",
     "myComputer": "My Computer",
+    "myProjects": "My Projects",
     "recycleBin": "Recycle Bin",
     "controlPanel": "Control Panel",
     "setProgramAccess": "Set Program Access and Defaults",
@@ -115,7 +121,7 @@
       "tools": "Tools",
       "help": "Help"
     },
-    "myDocuments": {
+    "myProjects": {
       "back": "Back",
       "forward": "Forward",
       "refresh": "Refresh",
@@ -123,7 +129,7 @@
       "folders": "Folders",
       "menu": "Menu",
       "address": "Address",
-      "myDocuments": "My Documents",
+      "myProjects": "My Projects",
       "go": "Go",
       "documentTasks": "Document Tasks",
       "createNewDocument": "Create a new document",
@@ -133,20 +139,29 @@
       "myComputer": "My Computer",
       "sharedDocuments": "Shared Documents",
       "controlPanel": "Control Panel",
+      "soon":  "Soon...",
+      "search": "Search",
       "content": {
-        "myDocuments": "My Documents",
+        "applications": "Applications",
+        "machineLearning": "Machine Learning",
+        "dataScience": "Data Science",
         "resume": "Resume.docx",
         "coverLetter": "Cover Letter.docx",
         "projects": "Projects",
-        "personal": "Personal"
+        "personal": "Personal",
+        "courierTracking": "Courier Tracking System",
+        "restaurantManagement":"Restaurant Management System",
+        "wholesalerApp": "Wholesaler Application",
+        "veterinaryClinic": "Veterinary Clinic Management System",
+        "sentimentAnalysis": "Sentiment Analysis with Machine Learning"
       }
     },
     "recycleBin": {
       "address": "Address",
       "recycleBin": "Recycle Bin",
       "go": "Go",
-      "restoreAllItems": "Restore all items",
-      "emptyRecycleBin": "Empty Recycle Bin",
+      "restoreAllItems": "Restore",
+      "emptyRecycleBin": "Empty",
       "viewProperties": "View Recycle Bin properties",
       "oldCVs": "Old CVs",
       "games": "Games",
@@ -169,7 +184,7 @@
       }
     },
     "sidebar": {
-      "systemTasks": "System",
+      "systemTasks": "System Tasks",
       "viewSystemInformation": "View system information",
       "addOrRemovePrograms": "Add or remove programs",
       "changeASetting": "Change a setting",
@@ -179,7 +194,13 @@
       "sharedDocuments": "Shared Documents",
       "controlPanel": "Control Panel",
       "GitHub": "GitHub",
-      "uzeyirtalhakilic": "uzeyirtalhakilic"
+      "uzeyirtalhakilic": "uzeyirtalhakilic",
+      "restoreAllItems": "Restore All Items",
+      "emptyRecycleBin": "Empty Recycle Bin",
+      "viewProperties": "View Properties",
+      "My Computer": "My Computer",
+      "My Projects": "My Projects",
+      "Control Panel": "Control Panel"
     },
     "contentGrid": {
       "cv": "CV",
@@ -206,6 +227,7 @@
       "otherPlaces": "Other Places",
       "myComputer": "My Computer",
       "myDocuments": "My Documents",
+      "myProjects": "My Projects",
       "controlPanel": "Control Panel",
       "content": {
         "personalInfo": "Personal Information",
@@ -216,6 +238,11 @@
         "email": "Email",
         "linkedin": "LinkedIn",
         "github": "GitHub"
+      },
+      "aboutMeContent": {
+        "title": "About Me",
+        "content": "Hello, I'm Üzeyir,\n\nI'm a 4th-year Computer Engineering student at Ege University. \nI have experience in technologies such as React, Flutter, MongoDB, MySQL, Node.js, etc.\nI'm currently actively developing myself in the fields of machine learning and data science.\nI'm not only developing my technical skills but also strengthening my communication abilities, leadership qualities, and teamwork compatibility through the events I actively participate in.\n\nThroughout my university life, I took an active role in clubs like EKAMİT, IEEE, and BEST. \nWith these clubs, I developed my organizational skills, learned how to work effectively with people from different fields, and contributed to many technical/social events.\n\nI value personal development and being versatile. \nMy hobbies include swimming, running, basketball, listening to music/podcasts, watching movies and TV series.\nI currently have many hobbies, but the new things I want to try and learn are much more than what I have.\n\nMy career goal is to take part in big and impactful projects, have my contributions be visible, and have my name remembered with significant achievements.\n\nMy motto: 'Growth is where comfort ends; balance is hidden in every step.'\n                                                                                                   -ChatGPT\n(I asked it to generate a motto related to 'Golden Mean Theory' and 'stepping out of comfort zone'.)\n\nFor details, you can examine my 'resume' and reach me through the 'Contact Information' section on the left."
+
       }
     },
     "dropdownMenu": {
@@ -314,5 +341,91 @@
     "msPowerPointPresentation": "MS PowerPoint Presentation",
     "winrarArchive": "WinRAR archive",
     "properties": "Properties"
+  },
+  "gtaCheats": {
+    "title": "GTA Vice City Cheat Codes",
+    "health": "Health",
+    "armor": "Armor",
+    "vehicles": "Vehicles",
+    "weapons": "Weapons",
+    "effects": "Effects",
+    "codes": {
+      "ASPIRINE": "Full health",
+      "PRECIOUSPROTECTION": "Full armor",
+      "BIGBANG": "Explode nearby vehicles",
+      "COMEFLYWITHME": "Cars fly",
+      "PANZER": "Spawn tank",
+      "SEAWAYS": "Cars can swim",
+      "GRIPISEVERYTHING": "Cars stick to ground",
+      "AHAIRDRESSERSCAR": "Pink cars",
+      "IWANTITPAINTEDBLACK": "Black cars",
+      "LOADSOFLITTLETHINGS": "Sports cars",
+      "THELASTRIDE": "Hearse",
+      "ROCKANDROLLCAR": "Love Fist car",
+      "RUBBISHCAR": "Garbage truck",
+      "GETTHEREFAST": "Spawn sports car",
+      "GETTHEREQUICKLY": "Spawn sports car (different model)",
+      "GETTHEREVERYFASTINDEED": "Super fast sports car",
+      "GETTHEREAMAZINGLYFAST": "Turbo sports car",
+      "LIFEISPASSINGMEBY": "Time speeds up",
+      "BOOOOOORING": "Game slows down",
+      "CHASESTAT": "Show chase statistics",
+      "YOUWONTTAKEMEALIVE": "6-star wanted level",
+      "LEAVEMEALONE": "Clear wanted level",
+      "FANNYMAGNET": "Women follow you",
+      "CERTAINDEATH": "Lose health while smoking",
+      "DEEPFRIEDMARSBARS": "Make you fat",
+      "PROGRAMMER": "Make you skinny",
+      "NUTTERTOOLS": "Heavy weapons",
+      "PROFESSIONALTOOLS": "Medium weapons",
+      "THUGSTOOLS": "Light weapons",
+      "ONSPEED": "Increase running speed",
+      "BOINGBOINGBOING": "Super jump",
+      "HOPINGIRL": "Girls get in cars",
+      "AIRSHIP": "Big wheeled vehicle",
+      "GREENLIGHT": "All traffic lights green",
+      "MIAMITRAFFIC": "Crazy driving cars",
+      "WELOVEOURDICK": "Tommy wears suit",
+      "CHEATSHAVEBEENCRACKED": "Tommy dresses like gangster"
+    }
+  },
+  "txtFile": {
+    "menu": {
+      "file": "File",
+      "edit": "Edit",
+      "format": "Format",
+      "view": "View",
+      "help": "Help"
+    },
+    "toolbar": {
+      "new": "New",
+      "open": "Open",
+      "save": "Save",
+      "saveAs": "Save As",
+      "print": "Print",
+      "exit": "Exit",
+      "undo": "Undo",
+      "redo": "Redo",
+      "cut": "Cut",
+      "copy": "Copy",
+      "paste": "Paste",
+      "find": "Find",
+      "replace": "Replace",
+      "selectAll": "Select All",
+      "wordWrap": "Word Wrap",
+      "font": "Font",
+      "statusBar": "Status Bar",
+      "about": "About"
+    }
+  },
+  "loading": {
+    "loading": "Loading..."
+  },
+  "mobile": {
+    "warning": "This website only works on desktop... For now... (The button below does not work)"
+  },
+  "readMeFile": {
+    "title": "Read Me",
+    "content": "Welcome to My Website!!\n\nAbout the Project\n===========\nThe project: A personal website with a WinXP theme, working in both English and Turkish.\nSome parts exist just for show (e.g., the 'My Computer' folder).\nEven though most buttons don't do anything, I feel like I added some really fun stuff.\nMany of them are easter eggs, and some behave differently depending on whether you view the site in English or Turkish.\nSince I'm familiar with Turkish culture, I think I did a better job on that side.\nYou don't have to try too hard to find these easter eggs, but it might be fun if you do.\nPlease find them. I put a lot of effort into this project and those were the parts I enjoyed the most.\n\nWhy WinXP?\n========\nThe year is 2008. I'm 5 years old. While playing football outside, I saw my dad coming home with some boxes.\nNext to him was our neighbor, the one who used to play music for me on his computer.\nThings came out of those boxes, but I had no idea what they were.\nUntil I saw the monitor... That's when I realized it was the same screen we listened to music on.\nThe first thing that greeted us was the classic WinXP background and interface.\nAfter waiting impatiently, I asked my dad to play that song: Don Omar – Dale Don Dale.\n\nI was allowed to play for one hour a day.\nBut my older brother must've gotten tired of me saying, 'Can you open the racing game, please?'\nSo after about 10 minutes, he'd kick me off the chair.\n(I didn't know the difference between 1 hour and 10 minutes.)\n\nYears went by... Games, cheat codes, internet cafés—little did I know this interface would leave such a lasting impression on me.\n\nI built a few projects, but never released any of them. Then I got curious...\nI wanted to make something public, so a website felt like the right choice. (Yes, it doesn't work very well on mobile.)\nThen I realized making it a personal portfolio in WinXP style—something meaningful to me—would boost my motivation.\nAnd here we are..."
   }
 } 

@@ -6,6 +6,7 @@ import { FooterMenuProps, ItemProps, SubMenuProps, MenuItem } from './types';
 import { AllPrograms, MyRecentDocuments, ConnectTo } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
 import { createPortal } from 'react-dom';
+import { FileItems, desktopItems } from '../../data/filesystem';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
   const [hoverIndex, setHoverIndex] = useState(-1);
@@ -41,8 +42,11 @@ const SubMenuItem: React.FC<{
 }> = ({ item, hover, onMouseEnter, onClick }) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (item.type === 'item' && item.text) {
+      console.log('SubMenuItem clicked:', item.text);
       onClick(item.text);
     }
   };
@@ -125,6 +129,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
   const tMenu = useTranslations('menu');
   const tGames = useTranslations('games');
   const tDocs = useTranslations('documents');
+  const tDesktop = useTranslations('desktop');
 
   function onMouseOver(e: React.MouseEvent) {
     const item = (e.target as HTMLElement).closest('.menu__item');
@@ -136,7 +141,12 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
   }
 
   const menuContent = (
-    <div className={`text-[11px] leading-[14px] flex flex-col items-center bg-white rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] border border-[#72ade9] ${className}`} style={{ bottom: '30px', animation: 'slideUp 0.2s ease-out', width: '400px', position: 'fixed', left: '0', zIndex: 2147483647 }}>
+    <div 
+      className={`text-[11px] leading-[14px] flex flex-col items-center bg-white rounded-t-[5px] shadow-[2px_4px_2px_rgba(0,0,0,0.5)] border border-[#72ade9] ${className}`} 
+      style={{ bottom: '30px', animation: 'slideUp 0.2s ease-out', width: '400px', position: 'fixed', left: '0', zIndex: 2147483647 }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+    >
       <style jsx>{`
         @keyframes slideUp {
           from {
@@ -175,10 +185,14 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           
           <div className="h-px bg-[#ccc] mx-3 my-1" />
           
-          <Item onClick={onClick} text={tGames('minesweeper')} icon="/icons/solitaire.png" />
+          <Item onClick={onClick} text="Paint" icon="/icons/680(16x16).png" />
+          <Item onClick={onClick} text="Winamp" icon="/icons/winamp.png" />
+          <Item onClick={onClick} text={tDesktop('myProjects')} icon="/icons/folderdocument.png" />
+          <Item onClick={onClick} text={tDesktop('whoAmI')} icon="/icons/folderdocument.png" />
+          <Item onClick={onClick} text={tDesktop('aboutme')} icon="/icons/notepad.png" />
+          
+          <Item onClick={onClick} text={tGames('minesweeper')} icon="/icons/mine-icon.png" />
           <Item onClick={onClick} text={tGames('notepad')} icon="/icons/notepad.png" />
-          <Item onClick={onClick} text={tGames('winamp')} icon="/icons/winamp.png" />
-          <Item onClick={onClick} text={tGames('paint')} icon="/icons/680(16x16).png" />
           <Item onClick={onClick} text={tGames('windowsMediaPlayer')} icon="/icons/846(32x32).png" />
           <Item onClick={onClick} text={t('windowsMessenger')} icon="/icons/msn.png" />
           
@@ -336,8 +350,11 @@ const Item: React.FC<ItemProps> = ({
   onClick = () => {},
   children,
 }) => {
-  function _onClick() {
+  function _onClick(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
     if (typeof text === 'string') {
+      console.log('FooterMenu Item clicked:', text);
       onClick(text);
     }
   }

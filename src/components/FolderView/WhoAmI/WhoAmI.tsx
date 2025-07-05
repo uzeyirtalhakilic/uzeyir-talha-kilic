@@ -46,6 +46,18 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
           }
         };
       }
+      // Add onClick handler for my projects item
+      if (item.text === t('myProjects')) {
+        return {
+          ...item,
+          onClick: () => {
+            if (desktopContext) {
+              const myProjectsItem = FileItems.find(i => i.id === 'my-projects');
+              if (myProjectsItem) desktopContext.handleOpen(myProjectsItem);
+            }
+          }
+        };
+      }
 
       return item;
     })

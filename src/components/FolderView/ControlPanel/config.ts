@@ -24,7 +24,7 @@ export const controlPanelSidebarConfig: SidebarCard[] = [
       },
       {
         icon: '/icons/folderdocument.png',
-        text: 'My Documents'
+        text: 'My Projects'
       },
       {
         icon: '/icons/foldericon.png',

@@ -474,7 +474,7 @@
 
 .toolbar-menu span {
   margin-right: 16px;
-  cursor: pointer;
+  cursor: url('/cursors/default_link.cur'), pointer;
   font-weight: 600;
   color: #000;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
@@ -495,6 +495,7 @@
   align-items: center;
   padding: 0 8px;
   font-size: 12px;
+  cursor: url('/cursors/default_link.cur'), pointer;
 }
 
 /* Function Bar Section - Enhanced text visibility */
@@ -707,7 +708,7 @@
   align-items: center;
   height: 23px;
   padding: 2px 12px;
-  cursor: pointer;
+  cursor: url('/cursors/default_link.cur'), pointer;
   background: linear-gradient(to right, rgb(240,240,255), rgb(240,240,255), rgb(168,188,255));
 }
 
@@ -746,7 +747,7 @@
   font-size: 12px;
   line-height: 14px;
   color: #0c327d;
-  cursor: pointer;
+  cursor: url('/cursors/default_link.cur'), pointer;
   font-weight: 600;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
   transition: all 0.2s ease;
@@ -833,7 +834,7 @@
   align-items: flex-start;
   width: 250px;
   margin-bottom: 16px;
-  cursor: pointer;
+  cursor: url('/cursors/default_link.cur'), pointer;
   padding: 4px;
   border-radius: 2px;
   min-height: 60px;
@@ -923,7 +924,7 @@
   align-items: center;
   padding: 2px 4px;
   margin-bottom: 1px;
-  cursor: pointer;
+  cursor: url('/cursors/default_link.cur'), pointer;
   border-radius: 2px;
   font-size: 11px;
   min-height: 20px;
