@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 interface PaintProps {
-  onClose: () => void;
   isFocus?: boolean;
   initialImagePath?: string; // Assets'den resim yolu
   canvasSize?: { width: number; height: number }; // Canvas boyutu
@@ -9,7 +8,6 @@ interface PaintProps {
 }
 
 const Paint: React.FC<PaintProps> = ({ 
-  onClose, 
   isFocus = true, 
   initialImagePath,
   canvasSize = { width: 800, height: 600 },

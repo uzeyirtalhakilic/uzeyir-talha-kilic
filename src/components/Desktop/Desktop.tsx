@@ -321,21 +321,21 @@ export default function Desktop() {
     }
   };
 
-  // Use next-intl translations instead of hardcoded Turkish labels
-  const translatedItems = useMemo(() => desktopItems.map((item: FileSystemItem) => ({
+  // Desktop icon'ları için çeviri yapılmış liste oluştur
+  const translatedItems = useMemo(() => desktopItems.map(item => ({
     ...item,
-    label: item.translationKey ? 
-      (item.translationKey === 'desktop.1' ? t('whoAmI') :
-       item.translationKey === 'desktop.2' ? t('projects') :
-       item.translationKey === 'desktop.3' ? t('hobbies') :
-       item.translationKey === 'desktop.myComputer' ? t('myComputer') :
-       item.translationKey === 'desktop.recycleBin' ? t('recycleBin') :
-       item.translationKey === 'desktop.myProjects' ? t('myProjects') :
-       item.translationKey === 'desktop.paint' ? t('paint') :
-       item.translationKey === 'desktop.readme' ? t('readMe') :
-       item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
-       item.label) : item.label
-  })), [desktopItems, t, tFooter, tDesktop]);
+    label: item.translationKey ? (
+      item.translationKey === 'desktop.1' ? t('whoAmI') :
+      item.translationKey === 'desktop.2' ? t('myComputer') :
+      item.translationKey === 'desktop.3' ? t('hobbies') :
+      item.translationKey === 'desktop.myComputer' ? t('myComputer') :
+      item.translationKey === 'desktop.recycleBin' ? t('recycleBin') :
+      item.translationKey === 'desktop.myProjects' ? t('myProjects') :
+      item.translationKey === 'desktop.paint' ? t('paint') :
+      item.translationKey === 'desktop.readme' ? t('readMe') :
+      item.translationKey === 'desktop.networkNeighborhood' ? t('networkNeighborhood') :
+      item.label) : item.label
+  })), [t]);
 
   // Taskbar için app listesi oluştur
   const taskbarApps = [

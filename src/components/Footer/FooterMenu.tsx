@@ -6,7 +6,6 @@ import { FooterMenuProps, ItemProps, SubMenuProps, MenuItem } from './types';
 import { AllPrograms, MyRecentDocuments, ConnectTo } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
 import { createPortal } from 'react-dom';
-import { FileItems, desktopItems } from '../../data/filesystem';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
   const [hoverIndex, setHoverIndex] = useState(-1);

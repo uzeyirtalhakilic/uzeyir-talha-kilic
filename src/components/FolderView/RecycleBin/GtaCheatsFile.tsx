@@ -2,11 +2,7 @@ import React from "react";
 import TxtFile from "../base/TxtFile";
 import { useTranslations } from 'next-intl';
 
-interface GtaCheatsFileProps {
-  onClose: () => void;
-}
-
-const GtaCheatsFile: React.FC<GtaCheatsFileProps> = ({ onClose }) => {
+const GtaCheatsFile: React.FC = () => {
   const t = useTranslations('gtaCheats');
 
   const gtaCheatsContent = `${t('title')}
@@ -61,9 +57,7 @@ CHEATSHAVEBEENCRACKED -> ${t('codes.CHEATSHAVEBEENCRACKED')}`;
 
   return (
     <TxtFile
-      title={t('title')}
       content={gtaCheatsContent}
-      onClose={onClose}
     />
   );
 };

@@ -68,9 +68,15 @@ const playlist = [
   },
 ];
 
+interface WebampInstance {
+  onClose: (callback: () => void) => void;
+  renderWhenReady: (container: HTMLDivElement) => void;
+  dispose: () => void;
+}
+
 const WinampApp: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   const winampRef = useRef<HTMLDivElement>(null);
-  const webampInstance = useRef<any>(null);
+  const webampInstance = useRef<WebampInstance | null>(null);
   const [webampLoaded, setWebampLoaded] = useState(false);
   const onCloseRef = useRef(onClose);
 
@@ -81,7 +87,6 @@ const WinampApp: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   }, [onClose]);
 
   useEffect(() => {
-    let disposed = false;
     import("webamp")
       .then(({ default: Webamp }) => {
         setWebampLoaded(true);
@@ -110,23 +115,12 @@ const WinampApp: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
         console.error("Webamp import hatası:", err);
       });
     return () => {
-      disposed = true;
       if (webampInstance.current) {
         webampInstance.current.dispose();
         webampInstance.current = null;
       }
     };
-    // eslint-disable-next-line
   }, []);
-
-  // onClose cleanup'ta değil, butona tıklanınca çağrılır
-  const handleClose = () => {
-    if (webampInstance.current) {
-      webampInstance.current.dispose();
-      webampInstance.current = null;
-    }
-    if (onClose) onClose();
-  };
 
   return (
     <>

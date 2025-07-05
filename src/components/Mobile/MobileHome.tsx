@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import XpErrorWindow from "@/components/XpErrorWindow";
 import { useTranslations } from 'next-intl';
 

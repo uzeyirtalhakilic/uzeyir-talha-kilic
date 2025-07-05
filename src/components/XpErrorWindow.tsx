@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 function lineBreak(str: string) {
@@ -15,7 +16,7 @@ interface XpErrorWindowProps {
   onClose: () => void;
 }
 
-const XpErrorWindow: React.FC<XpErrorWindowProps> = ({ title = "C:\\", message = "Something's wrong!", onClose }) => {
+const XpErrorWindow: React.FC<XpErrorWindowProps> = ({ message = "Something's wrong!", onClose }) => {
   // Removed automatic audio play due to browser autoplay policies
   // Audio will only play if user interacts with the page first
 
@@ -33,7 +34,7 @@ const XpErrorWindow: React.FC<XpErrorWindowProps> = ({ title = "C:\\", message =
   return (
     <Div>
       <div className="error__top">
-        <img src="/icons/897(32x32).png" alt="error" className="error__img" />
+        <Image src="/icons/897(32x32).png" alt="error" className="error__img" width={30} height={30} />
         <div className="error__messages">{lineBreak(message)}</div>
       </div>
       <div className="error__bottom">

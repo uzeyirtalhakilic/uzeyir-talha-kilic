@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { DesktopContext } from './Desktop';
 
@@ -51,27 +52,14 @@ const DesktopContextMenu: React.FC<ContextMenuProps> = ({ x, y, onClose }) => {
     };
   }, [onClose]);
 
-  // Check submenu direction on hover
-  React.useEffect(() => {
-    if (hoveredIndex !== null && Array.isArray(menuItems[hoveredIndex]?.submenu)) {
-      // Estimate submenu height
-      const itemCount = menuItems[hoveredIndex].submenu.length;
-      const itemHeight = 26; // px
-      const submenuHeight = itemCount * itemHeight;
-      const footerHeight = 30;
-      const availableBelow = window.innerHeight - y - footerHeight;
-      setSubmenuDirection(availableBelow < submenuHeight ? 'up' : 'down');
-    }
-  }, [hoveredIndex, y]);
-
-  const handleMenuClick = (itemLabel: string) => {
+  const handleMenuClick = React.useCallback((itemLabel: string) => {
     if (itemLabel === t('refresh') && desktopContext?.refreshDesktop) {
       desktopContext.refreshDesktop();
     }
     onClose();
-  };
+  }, [t, desktopContext, onClose]);
 
-  const menuItems = [
+  const menuItems = React.useMemo(() => [
     { label: t('view'),
       submenu: [
           { label: t('largeIcons') },
@@ -105,7 +93,20 @@ const DesktopContextMenu: React.FC<ContextMenuProps> = ({ x, y, onClose }) => {
       divider: true  
     },
     { label: t('properties') },
-  ];
+  ], [t, handleMenuClick]);
+
+  // Check submenu direction on hover
+  React.useEffect(() => {
+    if (hoveredIndex !== null && Array.isArray(menuItems[hoveredIndex]?.submenu)) {
+      // Estimate submenu height
+      const itemCount = menuItems[hoveredIndex].submenu.length;
+      const itemHeight = 26; // px
+      const submenuHeight = itemCount * itemHeight;
+      const footerHeight = 30;
+      const availableBelow = window.innerHeight - y - footerHeight;
+      setSubmenuDirection(availableBelow < submenuHeight ? 'up' : 'down');
+    }
+  }, [hoveredIndex, y, menuItems]);
 
   return (
     <div
@@ -183,7 +184,7 @@ const DesktopContextMenu: React.FC<ContextMenuProps> = ({ x, y, onClose }) => {
                       {/* Radio/Check icons */}
                       <span style={{ width: 22, display: "inline-block", textAlign: "center" }}>
                         {('icon' in sub && sub.icon) && (
-                          <img src={sub.icon} alt="" style={{ width: 18, height: 18, verticalAlign: "middle", marginRight: 2 }} />
+                          <Image src={sub.icon} alt="" width={18} height={18} style={{ verticalAlign: "middle", marginRight: 2 }} />
                         )}
                         {('selected' in sub && sub.selected) && (
                           <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: "#222" }} />

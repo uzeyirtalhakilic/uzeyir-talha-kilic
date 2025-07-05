@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from 'next-intl';
 import { BaseFolderView, BaseSidebar, BaseContentGrid } from '../base';

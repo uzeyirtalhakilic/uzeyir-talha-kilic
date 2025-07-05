@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Desktop from "@/components/Desktop/Desktop";
 import MobileHome from "@/components/Mobile/MobileHome";
 import { useTranslations } from 'next-intl';
@@ -26,10 +27,11 @@ export default function LocalePage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black relative">
-        <img
+        <Image
           src="/wallpapers/xp-bliss-placeholder.jpeg"
           alt="XP Bliss Placeholder"
-          className="w-full h-full object-cover absolute inset-0 z-0"
+          fill
+          className="object-cover absolute inset-0 z-0"
         />
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <span

@@ -175,28 +175,26 @@ const XpWindow: React.FC<XpWindowProps> = ({
           : "https://i.ibb.co/r2FLHhKC/Sn-zeyir-Tala-K-l.png";     // İngilizce için
         return (
           <Paint 
-            onClose={onClose} 
             isFocus={isFocused} 
             initialImagePath={imageUrl}
           />
         );
       } else {
         // Default paint window
-        const imageUrl = "https://i.postimg.cc/8zxTZfWg/vesikal-k-pdf.png"   // Türkçe için
+        const imageUrl = "https://i.ibb.co/GQ4KGzmG/favicon.png"   // Türkçe için
         return (
           <Paint 
-            onClose={onClose} 
             isFocus={isFocused} 
             initialImagePath={imageUrl}
           />
         );
       }
     } else if (item.id === 'about-me-txt') {
-      return <AboutMeFile onClose={onClose} />;
+      return <AboutMeFile />;
     } else if (item.id === 'read-me-txt') {
-      return <ReadMeFile onClose={onClose} />;
+      return <ReadMeFile />;
     } else if (item.id === 'gta-cheat-txt') {
-      return <GtaCheatsFile onClose={onClose} />;
+      return <GtaCheatsFile />;
     } else if (item.id === 'gtaViceCity') {
       return <GtaViceCityFile onClose={onClose} />;
     } else {

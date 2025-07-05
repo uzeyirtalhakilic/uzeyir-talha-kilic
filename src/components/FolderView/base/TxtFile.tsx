@@ -1,13 +1,12 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from 'next-intl';
 
 interface TxtFileProps {
-  title: string;
   content: string;
-  onClose: () => void;
 }
 
-const TxtFile: React.FC<TxtFileProps> = ({ title, content, onClose }) => {
+const TxtFile: React.FC<TxtFileProps> = ({ content }) => {
   const t = useTranslations('txtFile');
   const [textContent, setTextContent] = useState(content);
   const [isReadOnly, setIsReadOnly] = useState(true);
@@ -83,7 +82,7 @@ const TxtFile: React.FC<TxtFileProps> = ({ title, content, onClose }) => {
           </div>
         </div>
         <div className="toolbar-windows-icon">
-          <img src="/icons/win-xp-icon.png" alt="Windows" width={16} height={16} />
+          <Image src="/icons/win-xp-icon.png" alt="Windows" width={16} height={16} />
         </div>
       </div>
 
