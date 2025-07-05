@@ -92,7 +92,7 @@ export default async function LocaleLayout(props: {
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-QT8JTGK0GF`}
         />
         <Script
           id="gtag-init"
@@ -102,7 +102,7 @@ export default async function LocaleLayout(props: {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
+              gtag('config', 'G-QT8JTGK0GF');
             `,
           }}
         />

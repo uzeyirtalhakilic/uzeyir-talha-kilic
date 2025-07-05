@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = 'G-XXXXXXXXXX' // Google Analytics ID'nizi buraya ekleyin
+export const GA_TRACKING_ID = 'G-QT8JTGK0GF' // Google Analytics ID'nizi buraya ekleyin
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
