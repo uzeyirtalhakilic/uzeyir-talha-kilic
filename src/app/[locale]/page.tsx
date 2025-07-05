@@ -6,6 +6,7 @@ import Desktop from "@/components/Desktop/Desktop";
 import MobileHome from "@/components/Mobile/MobileHome";
 import { useTranslations } from 'next-intl';
 
+
 export default function LocalePage() {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
