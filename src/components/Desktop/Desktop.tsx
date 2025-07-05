@@ -1,8 +1,4 @@
 "use client";
-// TODO  Türkçe ve ingilizceyi tam hale getir.
-// TODO  README dosyasını ve AboutMe dosyasını güncelle. Neden?
-//?      Gerekli Dosyaları/Videoları(Belki) Ekle
-//?      Belki yeni Icon tasarlayabilirim
 
 import DesktopIcon from "./DesktopIcon";
 import { desktopItems, FileSystemItem } from "../../data/filesystem";
