@@ -15,7 +15,16 @@ export const metadata: Metadata = {
     template: '%s | Üzeyir Talha Kılıç'
   },
   description: 'Üzeyir Talha Kılıç - Software Developer',
-  keywords: ['software developer', 'full stack developer', 'react', 'next.js', 'typescript', 'node.js', 'web development', 'frontend', 'backend'],
+  keywords: [
+    'software developer', 'full stack developer', 'react', 'next.js', 'typescript', 'node.js', 'web development', 'frontend', 'backend',
+    'windows xp', 'winamp', 'paint', 'gta vice city', 'gta türk', 'özgeçmiş', 'cv', 'resume', 'linkedin', 'github', 'udemy', 'sertifika',
+    'veteriner klinik yönetim sistemi', 'restoran yönetim sistemi', 'toptancı mobil uygulaması', 'courier tracking', 'sentiment analysis', 'machine learning', 'data science',
+    'portfolio', 'kişisel web sitesi', 'klasik masaüstü', 'klasik windows', 'klasik ikonlar', 'klasik sesler', 'responsive', 'multilingual', 'next.js 14', 'tailwind css', 'react', 'typescript',
+    'web developer', 'yazılım geliştirici', 'full stack', 'frontend', 'backend', 'personal website', 'classic desktop', 'classic icons', 'classic sounds', 'responsive design', 'multilingual',
+    'portfolio', 'projects', 'blog', 'contact', 'iletişim', 'hakkımda', 'about me', 'readme', 'recycle bin', 'control panel', 'my computer', 'my projects', 'who am i', 'hobbies',
+    'notepad', 'solitaire', 'spider', 'freecell', 'pinball', 'minesweeper', 'explorer', 'internet explorer', 'excel', 'powerpoint', 'word', 'mail', 'outlook', 'usb', 'network',
+    'printer', 'sound', 'narrator', 'risk', 'security', 'history', 'restart', 'restore', 'start', 'stop', 'up', 'view info', 'windows', 'xp', 'msn'
+  ],
   authors: [{ name: 'Üzeyir Talha Kılıç' }],
   creator: 'Üzeyir Talha Kılıç',
   publisher: 'Üzeyir Talha Kılıç',
@@ -85,8 +94,8 @@ export default async function LocaleLayout(props: {
         <link rel="canonical" href={`https://uzeyirtalhakilic.dev/${locale}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <link rel="icon" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/icons/favicon.png" />
+        <link rel="apple-touch-icon" href="/icons/favicon.png" />
       </head>
       <body suppressHydrationWarning={true}>
         {/* Google Analytics */}
