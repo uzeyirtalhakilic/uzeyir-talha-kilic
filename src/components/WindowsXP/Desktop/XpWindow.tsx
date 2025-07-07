@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { FileSystemItem } from "../../data/filesystem";
+import { FileSystemItem } from "../WindowsXP/../data/filesystem";
 import Image from 'next/image';
 import MyComputer from "../FolderView/MyComputer/MyComputer";
 import MyProjects from "../FolderView/MyProjects/MyProjects";

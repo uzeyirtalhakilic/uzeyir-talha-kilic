@@ -1,13 +1,13 @@
 "use client";
 
 import DesktopIcon from "./DesktopIcon";
-import { desktopItems, FileSystemItem } from "../../data/filesystem";
+import { desktopItems, FileSystemItem } from "../../WindowsXP/data/filesystem";
 import React, { useState, createContext, useRef, useEffect, useMemo, useCallback } from "react";
 import XpWindow from "./XpWindow";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Taskbar from "./Taskbar";
-import DashedBox from "../../DashedBox/DashedBox";
+import DashedBox from "../../WindowsXP/DashedBox/DashedBox";
 import DesktopContextMenu from "./DesktopContextMenu";
 import dynamic from "next/dynamic";
 

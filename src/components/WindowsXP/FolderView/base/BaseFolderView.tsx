@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Toolbar from "./Toolbar";
 import AddressBar from "./AddressBar";
-import "../../../styles/desktop.css";
+import "../../../../styles/desktop.css";
 import { useTranslations } from 'next-intl';
 
 interface BaseFolderViewProps {

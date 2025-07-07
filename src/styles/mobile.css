@@ -1,5 +1,61 @@
 /* Mobil için özel stiller buraya eklenecek */ 
 
+/* Retro terminal/CRT arka plan */
+.retro-black-bg {
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-black-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.03) 2px,
+      rgba(0, 255, 0, 0.03) 4px
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 255, 0, 0.1) 0%,
+      transparent 70%
+    );
+  pointer-events: none;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+.retro-black-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  pointer-events: none;
+}
+
 /* Mobil için Windows XP teması stilleri */
 
 /* Windows XP tarzı buton stilleri */
@@ -38,12 +94,135 @@
   font-size: 12px;
 }
 
-/* Mobil uyarı kutusu için özel stiller */
-.mobile-warning {
-  font-family: 'Tahoma', 'Arial', sans-serif;
-  background: #ffffff;
-  border: 2px solid #c0c0c0;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+/* Retro welcome text stilleri */
+.retro-welcome {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 255, 0, 0.5);
+  letter-spacing: 2px;
+  line-height: 1.4;
+  color: #00ff00;
+}
+
+.retro-welcome-subtitle {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+  color: #00cc00;
+}
+
+/* Animasyonlar */
+@keyframes slideUp {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.mobile-menu-item {
+  font-family: 'Press Start 2P', cursive;
+  color: #00ff00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: 2px solid transparent;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.mobile-menu-item:hover {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.mobile-menu-item:active {
+  transform: scale(0.95);
+}
+
+/* Dil seçenekleri */
+.language-options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.language-option {
+  font-family: 'Press Start 2P', cursive;
+  color: #00ff00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  background: rgba(0, 255, 0, 0.1);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.language-option:hover {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.language-option.active {
+  background: rgba(0, 255, 0, 0.3);
+  border-color: #00ff00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+  color: #00ff00;
+}
+
+.language-option:active {
+  transform: scale(0.9);
+}
+
+/* Mobil sayfa içeriği */
+.mobile-content {
+  font-family: 'Press Start 2P', cursive;
+  color: #00ff00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.mobile-content p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Mobil header */
+.mobile-header {
+  border-bottom: 2px solid #00ff00;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
 }
 
 /* Responsive tasarım için ek düzenlemeler */
@@ -57,4 +236,81 @@
     padding: 8px 16px;
     font-size: 14px;
   }
+  
+  .retro-welcome {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .retro-welcome-subtitle {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 481px) {
+  .retro-welcome {
+    font-size: 1.875rem;
+  }
+  
+  .retro-welcome-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Projects Page Styles */
+.mobile-project-category {
+  margin-bottom: 20px;
+}
+
+.mobile-project-category h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.mobile-project-item {
+  font-family: 'Press Start 2P', cursive;
+  color: #00ff00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  padding: 12px;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: rgba(0, 255, 0, 0.05);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.mobile-project-item.clickable {
+  cursor: pointer;
+}
+
+.mobile-project-item.clickable:hover {
+  background: rgba(0, 255, 0, 0.15);
+  border-color: rgba(0, 255, 0, 0.6);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+  transform: translateX(5px);
+}
+
+.mobile-project-item.clickable:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+.project-icon {
+  flex-shrink: 0;
+}
+
+.project-text {
+  flex: 1;
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+.project-link {
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-project-item.clickable:hover .project-link {
+  opacity: 1;
 } 

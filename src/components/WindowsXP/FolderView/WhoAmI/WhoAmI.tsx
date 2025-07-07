@@ -5,7 +5,7 @@ import { BaseFolderView, BaseSidebar, BaseContentGrid } from '../base';
 import { createWhoAmISidebarConfig, createWhoAmIContentConfig } from './config';
 import { ContentCard, ContentItem } from '../base/BaseContentGrid';
 import { DesktopContext } from '../../Desktop/Desktop';
-import { FileItems } from '../../../data/filesystem';
+import { FileItems } from '../../data/filesystem';
 
 interface WhoAmIProps {
   onClose: () => void;

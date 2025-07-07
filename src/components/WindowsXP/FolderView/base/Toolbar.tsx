@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import "../../../styles/desktop.css";
+import "../../../../styles/desktop.css";
 
 const Toolbar: React.FC = () => {
   const t = useTranslations('folderView.toolbar');

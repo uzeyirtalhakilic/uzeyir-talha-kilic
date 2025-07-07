@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import "../../../styles/desktop.css";
+import "../../../../styles/desktop.css";
 
 interface AddressBarProps {
   customContent?: React.ReactNode;

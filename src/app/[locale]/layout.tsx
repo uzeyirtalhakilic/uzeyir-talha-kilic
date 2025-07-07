@@ -10,6 +10,7 @@ import Script from 'next/script';
 const locales = ['en', 'tr'];
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://uzeyirtalhakilic.dev'),
   title: {
     default: 'Üzeyir Talha Kılıç',
     template: '%s | Üzeyir Talha Kılıç'

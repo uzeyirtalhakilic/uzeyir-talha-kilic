@@ -317,7 +317,12 @@
         "Başka bir bağlantı denemek için Geri düğmesine tıklayın."
       ],
       "goHome": "Ana Sayfaya Git",
-      "goBack": "Geri Git"
+      "goBack": "Geri Git",
+      "mobile": {
+        "title": "Burada ne işin var!!",
+        "message": "GERİ DÖN",
+        "button": "GERİ DÖN"
+      }
     }
   },
   "desktopContextMenu": {
@@ -422,7 +427,36 @@
     "loading": "Yükleniyor..."
   },
   "mobile": {
-    "warning": "Bu web sitesi sadece masaüstünde çalışıyor...Şimdilik... (Alttaki tuş çalışmıyor)"
+    "aboutme": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nŞu anda makine öğrenmesi ve veri bilimi alanlarında kendimi aktif olarak geliştiriyorum.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir veya menüdeki 'İletişim' kısmından bana ulaşabilirsiniz.",
+    "warning": "Bu web sitesi sadece masaüstünde çalışıyor...Şimdilik... (Alttaki tuş çalışmıyor)",
+    "welcome": "HOŞGELDİNİZ",
+    "welcomeSubtitle": "WELCOME",
+    "menu": {
+      "aboutMe": "Hakkımda",
+      "resume": "Özgeçmiş",
+      "projects": "Projeler",
+      "contact": "İletişim"
+    },
+    "language": {
+      "tr": "TR",
+      "en": "EN"
+    },
+    "projects": {
+      "machineLearning": "Makine Öğrenmesi",
+      "dataScience": "Veri Bilimi",
+      "applications": "Uygulamalar",
+      "sentimentAnalysis": "Makine Öğrenmesi ile Duygu Analizi",
+      "courierTracking": "Kurye Takip Sistemi",
+      "veterinaryClinic": "Veteriner Kliniği Yönetim Sistemi",
+      "restaurantManagement": "Restoran Yönetim Sistemi",
+      "soon": "Yakında..."
+    },
+    "contact": {
+      "email": "E-posta",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "instagram": "Instagram"
+    }
   },
   "readMeFile": {
     "title": "Beni Oku",

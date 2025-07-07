@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import "../../../styles/desktop.css";
+import "../../../../styles/desktop.css";
 
 export interface SidebarItem {
   icon: string;

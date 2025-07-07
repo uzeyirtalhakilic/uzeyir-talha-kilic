@@ -2,6 +2,15 @@
 @import "../styles/desktop.css";
 @import "../styles/mobile.css";
 
+/* Import PressStart2P font locally */
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
