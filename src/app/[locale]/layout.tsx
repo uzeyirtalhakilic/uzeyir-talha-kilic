@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   },
   description: 'Üzeyir Talha Kılıç - Software Developer',
   keywords: [
-    'software developer', 'full stack developer', 'react', 'next.js', 'typescript', 'node.js', 'web development', 'frontend', 'backend',
-    'windows xp', 'winamp', 'paint', 'gta vice city', 'gta türk', 'özgeçmiş', 'cv', 'resume', 'linkedin', 'github', 'udemy', 'sertifika',
+    'software developer', 'full stack developer', 'react', 'next.js', 'typescript', 'node.js', 'web development', 'frontend', 'backend', "üzeyir", "talha", "kılıç",
+    'windows xp', 'winamp', 'paint', 'gta vice city', 'gta türk', 'özgeçmiş', 'cv', 'resume', 'linkedin', 'github', 'udemy', 'sertifika', "üzeyir talha", "üzeyir kılıç", "talha kılıç", "üzeyir talha kılıç",
     'veteriner klinik yönetim sistemi', 'restoran yönetim sistemi', 'toptancı mobil uygulaması', 'courier tracking', 'sentiment analysis', 'machine learning', 'data science',
     'portfolio', 'kişisel web sitesi', 'klasik masaüstü', 'klasik windows', 'klasik ikonlar', 'klasik sesler', 'responsive', 'multilingual', 'next.js 14', 'tailwind css', 'react', 'typescript',
     'web developer', 'yazılım geliştirici', 'full stack', 'frontend', 'backend', 'personal website', 'classic desktop', 'classic icons', 'classic sounds', 'responsive design', 'multilingual',

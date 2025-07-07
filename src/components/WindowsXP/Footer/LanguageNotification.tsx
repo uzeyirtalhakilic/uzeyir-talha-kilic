@@ -13,6 +13,7 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
   const [selectedLanguage, setSelectedLanguage] = useState<string>('');
   const [isVisible, setIsVisible] = useState(false);
   const [currentLocale, setCurrentLocale] = useState<string>('');
+  const [isLandscapeMobile, setIsLandscapeMobile] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -24,6 +25,22 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
     // Get current locale from pathname
     const locale = pathname.split('/')[1];
     setCurrentLocale(locale);
+
+    // Orientation kontrolü
+    const checkOrientation = () => {
+      if (typeof window !== 'undefined') {
+        setIsLandscapeMobile(
+          window.matchMedia('(orientation: landscape)').matches && window.innerWidth < 900
+        );
+      }
+    };
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
   }, [pathname]);
 
   const handleLanguageSelect = (language: string) => {
@@ -67,6 +84,8 @@ const LanguageNotification: React.FC<LanguageNotificationProps> = ({ onClose }) 
   };
 
   const oppositeText = getOppositeLanguageText();
+
+  if (isLandscapeMobile) return null;
 
   if (!isVisible) return null;
 

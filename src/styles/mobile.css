@@ -313,4 +313,31 @@
 
 .mobile-project-item.clickable:hover .project-link {
   opacity: 1;
+}
+
+@media screen and (orientation: landscape) and (max-width: 900px) {
+  html, body {
+    overflow: hidden !important;
+    height: 100%;
+    touch-action: none;
+  }
+  body::before {
+    content: "Lütfen cihazınızı\A dikey konuma çevirin";
+    white-space: pre-line;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    color: #00ff00;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 8px #00ff00, 0 0 20px #000, 0 0 2px #00ff00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    pointer-events: all;
+  }
 } 
