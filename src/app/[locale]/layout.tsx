@@ -72,6 +72,11 @@ export const metadata: Metadata = {
       'en': 'https://uzeyirtalhakilic.dev/en',
     },
   },
+  icons: {
+    icon: '/icons/favicon.png',
+    apple: '/icons/favicon.png',
+  },
+  themeColor: '#000000',
 };
 
 export default async function LocaleLayout(props: {
