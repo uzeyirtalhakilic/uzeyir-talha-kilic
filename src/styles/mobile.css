@@ -225,8 +225,19 @@
   backdrop-filter: blur(10px);
 }
 
-/* Responsive tasarım için ek düzenlemeler */
-@media (max-width: 480px) {
+
+
+@media (min-width: 481px) {
+  .retro-welcome {
+    font-size: 1.875rem;
+  }
+  
+  .retro-welcome-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) and (pointer: coarse) {
   .mobile-warning {
     margin: 10px;
     max-width: calc(100vw - 20px);
@@ -244,16 +255,6 @@
   
   .retro-welcome-subtitle {
     font-size: 0.875rem;
-  }
-}
-
-@media (min-width: 481px) {
-  .retro-welcome {
-    font-size: 1.875rem;
-  }
-  
-  .retro-welcome-subtitle {
-    font-size: 1rem;
   }
 }
 
@@ -315,7 +316,7 @@
   opacity: 1;
 }
 
-@media screen and (orientation: landscape) and (max-width: 950px) {
+@media screen and (orientation: landscape) and (max-width: 935px) and (pointer: coarse) {
   html, body {
     overflow: hidden !important;
     height: 100%;

@@ -13,8 +13,8 @@ export default function LocalePage() {
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+      setIsMobile(isTouchDevice);
       setIsLoading(false);
     };
 
