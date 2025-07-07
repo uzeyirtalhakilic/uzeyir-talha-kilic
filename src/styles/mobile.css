@@ -315,7 +315,7 @@
   opacity: 1;
 }
 
-@media screen and (orientation: landscape) and (max-width: 900px) {
+@media screen and (orientation: landscape) and (max-width: 935px) {
   html, body {
     overflow: hidden !important;
     height: 100%;
