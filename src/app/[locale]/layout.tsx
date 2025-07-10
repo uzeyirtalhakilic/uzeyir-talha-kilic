@@ -76,6 +76,9 @@ export const metadata: Metadata = {
     icon: '/icons/favicon.png',
     apple: '/icons/favicon.png',
   },
+};
+
+export const viewport = {
   themeColor: '#000000',
 };
 
