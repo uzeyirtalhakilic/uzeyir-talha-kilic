@@ -5,6 +5,7 @@ import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import { Metadata } from 'next';
 import Script from 'next/script';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Define supported locales
 const locales = ['en', 'tr'];
@@ -127,6 +128,7 @@ export default async function LocaleLayout(props: {
         <NextIntlClientProvider messages={messages} locale={locale}>
           {children}
         </NextIntlClientProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
