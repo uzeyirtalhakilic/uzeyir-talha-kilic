@@ -1,4 +1,8 @@
 "use client";
+export const metadata = {
+  title: 'Üzeyir Talha Kılıç',
+  description: 'Üzeyir Talha Kılıç - Software Developer',
+};
 
 import { useEffect, useState } from "react";
 import Desktop from "@/components/WindowsXP/Desktop/Desktop";
