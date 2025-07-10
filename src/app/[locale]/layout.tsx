@@ -6,7 +6,7 @@ import {notFound} from 'next/navigation';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-
+import { Analytics } from "@vercel/analytics/next"
 // Define supported locales
 const locales = ['en', 'tr'];
 
@@ -129,6 +129,7 @@ export default async function LocaleLayout(props: {
           {children}
         </NextIntlClientProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
