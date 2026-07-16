@@ -46,6 +46,23 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
           }
         };
       }
+      // Add onClick handler for experience item
+      if (item.text === t('content.experience')) {
+        return {
+          ...item,
+          onClick: () => {
+            if (desktopContext) {
+              desktopContext.handleOpen({
+                id: 'experience',
+                type: 'folder',
+                label: t2('experience'),
+                translationKey: 'desktop.experience',
+                children: []
+              });
+            }
+          }
+        };
+      }
       // Add onClick handler for my projects item
       if (item.text === t('myProjects')) {
         return {

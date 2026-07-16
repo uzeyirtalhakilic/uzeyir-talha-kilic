@@ -70,6 +70,9 @@ export default function Desktop() {
       if (item.id === 'gtaViceCity') {
         width = 512;
         height = 340;
+      } else if (item.translationKey === 'desktop.experienceTerminal') {
+        width = 700;
+        height = 420;
       }
       const newWindow: WindowState = {
         id: item.id,
@@ -361,6 +364,10 @@ export default function Desktop() {
       return t('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
       return t('whoAmI');
+    } else if (item.translationKey === 'desktop.experience') {
+      return t('experience');
+    } else if (item.translationKey === 'desktop.experienceTerminal') {
+      return item.label;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return t('recycleBin');
     } else if (item.translationKey === 'desktop.paint') {
@@ -385,6 +392,10 @@ export default function Desktop() {
       return "/icons/control-panel.png";
     } else if (item.translationKey === 'desktop.1') {
       return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.experience') {
+      return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.experienceTerminal') {
+      return "/icons/exe-program.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
     } else if (item.translationKey === 'desktop.paint') {

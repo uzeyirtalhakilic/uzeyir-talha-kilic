@@ -73,13 +73,16 @@ export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCa
     ]
   },
   {
-    title: t('myProjects'),
+    title: t('content.experienceAndProjects'),
     items: [
+      {
+        icon: '/icons/folderdocument.png',
+        text: t('content.experience'),
+      },
       {
         icon: '/icons/folderdocument.png',
         text: t('myProjects'),
       },
-
     ]
   },
 ];

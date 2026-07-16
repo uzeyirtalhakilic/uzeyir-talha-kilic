@@ -59,6 +59,9 @@ const MobileHome: React.FC = () => {
         <div className="mobile-menu-item" onClick={handleResumeClick}>
           {t('menu.resume')}
         </div>
+        <div className="mobile-menu-item" onClick={() => router.push(`/${currentLocale}/mobile/experience`)}>
+          {t('menu.experience')}
+        </div>
         <div className="mobile-menu-item" onClick={() => router.push(`/${currentLocale}/mobile/projects`)}>
           {t('menu.projects')}
         </div>

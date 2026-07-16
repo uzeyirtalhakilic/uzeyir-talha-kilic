@@ -903,6 +903,43 @@
   }
 }
 
+/* Terminal (cmd.exe) Özel Stilleri */
+.xp-terminal {
+  background: #000000;
+  color: #c0c0c0;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 8px 10px;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.xp-terminal-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.xp-terminal-error {
+  color: #ff5555;
+}
+
+.xp-terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  background: #c0c0c0;
+  vertical-align: middle;
+  animation: xp-terminal-blink 1s steps(1) infinite;
+}
+
+@keyframes xp-terminal-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
 /* Recycle Bin Özel Stilleri */
 .recycle-bin-content {
   padding: 8px !important;

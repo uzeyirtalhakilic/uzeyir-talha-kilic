@@ -16,6 +16,7 @@
     "paint": "Paint",
     "winamp": "Winamp",
     "aboutme": "About Me",
+    "experience": "Experience",
     "gtaCheats": "GTA Cheats",
     "networkNeighborhood": "Network Neighborhood",
     "back": "Back",
@@ -153,7 +154,8 @@
         "restaurantManagement":"Restaurant Management System",
         "wholesalerApp": "Wholesaler Application",
         "veterinaryClinic": "Veterinary Clinic Management System",
-        "sentimentAnalysis": "Sentiment Analysis with Machine Learning"
+        "sentimentAnalysis": "Sentiment Analysis with Machine Learning",
+        "thesisProject": "Chest X-Ray Report Generation (Thesis)"
       }
     },
     "recycleBin": {
@@ -234,6 +236,8 @@
         "aboutMe": "About Me",
         "photos": "Photos",
         "resume": "Resume",
+        "experience": "Experience",
+        "experienceAndProjects": "Experience & Projects",
         "contactInfo": "Contact Information",
         "email": "Email",
         "linkedin": "LinkedIn",
@@ -241,7 +245,7 @@
       },
       "aboutMeContent": {
         "title": "About Me",
-        "content": "Hello, I'm Üzeyir,\n\nI'm a 4th-year Computer Engineering student at Ege University. \nI have experience in technologies such as React, Flutter, MongoDB, MySQL, Node.js, etc.\nI'm currently actively developing myself in the fields of machine learning and data science.\nI'm not only developing my technical skills but also strengthening my communication abilities, leadership qualities, and teamwork compatibility through the events I actively participate in.\n\nThroughout my university life, I took an active role in clubs like EKAMİT, IEEE, and BEST. \nWith these clubs, I developed my organizational skills, learned how to work effectively with people from different fields, and contributed to many technical/social events.\n\nI value personal development and being versatile. \nMy hobbies include swimming, running, basketball, listening to music/podcasts, watching movies and TV series.\nI currently have many hobbies, but the new things I want to try and learn are much more than what I have.\n\nMy career goal is to take part in big and impactful projects, have my contributions be visible, and have my name remembered with significant achievements.\n\nMy motto: 'Growth is where comfort ends; balance is hidden in every step.'\n                                                                                                   -ChatGPT\n(I asked it to generate a motto related to 'Golden Mean Theory' and 'stepping out of comfort zone'.)\n\nFor details, you can examine my 'resume' and reach me through the 'Contact Information' section on the left."
+        "content": "Hello, I'm Üzeyir,\n\nI'm a Computer Engineering graduate from Ege University. \nI have experience in technologies such as React, Flutter, MongoDB, MySQL, Node.js, etc.\nI wrote my graduation thesis on multimodal deep learning-based automated Turkish radiology report generation from chest X-rays.\nI'm currently working as an Intern Application Engineer at IBTECH (a QNB Bank subsidiary), developing enterprise applications with C# and Java for the bank's accounting ecosystems.\nI'm not only developing my technical skills but also strengthening my communication abilities, leadership qualities, and teamwork compatibility through the events I actively participate in.\n\nThroughout my university life, I took an active role in clubs like EKAMİT, IEEE, and BEST. \nWith these clubs, I developed my organizational skills, learned how to work effectively with people from different fields, and contributed to many technical/social events.\n\nI value personal development and being versatile. \nMy hobbies include swimming, running, basketball, listening to music/podcasts, watching movies and TV series.\nI currently have many hobbies, but the new things I want to try and learn are much more than what I have.\n\nMy career goal is to take part in big and impactful projects, have my contributions be visible, and have my name remembered with significant achievements.\n\nMy motto: 'Growth is where comfort ends; balance is hidden in every step.'\n                                                                                                   -ChatGPT\n(I asked it to generate a motto related to 'Golden Mean Theory' and 'stepping out of comfort zone'.)\n\nFor details, you can examine my 'resume', explore the 'Experience' folder, and reach me through the 'Contact Information' section on the left."
 
       }
     },
@@ -427,13 +431,14 @@
     "loading": "Loading..."
   },
   "mobile": {
-    "aboutme": "Hello, I'm Üzeyir,\n\nI'm a 4th-year Computer Engineering student at Ege University. \nI have experience in technologies such as React, Flutter, MongoDB, MySQL, Node.js, etc.\nI'm currently actively developing myself in the fields of machine learning and data science.\nI'm not only developing my technical skills but also strengthening my communication abilities, leadership qualities, and teamwork compatibility through the events I actively participate in.\n\nThroughout my university life, I took an active role in clubs like EKAMİT, IEEE, and BEST. \nWith these clubs, I developed my organizational skills, learned how to work effectively with people from different fields, and contributed to many technical/social events.\n\nI value personal development and being versatile. \nMy hobbies include swimming, running, basketball, listening to music/podcasts, watching movies and TV series.\nI currently have many hobbies, but the new things I want to try and learn are much more than what I have.\n\nMy career goal is to take part in big and impactful projects, have my contributions be visible, and have my name remembered with significant achievements.\n\nMy motto: 'Growth is where comfort ends; balance is hidden in every step.'\n                                                                                                   -ChatGPT\n(I asked it to generate a motto related to 'Golden Mean Theory' and 'stepping out of comfort zone'.)\n\nFor details, you can review my 'CV' or contact me from the 'Contact' section in the menu..",
+    "aboutme": "Hello, I'm Üzeyir,\n\nI'm a Computer Engineering graduate from Ege University. \nI have experience in technologies such as React, Flutter, MongoDB, MySQL, Node.js, etc.\nI wrote my graduation thesis on multimodal deep learning-based automated Turkish radiology report generation from chest X-rays.\nI'm currently working as an Intern Application Engineer at IBTECH (a QNB Bank subsidiary), developing enterprise applications with C# and Java for the bank's accounting ecosystems.\nI'm not only developing my technical skills but also strengthening my communication abilities, leadership qualities, and teamwork compatibility through the events I actively participate in.\n\nThroughout my university life, I took an active role in clubs like EKAMİT, IEEE, and BEST. \nWith these clubs, I developed my organizational skills, learned how to work effectively with people from different fields, and contributed to many technical/social events.\n\nI value personal development and being versatile. \nMy hobbies include swimming, running, basketball, listening to music/podcasts, watching movies and TV series.\nI currently have many hobbies, but the new things I want to try and learn are much more than what I have.\n\nMy career goal is to take part in big and impactful projects, have my contributions be visible, and have my name remembered with significant achievements.\n\nMy motto: 'Growth is where comfort ends; balance is hidden in every step.'\n                                                                                                   -ChatGPT\n(I asked it to generate a motto related to 'Golden Mean Theory' and 'stepping out of comfort zone'.)\n\nFor details, you can review my 'CV', check the 'Experience' section, or contact me from the 'Contact' section in the menu..",
     "warning": "This website only works on desktop... For now... (The button below does not work)",
     "welcome": "WELCOME",
     "welcomeSubtitle": "HOŞGELDİNİZ",
     "menu": {
       "aboutMe": "About Me",
       "resume": "Resume",
+      "experience": "Experience",
       "projects": "Projects",
       "contact": "Contact"
     },
@@ -449,6 +454,7 @@
       "courierTracking": "Courier Tracking System",
       "veterinaryClinic": "Veterinary Clinic Management System",
       "restaurantManagement": "Restaurant Management System",
+      "thesisProject": "Chest X-Ray Report Generation (Thesis)",
       "soon": "Soon..."
     },
     "contact": {
@@ -457,6 +463,61 @@
       "github": "GitHub",
       "instagram": "Instagram"
     }
+  },
+  "experience": {
+    "title": "Experience",
+    "workExperienceTitle": "Work Experience",
+    "educationTitle": "Education",
+    "otherPlaces": "Other Places",
+    "myComputer": "My Computer",
+    "myProjects": "My Projects",
+    "whoAmI": "Who Am I?",
+    "controlPanel": "Control Panel",
+    "terminal": {
+      "prompt": "C:\\Users\\UzeyirTalha\\Experience>",
+      "errorTitle": "This program has encountered a problem and needs to close.",
+      "loadingRecord": "Loading cached record instead...",
+      "company": "Company",
+      "role": "Role",
+      "period": "Period",
+      "location": "Location",
+      "school": "School",
+      "degree": "Degree",
+      "details": "Details:"
+    },
+    "workExperience": [
+      {
+        "company": "IBTECH (A QNB Bank Subsidiary)",
+        "role": "Intern Application Engineer",
+        "period": "02/2026 – 08/2026",
+        "location": "İzmir, Türkiye",
+        "bullets": [
+          "Developed enterprise-level applications utilizing C# and Java for QNB Bank's accounting ecosystems",
+          "Implemented UI bindings and integrated backend services",
+          "Supported application engineering processes aligned with ECM Accounting AE department workflows",
+          "Conducted component design and technical troubleshooting within enterprise software architecture"
+        ]
+      },
+      {
+        "company": "Mehel R&D and Automation",
+        "role": "Application Programmer",
+        "period": "06/2024 – 12/2024",
+        "location": "Ordu, Türkiye",
+        "bullets": [
+          "Independently developed a real-time courier tracking system for restaurants (React Native, Flutter, MongoDB, WebSocket)",
+          "Led a 4-person team as project manager building a 24/7 wholesaler ordering platform (React Native, Flutter, MongoDB)"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "school": "Ege University",
+        "degree": "B.Sc. Computer Engineering",
+        "period": "09/2021 – 06/2026",
+        "location": "İzmir, Türkiye",
+        "thesis": "Graduation Thesis: Multimodal-Based Report Generation for Chest Radiographs — Integration of Textual and Visual Features for Automated Turkish Report Generation (Advisor: Asst. Prof. Emine Sezer)"
+      }
+    ]
   },
   "readMeFile": {
     "title": "Read Me",

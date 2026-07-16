@@ -13,6 +13,13 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
         target: '_blank',
         rel: 'noopener noreferrer'
       },
+      {
+        icon: '/icons/favicon.png',
+        text: t('content.thesisProject'),
+        href: '',
+        target: '',
+        rel: ''
+      },
     ]
   },
   {

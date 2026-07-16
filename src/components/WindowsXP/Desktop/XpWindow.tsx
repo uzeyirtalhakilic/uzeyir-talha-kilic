@@ -5,6 +5,8 @@ import MyComputer from "../FolderView/MyComputer/MyComputer";
 import MyProjects from "../FolderView/MyProjects/MyProjects";
 import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
+import Experience from "../FolderView/Experience/Experience";
+import Terminal from "../Terminal/Terminal";
 import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
 import AboutMeFile from "../FolderView/WhoAmI/AboutMeFile";
 import ReadMeFile from "../FolderView/ReadMe/ReadMeFile";
@@ -165,6 +167,10 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <ControlPanel onClose={onClose} />;
     } else if (item.translationKey === 'desktop.1') {
       return <WhoAmI onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.experience') {
+      return <Experience onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.experienceTerminal') {
+      return <Terminal item={item} />;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return <RecycleBin onClose={onClose} />;
     } else if (item.translationKey === 'desktop.paint') {
@@ -210,6 +216,10 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tDesktop('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
       return tDesktop('whoAmI');
+    } else if (item.translationKey === 'desktop.experience') {
+      return tDesktop('experience');
+    } else if (item.translationKey === 'desktop.experienceTerminal') {
+      return item.label;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return tDesktop('recycleBin');
     } else if (item.translationKey === 'desktop.paint') {
@@ -241,6 +251,10 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return "/icons/control-panel.png";
     } else if (item.translationKey === 'desktop.1') {
       return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.experience') {
+      return "/icons/folderdocument.png";
+    } else if (item.translationKey === 'desktop.experienceTerminal') {
+      return "/icons/exe-program.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
     } else if (item.translationKey === 'desktop.paint') {

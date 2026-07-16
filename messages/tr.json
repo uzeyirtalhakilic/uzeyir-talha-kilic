@@ -17,6 +17,7 @@
     "paint": "Paint",
     "winamp": "Winamp",
     "aboutme": "Hakkımda",
+    "experience": "Deneyim",
     "gtaCheats": "gta hile kodları",
     "networkNeighborhood": "Ağ Komşuları",
     "back": "Geri",
@@ -154,7 +155,8 @@
         "restaurantManagement":"Restoran Yönetim Sistemi",
         "wholesalerApp": "Toptancı Mobil Uygulaması",
         "veterinaryClinic": "Veteriner Kliniği Yönetim Sistemi",
-        "sentimentAnalysis": "Makine Öğrenmesi ile Duygu Analizi"
+        "sentimentAnalysis": "Makine Öğrenmesi ile Duygu Analizi",
+        "thesisProject": "Akciğer Grafisi Rapor Üretimi (Bitirme Tezi)"
       }
     },
     "recycleBin": {
@@ -235,6 +237,8 @@
         "aboutMe": "Hakkımda",
         "photos": "Fotoğraflar",
         "resume": "Özgeçmiş",
+        "experience": "Deneyim",
+        "experienceAndProjects": "Deneyimlerim ve Projelerim",
         "contactInfo": "İletişim Bilgileri",
         "email": "E-posta",
         "linkedin": "LinkedIn",
@@ -242,7 +246,7 @@
       },
       "aboutMeContent": {
         "title": "Hakkımda",
-        "content": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nŞu anda makine öğrenmesi ve veri bilimi alanlarında kendimi aktif olarak geliştiriyorum.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir ve sol taraftaki 'İletişim Bilgileri' kısmından bana ulaşabilirsiniz."
+        "content": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği mezunuyum. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nBitirme tezimi, akciğer röntgenlerinden otomatik Türkçe radyoloji raporu üretimine yönelik çok modlu derin öğrenme tabanlı bir çalışma üzerine yazdım.\nŞu anda IBTECH'te (bir QNB Bank iştiraki) Stajyer Uygulama Mühendisi olarak, bankanın muhasebe ekosistemleri için C# ve Java ile kurumsal uygulamalar geliştiriyorum.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir, 'Deneyim' klasörünü keşfedebilir ve sol taraftaki 'İletişim Bilgileri' kısmından bana ulaşabilirsiniz."
       }
     },
     "dropdownMenu": {
@@ -427,13 +431,14 @@
     "loading": "Yükleniyor..."
   },
   "mobile": {
-    "aboutme": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nŞu anda makine öğrenmesi ve veri bilimi alanlarında kendimi aktif olarak geliştiriyorum.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir veya menüdeki 'İletişim' kısmından bana ulaşabilirsiniz.",
+    "aboutme": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği mezunuyum. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nBitirme tezimi, akciğer röntgenlerinden otomatik Türkçe radyoloji raporu üretimine yönelik çok modlu derin öğrenme tabanlı bir çalışma üzerine yazdım.\nŞu anda IBTECH'te (bir QNB Bank iştiraki) Stajyer Uygulama Mühendisi olarak, bankanın muhasebe ekosistemleri için C# ve Java ile kurumsal uygulamalar geliştiriyorum.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir, 'Deneyim' kısmına göz atabilir veya menüdeki 'İletişim' kısmından bana ulaşabilirsiniz.",
     "warning": "Bu web sitesi sadece masaüstünde çalışıyor...Şimdilik... (Alttaki tuş çalışmıyor)",
     "welcome": "HOŞGELDİNİZ",
     "welcomeSubtitle": "WELCOME",
     "menu": {
       "aboutMe": "Hakkımda",
       "resume": "Özgeçmiş",
+      "experience": "Deneyim",
       "projects": "Projeler",
       "contact": "İletişim"
     },
@@ -449,6 +454,7 @@
       "courierTracking": "Kurye Takip Sistemi",
       "veterinaryClinic": "Veteriner Kliniği Yönetim Sistemi",
       "restaurantManagement": "Restoran Yönetim Sistemi",
+      "thesisProject": "Akciğer Grafisi Rapor Üretimi (Bitirme Tezi)",
       "soon": "Yakında..."
     },
     "contact": {
@@ -457,6 +463,61 @@
       "github": "GitHub",
       "instagram": "Instagram"
     }
+  },
+  "experience": {
+    "title": "Deneyim",
+    "workExperienceTitle": "İş Deneyimi",
+    "educationTitle": "Eğitim",
+    "otherPlaces": "Diğer Yerler",
+    "myComputer": "Bilgisayarım",
+    "myProjects": "Projelerim",
+    "whoAmI": "Ben Kimim?",
+    "controlPanel": "Denetim Masası",
+    "terminal": {
+      "prompt": "C:\\Kullanicilar\\UzeyirTalha\\Deneyim>",
+      "errorTitle": "Bu program bir sorunla karşılaştı ve kapatılması gerekiyor.",
+      "loadingRecord": "Bunun yerine önbelleğe alınmış kayıt yükleniyor...",
+      "company": "Şirket",
+      "role": "Görev",
+      "period": "Tarih",
+      "location": "Konum",
+      "school": "Okul",
+      "degree": "Bölüm",
+      "details": "Detaylar:"
+    },
+    "workExperience": [
+      {
+        "company": "IBTECH (QNB Bank İştiraki)",
+        "role": "Stajyer Uygulama Mühendisi",
+        "period": "02/2026 – 08/2026",
+        "location": "İzmir, Türkiye",
+        "bullets": [
+          "QNB Bank finansal iş akışları kapsamında C# ve Java kullanılarak kurumsal uygulamaların geliştirilmesi",
+          "Kullanıcı arayüzü (UI) bağlamaları ve arka uç (backend) servis entegrasyonlarının yapılması",
+          "ECM Accounting AE departmanı iş akışlarına uygun olarak uygulama mühendisliği süreçlerine destek verilmesi",
+          "Kurumsal yazılım mimarisi içerisinde bileşen tasarımı ve teknik sorun giderme operasyonlarının yürütülmesi"
+        ]
+      },
+      {
+        "company": "Mehel Ar-Ge ve Otomasyon",
+        "role": "Bilgisayar Mühendisi",
+        "period": "06/2024 – 12/2024",
+        "location": "Ordu, Türkiye",
+        "bullets": [
+          "Restoranların kuryelerini gerçek zamanlı takip edebileceği bir sistem bağımsız olarak geliştirildi (React Native, Flutter, MongoDB, WebSocket)",
+          "4 kişilik bir ekibe proje yöneticisi olarak liderlik edilerek toptancılar için 7/24 sipariş alan bir platform geliştirildi (React Native, Flutter, MongoDB)"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "school": "Ege Üniversitesi",
+        "degree": "Bilgisayar Mühendisliği Lisans",
+        "period": "09/2021 – 06/2026",
+        "location": "İzmir, Türkiye",
+        "thesis": "Bitirme Tezi: Akciğer Grafileri için Çok Modlu Temelli Rapor Üretimi: Otomatik Türkçe Raporlar Hazırlamak Amacıyla Metinsel ve Görsel Özelliklerin Entegrasyonu (Danışman: Dr. Öğr. Üyesi Emine Sezer)"
+      }
+    ]
   },
   "readMeFile": {
     "title": "Beni Oku",

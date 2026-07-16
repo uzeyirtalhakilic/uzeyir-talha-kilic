@@ -25,6 +25,13 @@ const MobileProjectsPage: React.FC = () => {
           href: 'https://github.com/uzeyirtalhakilic/tweeteval-multiclass-sentiment-analysis',
           target: '_blank',
           rel: 'noopener noreferrer'
+        },
+        {
+          icon: '/icons/favicon.png',
+          text: t('projects.thesisProject'),
+          href: '',
+          target: '',
+          rel: ''
         }
       ]
     },
