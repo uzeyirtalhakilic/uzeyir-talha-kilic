@@ -45,6 +45,118 @@ export default function Desktop() {
   const [showWinamp, setShowWinamp] = useState(false);
   const [winampMinimized, setWinampMinimized] = useState(false);
 
+  // --- Gizli masaüstü ızgarası (icon grid) ---
+  const CELL_W = 100;
+  const CELL_H = 100;
+  const GRID_LEFT = 24;
+  const GRID_TOP = 24;
+
+  const [iconPositions, setIconPositions] = useState<Record<string, { col: number; row: number }>>(() => {
+    const initial: Record<string, { col: number; row: number }> = {};
+    desktopItems.forEach((item, idx) => {
+      initial[item.id] = { col: 0, row: idx };
+    });
+    return initial;
+  });
+  // Sürükleme sırasında ikonların anlık piksel ofseti
+  const [iconDrag, setIconDrag] = useState<{ ids: string[]; dx: number; dy: number } | null>(null);
+
+  const getGridBounds = () => {
+    const cols = Math.max(1, Math.floor((window.innerWidth - GRID_LEFT) / CELL_W));
+    const rows = Math.max(1, Math.floor((window.innerHeight - 30 - GRID_TOP) / CELL_H));
+    return { cols, rows };
+  };
+
+  // Bırakılan ikonları en yakın boş ızgara hücresine oturt
+  const snapDraggedIcons = (ids: string[], dx: number, dy: number) => {
+    setIconPositions(prev => {
+      const { cols, rows } = getGridBounds();
+      let dCol = Math.round(dx / CELL_W);
+      let dRow = Math.round(dy / CELL_H);
+      // Grup halinde taşırken hiçbir ikon ekran dışına çıkmasın
+      ids.forEach(id => {
+        const pos = prev[id];
+        if (!pos) return;
+        dCol = Math.max(-pos.col, Math.min(dCol, cols - 1 - pos.col));
+        dRow = Math.max(-pos.row, Math.min(dRow, rows - 1 - pos.row));
+      });
+      const occupied = new Set(
+        Object.entries(prev)
+          .filter(([id]) => !ids.includes(id))
+          .map(([, p]) => `${p.col},${p.row}`)
+      );
+      const next = { ...prev };
+      ids.forEach(id => {
+        const pos = prev[id];
+        if (!pos) return;
+        let target = { col: pos.col + dCol, row: pos.row + dRow };
+        if (occupied.has(`${target.col},${target.row}`)) {
+          // Hedef hücre doluysa en yakın boş hücreyi bul
+          let best: { col: number; row: number } | null = null;
+          let bestDist = Infinity;
+          for (let c = 0; c < cols; c++) {
+            for (let r = 0; r < rows; r++) {
+              if (occupied.has(`${c},${r}`)) continue;
+              const dist = (c - target.col) ** 2 + (r - target.row) ** 2;
+              if (dist < bestDist) {
+                bestDist = dist;
+                best = { col: c, row: r };
+              }
+            }
+          }
+          if (best) target = best;
+        }
+        occupied.add(`${target.col},${target.row}`);
+        next[id] = target;
+      });
+      return next;
+    });
+  };
+
+  const handleIconMouseDown = (e: React.MouseEvent, item: FileSystemItem) => {
+    if (e.button !== 0) return;
+    // Masaüstü seçim kutusunun (DashedBox) başlamasını engelle
+    e.stopPropagation();
+    // Tarayıcının yerleşik resim sürüklemesini engelle (yoksa mouseup kaçar, ikon imlece yapışık kalır)
+    e.preventDefault();
+    // DashedBox ile seçilmiş bir grubun parçasıysa grubu birlikte taşı
+    const ids = highlightedByBox.includes(item.id) ? highlightedByBox : [item.id];
+    if (!highlightedByBox.includes(item.id)) {
+      setHighlightedByBox([]);
+      setHighlightedIconId(item.id);
+    }
+    const startX = e.pageX;
+    const startY = e.pageY;
+    const drag = { moved: false };
+
+    const onMove = (ev: MouseEvent) => {
+      // Sol tuş bırakılmışsa (mouseup bir şekilde kaçtıysa) sürüklemeyi bitir
+      if (ev.buttons === 0) {
+        onUp(ev);
+        return;
+      }
+      const dx = ev.pageX - startX;
+      const dy = ev.pageY - startY;
+      if (!drag.moved && Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
+      drag.moved = true;
+      setIconDrag({ ids, dx, dy });
+    };
+    const onUp = (ev: MouseEvent) => {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      setIconDrag(null);
+      if (drag.moved) {
+        snapDraggedIcons(ids, ev.pageX - startX, ev.pageY - startY);
+      } else if (ids.length > 1) {
+        // Gruptaki bir ikona sürüklemeden tıklanırsa seçim o ikona daralır (Windows davranışı)
+        setHighlightedByBox([]);
+        setHighlightedIconId(item.id);
+      }
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  };
+
   const handleOpen = (item: FileSystemItem) => {
     if (item.id === "winamp") {
       setShowWinamp(true);
@@ -428,10 +540,9 @@ export default function Desktop() {
     ) {
       return;
     }
-    // Eğer tıklanan yer bir DesktopIcon değilse highlight'ı kaldır
-    if (!target.closest('.desktop-icon')) {
-      setHighlightedIconId(null);
-    }
+    // İkon üzerinde başlayan mousedown'ı ikon sürükleme yönetiyor; seçim kutusu başlatma
+    if (target.closest('.desktop-icon')) return;
+    setHighlightedIconId(null);
     setHighlightedByBox([]);
     setStartPos({ x: e.pageX, y: e.pageY });
     setIsDragging(false);
@@ -557,31 +668,42 @@ export default function Desktop() {
             }}
           />
 
-          <div className="absolute left-6 top-6 flex flex-col gap-4 select-none">
-            {!isRefreshing && translatedItems.map((item: FileSystemItem, idx: number) => {
-              let highlighted = false;
-              if (highlightedByBox.includes(item.id)) {
-                highlighted = true;
-              }
-              if (highlightedIconId === item.id) {
-                highlighted = true;
-              }
-              return (
-                <div
-                  ref={el => { iconRefs.current[idx] = el; }}
-                  key={item.id}
-                >
-                  <DesktopIcon
-                    icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
-                    label={item.label}
-                    highlighted={highlighted}
-                    onHighlight={() => setHighlightedIconId(item.id)}
-                    onDoubleClick={() => handleOpen(item)}
-                  />
-                </div>
-              );
-            })}
-          </div>
+          {!isRefreshing && translatedItems.map((item: FileSystemItem, idx: number) => {
+            let highlighted = false;
+            if (highlightedByBox.includes(item.id)) {
+              highlighted = true;
+            }
+            if (highlightedIconId === item.id) {
+              highlighted = true;
+            }
+            const pos = iconPositions[item.id] ?? { col: 0, row: idx };
+            const dragging = iconDrag !== null && iconDrag.ids.includes(item.id);
+            return (
+              <div
+                ref={el => { iconRefs.current[idx] = el; }}
+                key={item.id}
+                className="select-none"
+                style={{
+                  position: 'absolute',
+                  left: GRID_LEFT + pos.col * CELL_W,
+                  top: GRID_TOP + pos.row * CELL_H,
+                  width: CELL_W,
+                  transform: dragging ? `translate(${iconDrag.dx}px, ${iconDrag.dy}px)` : undefined,
+                  zIndex: dragging ? 15 : undefined,
+                  opacity: dragging ? 0.75 : undefined,
+                }}
+                onMouseDown={(e) => handleIconMouseDown(e, item)}
+              >
+                <DesktopIcon
+                  icon={item.icon ? <Image src={item.icon} alt={item.label} className="w-8 h-8" width={32} height={32} /> : undefined}
+                  label={item.label}
+                  highlighted={highlighted}
+                  onHighlight={() => setHighlightedIconId(item.id)}
+                  onDoubleClick={() => handleOpen(item)}
+                />
+              </div>
+            );
+          })}
           {/* Winamp doğrudan arayüzü */}
           {showWinamp && !winampMinimized && (
             <WinampApp onClose={handleWinampClose} />
