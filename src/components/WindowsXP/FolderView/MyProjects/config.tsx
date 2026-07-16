@@ -1,6 +1,14 @@
+import React from 'react';
 import { SidebarCard } from '../base/BaseSidebar';
 import { ContentCard } from '../base/BaseContentGrid';
 
+const withDate = (title: string, date?: string, role?: string): React.ReactNode => (
+  <>
+    <span className="file-label-name">{title}</span>
+    {date && <span className="file-label-meta">{date}</span>}
+    {role && <span className="file-label-meta">{role}</span>}
+  </>
+);
 
 export const createMyProjectsContentConfig = (t: (key: string) => string): ContentCard[] => [
   {
@@ -14,20 +22,9 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
         rel: 'noopener noreferrer'
       },
       {
-        icon: '/icons/favicon.png',
+        icon: '/icons/mezunIcon.png',
         text: t('content.thesisProject'),
-        href: '',
-        target: '',
-        rel: ''
-      },
-    ]
-  },
-  {
-    title: t('content.dataScience'),
-    items: [
-      {
-        icon: '/icons/favicon.png',
-        text: t('soon'),
+        displayText: withDate(t('content.thesisProject'), t('content.thesisProjectDate'), t('content.thesisProjectTag')),
         href: '',
         target: '',
         rel: ''
@@ -40,6 +37,7 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
       {
         icon: '/github-logo.png',
         text: t('content.courierTracking'),
+        displayText: withDate(t('content.courierTracking'), t('content.courierTrackingDate'), t('content.courierTrackingRole')),
         href: 'https://github.com/uzeyirtalhakilic/DesktopApp-Courier-Tracking',
         target: '_blank',
         rel: 'noopener noreferrer'
@@ -47,20 +45,15 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
       {
         icon: '/github-logo.png',
         text: t('content.veterinaryClinic'),
+        displayText: withDate(t('content.veterinaryClinic'), t('content.veterinaryClinicDate'), t('content.veterinaryClinicRole')),
         href: 'https://github.com/uzeyirtalhakilic/Vet_Tracking',
         target: '_blank',
         rel: 'noopener noreferrer'
       },
-      // {
-      //   icon: '/github-logo.png',
-      //   text: t('content.wholesalerApp'),
-      //   href: 'https://github.com/uzeyirtalhakilic/wholesaler-app',
-      //   target: '_blank',
-      //   rel: 'noopener noreferrer'
-      // },
       {
         icon: '/github-logo.png',
         text: t('content.restaurantManagement'),
+        displayText: withDate(t('content.restaurantManagement'), t('content.restaurantManagementDate')),
         href: 'https://github.com/uzeyirtalhakilic/Restaurant-Management',
         target: '_blank',
         rel: 'noopener noreferrer'

@@ -71,8 +71,8 @@ export default function Desktop() {
         width = 512;
         height = 340;
       } else if (item.translationKey === 'desktop.experienceTerminal') {
-        width = 700;
-        height = 420;
+        width = 900;
+        height = 470;
       }
       const newWindow: WindowState = {
         id: item.id,

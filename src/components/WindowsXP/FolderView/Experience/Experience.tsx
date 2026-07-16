@@ -16,12 +16,12 @@ const Experience: React.FC<ExperienceProps> = () => {
   const workExperience = t.raw('workExperience') as ExperienceEntry[];
   const education = t.raw('education') as EducationEntry[];
 
-  const openTerminal = (id: string, fileName: string) => {
+  const openTerminal = (id: string, label: string) => {
     if (desktopContext) {
       desktopContext.handleOpen({
         id,
         type: 'file',
-        label: `${fileName}.exe`,
+        label,
         translationKey: 'desktop.experienceTerminal',
         icon: '/icons/exe-program.png',
       });
@@ -31,19 +31,39 @@ const Experience: React.FC<ExperienceProps> = () => {
   const contentConfig: ContentCard[] = [
     {
       title: t('workExperienceTitle'),
-      items: workExperience.map((entry, idx) => ({
-        icon: '/icons/exe-program.png',
-        text: `${entry.company} (${entry.period}) — ${entry.role}`,
-        onClick: () => openTerminal(`experience-work-${idx}`, entry.company),
-      })),
+      items: workExperience.map((entry, idx) => {
+        const fileName = `${entry.company}.exe`;
+        return {
+          icon: '/icons/exe-program.png',
+          text: `${fileName} (${entry.period}) - ${entry.role}`,
+          displayText: (
+            <>
+              <span className="file-label-name">{fileName}</span>
+              <span className="file-label-meta">{entry.period}</span>
+              <span className="file-label-meta">{entry.role}</span>
+            </>
+          ),
+          onClick: () => openTerminal(`experience-work-${idx}`, fileName),
+        };
+      }),
     },
     {
       title: t('educationTitle'),
-      items: education.map((entry, idx) => ({
-        icon: '/icons/exe-program.png',
-        text: `${entry.school} (${entry.period}) — ${entry.degree}`,
-        onClick: () => openTerminal(`experience-edu-${idx}`, entry.school),
-      })),
+      items: education.map((entry, idx) => {
+        const fileName = `${entry.school}.exe`;
+        return {
+          icon: '/icons/exe-program.png',
+          text: `${fileName} (${entry.period}) - ${entry.degree}`,
+          displayText: (
+            <>
+              <span className="file-label-name">{fileName}</span>
+              <span className="file-label-meta">{entry.period}</span>
+              <span className="file-label-meta">{entry.degree}</span>
+            </>
+          ),
+          onClick: () => openTerminal(`experience-edu-${idx}`, fileName),
+        };
+      }),
     },
   ];
 

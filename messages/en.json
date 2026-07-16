@@ -140,22 +140,26 @@
       "myComputer": "My Computer",
       "sharedDocuments": "Shared Documents",
       "controlPanel": "Control Panel",
-      "soon":  "Soon...",
       "search": "Search",
       "content": {
         "applications": "Applications",
-        "machineLearning": "Machine Learning",
-        "dataScience": "Data Science",
+        "machineLearning": "Artificial Intelligence & Machine Learning",
         "resume": "Resume.docx",
         "coverLetter": "Cover Letter.docx",
         "projects": "Projects",
         "personal": "Personal",
         "courierTracking": "Courier Tracking System",
+        "courierTrackingDate": "06/2024 – 12/2024",
+        "courierTrackingRole": "",
         "restaurantManagement":"Restaurant Management System",
-        "wholesalerApp": "Wholesaler Application",
+        "restaurantManagementDate": "06/2025",
         "veterinaryClinic": "Veterinary Clinic Management System",
+        "veterinaryClinicDate": "05/2025",
+        "veterinaryClinicRole": "Hackathon project",
         "sentimentAnalysis": "Sentiment Analysis with Machine Learning",
-        "thesisProject": "Chest X-Ray Report Generation (Thesis)"
+        "thesisProject": "Multimodal-Based Report Generation for Chest Radiographs: Integration of Textual and Visual Features for Automated Turkish Report Generation",
+        "thesisProjectTag": "Thesis",
+        "thesisProjectDate": "11/2025 – 06/2026"
       }
     },
     "recycleBin": {
@@ -241,7 +245,8 @@
         "contactInfo": "Contact Information",
         "email": "Email",
         "linkedin": "LinkedIn",
-        "github": "GitHub"
+        "github": "GitHub",
+        "instagram": "Instagram"
       },
       "aboutMeContent": {
         "title": "About Me",
@@ -447,15 +452,20 @@
       "en": "EN"
     },
     "projects": {
-      "machineLearning": "Machine Learning",
-      "dataScience": "Data Science",
+      "machineLearning": "Artificial Intelligence & Machine Learning",
       "applications": "Applications",
       "sentimentAnalysis": "Sentiment Analysis with Machine Learning",
       "courierTracking": "Courier Tracking System",
+      "courierTrackingDate": "06/2024 – 12/2024",
+      "courierTrackingRole": "",
       "veterinaryClinic": "Veterinary Clinic Management System",
+      "veterinaryClinicDate": "05/2025",
+      "veterinaryClinicRole": "Hackathon project",
       "restaurantManagement": "Restaurant Management System",
-      "thesisProject": "Chest X-Ray Report Generation (Thesis)",
-      "soon": "Soon..."
+      "restaurantManagementDate": "06/2025",
+      "thesisProject": "Multimodal-Based Report Generation for Chest Radiographs: Integration of Textual and Visual Features for Automated Turkish Report Generation",
+      "thesisProjectTag": "Thesis",
+      "thesisProjectDate": "11/2025 – 06/2026"
     },
     "contact": {
       "email": "Email",
@@ -500,7 +510,7 @@
       },
       {
         "company": "Mehel R&D and Automation",
-        "role": "Application Programmer",
+        "role": "Intern Application Programmer",
         "period": "06/2024 – 12/2024",
         "location": "Ordu, Türkiye",
         "bullets": [

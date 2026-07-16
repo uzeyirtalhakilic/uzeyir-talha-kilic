@@ -141,22 +141,26 @@
       "myComputer": "Bilgisayarım",
       "sharedDocuments": "Paylaşılan Belgeler",
       "controlPanel": "Denetim Masası",
-      "soon":  "Yakında...",
       "search": "Ara",
       "content": {
         "applications": "Uygulamalar",
-        "machineLearning": "Makine Öğrenmesi",     
-        "dataScience": "Veri Bilimi",
+        "machineLearning": "Yapay Zeka ve Makine Öğrenmesi",
         "resume": "Özgeçmiş.docx",
         "coverLetter": "Ön Yazı.docx",
         "projects": "Projeler",
         "personal": "Kişisel",
         "courierTracking": "Kurye Takip Sistemi",
+        "courierTrackingDate": "06/2024 – 12/2024",
+        "courierTrackingRole": "",
         "restaurantManagement":"Restoran Yönetim Sistemi",
-        "wholesalerApp": "Toptancı Mobil Uygulaması",
+        "restaurantManagementDate": "06/2025",
         "veterinaryClinic": "Veteriner Kliniği Yönetim Sistemi",
+        "veterinaryClinicDate": "05/2025",
+        "veterinaryClinicRole": "Hackathon projesi",
         "sentimentAnalysis": "Makine Öğrenmesi ile Duygu Analizi",
-        "thesisProject": "Akciğer Grafisi Rapor Üretimi (Bitirme Tezi)"
+        "thesisProject": "Akciğer Grafileri için Çok Modlu Temelli Rapor Üretimi: Otomatik Türkçe Raporlar Hazırlamak Amacıyla Metinsel ve Görsel Özelliklerin Entegrasyonu",
+        "thesisProjectTag": "Bitirme Tezi",
+        "thesisProjectDate": "11/2025 – 06/2026"
       }
     },
     "recycleBin": {
@@ -242,7 +246,8 @@
         "contactInfo": "İletişim Bilgileri",
         "email": "E-posta",
         "linkedin": "LinkedIn",
-        "github": "GitHub"
+        "github": "GitHub",
+        "instagram": "Instagram"
       },
       "aboutMeContent": {
         "title": "Hakkımda",
@@ -447,15 +452,20 @@
       "en": "EN"
     },
     "projects": {
-      "machineLearning": "Makine Öğrenmesi",
-      "dataScience": "Veri Bilimi",
+      "machineLearning": "Yapay Zeka ve Makine Öğrenmesi",
       "applications": "Uygulamalar",
       "sentimentAnalysis": "Makine Öğrenmesi ile Duygu Analizi",
       "courierTracking": "Kurye Takip Sistemi",
+      "courierTrackingDate": "06/2024 – 12/2024",
+      "courierTrackingRole": "",
       "veterinaryClinic": "Veteriner Kliniği Yönetim Sistemi",
+      "veterinaryClinicDate": "05/2025",
+      "veterinaryClinicRole": "Hackathon projesi",
       "restaurantManagement": "Restoran Yönetim Sistemi",
-      "thesisProject": "Akciğer Grafisi Rapor Üretimi (Bitirme Tezi)",
-      "soon": "Yakında..."
+      "restaurantManagementDate": "06/2025",
+      "thesisProject": "Akciğer Grafileri için Çok Modlu Temelli Rapor Üretimi: Otomatik Türkçe Raporlar Hazırlamak Amacıyla Metinsel ve Görsel Özelliklerin Entegrasyonu",
+      "thesisProjectTag": "Bitirme Tezi",
+      "thesisProjectDate": "11/2025 – 06/2026"
     },
     "contact": {
       "email": "E-posta",
@@ -500,7 +510,7 @@
       },
       {
         "company": "Mehel Ar-Ge ve Otomasyon",
-        "role": "Bilgisayar Mühendisi",
+        "role": "Stajyer Bilgisayar Mühendisi",
         "period": "06/2024 – 12/2024",
         "location": "Ordu, Türkiye",
         "bullets": [

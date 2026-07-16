@@ -903,6 +903,18 @@
   }
 }
 
+/* Dosya/program görünümlü öğe etiketleri (Experience, My Projects) */
+.file-label-name {
+  display: block;
+}
+
+.file-label-meta {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+}
+
 /* Terminal (cmd.exe) Özel Stilleri */
 .xp-terminal {
   background: #000000;

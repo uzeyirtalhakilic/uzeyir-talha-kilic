@@ -5,6 +5,16 @@ import { useTranslations } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import Image from "next/image";
 
+interface MobileProjectItem {
+  icon: string;
+  text: string;
+  date?: string;
+  role?: string;
+  href: string;
+  target: string;
+  rel: string;
+}
+
 const MobileProjectsPage: React.FC = () => {
   const t = useTranslations('mobile');
   const params = useParams();
@@ -15,7 +25,7 @@ const MobileProjectsPage: React.FC = () => {
     router.push(`/${currentLocale}`);
   };
 
-  const projects = [
+  const projects: { category: string; items: MobileProjectItem[] }[] = [
     {
       category: t('projects.machineLearning'),
       items: [
@@ -27,20 +37,10 @@ const MobileProjectsPage: React.FC = () => {
           rel: 'noopener noreferrer'
         },
         {
-          icon: '/icons/favicon.png',
+          icon: '/icons/mezunIcon.png',
           text: t('projects.thesisProject'),
-          href: '',
-          target: '',
-          rel: ''
-        }
-      ]
-    },
-    {
-      category: t('projects.dataScience'),
-      items: [
-        {
-          icon: '/icons/favicon.png',
-          text: t('projects.soon'),
+          date: t('projects.thesisProjectDate'),
+          role: t('projects.thesisProjectTag'),
           href: '',
           target: '',
           rel: ''
@@ -53,6 +53,8 @@ const MobileProjectsPage: React.FC = () => {
         {
           icon: '/mobile-github-logo.png',
           text: t('projects.courierTracking'),
+          date: t('projects.courierTrackingDate'),
+          role: t('projects.courierTrackingRole'),
           href: 'https://github.com/uzeyirtalhakilic/DesktopApp-Courier-Tracking',
           target: '_blank',
           rel: 'noopener noreferrer'
@@ -60,6 +62,8 @@ const MobileProjectsPage: React.FC = () => {
         {
           icon: '/mobile-github-logo.png',
           text: t('projects.veterinaryClinic'),
+          date: t('projects.veterinaryClinicDate'),
+          role: t('projects.veterinaryClinicRole'),
           href: 'https://github.com/uzeyirtalhakilic/Vet_Tracking',
           target: '_blank',
           rel: 'noopener noreferrer'
@@ -67,6 +71,7 @@ const MobileProjectsPage: React.FC = () => {
         {
           icon: '/mobile-github-logo.png',
           text: t('projects.restaurantManagement'),
+          date: t('projects.restaurantManagementDate'),
           href: 'https://github.com/uzeyirtalhakilic/Restaurant-Management',
           target: '_blank',
           rel: 'noopener noreferrer'
@@ -126,7 +131,15 @@ const MobileProjectsPage: React.FC = () => {
                             style={{ width: 'auto', height: 'auto' }}
                           />
                         </div>
-                        <span className="project-text font-press-start">{project.text}</span>
+                        <div className="flex flex-col">
+                          <span className="project-text font-press-start">{project.text}</span>
+                          {project.date && (
+                            <span className="project-text font-press-start text-[10px] opacity-60">{project.date}</span>
+                          )}
+                          {project.role && (
+                            <span className="project-text font-press-start text-[10px] opacity-60">{project.role}</span>
+                          )}
+                        </div>
                         {project.href && (
                           <span className="project-link">🔗</span>
                         )}

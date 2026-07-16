@@ -5,6 +5,7 @@ import "../../../../styles/desktop.css";
 export interface ContentItem {
   icon: string;
   text: string;
+  displayText?: React.ReactNode;
   originalText?: string;
   onClick?: () => void;
   href?: string;
@@ -86,7 +87,7 @@ const BaseContentGrid: React.FC<BaseContentGridProps> = ({
                     <span className="content-item-icon">
                       <Image src={item.icon} alt={item.text} width={45} height={45} />
                     </span>
-                    <div className="content-item-text">{item.text}</div>
+                    <div className="content-item-text">{item.displayText ?? item.text}</div>
                   </a>
                 ) : (
                   <div 
@@ -96,7 +97,7 @@ const BaseContentGrid: React.FC<BaseContentGridProps> = ({
                     <span className="content-item-icon">
                       <Image src={item.icon} alt={item.text} width={45} height={45} />
                     </span>
-                    <div className="content-item-text">{item.text}</div>
+                    <div className="content-item-text">{item.displayText ?? item.text}</div>
                   </div>
                 )}
               </div>

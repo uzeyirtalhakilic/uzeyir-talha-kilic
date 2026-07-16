@@ -4,7 +4,15 @@
       "Bash(curl -s -o /dev/null -w \"tr:%{http_code}\\\\n\" http://localhost:3000/tr)",
       "Bash(curl -s -o /dev/null -w \"en:%{http_code}\\\\n\" http://localhost:3000/en)",
       "Bash(curl -s http://localhost:3000/tr)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(node -e ' *)",
+      "Bash(cp public/icons/_mezunIcon_preview.png public/icons/mezunIcon.png)",
+      "Bash(rm public/icons/_mezunIcon_preview.png)",
+      "Bash(curl -s -o /dev/null -w \"mobileProjectsTr:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/projects)",
+      "Bash(curl -s http://localhost:3000/tr/mobile/projects)",
+      "Bash(curl -s -o /dev/null -w \"mobileProj:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/projects)",
+      "Bash(curl -s http://localhost:3000/en/mobile/projects)",
+      "Bash(curl -s -o /dev/null -w \"mobileProjTr:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/projects)"
     ]
   }
 }

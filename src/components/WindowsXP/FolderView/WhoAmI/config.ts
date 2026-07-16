@@ -53,6 +53,11 @@ export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCa
         icon: '/github-logo.png',
         text: t('content.github'),
         href: 'https://github.com/uzeyirtalhakilic'
+      },
+      {
+        icon: '/icons/instagramIcon.png',
+        text: t('content.instagram'),
+        href: 'https://instagram.com/uzeyirtalhakilic'
       }
     ]
   },
