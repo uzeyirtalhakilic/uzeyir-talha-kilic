@@ -12,7 +12,11 @@
       "Bash(curl -s http://localhost:3000/tr/mobile/projects)",
       "Bash(curl -s -o /dev/null -w \"mobileProj:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/projects)",
       "Bash(curl -s http://localhost:3000/en/mobile/projects)",
-      "Bash(curl -s -o /dev/null -w \"mobileProjTr:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/projects)"
+      "Bash(curl -s -o /dev/null -w \"mobileProjTr:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/projects)",
+      "Bash(curl -s -o /dev/null -w \"virus-endpoint:%{http_code}\\\\n\" \"http://localhost:3000/tr/Neden-virus-isimli-dosyayi-actin-ki\")",
+      "Bash(curl -s \"http://localhost:3000/tr/Neden-virus-isimli-dosyayi-actin-ki\")",
+      "Bash(curl -s -o /dev/null -w \"en-endpoint:%{http_code}\\\\n\" \"http://localhost:3000/en/Why-did-you-open-a-file-named-virus\")",
+      "Bash(curl -s \"http://localhost:3000/en/Why-did-you-open-a-file-named-virus\")"
     ]
   }
 }

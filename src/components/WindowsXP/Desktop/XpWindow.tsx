@@ -68,8 +68,6 @@ const XpWindow: React.FC<XpWindowProps> = ({
 
   const MIN_WIDTH = 400;
   const MIN_HEIGHT = 300;
-  const MAX_WIDTH = window.innerWidth;
-  const MAX_HEIGHT = window.innerHeight - 30;
 
   // Mouse event handlers
   const handleMouseDown = (e: React.MouseEvent, type: string) => {
@@ -110,37 +108,42 @@ const XpWindow: React.FC<XpWindowProps> = ({
     } else if (isResizing && !windowState.isMaximized) {
       const deltaX = e.clientX - resizeStart.x;
       const deltaY = e.clientY - resizeStart.y;
-      
+      const TASKBAR_HEIGHT = 30;
+      // 'resize-' önekini at; aksi halde "resize" kelimesindeki 'e' ve 's'
+      // harfleri her tutamacı doğu/güney yönünde de büyütüyordu
+      const dir = resizeDirection.replace('resize-', '');
+
       let newWidth = resizeStart.width;
       let newHeight = resizeStart.height;
       let newX = resizeStart.windowX;
       let newY = resizeStart.windowY;
 
-      if (resizeDirection.includes('e')) {
-        newWidth = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, resizeStart.width + deltaX));
+      // Kenar sınırına gelindiğinde büyüme durur; pencere asla itilmez/kaydırılmaz
+      if (dir.includes('e')) {
+        const maxWidth = window.innerWidth - resizeStart.windowX;
+        newWidth = Math.max(MIN_WIDTH, Math.min(maxWidth, resizeStart.width + deltaX));
       }
-      if (resizeDirection.includes('w')) {
-        const widthChange = Math.max(-resizeStart.width + MIN_WIDTH, Math.min(deltaX, resizeStart.width - MIN_WIDTH));
-        newWidth = resizeStart.width - widthChange;
-        newX = resizeStart.windowX + widthChange;
+      if (dir.includes('w')) {
+        const rightEdge = resizeStart.windowX + resizeStart.width;
+        const candidateX = Math.max(0, Math.min(resizeStart.windowX + deltaX, rightEdge - MIN_WIDTH));
+        newX = candidateX;
+        newWidth = rightEdge - candidateX;
       }
-      if (resizeDirection.includes('s')) {
-        newHeight = Math.max(MIN_HEIGHT, Math.min(MAX_HEIGHT, resizeStart.height + deltaY));
+      if (dir.includes('s')) {
+        const maxHeight = window.innerHeight - TASKBAR_HEIGHT - resizeStart.windowY;
+        newHeight = Math.max(MIN_HEIGHT, Math.min(maxHeight, resizeStart.height + deltaY));
       }
-      if (resizeDirection.includes('n')) {
-        const heightChange = Math.max(-resizeStart.height + MIN_HEIGHT, Math.min(deltaY, resizeStart.height - MIN_HEIGHT));
-        newHeight = resizeStart.height - heightChange;
-        newY = resizeStart.windowY + heightChange;
+      if (dir.includes('n')) {
+        const bottomEdge = resizeStart.windowY + resizeStart.height;
+        const candidateY = Math.max(0, Math.min(resizeStart.windowY + deltaY, bottomEdge - MIN_HEIGHT));
+        newY = candidateY;
+        newHeight = bottomEdge - candidateY;
       }
-
-      // Ekran sınırlarını kontrol et
-      const clampedX = Math.max(0, Math.min(newX, window.innerWidth - newWidth));
-      const clampedY = Math.max(0, Math.min(newY, window.innerHeight - newHeight));
 
       // Desktop bileşenine boyut değişikliğini bildir
-      onResize(clampedX, clampedY, newWidth, newHeight);
+      onResize(newX, newY, newWidth, newHeight);
     }
-  }, [isDragging, isResizing, windowState.isMaximized, windowState.width, windowState.height, dragStart, resizeStart, resizeDirection, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT, onResize]);
+  }, [isDragging, isResizing, windowState.isMaximized, windowState.width, windowState.height, dragStart, resizeStart, resizeDirection, MIN_WIDTH, MIN_HEIGHT, onResize]);
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -165,8 +168,9 @@ const XpWindow: React.FC<XpWindowProps> = ({
   // Minimum yükseklik, Game menüsü açıldığında kırpılmaması için.
   const handleMinesweeperResize = (w: number, h: number) => {
     if (windowState.isMaximized) return;
-    const newWidth = w + 2;
-    const newHeight = h + 32;
+    // 3px çerçeve (sol+sağ = 6) ve 3+25+3 dikey krom
+    const newWidth = w + 6;
+    const newHeight = h + 31;
     if (
       Math.abs(newWidth - windowState.width) > 1 ||
       Math.abs(newHeight - windowState.height) > 1
@@ -298,13 +302,14 @@ const XpWindow: React.FC<XpWindowProps> = ({
     top: windowState.y,
     width: windowState.width,
     height: windowState.height,
-    background: "white",
+    // winXP-master referansı: 3px çerçeve, odak durumuna göre renk
+    background: isFocused ? "#0831d9" : "#6582f5",
+    padding: 3,
     fontFamily: "Tahoma, Arial, sans-serif",
     // Mayın Tarlası'nda Game menüsü pencere kenarından taşabilmeli (gerçek XP gibi)
     overflow: item.translationKey === 'games.minesweeper' ? "visible" : "hidden",
     boxShadow: "0 8px 32px 0 rgba(60, 90, 170, 0.25)",
-    border: "1px solid #b5cbe9",
-    borderRadius: windowState.isMaximized ? "0" : "8px",
+    borderRadius: windowState.isMaximized ? "0" : "8px 8px 0 0",
     zIndex: isFocused ? 20 : 19,
   };
 
@@ -318,6 +323,7 @@ const XpWindow: React.FC<XpWindowProps> = ({
 
   return (
     <div ref={windowRef} className={windowClasses} style={windowStyle}>
+      <div className="header__bg" />
       {/* Title Bar */}
       <div
         ref={titleBarRef}
@@ -326,7 +332,7 @@ const XpWindow: React.FC<XpWindowProps> = ({
       >
         <div className="title-bar-left">
           <div className="title-bar-icon">
-            <Image src={getWindowIcon()} alt={getWindowTitle()} width={16} height={16} />
+            <Image src={getWindowIcon()} alt={getWindowTitle()} width={15} height={15} />
           </div>
           <div
             className="title-bar-text"
@@ -340,17 +346,16 @@ const XpWindow: React.FC<XpWindowProps> = ({
           </div>
         </div>
         <div className="title-bar-right">
-          <button className="title-bar-button minimize" onClick={onMinimize}>
-            <span>_</span>
-          </button>
-          {item.translationKey !== 'games.minesweeper' && (
-            <button className="title-bar-button maximize" onClick={onMaximize}>
-              <span>{windowState.isMaximized ? '❐' : '□'}</span>
-            </button>
+          <button className="header__button header__button--minimize" onClick={onMinimize} />
+          {item.translationKey === 'games.minesweeper' ? (
+            <button className="header__button header__button--maximize header__button--disable" />
+          ) : (
+            <button
+              className={`header__button ${windowState.isMaximized ? 'header__button--maximized' : 'header__button--maximize'}`}
+              onClick={onMaximize}
+            />
           )}
-          <button className="title-bar-button close" onClick={onClose}>
-            <span>×</span>
-          </button>
+          <button className="header__button header__button--close" onClick={onClose} />
         </div>
       </div>
 
@@ -359,7 +364,7 @@ const XpWindow: React.FC<XpWindowProps> = ({
         className="window-content"
         style={
           item.translationKey === 'games.minesweeper'
-            ? { height: 'calc(100% - 31px)', background: '#ece9d8' }
+            ? { background: '#ece9d8' }
             : undefined
         }
       >

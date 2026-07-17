@@ -1,9 +1,11 @@
 import React, { useState, useContext, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { BaseFolderView, BaseSidebar } from '../base';
 import { recycleBinSidebarConfig, recycleBinContentConfig } from './config';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DesktopContext } from '../../Desktop/Desktop';
+import { FileSystemItem } from '../../data/filesystem';
 
 interface RecycleBinProps {
   onClose: () => void;
@@ -17,6 +19,52 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
   const desktopContext = useContext(DesktopContext);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastClickedItemRef = useRef<string | null>(null);
+  const router = useRouter();
+  const locale = useLocale();
+  const virusRunningRef = useRef(false);
+
+  // virüs.exe: tüm klasörleri/not defterlerini/CV'leri sırayla açıp 404'e yönlendirir
+  const runVirus = () => {
+    if (virusRunningRef.current || !desktopContext?.handleOpen) return;
+    virusRunningRef.current = true;
+
+    const sequence: FileSystemItem[] = [
+      { id: 'my-computer', type: 'folder', label: 'My Computer', translationKey: 'desktop.myComputer', children: [] },
+      { id: 'who-am-i', type: 'folder', label: 'Who Am I?', translationKey: 'desktop.1', children: [] },
+      { id: 'my-projects', type: 'folder', label: 'My Projects', translationKey: 'desktop.myProjects', children: [] },
+      { id: 'experience', type: 'folder', label: 'Experience', translationKey: 'desktop.experience', children: [] },
+      { id: 'control-panel', type: 'folder', label: 'Control Panel', translationKey: 'desktop.controlPanel', children: [] },
+      { id: 'about-me-txt', type: 'file', label: 'AboutMe.txt', translationKey: 'desktop.aboutme', icon: '/icons/notepad.png' },
+      { id: 'read-me-txt', type: 'file', label: 'ReadMe.txt', translationKey: 'desktop.readme', icon: '/icons/notepad.png' },
+      { id: 'gta-cheat-txt', type: 'file', label: 'GTA Cheats.txt', translationKey: 'desktop.gtaCheats', icon: '/icons/notepad.png' },
+    ];
+
+    const STEP = 450;
+    sequence.forEach((seqItem, i) => {
+      setTimeout(() => {
+        // Her pencere ekranın farklı (rastgele) bir yerinde açılır
+        const randomX = Math.round(Math.random() * Math.max(40, window.innerWidth - 1150));
+        const randomY = Math.round(Math.random() * Math.max(40, window.innerHeight - 30 - 500));
+        desktopContext.handleOpen(seqItem, { x: randomX, y: randomY });
+      }, STEP * (i + 1));
+    });
+
+    // CV (popup engelleyici izin verirse yeni sekmede, site diline uygun)
+    setTimeout(() => {
+      const cvUrl = locale === 'tr'
+        ? '/pdfs/Üzeyir Talha Kılıç TR.pdf'
+        : '/pdfs/Uzeyir Talha Kilic EN.pdf';
+      window.open(cvUrl, '_blank', 'noopener,noreferrer');
+    }, STEP * (sequence.length + 1));
+
+    // Final: "bunu neden yaptın ki" sayfası (XP tarzı 404, site diline uygun)
+    setTimeout(() => {
+      const endpoint = locale === 'tr'
+        ? 'Neden-virus-isimli-dosyayi-actin-ki'
+        : 'Why-did-you-open-a-file-named-virus';
+      router.push(`/${locale}/${endpoint}`);
+    }, STEP * (sequence.length + 2) + 800);
+  };
 
   // Function bar için özel butonlar
   const functionBarButtons = (
@@ -105,6 +153,12 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
     if (item.onClick) {
       item.onClick();
     } else if (item.text) {
+      // If virus.exe is double-clicked, run the "virus"
+      const isVirus = item.originalText === 'virus' || item.text === 'virus';
+      if (isVirus) {
+        runVirus();
+      }
+
       // If udemyCert is double-clicked, open Paint window
       const isUdemyCert = item.originalText === 'udemyCert' || item.text === 'udemyCert';
       
@@ -210,7 +264,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
     items: card.items.map(item => ({
       ...item,
       originalText: item.originalText || item.text, // originalText'i koru
-      text: item.text === 'cv37' ? t('files.cv37') :
+      text: item.text === 'virus' ? t('files.virus') :
             item.text === 'cvFinal' ? t('files.cvFinal') :
             item.text === 'cvLatest' ? t('files.cvLatest') :
             item.text === 'gtaViceCity' ? t('files.gtaViceCity') :

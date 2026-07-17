@@ -75,8 +75,9 @@ export const recycleBinContentConfig: ContentCard[] = [
     title: 'oldCVs',
     items: [
       {
-        icon: '/icons/msword.png',
-        text: 'cv37'
+        icon: '/icons/exe-program.png',
+        text: 'virus',
+        originalText: 'virus'
       },
       {
         icon: '/icons/301(32x32).png',

@@ -22,7 +22,7 @@ interface WindowState {
   height: number;
 }
 
-export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem) => void, refreshDesktop?: () => void } | undefined>(undefined);
+export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem, position?: { x: number; y: number }) => void, refreshDesktop?: () => void } | undefined>(undefined);
 
 const WinampApp = dynamic(() => import("../Winamp/WinampApp"), { ssr: false });
 
@@ -157,7 +157,7 @@ export default function Desktop() {
     document.addEventListener('mouseup', onUp);
   };
 
-  const handleOpen = (item: FileSystemItem) => {
+  const handleOpen = (item: FileSystemItem, position?: { x: number; y: number }) => {
     if (item.id === "winamp") {
       setShowWinamp(true);
       setWinampMinimized(false);
@@ -189,6 +189,11 @@ export default function Desktop() {
         // Beginner boyutu; oyun açıldığında ResizeObserver pencereyi içeriğe göre ayarlar
         width = 165;
         height = 258;
+      }
+      // İstenirse pencere belirtilen konumda açılır (ekran sınırlarına kırpılır)
+      if (position) {
+        baseX = Math.max(0, Math.min(position.x, window.innerWidth - width));
+        baseY = Math.max(0, Math.min(position.y, window.innerHeight - 40 - height));
       }
       const newWindow: WindowState = {
         id: item.id,
