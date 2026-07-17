@@ -2,6 +2,9 @@ import {NextConfig} from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
  
 const nextConfig: NextConfig = {
+  // Geliştirme sırasında yerel ağdan (başka cihazdan) erişime izin ver
+  allowedDevOrigins: ['192.168.1.145'],
+
   // SEO optimizasyonları
   poweredByHeader: false,
   compress: true,

@@ -915,6 +915,233 @@
   color: #555;
 }
 
+/* Mayın Tarlası (Minesweeper) Özel Stilleri */
+.xp-minesweeper-window {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: #ece9d8;
+  text-align: center;
+}
+
+.xp-minesweeper {
+  position: relative;
+  display: inline-block;
+  font-family: Tahoma, Arial, sans-serif;
+  user-select: none;
+  color: #000;
+  text-shadow: none;
+  text-align: left;
+}
+
+.xp-minesweeper img {
+  pointer-events: none;
+}
+
+.xp-minesweeper .mine__drop-downs {
+  position: absolute;
+  display: flex;
+  height: 20px;
+}
+
+.xp-minesweeper .mine__drop-down {
+  position: relative;
+  z-index: 1;
+}
+
+.xp-minesweeper .mine__drop-down__title {
+  padding: 0 5px;
+  height: 100%;
+  line-height: 20px;
+  font-size: 11px;
+  color: white;
+  background-color: #1660e8;
+}
+
+.xp-minesweeper .mine__drop-down__menu {
+  background-color: white;
+  position: absolute;
+  box-shadow: 2px 2px 1px rgb(100, 100, 100);
+  border: 1px solid gray;
+  padding: 2px;
+  display: grid;
+  grid-template-columns: 18px auto auto 15px;
+  line-height: 18px;
+  font-size: 11px;
+}
+
+.xp-minesweeper .mine__drop-down__row {
+  display: contents;
+}
+
+.xp-minesweeper .mine__drop-down__row:hover > * {
+  background: #e99f17;
+  filter: invert(100%);
+}
+
+.xp-minesweeper .mine__drop-down__separator {
+  grid-column: 1 / 5;
+  height: 1px;
+  background-color: gray;
+  margin: 3px 1px;
+}
+
+.xp-minesweeper .mine__drop-down__check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xp-minesweeper .mine__drop-down__hot-key {
+  padding-left: 5px;
+}
+
+.xp-minesweeper .mine__drop-down__text {
+  white-space: nowrap;
+  color: inherit;
+  text-decoration: none;
+}
+
+.xp-minesweeper .mine__top-bar {
+  position: relative;
+  display: flex;
+  height: 20px;
+  background-color: rgb(236, 233, 216);
+}
+
+.xp-minesweeper .mine__top-bar__text {
+  padding: 0 5px;
+  height: 100%;
+  line-height: 20px;
+  font-size: 11px;
+  cursor: default;
+}
+
+.xp-minesweeper .mine__top-bar__text:hover {
+  color: #fff;
+  background-color: #0b61ff;
+}
+
+.xp-minesweeper .mine__content {
+  border-left: rgb(245, 245, 245) solid 3px;
+  border-top: rgb(245, 245, 245) solid 3px;
+  background-color: rgb(192, 192, 192);
+  padding: 5px;
+}
+
+.xp-minesweeper .mine__score-bar {
+  height: 34px;
+  border-radius: 1px;
+  border-top: rgb(128, 128, 128) solid 2px;
+  border-left: rgb(128, 128, 128) solid 2px;
+  border-right: rgb(245, 245, 245) solid 2px;
+  border-bottom: rgb(245, 245, 245) solid 2px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 7px 3px 4px;
+}
+
+.xp-minesweeper .mine__digits__outer {
+  width: 40px;
+  height: 24px;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: #fff;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Tailwind preflight img'leri block yapar; rakamlar yan yana dizilmeli */
+.xp-minesweeper .mine__digits__outer img {
+  display: inline-block;
+  width: 13px;
+  height: 23px;
+}
+
+.xp-minesweeper .mine__face__outer {
+  width: 24px;
+  height: 24px;
+  border-top: 1px solid rgb(128, 128, 128);
+  border-left: 1px solid rgb(128, 128, 128);
+  border-radius: 2px;
+  transform: translateX(1px);
+}
+
+.xp-minesweeper .mine__face {
+  border-radius: 2px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(192, 192, 192);
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(245, 245, 245) rgb(128, 128, 128) rgb(128, 128, 128)
+    rgb(245, 245, 245);
+  outline: none;
+}
+
+.xp-minesweeper .mine__face img:nth-child(2) {
+  display: none;
+}
+
+.xp-minesweeper .mine__face:active:hover {
+  border-width: 1px;
+  border-color: rgb(128, 128, 128);
+}
+
+.xp-minesweeper .mine__face:active:hover img {
+  transform: translate(1px, 1px);
+}
+
+.xp-minesweeper .mine__face:active:hover img:nth-child(1) {
+  display: none;
+}
+
+.xp-minesweeper .mine__face:active:hover img:nth-child(2) {
+  display: block;
+}
+
+.xp-minesweeper .mine__content__inner {
+  display: grid;
+  border-top: rgb(128, 128, 128) solid 3px;
+  border-left: rgb(128, 128, 128) solid 3px;
+  border-right: rgb(245, 245, 245) solid 3px;
+  border-bottom: rgb(245, 245, 245) solid 3px;
+}
+
+.xp-minesweeper .mine__ceil {
+  position: relative;
+}
+
+.xp-minesweeper .mine__ceil img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.xp-minesweeper .mine__ceil-cover {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-left: rgb(245, 245, 245) solid 2px;
+  border-top: rgb(245, 245, 245) solid 2px;
+  border-right: rgb(128, 128, 128) solid 2px;
+  border-bottom: rgb(128, 128, 128) solid 2px;
+}
+
+.xp-minesweeper .mine__ceil-open {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-left: rgb(128, 128, 128) solid 1px;
+  border-top: rgb(128, 128, 128) solid 1px;
+}
+
 /* Terminal (cmd.exe) Özel Stilleri */
 .xp-terminal {
   background: #000000;

@@ -185,6 +185,10 @@ export default function Desktop() {
       } else if (item.translationKey === 'desktop.experienceTerminal') {
         width = 900;
         height = 470;
+      } else if (item.translationKey === 'games.minesweeper') {
+        // Beginner boyutu; oyun açıldığında ResizeObserver pencereyi içeriğe göre ayarlar
+        width = 165;
+        height = 258;
       }
       const newWindow: WindowState = {
         id: item.id,
@@ -413,6 +417,14 @@ export default function Desktop() {
         translationKey: 'desktop.paint',
         icon: '/icons/680(32x32).png'
       };
+    } else if (menuItem === tGames('minesweeper') || menuItem === "Minesweeper") {
+      itemToOpen = {
+        id: 'minesweeper-game',
+        type: 'file',
+        label: tGames('minesweeper'),
+        translationKey: 'games.minesweeper',
+        icon: '/icons/mine-icon.png'
+      };
     } else if (menuItem === tGames('winamp') || menuItem === t('winamp') || menuItem === "Winamp") {
       // Special handling for Winamp - it opens the Winamp component directly
       setShowWinamp(true);
@@ -480,6 +492,8 @@ export default function Desktop() {
       return t('experience');
     } else if (item.translationKey === 'desktop.experienceTerminal') {
       return item.label;
+    } else if (item.translationKey === 'games.minesweeper') {
+      return tGames('minesweeper');
     } else if (item.translationKey === 'desktop.recycleBin') {
       return t('recycleBin');
     } else if (item.translationKey === 'desktop.paint') {
@@ -508,6 +522,8 @@ export default function Desktop() {
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.experienceTerminal') {
       return "/icons/exe-program.png";
+    } else if (item.translationKey === 'games.minesweeper') {
+      return "/icons/mine-icon.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
     } else if (item.translationKey === 'desktop.paint') {

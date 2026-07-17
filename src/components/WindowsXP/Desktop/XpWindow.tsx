@@ -7,6 +7,7 @@ import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import Experience from "../FolderView/Experience/Experience";
 import Terminal from "../Terminal/Terminal";
+import Minesweeper from "../Minesweeper/Minesweeper";
 import RecycleBin from "../FolderView/RecycleBin/RecycleBin";
 import AboutMeFile from "../FolderView/WhoAmI/AboutMeFile";
 import ReadMeFile from "../FolderView/ReadMe/ReadMeFile";
@@ -52,6 +53,7 @@ const XpWindow: React.FC<XpWindowProps> = ({
 }) => {
   const t = useTranslations('folderView.addressBar');
   const tDesktop = useTranslations('desktop');
+  const tGames = useTranslations('games');
   const tWhoAmI = useTranslations('folderView.whoAmI');
   const locale = useLocale();
 
@@ -159,6 +161,20 @@ const XpWindow: React.FC<XpWindowProps> = ({
     }
   }, [isDragging, isResizing, handleMouseMove, handleMouseUp]);
 
+  // Mayın Tarlası penceresi oyun alanına göre boyutlanır (title bar 30px + 1px border).
+  // Minimum yükseklik, Game menüsü açıldığında kırpılmaması için.
+  const handleMinesweeperResize = (w: number, h: number) => {
+    if (windowState.isMaximized) return;
+    const newWidth = w + 2;
+    const newHeight = h + 32;
+    if (
+      Math.abs(newWidth - windowState.width) > 1 ||
+      Math.abs(newHeight - windowState.height) > 1
+    ) {
+      onResize(windowState.x, windowState.y, newWidth, newHeight);
+    }
+  };
+
   // Determine which component to render based on item
   const getWindowContent = () => {
     if (item.translationKey === 'desktop.myProjects') {
@@ -171,6 +187,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return <Experience onClose={onClose} />;
     } else if (item.translationKey === 'desktop.experienceTerminal') {
       return <Terminal item={item} />;
+    } else if (item.translationKey === 'games.minesweeper') {
+      return <Minesweeper onClose={onClose} onGameResize={handleMinesweeperResize} />;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return <RecycleBin onClose={onClose} />;
     } else if (item.translationKey === 'desktop.paint') {
@@ -220,6 +238,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return tDesktop('experience');
     } else if (item.translationKey === 'desktop.experienceTerminal') {
       return item.label;
+    } else if (item.translationKey === 'games.minesweeper') {
+      return tGames('minesweeper');
     } else if (item.translationKey === 'desktop.recycleBin') {
       return tDesktop('recycleBin');
     } else if (item.translationKey === 'desktop.paint') {
@@ -255,6 +275,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.experienceTerminal') {
       return "/icons/exe-program.png";
+    } else if (item.translationKey === 'games.minesweeper') {
+      return "/icons/mine-icon.png";
     } else if (item.translationKey === 'desktop.recycleBin') {
       return "/icons/recycle.png";
     } else if (item.translationKey === 'desktop.paint') {
@@ -278,7 +300,8 @@ const XpWindow: React.FC<XpWindowProps> = ({
     height: windowState.height,
     background: "white",
     fontFamily: "Tahoma, Arial, sans-serif",
-    overflow: "hidden",
+    // Mayın Tarlası'nda Game menüsü pencere kenarından taşabilmeli (gerçek XP gibi)
+    overflow: item.translationKey === 'games.minesweeper' ? "visible" : "hidden",
     boxShadow: "0 8px 32px 0 rgba(60, 90, 170, 0.25)",
     border: "1px solid #b5cbe9",
     borderRadius: windowState.isMaximized ? "0" : "8px",
@@ -305,15 +328,26 @@ const XpWindow: React.FC<XpWindowProps> = ({
           <div className="title-bar-icon">
             <Image src={getWindowIcon()} alt={getWindowTitle()} width={16} height={16} />
           </div>
-          <div className="title-bar-text">{getWindowTitle()}</div>
+          <div
+            className="title-bar-text"
+            style={
+              item.translationKey === 'games.minesweeper'
+                ? { fontSize: 10, whiteSpace: 'nowrap' }
+                : undefined
+            }
+          >
+            {getWindowTitle()}
+          </div>
         </div>
         <div className="title-bar-right">
           <button className="title-bar-button minimize" onClick={onMinimize}>
             <span>_</span>
           </button>
-          <button className="title-bar-button maximize" onClick={onMaximize}>
-            <span>{windowState.isMaximized ? '❐' : '□'}</span>
-          </button>
+          {item.translationKey !== 'games.minesweeper' && (
+            <button className="title-bar-button maximize" onClick={onMaximize}>
+              <span>{windowState.isMaximized ? '❐' : '□'}</span>
+            </button>
+          )}
           <button className="title-bar-button close" onClick={onClose}>
             <span>×</span>
           </button>
@@ -321,14 +355,21 @@ const XpWindow: React.FC<XpWindowProps> = ({
       </div>
 
       {/* Window Content */}
-      <div className="window-content">
+      <div
+        className="window-content"
+        style={
+          item.translationKey === 'games.minesweeper'
+            ? { height: 'calc(100% - 31px)', background: '#ece9d8' }
+            : undefined
+        }
+      >
         <div style={{ width: '100%', height: '100%' }}>
           {renderContent ? renderContent() : getWindowContent()}
         </div>
       </div>
 
-      {/* Resize Handles */}
-      {!windowState.isMaximized && !renderContent && (
+      {/* Resize Handles (Mayın Tarlası sabit boyutlu, tutamaç yok) */}
+      {!windowState.isMaximized && !renderContent && item.translationKey !== 'games.minesweeper' && (
         <>
           <div className="resize-handle resize-n" onMouseDown={(e) => handleMouseDown(e, 'resize-n')} />
           <div className="resize-handle resize-s" onMouseDown={(e) => handleMouseDown(e, 'resize-s')} />
