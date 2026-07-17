@@ -94,7 +94,7 @@ input, textarea, [contenteditable="true"] {
 .language-balloon {
   position: fixed;
   bottom: 25px;
-  right: 105px;
+  right: 62px;
   display: block;
   opacity: 0;
   animation: fadein 1s forwards;

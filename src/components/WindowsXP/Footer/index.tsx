@@ -103,11 +103,11 @@ const Footer: React.FC<FooterProps> = ({
 
   return (
     <>
-      <footer 
-        className="fixed bottom-0 left-0 right-0 h-[30px] flex items-center bg-gradient-to-b from-[#1f2f86] via-[#245ddb] to-[#1941a5]"
+      <footer
+        className="xp-footer"
         onMouseDown={_onMouseDown}
       >
-        <div className="flex-1 h-full flex items-center overflow-hidden">
+        <div className="footer__items left">
           <div ref={menu} className="relative z-[9999]">
             {menuOn && <FooterMenu onClick={_onClickMenuItem} />}
           </div>
@@ -151,14 +151,14 @@ const Footer: React.FC<FooterProps> = ({
           )}
         </div>
 
-        <div className="flex-shrink-0 h-full flex items-center px-2.5 ml-2.5 bg-gradient-to-b from-[#0c59b9] via-[#0d9ff1] to-[#095bc9] border-l border-[#1042af] shadow-[inset_1px_0_1px_#18bbff] relative">
-          <Image className="h-[15px] w-[15px] mr-2" src="/icons/risk.png" alt="security" width={15} height={15} />
-          <Image className="h-[15px] w-[15px] mr-2" src="/icons/sound.png" alt="sound" width={15} height={15} />
-          <Image className="h-[15px] w-[15px] mr-2" src="/icons/usb.png" alt="usb" width={15} height={15} />
+        <div className="footer__items right">
+          <Image className="footer__icon" src="/icons/690(16x16).png" alt="sound" width={15} height={15} />
+          <Image className="footer__icon" src="/icons/394(16x16).png" alt="usb" width={15} height={15} />
+          <Image className="footer__icon" src="/icons/229(16x16).png" alt="security" width={15} height={15} />
           <div className="relative w-0 h-0">
           </div>
           {time && (
-            <div className="text-white text-[11px] font-['Tahoma']">{time}</div>
+            <div className="footer__time">{time}</div>
           )}
           
           {/* Language Notification positioned relative to this container */}
@@ -186,16 +186,11 @@ const FooterWindow: React.FC<FooterWindowProps> = ({
   return (
     <div
       onMouseDown={_onMouseDown}
-      className={`footer__window flex-shrink-0 max-w-[260px] min-w-[120px] text-white rounded-sm mt-0.5 px-2 h-[28px] text-[12px] bg-[#3c81f3] shadow-[inset_-1px_0px_rgba(0,0,0,0.3),inset_1px_1px_1px_rgba(255,255,255,0.2)] relative flex items-center gap-2 menu-item
-        ${isFocus ? 'focus' : 'cover'}
-        ${isFocus ? 'hover:bg-[#3576f3]' : 'hover:bg-[#53a3ff]'}
-        ${isFocus ? 'hover:active:bg-[#1e52b7]' : 'hover:active:bg-[#1e52b7]'}
-        ${isFocus ? 'hover:active:shadow-[inset_0_0_1px_1px_rgba(0,0,0,0.3),inset_1px_0_1px_rgba(0,0,0,0.7)]' : 'hover:active:shadow-[inset_0_0_1px_1px_rgba(0,0,0,0.3),inset_1px_0_1px_rgba(0,0,0,0.7)]'}
-      `}
+      className={`footer__window menu-item ${isFocus ? 'focus' : 'cover'}`}
       title={title}
     >
-      <Image className="h-[18px] w-[18px] mr-1 flex-shrink-0" src={icon} alt={title} width={18} height={18} />
-      <span className="truncate block font-semibold" style={{maxWidth: '200px'}}>{title}</span>
+      <Image className="footer__icon" src={icon} alt={title} width={15} height={15} />
+      <div className="footer__text">{title}</div>
     </div>
   );
 };
