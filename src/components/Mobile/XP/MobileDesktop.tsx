@@ -90,8 +90,6 @@ const MobileDesktop: React.FC = () => {
 
     if (menuItem === t('myProjects') || menuItem === tFooter('myProjects') || menuItem === "My Projects") {
       itemToOpen = { id: 'my-projects-menu', type: 'folder', label: t('myProjects'), translationKey: 'desktop.myProjects', children: [] };
-    } else if (menuItem === tFooter('controlPanel') || menuItem === t('controlPanel')) {
-      itemToOpen = { id: 'control-panel-menu', type: 'folder', label: tFooter('controlPanel'), translationKey: 'desktop.controlPanel', children: [] };
     } else if (menuItem === t('myComputer') || menuItem === tFooter('myComputer')) {
       itemToOpen = { id: 'my-computer-menu', type: 'folder', label: t('myComputer'), translationKey: 'desktop.myComputer', children: [] };
     } else if (menuItem === t('recycleBin') || menuItem === tFooter('recycleBin')) {

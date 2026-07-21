@@ -254,7 +254,6 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
 
           <div className="menu__separator" />
 
-          <Item onClick={onClick} text={t('controlPanel')} icon="/icons/300(32x32).png" />
           <Item onClick={onClick} text={t('setProgramAccess')} icon="/icons/227(32x32).png" />
 
           <Item

@@ -13,7 +13,6 @@
     "myComputer": "Bilgisayarım",
     "recycleBin": "Geri Dönüşüm\nKutusu",
     "myDocuments": "Belgelerim",
-    "controlPanel": "Denetim Masası",
     "paint": "Paint",
     "winamp": "Winamp",
     "aboutme": "Hakkımda",
@@ -33,7 +32,6 @@
     "myComputer": "Bilgisayarım",
     "myProjects": "Projelerim",
     "recycleBin": "Geri Dönüşüm\nKutusu",
-    "controlPanel": "Denetim Masası",
     "setProgramAccess": "Program Erişimi ve Varsayılanları Ayarla",
     "helpAndSupport": "Yardım ve Destek",
     "search": "Ara",
@@ -141,7 +139,6 @@
       "otherPlaces": "Diğer Yerler",
       "myComputer": "Bilgisayarım",
       "sharedDocuments": "Paylaşılan Belgeler",
-      "controlPanel": "Denetim Masası",
       "search": "Ara",
       "content": {
         "applications": "Uygulamalar",
@@ -201,15 +198,13 @@
       "myNetworkPlaces": "Ağ Komşularım",
       "myDocuments": "Belgelerim",
       "sharedDocuments": "Paylaşılan Belgeler",
-      "controlPanel": "Denetim Masası",
       "GitHub": "GitHub",
       "uzeyirtalhakilic": "uzeyirtalhakilic",
       "restoreAllItems": "Tümünü Geri Yükle",
       "emptyRecycleBin": "Geri Dönüşüm Kutusunu Boşalt",
       "viewProperties": "Özellikleri Görüntüle",
       "My Computer": "Bilgisayarım",
-      "My Projects": "Projelerim",
-      "Control Panel": "Denetim Masası"
+      "My Projects": "Projelerim"
     },
     "contentGrid": {
       "cv": "CV",
@@ -237,7 +232,6 @@
       "myComputer": "Bilgisayarım",
       "myDocuments": "Belgelerim",
       "myProjects": "Projelerim",
-      "controlPanel": "Denetim Masası",
       "content": {
         "personalInfo": "Kişisel Bilgiler",
         "aboutMe": "Hakkımda",
@@ -493,7 +487,6 @@
     "myComputer": "Bilgisayarım",
     "myProjects": "Projelerim",
     "whoAmI": "Ben Kimim?",
-    "controlPanel": "Denetim Masası",
     "terminal": {
       "prompt": "C:\\Kullanicilar\\UzeyirTalha\\Deneyim>",
       "errorTitle": "Bu program bir sorunla karşılaştı ve kapatılması gerekiyor.",

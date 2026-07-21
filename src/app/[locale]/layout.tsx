@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     'veteriner klinik yönetim sistemi', 'restoran yönetim sistemi', 'toptancı mobil uygulaması', 'courier tracking', 'sentiment analysis', 'machine learning', 'data science',
     'portfolio', 'kişisel web sitesi', 'klasik masaüstü', 'klasik windows', 'klasik ikonlar', 'klasik sesler', 'responsive', 'multilingual', 'next.js 14', 'tailwind css', 'react', 'typescript',
     'web developer', 'yazılım geliştirici', 'full stack', 'frontend', 'backend', 'personal website', 'classic desktop', 'classic icons', 'classic sounds', 'responsive design', 'multilingual',
-    'portfolio', 'projects', 'blog', 'contact', 'iletişim', 'hakkımda', 'about me', 'readme', 'recycle bin', 'control panel', 'my computer', 'my projects', 'who am i', 'hobbies',
+    'portfolio', 'projects', 'blog', 'contact', 'iletişim', 'hakkımda', 'about me', 'readme', 'recycle bin', 'my computer', 'my projects', 'who am i', 'hobbies',
     'notepad', 'solitaire', 'spider', 'freecell', 'pinball', 'minesweeper', 'explorer', 'internet explorer', 'excel', 'powerpoint', 'word', 'mail', 'outlook', 'usb', 'network',
     'printer', 'sound', 'narrator', 'risk', 'security', 'history', 'restart', 'restore', 'start', 'stop', 'up', 'view info', 'windows', 'xp', 'msn'
   ],

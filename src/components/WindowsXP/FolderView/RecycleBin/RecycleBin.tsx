@@ -33,7 +33,6 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
       { id: 'who-am-i', type: 'folder', label: 'Who Am I?', translationKey: 'desktop.1', children: [] },
       { id: 'my-projects', type: 'folder', label: 'My Projects', translationKey: 'desktop.myProjects', children: [] },
       { id: 'experience', type: 'folder', label: 'Experience', translationKey: 'desktop.experience', children: [] },
-      { id: 'control-panel', type: 'folder', label: 'Control Panel', translationKey: 'desktop.controlPanel', children: [] },
       { id: 'about-me-txt', type: 'file', label: 'AboutMe.txt', translationKey: 'desktop.aboutme', icon: '/icons/notepad.png' },
       { id: 'read-me-txt', type: 'file', label: 'ReadMe.txt', translationKey: 'desktop.readme', icon: '/icons/notepad.png' },
       { id: 'gta-cheat-txt', type: 'file', label: 'GTA Cheats.txt', translationKey: 'desktop.gtaCheats', icon: '/icons/notepad.png' },
@@ -59,10 +58,7 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
 
     // Final: "bunu neden yaptın ki" sayfası (XP tarzı 404, site diline uygun)
     setTimeout(() => {
-      const endpoint = locale === 'tr'
-        ? 'Neden-virus-isimli-dosyayi-actin-ki'
-        : 'Why-did-you-open-a-file-named-virus';
-      router.push(`/${locale}/${endpoint}`);
+      router.push(`/${locale}/virusvirusvirusvirus`);
     }, STEP * (sequence.length + 2) + 800);
   };
 

@@ -6,7 +6,6 @@ import { useTranslations, useLocale } from "next-intl";
 import { FileSystemItem } from "../../WindowsXP/data/filesystem";
 import MyComputer from "../../WindowsXP/FolderView/MyComputer/MyComputer";
 import MyProjects from "../../WindowsXP/FolderView/MyProjects/MyProjects";
-import ControlPanel from "../../WindowsXP/FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../../WindowsXP/FolderView/WhoAmI/WhoAmI";
 import Experience from "../../WindowsXP/FolderView/Experience/Experience";
 import Terminal from "../../WindowsXP/Terminal/Terminal";
@@ -34,8 +33,6 @@ const MobileWindow: React.FC<MobileWindowProps> = ({ item, onClose }) => {
   const getContent = () => {
     if (item.translationKey === 'desktop.myProjects') {
       return <MyProjects onClose={onClose} />;
-    } else if (item.translationKey === 'desktop.controlPanel') {
-      return <ControlPanel onClose={onClose} />;
     } else if (item.translationKey === 'desktop.1') {
       return <WhoAmI onClose={onClose} />;
     } else if (item.translationKey === 'desktop.experience') {
@@ -104,7 +101,6 @@ export function getMobileWindowTitle(
   tWhoAmI: (key: string) => string
 ): string {
   if (item.translationKey === 'desktop.myProjects') return tDesktop('myProjects');
-  if (item.translationKey === 'desktop.controlPanel') return tDesktop('controlPanel');
   if (item.translationKey === 'desktop.1') return tDesktop('whoAmI');
   if (item.translationKey === 'desktop.experience') return tDesktop('experience');
   if (item.translationKey === 'desktop.experienceTerminal') return item.label;
@@ -122,7 +118,6 @@ export function getMobileWindowTitle(
 
 export function getMobileWindowIcon(item: FileSystemItem): string {
   if (item.translationKey === 'desktop.myProjects') return "/icons/folderdocument.png";
-  if (item.translationKey === 'desktop.controlPanel') return "/icons/control-panel.png";
   if (item.translationKey === 'desktop.1') return "/icons/folderdocument.png";
   if (item.translationKey === 'desktop.experience') return "/icons/folderdocument.png";
   if (item.translationKey === 'desktop.experienceTerminal') return "/icons/exe-program.png";

@@ -29,10 +29,6 @@ export const recycleBinSidebarConfig: SidebarCard[] = [
       {
         icon: '/icons/folderdocument.png',
         text: 'My Projects'
-      },
-      {
-        icon: '/icons/networksecurity.png',
-        text: 'Control Panel'
       }
     ]
   }

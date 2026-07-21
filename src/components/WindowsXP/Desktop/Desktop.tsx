@@ -370,14 +370,6 @@ export default function Desktop() {
         translationKey: 'desktop.myProjects',
         children: []
       };
-    } else if (menuItem === tFooter('controlPanel') || menuItem === t('controlPanel')) {
-      itemToOpen = {
-        id: 'control-panel-menu',
-        type: 'folder',
-        label: tFooter('controlPanel'),
-        translationKey: 'desktop.controlPanel',
-        children: []
-      };
     } else if (
       menuItem === t('myComputer') || menuItem === tFooter('myComputer') || menuItem === tDesktop('myComputer')
     ) {
@@ -505,8 +497,6 @@ export default function Desktop() {
   function getWindowTitle(item: FileSystemItem): string {
     if (item.translationKey === 'desktop.myProjects') {
       return t('myProjects');
-    } else if (item.translationKey === 'desktop.controlPanel') {
-      return t('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
       return t('whoAmI');
     } else if (item.translationKey === 'desktop.experience') {
@@ -535,8 +525,6 @@ export default function Desktop() {
   function getWindowIcon(item: FileSystemItem): string {
     if (item.translationKey === 'desktop.myProjects') {
       return "/icons/folderdocument.png";
-    } else if (item.translationKey === 'desktop.controlPanel') {
-      return "/icons/control-panel.png";
     } else if (item.translationKey === 'desktop.1') {
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.experience') {

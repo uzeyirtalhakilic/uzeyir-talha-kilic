@@ -12,7 +12,6 @@
     "hobbies": "Hobbies",
     "myComputer": "My Computer",
     "recycleBin": "Recycle Bin",
-    "controlPanel": "Control Panel",
     "paint": "Paint",
     "winamp": "Winamp",
     "aboutme": "About Me",
@@ -32,7 +31,6 @@
     "myComputer": "My Computer",
     "myProjects": "My Projects",
     "recycleBin": "Recycle Bin",
-    "controlPanel": "Control Panel",
     "setProgramAccess": "Set Program Access and Defaults",
     "helpAndSupport": "Help and Support",
     "search": "Search",
@@ -140,7 +138,6 @@
       "otherPlaces": "Other Places",
       "myComputer": "My Computer",
       "sharedDocuments": "Shared Documents",
-      "controlPanel": "Control Panel",
       "search": "Search",
       "content": {
         "applications": "Applications",
@@ -200,15 +197,13 @@
       "myNetworkPlaces": "My Network Places",
       "myDocuments": "My Documents",
       "sharedDocuments": "Shared Documents",
-      "controlPanel": "Control Panel",
       "GitHub": "GitHub",
       "uzeyirtalhakilic": "uzeyirtalhakilic",
       "restoreAllItems": "Restore All Items",
       "emptyRecycleBin": "Empty Recycle Bin",
       "viewProperties": "View Properties",
       "My Computer": "My Computer",
-      "My Projects": "My Projects",
-      "Control Panel": "Control Panel"
+      "My Projects": "My Projects"
     },
     "contentGrid": {
       "cv": "CV",
@@ -236,7 +231,6 @@
       "myComputer": "My Computer",
       "myDocuments": "My Documents",
       "myProjects": "My Projects",
-      "controlPanel": "Control Panel",
       "content": {
         "personalInfo": "Personal Information",
         "aboutMe": "About Me",
@@ -493,7 +487,6 @@
     "myComputer": "My Computer",
     "myProjects": "My Projects",
     "whoAmI": "Who Am I?",
-    "controlPanel": "Control Panel",
     "terminal": {
       "prompt": "C:\\Users\\UzeyirTalha\\Experience>",
       "errorTitle": "This program has encountered a problem and needs to close.",

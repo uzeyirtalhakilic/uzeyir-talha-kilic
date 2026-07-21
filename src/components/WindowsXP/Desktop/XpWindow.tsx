@@ -3,7 +3,6 @@ import { FileSystemItem } from "../WindowsXP/../data/filesystem";
 import Image from 'next/image';
 import MyComputer from "../FolderView/MyComputer/MyComputer";
 import MyProjects from "../FolderView/MyProjects/MyProjects";
-import ControlPanel from "../FolderView/ControlPanel/ControlPanel";
 import WhoAmI from "../FolderView/WhoAmI/WhoAmI";
 import Experience from "../FolderView/Experience/Experience";
 import Terminal from "../Terminal/Terminal";
@@ -183,8 +182,6 @@ const XpWindow: React.FC<XpWindowProps> = ({
   const getWindowContent = () => {
     if (item.translationKey === 'desktop.myProjects') {
       return <MyProjects onClose={onClose} />;
-    } else if (item.translationKey === 'desktop.controlPanel') {
-      return <ControlPanel onClose={onClose} />;
     } else if (item.translationKey === 'desktop.1') {
       return <WhoAmI onClose={onClose} />;
     } else if (item.translationKey === 'desktop.experience') {
@@ -234,8 +231,6 @@ const XpWindow: React.FC<XpWindowProps> = ({
   const getWindowTitle = () => {
     if (item.translationKey === 'desktop.myProjects') {
       return tDesktop('myProjects');
-    } else if (item.translationKey === 'desktop.controlPanel') {
-      return tDesktop('controlPanel');
     } else if (item.translationKey === 'desktop.1') {
       return tDesktop('whoAmI');
     } else if (item.translationKey === 'desktop.experience') {
@@ -271,8 +266,6 @@ const XpWindow: React.FC<XpWindowProps> = ({
   const getWindowIcon = () => {
     if (item.translationKey === 'desktop.myProjects') {
       return "/icons/folderdocument.png";
-    } else if (item.translationKey === 'desktop.controlPanel') {
-      return "/icons/control-panel.png";
     } else if (item.translationKey === 'desktop.1') {
       return "/icons/folderdocument.png";
     } else if (item.translationKey === 'desktop.experience') {

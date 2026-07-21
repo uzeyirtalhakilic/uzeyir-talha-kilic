@@ -96,10 +96,6 @@ export const createMyProjectsSidebarConfig = (t: (key: string) => string): Sideb
       {
         icon: '/icons/foldericon.png',
         text: t('sharedDocuments')
-      },
-      {
-        icon: '/icons/networksecurity.png',
-        text: t('controlPanel')
       }
     ]
   }

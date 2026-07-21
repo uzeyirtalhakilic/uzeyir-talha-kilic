@@ -33,10 +33,6 @@ export const myComputerSidebarConfig: SidebarCard[] = [
       {
         icon: '/icons/foldericon.png',
         text: 'sharedDocuments'
-      },
-      {
-        icon: '/icons/networksecurity.png',
-        text: 'controlPanel'
       }
     ]
   },

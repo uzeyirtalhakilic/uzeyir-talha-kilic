@@ -18,7 +18,7 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
 }) => {
   const t = useTranslations('folderView.myProjects');
   return (
-    <div className="mycomputer-container" style={{ height: 'calc(100vh - 30px)', overflow: 'auto' }}>
+    <div className="mycomputer-container" style={{ overflow: 'auto' }}>
       {/* Toolbar Section */}
       <Toolbar />
 

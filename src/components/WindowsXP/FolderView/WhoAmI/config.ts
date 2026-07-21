@@ -29,10 +29,6 @@ export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCa
       {
         icon: '/icons/folderdocument.png',
         text: t('myProjects')
-      },
-      {
-        icon: '/icons/networksecurity.png',
-        text: t('controlPanel')
       }
     ]
   },

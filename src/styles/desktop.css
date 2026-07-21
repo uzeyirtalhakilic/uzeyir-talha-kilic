@@ -879,17 +879,16 @@
   border-right: 1px solid rgba(0, 0, 0, 0.4);
   border-top: none;
   border-bottom: none;
-  background: linear-gradient(to bottom, #748aff, #4057d3);
+  /* Eskiden mavi gradyandı (kenar çubuğunun şeffaf arkasında görünsün diye), ama
+     içerik kısa kaldığında (kenar çubuğu ya da içerik sütunu fark etmeden) koca
+     bir mavi dikdörtgen olarak kalıyordu. Pencerenin genel krem/bej zeminiyle
+     aynı nötr tona çekince içerik kısa da olsa göze batan bir renk sızmıyor. */
+  background: linear-gradient(to right, #edede5, #ede8cd);
   overflow: auto;
   font-size: 12px;
   position: relative;
   min-height: 0;
   height: 100%;
-}
-
-/* When sidebar is present, apply the gradient background */
-.content-section:has(.sidebar) {
-  background: linear-gradient(to bottom, #748aff, #4057d3);
 }
 
 .content-container {
@@ -910,6 +909,12 @@
   flex: 1;
   min-width: 0;
   height: 100%;
+  /* .content-section'ın mavi gradyanı aslında kenar çubuğunun (şeffaf background)
+     arkasında görünmesi için orada bilerek duruyor; ama içerik sütununda
+     content-main'in kendi yüksekliği (iç içe flex/overflow katmanları yüzünden)
+     her zaman tam boyu kaplamayabiliyordu. İçerik sütununu burada, daha güvenilir
+     şekilde tam yükseklikte beyaza boyayınca mavi hiç sızmıyor. */
+  background: white;
 }
 
 /* Left Sidebar - MyComputer specific */
@@ -1015,9 +1020,12 @@
   flex-wrap: wrap;
   align-items: flex-start;
   padding: 10px;
-  height: 100%;
+  /* height:100% yerine min-height: pencere büyütülüp içerik kısa kaldığında beyaz
+     zemin en az görünür alanı doldursun; içerik daha uzunsa da onunla birlikte
+     büyüsün - yoksa beyazın bittiği yerden sonra .content-section'ın mavi
+     gradyanı çıplak görünüyordu. */
+  min-height: 100%;
   width: 100%;
-  min-height: 0;
   background: white;
 }
 

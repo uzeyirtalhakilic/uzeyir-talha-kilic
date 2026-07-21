@@ -23,7 +23,9 @@
       "Bash(curl -s -o /dev/null -w \"mobile-about:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/about)",
       "Bash(curl -s http://localhost:3000/tr/mobile)",
       "Bash(curl -s http://localhost:3000/en/mobile)",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_1dqk-td._.css\" -o /c/Users/uzeyi/AppData/Local/Temp/claude/bundle2.css)",
+      "Read(//c/Users/uzeyi/AppData/Local/Temp/claude/**)"
     ]
   }
 }
