@@ -14,66 +14,6 @@ This is a personal website that mimics the classic Windows XP operating system i
 - **Responsive Design** - Works on both desktop and mobile devices
 - **Classic Windows XP Styling** - Authentic visual design with classic icons and sounds
 
-## 🚀 Getting Started / Başlangıç
-
-### Prerequisites / Gereksinimler
-
-- Node.js 18+
-- npm, yarn, pnpm, or bun
-
-### Installation / Kurulum
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/my-website.git
-cd my-website
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
-```
-
-3. Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 🏗️ Project Structure / Proje Yapısı
-
-```
-src/
-├── app/                    # Next.js app directory
-│   ├── [locale]/          # Internationalization routes
-│   └── globals.css        # Global styles
-├── components/            # React components
-│   ├── Desktop/          # Desktop interface components
-│   ├── FolderView/       # File explorer components
-│   ├── Footer/           # Footer components
-│   ├── Mobile/           # Mobile-specific components
-│   ├── Paint/            # Paint application
-│   └── Winamp/           # Winamp player
-├── data/                 # Data files and configurations
-├── i18n/                 # Internationalization setup
-└── styles/               # Additional CSS files
-```
 
 ## 🎨 Technologies Used / Kullanılan Teknolojiler
 
@@ -119,10 +59,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📞 Contact / İletişim
 
 - **Name / İsim:** Üzeyir Talha Kılıç
-- **Email / E-posta:** [Your Email]
-- **LinkedIn:** [Your LinkedIn]
-- **GitHub:** [Your GitHub]
-
+- **Email / E-posta:** [kilicuzeyirtalha@gmail.com]
+- **LinkedIn:** [https://www.linkedin.com/in/uzeyirtalhakilic/]
 ---
 
 _Built with nostalgia and modern web technologies_ 🖥️✨
