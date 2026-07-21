@@ -335,6 +335,7 @@ function MineSweeperView({
             ceils={ceils}
             onMouseDown={onMouseDownCeils}
             onMouseEnter={onMouseOverCeils}
+            onLongPress={changeCeilState}
           />
         </div>
       </section>
@@ -360,9 +361,56 @@ interface CeilsProps {
   ceils: Ceil[];
   onMouseDown: (e: React.MouseEvent, index: number) => void;
   onMouseEnter: (index: number) => void;
+  onLongPress: (index: number) => void;
 }
 
-function Ceils({ ceils, onMouseDown, onMouseEnter }: CeilsProps) {
+const LONG_PRESS_MS = 450;
+const LONG_PRESS_MOVE_TOLERANCE = 10;
+
+function Ceils({ ceils, onMouseDown, onMouseEnter, onLongPress }: CeilsProps) {
+  const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const longPressFiredRef = useRef(false);
+  const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
+
+  function clearLongPressTimer() {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  }
+
+  // Dokunmatik ekranda sağ tık olmadığı için: hücreye basılı tutunca bayrak ekle/kaldır
+  function handleTouchStart(e: React.TouchEvent, index: number) {
+    const touch = e.touches[0];
+    touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
+    longPressFiredRef.current = false;
+    clearLongPressTimer();
+    longPressTimerRef.current = setTimeout(() => {
+      longPressFiredRef.current = true;
+      onLongPress(index);
+    }, LONG_PRESS_MS);
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    const start = touchStartPosRef.current;
+    if (!start) return;
+    const touch = e.touches[0];
+    const dx = Math.abs(touch.clientX - start.x);
+    const dy = Math.abs(touch.clientY - start.y);
+    if (dx > LONG_PRESS_MOVE_TOLERANCE || dy > LONG_PRESS_MOVE_TOLERANCE) {
+      clearLongPressTimer();
+    }
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    clearLongPressTimer();
+    if (longPressFiredRef.current) {
+      // Bayrak basılı tutarak zaten eklendi; aynı dokunuşun hücreyi açmasını engelle
+      e.preventDefault();
+      longPressFiredRef.current = false;
+    }
+  }
+
   function renderContent(ceil: Ceil) {
     const { state, minesAround, opening } = ceil;
     switch (state) {
@@ -394,6 +442,10 @@ function Ceils({ ceils, onMouseDown, onMouseEnter }: CeilsProps) {
           key={index}
           onMouseEnter={() => onMouseEnter(index)}
           onMouseDown={e => onMouseDown(e, index)}
+          onTouchStart={e => handleTouchStart(e, index)}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={clearLongPressTimer}
           className="mine__ceil"
         >
           {renderContent(ceil)}

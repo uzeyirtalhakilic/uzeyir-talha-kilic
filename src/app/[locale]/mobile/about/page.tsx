@@ -1,13 +1,13 @@
 "use client";
 import { useEffect } from 'react';
-import MobileAbout from '@/components/Mobile/about/page';
+import { useParams, useRouter } from 'next/navigation';
 
+// İçerik artık mini XP masaüstündeki "Ben Kimim?" penceresinde; bu sayfa oraya yönlendirir.
 export default function MobileAboutPage() {
+  const router = useRouter();
+  const params = useParams();
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth > 768) {
-      const locale = window.location.pathname.split('/')[1];
-      window.location.replace(`/${locale}`);
-    }
-  }, []);
-  return <MobileAbout />;
-} 
+    router.replace(`/${params.locale}/mobile`);
+  }, [router, params.locale]);
+  return null;
+}

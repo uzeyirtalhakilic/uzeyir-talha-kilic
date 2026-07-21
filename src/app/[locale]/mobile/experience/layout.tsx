@@ -1,9 +1,11 @@
+// Bu sayfa artık /mobile'daki mini XP masaüstüne yönlendiriyor, kendi içeriği yok
+// bu yüzden canonical de gerçek içeriğin bulunduğu /mobile'ı gösteriyor.
 export const metadata = {
   alternates: {
-    canonical: 'https://uzeyirtalhakilic.dev/tr/mobile/experience',
+    canonical: 'https://uzeyirtalhakilic.dev/tr/mobile',
     languages: {
-      tr: 'https://uzeyirtalhakilic.dev/tr/mobile/experience',
-      en: 'https://uzeyirtalhakilic.dev/en/mobile/experience',
+      tr: 'https://uzeyirtalhakilic.dev/tr/mobile',
+      en: 'https://uzeyirtalhakilic.dev/en/mobile',
     },
   },
 };

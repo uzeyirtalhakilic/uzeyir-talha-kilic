@@ -899,6 +899,19 @@
   min-height: 0;
 }
 
+.folder-view-sidebar-col {
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
+  height: 100%;
+}
+
+.folder-view-content-col {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
 /* Left Sidebar - MyComputer specific */
 .mycomputer-container .sidebar {
   width: 180px;
@@ -1126,6 +1139,426 @@
   font-size: 12px;
   font-weight: 500;
   color: #555;
+}
+
+/* Başlat Menüsü (winXP-master referansına göre) */
+.xp-startmenu {
+  font-size: 11px;
+  line-height: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #4282d6;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.xp-startmenu .menu__header {
+  position: relative;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  height: 54px;
+  padding: 6px 5px 5px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: linear-gradient(
+    to bottom,
+    #1868ce 0%,
+    #0e60cb 12%,
+    #0e60cb 20%,
+    #1164cf 32%,
+    #1667cf 33%,
+    #1b6cd3 47%,
+    #1e70d9 54%,
+    #2476dc 60%,
+    #297ae0 65%,
+    #3482e3 77%,
+    #3786e5 79%,
+    #428ee9 90%,
+    #4791eb 100%
+  );
+  overflow: hidden;
+}
+
+.xp-startmenu .menu__header::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    rgba(255, 255, 255, 0.3) 1%,
+    rgba(255, 255, 255, 0.5) 2%,
+    rgba(255, 255, 255, 0.5) 95%,
+    rgba(255, 255, 255, 0.3) 98%,
+    rgba(255, 255, 255, 0.2) 99%,
+    transparent 100%
+  );
+  box-shadow: inset 0 -1px 1px #0e60cb;
+}
+
+.xp-startmenu .header__img {
+  width: 42px;
+  height: 42px;
+  margin-right: 5px;
+  border-radius: 3px;
+  border: 2px solid rgba(222, 222, 222, 0.8);
+}
+
+.xp-startmenu .header__text {
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.xp-startmenu .menu {
+  display: flex;
+  margin: 0 2px;
+  position: relative;
+  border-top: 1px solid #385de7;
+  box-shadow: 0 1px #385de7;
+}
+
+.xp-startmenu .orange-hr {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: block;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    #da884a 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  border: 0;
+  z-index: 1;
+}
+
+.xp-startmenu .menu__left {
+  background-color: #fff;
+  padding: 6px 5px 0;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+}
+
+.xp-startmenu .menu__right {
+  background-color: #cbe3ff;
+  border-left: solid #3a3aff5e 1px;
+  padding: 6px 5px 5px;
+  width: 190px;
+  color: #00136b;
+}
+
+.xp-startmenu .menu__separator {
+  height: 7.5px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.xp-startmenu .menu__right .menu__separator {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    #87b3e2b5 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background-clip: content-box;
+}
+
+.xp-startmenu .menu__item {
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.xp-startmenu .menu__left .menu__item {
+  height: 34px;
+}
+
+.xp-startmenu .menu__right .menu__item {
+  height: 26px;
+  margin-bottom: 4px;
+  line-height: 13px;
+}
+
+.xp-startmenu .menu__item:hover {
+  color: white;
+  background-color: #2f71cd;
+}
+
+.xp-startmenu .menu__item:hover .menu__item__subtext {
+  color: white;
+}
+
+.xp-startmenu .menu__item__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.xp-startmenu .menu__right .menu__item__img {
+  margin-right: 3px;
+  width: 22px;
+  height: 22px;
+}
+
+.xp-startmenu .menu__left .menu__item__img {
+  margin-right: 3px;
+  width: 30px;
+  height: 30px;
+}
+
+.xp-startmenu .menu__right .menu__item:nth-child(-n + 5) .menu__item__text,
+.xp-startmenu .menu__left .menu__item:last-child .menu__item__text {
+  font-weight: 700;
+}
+
+.xp-startmenu .menu__item__subtext {
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 12px;
+  margin-bottom: 1px;
+}
+
+.xp-startmenu .menu__left .menu__item:last-child {
+  height: 24px;
+}
+
+.xp-startmenu .menu__footer {
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  height: 36px;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #4282d6 0%,
+    #3b85e0 3%,
+    #418ae3 5%,
+    #418ae3 17%,
+    #3c87e2 21%,
+    #3786e4 26%,
+    #3482e3 29%,
+    #2e7ee1 39%,
+    #2374df 49%,
+    #2072db 57%,
+    #196edb 62%,
+    #176bd8 72%,
+    #1468d5 75%,
+    #1165d2 83%,
+    #0f61cb 88%
+  );
+}
+
+.xp-startmenu .footer__item {
+  padding: 3px;
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+}
+
+.xp-startmenu .footer__item:hover {
+  background-color: rgba(60, 80, 210, 0.5);
+}
+
+.xp-startmenu .footer__item:hover:active > * {
+  transform: translate(1px, 1px);
+}
+
+.xp-startmenu .footer__item__img {
+  border-radius: 3px;
+  margin-right: 2px;
+  width: 22px;
+  height: 22px;
+}
+
+/* Kapatma modalı açıkken masaüstü yavaşça kararıp siyah-beyaza döner */
+@keyframes xp-power-off {
+  0% {
+    filter: brightness(1) grayscale(0);
+  }
+  30% {
+    filter: brightness(1) grayscale(0);
+  }
+  100% {
+    filter: brightness(0.6) grayscale(1);
+  }
+}
+
+.desktop-root.powering-off,
+.mobile-xp-root.powering-off {
+  animation: xp-power-off 5s forwards;
+}
+
+/* Kapatma Modalı (winXP-master referansına göre) */
+.xp-shutdown {
+  font-family: Tahoma, 'Noto Sans', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 2147483647;
+}
+
+.xp-shutdown .modal {
+  margin-top: 30vh;
+  width: 300px;
+  height: 190px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-shutdown .header {
+  height: 42px;
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  background: #092178;
+}
+
+.xp-shutdown .header__text {
+  font-size: 17px;
+  color: #fff;
+  flex: 1;
+}
+
+.xp-shutdown .header__img {
+  width: auto;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.xp-shutdown .content {
+  flex: 1;
+  background: linear-gradient(
+    to right,
+    #3349e0 0%,
+    #617ee6 47%,
+    #617ee6 53%,
+    #3349e0 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 30px;
+  position: relative;
+}
+
+.xp-shutdown .content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0.3) 60%,
+    transparent 100%
+  );
+}
+
+.xp-shutdown .button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.xp-shutdown .button-container.disable {
+  color: gray;
+}
+
+.xp-shutdown .button-container.disable .button-img {
+  opacity: 0.3;
+}
+
+.xp-shutdown .button-container.disable .button-img:hover,
+.xp-shutdown .button-container.disable .button-img:hover:active {
+  filter: none;
+}
+
+.xp-shutdown .button-img {
+  height: 30px;
+  width: 30px;
+  cursor: url('/cursors/default_link.cur'), pointer;
+}
+
+.xp-shutdown .button-img:hover {
+  filter: brightness(1.1);
+}
+
+.xp-shutdown .button-img:hover:active {
+  filter: brightness(0.7);
+}
+
+.xp-shutdown .button-text {
+  padding-top: 3px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.xp-shutdown .footer {
+  height: 42px;
+  background: #092178;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.xp-shutdown .footer__button {
+  font-size: 11px;
+  color: #000;
+  padding: 0 8px;
+  line-height: 10px;
+  background: rgb(240, 240, 240);
+  margin-right: 10px;
+  height: 16px;
+  border-radius: 1px;
+  box-shadow: 2px 2px 4px 1px #0005b0, 2px 2px 2px 0px white,
+    inset 0 0 0 1px skyblue, inset 2px -2px skyblue;
+  border: none;
+  outline: none;
+}
+
+.xp-shutdown .footer__button:hover {
+  box-shadow: 1px 1px black, 1px 1px 2px 0px white, inset 0 0 0 1px orange,
+    inset 2px -2px orange;
+}
+
+.xp-shutdown .footer__button:hover:active {
+  box-shadow: none;
+  background: rgb(220, 220, 220);
 }
 
 /* Görev Çubuğu (winXP-master referansına göre) */
@@ -1471,6 +1904,19 @@
 
 .xp-minesweeper .mine__ceil {
   position: relative;
+  /* Dokunmatikte iOS'un resim kaydetme/büyüteç menüsü basılı tutmayla çakışmasın */
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+.xp-minesweeper-hint {
+  margin: 0;
+  padding: 0 16px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  max-width: 280px;
 }
 
 .xp-minesweeper .mine__ceil img {

@@ -93,7 +93,8 @@
     "winamp": "Winamp",
     "paint": "Paint",
     "windowsMediaPlayer": "Windows Media Player",
-    "windowsMessenger": "Windows Messenger"
+    "windowsMessenger": "Windows Messenger",
+    "minesweeperFlagHint": "Tip: press and hold a cell to place a flag"
   },
   "documents": {
     "document1": "Document1",
@@ -434,6 +435,15 @@
   },
   "loading": {
     "loading": "Loading..."
+  },
+  "shutdown": {
+    "title": "Log Off Windows",
+    "standBy": "Stand By",
+    "turnOff": "Turn Off",
+    "restart": "Restart",
+    "switchUser": "Switch User",
+    "logOff": "Log Off",
+    "cancel": "Cancel"
   },
   "mobile": {
     "aboutme": "Hello, I'm Üzeyir,\n\nI'm a Computer Engineering graduate from Ege University. \nI have experience in technologies such as React, Flutter, MongoDB, MySQL, Node.js, etc.\nI wrote my graduation thesis on multimodal deep learning-based automated Turkish radiology report generation from chest X-rays.\nI'm currently working as an Intern Application Engineer at IBTECH (a QNB Bank subsidiary), developing enterprise applications with C# and Java for the bank's accounting ecosystems.\nI'm not only developing my technical skills but also strengthening my communication abilities, leadership qualities, and teamwork compatibility through the events I actively participate in.\n\nThroughout my university life, I took an active role in clubs like EKAMİT, IEEE, and BEST. \nWith these clubs, I developed my organizational skills, learned how to work effectively with people from different fields, and contributed to many technical/social events.\n\nI value personal development and being versatile. \nMy hobbies include swimming, running, basketball, listening to music/podcasts, watching movies and TV series.\nI currently have many hobbies, but the new things I want to try and learn are much more than what I have.\n\nMy career goal is to take part in big and impactful projects, have my contributions be visible, and have my name remembered with significant achievements.\n\nMy motto: 'Growth is where comfort ends; balance is hidden in every step.'\n                                                                                                   -ChatGPT\n(I asked it to generate a motto related to 'Golden Mean Theory' and 'stepping out of comfort zone'.)\n\nFor details, you can review my 'CV', check the 'Experience' section, or contact me from the 'Contact' section in the menu..",

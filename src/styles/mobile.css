@@ -1,4 +1,121 @@
-/* Mobil için özel stiller buraya eklenecek */ 
+/* Mobil için özel stiller buraya eklenecek */
+
+/* ---- Mini XP Masaüstü (mobil) ---- */
+.mobile-xp-root {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: url('/wallpapers/xp-bliss-placeholder.jpeg') center/cover no-repeat;
+}
+
+/* Gerçek masaüstünde ikonlar sol kenar boyunca üstten alta dizilir; mobilde de
+   aynı şekilde sol tarafta tek sütun halinde dursun, üstte ortalanmış ızgara olmasın */
+.mobile-xp-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 0 calc(18px + 30px + env(safe-area-inset-bottom)) 14px;
+}
+
+.mobile-xp-icon-wrap {
+  width: 78px;
+}
+
+/* Taskbar sabit alanda (bottom:0) durduğu için gerçek yüksekliğini burada da
+   hesaba katıp güvenli alan (ör. iPhone home indicator) için pay bırakıyoruz */
+.mobile-xp-root .xp-footer {
+  height: calc(30px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: content-box;
+}
+
+.mobile-xp-root .xp-footer .footer__items.left,
+.mobile-xp-root .xp-footer .footer__items.right {
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.mobile-xp-icon-wrap .desktop-icon {
+  width: 100%;
+}
+
+.mobile-xp-icon-wrap .desktop-icon span {
+  font-size: 11px !important;
+}
+
+/* Mobilde tam ekran açılan pencere (XpWindow'un krom/başlık stillerini paylaşır).
+   Gerçek masaüstünde pencereler taskbar'ın üzerine hiç binmez; mobilde de aynı
+   şekilde alttaki 30px'lik taskbar için yer bırakıyoruz. */
+.mobile-xp-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: calc(30px + env(safe-area-inset-bottom));
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background: #0831d9;
+  padding: 2px;
+  padding-top: calc(2px + env(safe-area-inset-top));
+}
+
+.mobile-xp-window .title-bar {
+  flex-shrink: 0;
+}
+
+.mobile-xp-window .window-content {
+  flex: 1;
+  height: auto;
+  overflow: auto;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Klasör görünümleri: "Belge Görevleri" / "Diğer Yerler" kenar çubuğu tamamen
+   dekoratif (hiçbir öğesi tıklanabilir değil, bkz. BaseSidebar kullanım yerleri),
+   dar ekranda sadece yer kaplayıp içeriği sıkıştırıyor - mobilde tamamen kaldırıyoruz. */
+.mobile-xp-window .folder-view-sidebar-col {
+  display: none;
+}
+
+.mobile-xp-window .mycomputer-container {
+  height: 100% !important;
+}
+
+.mobile-xp-window .content-card {
+  width: 100%;
+}
+
+.mobile-xp-window .content-item {
+  width: 100%;
+  max-width: none;
+}
+
+.mobile-xp-window .content-item-icon {
+  width: 34px;
+  height: 34px;
+}
+
+/* Mayın Tarlası: masaüstünde pencere tahtaya göre küçülüyor, mobilde ise tam ekran
+   pencerenin ortasında, dokunmaya uygun büyüklükte (küçük görünmesin diye) gösteriyoruz.
+   Tahtanın altındaki boş alana da basılı-tutma ipucu sığıyor (bkz. Minesweeper.tsx touchHint). */
+.mobile-xp-window .xp-minesweeper-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 18px;
+}
+
+.mobile-xp-window .xp-minesweeper {
+  /* transform:scale yerine zoom kullanıyoruz: gerçek layout kutusunu büyütüp altındaki
+     ipucuyla çakışmasını (bleed) engelliyor, dokunma alanı da gerçekten büyümüş oluyor */
+  zoom: 1.6;
+}
+
 
 /* Retro terminal/CRT arka plan */
 .retro-black-bg {

@@ -16,7 +16,14 @@
       "Bash(curl -s -o /dev/null -w \"virus-endpoint:%{http_code}\\\\n\" \"http://localhost:3000/tr/Neden-virus-isimli-dosyayi-actin-ki\")",
       "Bash(curl -s \"http://localhost:3000/tr/Neden-virus-isimli-dosyayi-actin-ki\")",
       "Bash(curl -s -o /dev/null -w \"en-endpoint:%{http_code}\\\\n\" \"http://localhost:3000/en/Why-did-you-open-a-file-named-virus\")",
-      "Bash(curl -s \"http://localhost:3000/en/Why-did-you-open-a-file-named-virus\")"
+      "Bash(curl -s \"http://localhost:3000/en/Why-did-you-open-a-file-named-virus\")",
+      "Bash(curl -s -o /dev/null -w \"not-today:%{http_code}\\\\n\" \"http://localhost:3000/tr/Not-Today\")",
+      "Bash(curl -s -o /dev/null -w \"mobile-tr:%{http_code}\\\\n\" http://localhost:3000/tr/mobile)",
+      "Bash(curl -s -o /dev/null -w \"mobile-en:%{http_code}\\\\n\" http://localhost:3000/en/mobile)",
+      "Bash(curl -s -o /dev/null -w \"mobile-about:%{http_code}\\\\n\" http://localhost:3000/tr/mobile/about)",
+      "Bash(curl -s http://localhost:3000/tr/mobile)",
+      "Bash(curl -s http://localhost:3000/en/mobile)",
+      "Bash(npx eslint *)"
     ]
   }
 }

@@ -85,14 +85,14 @@ const BaseFolderView: React.FC<BaseFolderViewProps> = ({
 
       {/* Content Section */}
       <div className="content-section">
-        <div className="content-container" style={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
+        <div className="content-container">
           {/* Sidebar'ı ve içeriği ayır */}
           {Array.isArray(children) && children.length === 2 ? (
             <>
-              <div style={{ width: 180, minWidth: 180, maxWidth: 180, height: '100%' }}>
+              <div className="folder-view-sidebar-col">
                 {children[0]}
               </div>
-              <div style={{ flex: 1, minWidth: 0, height: '100%' }}>
+              <div className="folder-view-content-col">
                 {children[1]}
               </div>
             </>

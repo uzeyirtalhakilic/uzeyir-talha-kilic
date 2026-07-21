@@ -10,6 +10,9 @@ import Taskbar from "./Taskbar";
 import DashedBox from "../../WindowsXP/DashedBox/DashedBox";
 import DesktopContextMenu from "./DesktopContextMenu";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import ShutdownModal, { PowerMode } from "../Modal/ShutdownModal";
 
 interface WindowState {
   id: string;
@@ -44,6 +47,9 @@ export default function Desktop() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showWinamp, setShowWinamp] = useState(false);
   const [winampMinimized, setWinampMinimized] = useState(false);
+  const [powerModal, setPowerModal] = useState<PowerMode | null>(null);
+  const router = useRouter();
+  const locale = useLocale();
 
   // --- Gizli masaüstü ızgarası (icon grid) ---
   const CELL_W = 100;
@@ -342,6 +348,16 @@ export default function Desktop() {
     console.log('handleMenuItemClick called with:', menuItem);
     try {
       let itemToOpen: FileSystemItem | null = null;
+
+    // Oturumu Kapat / Bilgisayarı Kapat -> kapatma modalı
+    if (menuItem === tFooter('logOff')) {
+      setPowerModal('logoff');
+      return;
+    }
+    if (menuItem === tFooter('turnOffComputer')) {
+      setPowerModal('turnoff');
+      return;
+    }
 
     // Handle items from filesystem.ts
     if (
@@ -650,7 +666,7 @@ export default function Desktop() {
   return (
     <DesktopContext.Provider value={{ handleOpen, refreshDesktop }}>
       <div
-        className="desktop-root"
+        className={`desktop-root${powerModal ? ' powering-off' : ''}`}
         style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}
         onMouseDown={handleMouseDown}
         onContextMenu={e => {
@@ -756,6 +772,15 @@ export default function Desktop() {
             onClickMenuItem={handleMenuItemClick}
             onWindowClick={handleTaskbarWindowClick}
           />
+
+          {/* Kapatma / Oturumu kapatma modalı */}
+          {powerModal && (
+            <ShutdownModal
+              mode={powerModal}
+              onClose={() => setPowerModal(null)}
+              onClickButton={() => router.push(`/${locale}/Not-Today`)}
+            />
+          )}
         </div>
       </div>
     </DesktopContext.Provider>

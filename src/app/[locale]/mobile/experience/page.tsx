@@ -1,13 +1,13 @@
 "use client";
 import { useEffect } from 'react';
-import MobileExperience from '@/components/Mobile/experience/page';
+import { useParams, useRouter } from 'next/navigation';
 
+// İçerik artık mini XP masaüstündeki "Deneyim" penceresinde; bu sayfa oraya yönlendirir.
 export default function MobileExperiencePage() {
+  const router = useRouter();
+  const params = useParams();
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth > 768) {
-      const locale = window.location.pathname.split('/')[1];
-      window.location.replace(`/${locale}`);
-    }
-  }, []);
-  return <MobileExperience />;
+    router.replace(`/${params.locale}/mobile`);
+  }, [router, params.locale]);
+  return null;
 }
