@@ -58,6 +58,13 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
         target: '_blank',
         rel: 'noopener noreferrer'
       },
+      {
+        icon: '/bestIzmirIcon.png',
+        text: t('content.bestIzmir'),
+        href: 'https://bestizmir.org',
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      },
     ]
   },
 ];

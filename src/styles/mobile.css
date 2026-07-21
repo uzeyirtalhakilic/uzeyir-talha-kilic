@@ -84,6 +84,33 @@
   height: 100% !important;
 }
 
+/* Üst menü ("Dosya Düzenle Görünüm Sık Kullanılanlar...") ve işlev çubuğu
+   ("Geri Yükle", "Boşalt" gibi iki kelimeli etiketler) dar ekranda kelimenin
+   ortasından bölünüp iki satıra düşmesin diye tek satırda kalsın, sığmazsa
+   yatay kaydırılsın. */
+.mobile-xp-window .toolbar-content {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.mobile-xp-window .toolbar-menu span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mobile-xp-window .function-bar {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.mobile-xp-window .function-button {
+  flex-shrink: 0;
+}
+
+.mobile-xp-window .function-button span {
+  white-space: nowrap;
+}
+
 .mobile-xp-window .content-card {
   width: 100%;
 }
