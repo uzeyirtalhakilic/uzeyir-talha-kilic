@@ -654,7 +654,12 @@
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  background: linear-gradient(to right, #edede5, #ede8cd);
+  /* Bu, kaydırılabilir alanın en dış katmanı - içerik kısa/uzun boyu tam
+     hesaplansa da hesaplanmasa da her zaman doğru renk altta kalsın diye
+     beyaz. (background-attachment:scroll varsayılanı sayesinde bu zemin
+     içerik kaydırılırken kaymaz, elemanın kendi kutusuna sabit kalır -
+     yani aşağı ne kadar inilirse inilsin hep beyaz görünür.) */
+  background: white;
 }
 
 /* Toolbar Section */
@@ -665,6 +670,9 @@
   height: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
+  /* .mycomputer-container artık beyaz (bkz. o kural) - bu üst çubuklar kendi
+     krem zeminini kaybetmesin diye burada ayrıca tanımlıyoruz. */
+  background: linear-gradient(to right, #edede5, #ede8cd);
 }
 
 .toolbar-content {
@@ -721,6 +729,9 @@
   padding-top: 2px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  /* .mycomputer-container artık beyaz (bkz. o kural) - bu üst çubuklar kendi
+     krem zeminini kaybetmesin diye burada ayrıca tanımlıyoruz. */
+  background: linear-gradient(to right, #edede5, #ede8cd);
 }
 
 .function-button {
@@ -803,6 +814,9 @@
   align-items: center;
   padding: 0 2px;
   box-shadow: inset 1px 1px 1px #b0b0b0;
+  /* .mycomputer-container artık beyaz (bkz. o kural) - bu üst çubuklar kendi
+     krem zeminini kaybetmesin diye burada ayrıca tanımlıyoruz. */
+  background: linear-gradient(to right, #edede5, #ede8cd);
 }
 
 .address-label {
@@ -875,25 +889,29 @@
 /* Content Section */
 .content-section {
   flex: 1;
+  display: flex;
   border-left: 1px solid rgba(0, 0, 0, 0.4);
   border-right: 1px solid rgba(0, 0, 0, 0.4);
   border-top: none;
   border-bottom: none;
-  /* Eskiden mavi gradyandı (kenar çubuğunun şeffaf arkasında görünsün diye), ama
-     içerik kısa kaldığında (kenar çubuğu ya da içerik sütunu fark etmeden) koca
-     bir mavi dikdörtgen olarak kalıyordu. Pencerenin genel krem/bej zeminiyle
-     aynı nötr tona çekince içerik kısa da olsa göze batan bir renk sızmıyor. */
-  background: linear-gradient(to right, #edede5, #ede8cd);
+  /* Eskiden mavi gradyandı (kenar çubuğunun şeffaf arkasında görünsün diye), sonra
+     krem yapıldı. Ama bu katman da kaydırılabilir (overflow:auto) olduğu için
+     - içerik boyu ne olursa olsun - beyaza çekip .mycomputer-container ile aynı
+     "hep beyaz" mantığını burada da kuruyoruz. */
+  background: white;
   overflow: auto;
   font-size: 12px;
   position: relative;
   min-height: 0;
-  height: 100%;
 }
 
 .content-container {
   display: flex;
-  height: 100%;
+  /* height:100% (yüzde) bu kadar iç içe katmanın arasında güvenilir şekilde
+     çözülmüyordu; .content-section artık flex konteyner olduğu için burada
+     flex-grow kullanıyoruz - bu zincirde gerçekten çalıştığı doğrulanmış tek
+     yöntem. */
+  flex: 1;
   overflow: auto;
   min-height: 0;
 }
@@ -903,6 +921,9 @@
   min-width: 180px;
   max-width: 180px;
   height: 100%;
+  /* Kenar çubuğunun kendi mavi görev bölmesi zemini - .content-section artık nötr
+     olduğu için burada ayrıca tanımlıyoruz (içerik sütunu ise beyaz kalıyor). */
+  background: linear-gradient(to bottom, #748aff, #4057d3);
 }
 
 .folder-view-content-col {
