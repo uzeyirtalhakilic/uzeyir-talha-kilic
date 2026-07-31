@@ -26,7 +26,11 @@
       "Bash(npx eslint *)",
       "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_1dqk-td._.css\" -o /c/Users/uzeyi/AppData/Local/Temp/claude/bundle2.css)",
       "Read(//c/Users/uzeyi/AppData/Local/Temp/claude/**)",
-      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=4000 --screenshot=/c/temp_repro/live1.png --window-size=1400,900 \"http://localhost:3000/tr\")"
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=4000 --screenshot=/c/temp_repro/live1.png --window-size=1400,900 \"http://localhost:3000/tr\")",
+      "Read(//c/temp_repro/**)",
+      "Bash(mkdir -p /c/temp_repro)",
+      "Bash(curl -s -o /dev/null -w \"server:%{http_code}\\\\n\" --max-time 5 http://localhost:3000/tr/mobile)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=5000 --dump-dom \"http://localhost:3000/tr/mobile\")"
     ]
   }
 }

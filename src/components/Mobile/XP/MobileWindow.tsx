@@ -7,6 +7,7 @@ import { FileSystemItem } from "../../WindowsXP/data/filesystem";
 import MyComputer from "../../WindowsXP/FolderView/MyComputer/MyComputer";
 import MyProjects from "../../WindowsXP/FolderView/MyProjects/MyProjects";
 import WhoAmI from "../../WindowsXP/FolderView/WhoAmI/WhoAmI";
+import ContactInfo from "../../WindowsXP/FolderView/ContactInfo/ContactInfo";
 import Experience from "../../WindowsXP/FolderView/Experience/Experience";
 import Terminal from "../../WindowsXP/Terminal/Terminal";
 import Minesweeper from "../../WindowsXP/Minesweeper/Minesweeper";
@@ -35,6 +36,8 @@ const MobileWindow: React.FC<MobileWindowProps> = ({ item, onClose }) => {
       return <MyProjects onClose={onClose} />;
     } else if (item.translationKey === 'desktop.1') {
       return <WhoAmI onClose={onClose} />;
+    } else if (item.translationKey === 'desktop.contactInfo') {
+      return <ContactInfo onClose={onClose} />;
     } else if (item.translationKey === 'desktop.experience') {
       return <Experience onClose={onClose} />;
     } else if (item.translationKey === 'desktop.experienceTerminal') {
@@ -102,6 +105,7 @@ export function getMobileWindowTitle(
 ): string {
   if (item.translationKey === 'desktop.myProjects') return tDesktop('myProjects');
   if (item.translationKey === 'desktop.1') return tDesktop('whoAmI');
+  if (item.translationKey === 'desktop.contactInfo') return tWhoAmI('content.contactInfo');
   if (item.translationKey === 'desktop.experience') return tDesktop('experience');
   if (item.translationKey === 'desktop.experienceTerminal') return item.label;
   if (item.translationKey === 'games.minesweeper') return tGames('minesweeper');
@@ -119,6 +123,7 @@ export function getMobileWindowTitle(
 export function getMobileWindowIcon(item: FileSystemItem): string {
   if (item.translationKey === 'desktop.myProjects') return "/icons/folderdocument.png";
   if (item.translationKey === 'desktop.1') return "/icons/folderdocument.png";
+  if (item.translationKey === 'desktop.contactInfo') return "/icons/folderdocument.png";
   if (item.translationKey === 'desktop.experience') return "/icons/folderdocument.png";
   if (item.translationKey === 'desktop.experienceTerminal') return "/icons/exe-program.png";
   if (item.translationKey === 'games.minesweeper') return "/icons/mine-icon.png";

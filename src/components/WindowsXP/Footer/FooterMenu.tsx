@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Image from 'next/image';
 import { FooterMenuProps, ItemProps, SubMenuProps, MenuItem } from './types';
 import { AllPrograms, MyRecentDocuments, ConnectTo } from './FooterMenuData';
 import { useTranslations } from 'next-intl';
 import { createPortal } from 'react-dom';
+import { DesktopContext } from '../Desktop/DesktopContext';
 
 const SubMenu: React.FC<SubMenuProps> = ({ data, onClick, left }) => {
   const [hoverIndex, setHoverIndex] = useState(-1);
@@ -123,6 +124,7 @@ const SubMenuItem: React.FC<{
 
 const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
   const [hovering, setHovering] = useState('');
+  const isMobile = useContext(DesktopContext)?.isMobile;
   const t = useTranslations('footer');
   const tMenu = useTranslations('menu');
   const tGames = useTranslations('games');
@@ -184,36 +186,41 @@ const FooterMenu: React.FC<FooterMenuProps> = ({ className, onClick }) => {
           <div style={{ flex: 1 }} />
           <div className="menu__separator" />
 
-          <Item
-            style={
-              hovering === t('allPrograms')
-                ? {
-                    backgroundColor: '#2f71cd',
-                    color: '#FFF',
-                  }
-                : {}
-            }
-            text={
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                {t('allPrograms')}
-                <Image
-                  src="/icons/all-programs.ico"
-                  alt=""
-                  width={18}
-                  height={18}
-                  style={{ marginLeft: '5px', height: '18px', width: 'auto' }}
+          {/* "Tüm Programlar" alt menüsü fare üzerine gelme (hover) ile açılıyor; dokunmatik
+              ekranda bu hem tetiklenmesi zor hem de dar ekranda taşıp alttaki
+              oturumu/bilgisayarı kapat düğmelerini kapatıyordu - mobilde göstermiyoruz. */}
+          {!isMobile && (
+            <Item
+              style={
+                hovering === t('allPrograms')
+                  ? {
+                      backgroundColor: '#2f71cd',
+                      color: '#FFF',
+                    }
+                  : {}
+              }
+              text={
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {t('allPrograms')}
+                  <Image
+                    src="/icons/all-programs.ico"
+                    alt=""
+                    width={18}
+                    height={18}
+                    style={{ marginLeft: '5px', height: '18px', width: 'auto' }}
+                  />
+                </div>
+              }
+            >
+              {hovering === t('allPrograms') && (
+                <SubMenu
+                  data={AllPrograms.map(item => ({...item, text: item.text && tMenu(item.text) ? tMenu(item.text) : '' }))}
+                  onClick={onClick}
+                  left="153px"
                 />
-              </div>
-            }
-          >
-            {hovering === t('allPrograms') && (
-              <SubMenu
-                data={AllPrograms.map(item => ({...item, text: item.text && tMenu(item.text) ? tMenu(item.text) : '' }))}
-                onClick={onClick}
-                left="153px"
-              />
-            )}
-          </Item>
+              )}
+            </Item>
+          )}
         </div>
 
         <div className="menu__right">

@@ -199,6 +199,13 @@ const RecycleBin: React.FC<RecycleBinProps> = () => {
   };
 
   const handleItemMouseDown = (item: { onClick?: () => void; text?: string; originalText?: string }) => {
+    // Mobilde çift tıklama/dokunma doğal bir hareket değil - tek dokunuşla aç
+    if (desktopContext?.isMobile) {
+      if (item.text) setSelectedItem(item.text);
+      handleItemDoubleClick(item);
+      return;
+    }
+
     // Clear any existing timeout
     if (clickTimeoutRef.current) {
       clearTimeout(clickTimeoutRef.current);

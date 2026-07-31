@@ -2,7 +2,7 @@
 
 import DesktopIcon from "./DesktopIcon";
 import { desktopItems, FileSystemItem } from "../../WindowsXP/data/filesystem";
-import React, { useState, createContext, useRef, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import XpWindow from "./XpWindow";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import ShutdownModal, { PowerMode } from "../Modal/ShutdownModal";
+import { DesktopContext } from "./DesktopContext";
 
 interface WindowState {
   id: string;
@@ -25,7 +26,7 @@ interface WindowState {
   height: number;
 }
 
-export const DesktopContext = createContext<{ handleOpen: (item: FileSystemItem, position?: { x: number; y: number }) => void, refreshDesktop?: () => void } | undefined>(undefined);
+export { DesktopContext };
 
 const WinampApp = dynamic(() => import("../Winamp/WinampApp"), { ssr: false });
 

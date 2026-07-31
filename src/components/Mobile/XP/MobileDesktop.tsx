@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useTranslations, useLocale } from "next-intl";
@@ -32,6 +32,72 @@ const MobileDesktop: React.FC = () => {
   const [showWinamp, setShowWinamp] = useState(false);
   const [winampMinimized, setWinampMinimized] = useState(false);
   const [powerModal, setPowerModal] = useState<PowerMode | null>(null);
+
+  // Telefonun "geri" tuşu siteden direkt çıkmasın, gerçek bir gezinme geçmişi gibi
+  // davransın: Projelerim'e Ben Kimim?'den girdiysen geri tuşu önce Ben Kimim?'e
+  // döner, sonra masaüstüne. Her ekran değişiminde (ister ikonla, ister bir
+  // pencerenin içinden DesktopContext ile - ör. WhoAmI -> Experience -> Terminal)
+  // eskisini bir yığına atıp sahte bir geçmiş kaydı ekliyoruz; geri tuşu (popstate)
+  // yığından bir önceki ekranı geri getiriyor.
+  type MobileScreen =
+    | { kind: 'desktop' }
+    | { kind: 'item'; item: FileSystemItem }
+    | { kind: 'winamp' };
+
+  const screenKey = (s: MobileScreen) => s.kind === 'item' ? `item:${s.item.id}` : s.kind;
+
+  const currentScreen: MobileScreen =
+    (showWinamp && !winampMinimized) ? { kind: 'winamp' } :
+    (openItem && !isMinimized) ? { kind: 'item', item: openItem } :
+    { kind: 'desktop' };
+
+  const screenStackRef = useRef<MobileScreen[]>([]);
+  const prevScreenRef = useRef<MobileScreen>(currentScreen);
+
+  useEffect(() => {
+    const prev = prevScreenRef.current;
+    if (screenKey(prev) !== screenKey(currentScreen)) {
+      if (currentScreen.kind === 'desktop') {
+        // Masaüstüne dönüldü (ör. X ile kapatıldı) - geçmiş yığınını da sıfırla
+        screenStackRef.current = [];
+      } else {
+        screenStackRef.current.push(prev);
+        window.history.pushState({}, '');
+      }
+      prevScreenRef.current = currentScreen;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [screenKey(currentScreen)]);
+
+  useEffect(() => {
+    function onPopState() {
+      if (powerModal) {
+        setPowerModal(null);
+        return;
+      }
+      const prev = screenStackRef.current.pop();
+      if (!prev || prev.kind === 'desktop') {
+        setOpenItem(null);
+        setShowWinamp(false);
+        setFocusedAppId(null);
+      } else if (prev.kind === 'item') {
+        setShowWinamp(false);
+        setOpenItem(prev.item);
+        setIsMinimized(false);
+        setFocusedAppId(prev.item.id);
+      } else {
+        setOpenItem(null);
+        setShowWinamp(true);
+        setWinampMinimized(false);
+        setFocusedAppId('winamp');
+      }
+      // Bu geri dönüşün kendisi bir sonraki render'da "yeni ekrana geçiş" gibi
+      // algılanıp tekrar geçmişe eklenmesin diye referansı da güncelliyoruz.
+      prevScreenRef.current = prev ?? { kind: 'desktop' };
+    }
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [powerModal]);
 
   const handleOpen = (item: FileSystemItem) => {
     if (item.id === 'winamp') {
@@ -143,7 +209,7 @@ const MobileDesktop: React.FC = () => {
   ];
 
   return (
-    <DesktopContext.Provider value={{ handleOpen }}>
+    <DesktopContext.Provider value={{ handleOpen, isMobile: true }}>
       <div className={`mobile-xp-root${powerModal ? ' powering-off' : ''}`}>
         <div className="mobile-xp-icons">
           {translatedIcons.map(item => (

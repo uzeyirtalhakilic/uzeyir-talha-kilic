@@ -1,5 +1,5 @@
 import { SidebarCard } from '../base/BaseSidebar';
-import { ContentCard } from '../base/BaseContentGrid';
+import { ContentCard, ContentItem } from '../base/BaseContentGrid';
 
 export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCard[] => [
   {
@@ -59,34 +59,48 @@ export const createWhoAmISidebarConfig = (t: (key: string) => string): SidebarCa
   },
 ];
 
-export const createWhoAmIContentConfig = (t: (key: string) => string): ContentCard[] => [
-  {
-    title: t('content.personalInfo'),
-    items: [
-      {
-        icon: '/icons/327(32x32).png',
-        text: t('content.aboutMe'),
-      },
-      {
-        icon: '/icons/300(32x32).png',
-        text: t('content.resume'),
-      },
-    ]
-  },
-  {
-    title: t('content.experienceAndProjects'),
-    items: [
-      {
-        icon: '/icons/folderdocument.png',
-        text: t('content.experience'),
-      },
-      {
-        icon: '/icons/folderdocument.png',
-        text: t('myProjects'),
-      },
-    ]
-  },
-];
+// includeContactFolder: kenar çubuğu gizli olan mobilde, orada duran "İletişim
+// Bilgileri" kartına ulaşılamıyor - bu yüzden mobilde Kişisel Bilgiler'in içine
+// aynı isimde gerçek bir klasör (yeni bir pencere açan) ekliyoruz.
+export const createWhoAmIContentConfig = (t: (key: string) => string, includeContactFolder = false): ContentCard[] => {
+  const personalInfoItems: ContentItem[] = [
+    {
+      icon: '/icons/327(32x32).png',
+      text: t('content.aboutMe'),
+    },
+    {
+      icon: '/icons/300(32x32).png',
+      text: t('content.resume'),
+    },
+  ];
+
+  if (includeContactFolder) {
+    personalInfoItems.push({
+      icon: '/icons/folderdocument.png',
+      text: t('content.contactInfo'),
+    });
+  }
+
+  return [
+    {
+      title: t('content.personalInfo'),
+      items: personalInfoItems
+    },
+    {
+      title: t('content.experienceAndProjects'),
+      items: [
+        {
+          icon: '/icons/folderdocument.png',
+          text: t('content.experience'),
+        },
+        {
+          icon: '/icons/folderdocument.png',
+          text: t('myProjects'),
+        },
+      ]
+    },
+  ];
+};
 
 // Legacy exports for backward compatibility
 export const whoAmISidebarConfig: SidebarCard[] = [];

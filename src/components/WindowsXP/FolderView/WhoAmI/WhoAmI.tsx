@@ -18,7 +18,7 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
   const desktopContext = useContext(DesktopContext);
 
   // Dynamically generate content config based on locale
-  const dynamicContentConfig = createWhoAmIContentConfig(t).map((card: ContentCard) => ({
+  const dynamicContentConfig = createWhoAmIContentConfig(t, desktopContext?.isMobile).map((card: ContentCard) => ({
     ...card,
     items: card.items.map((item: ContentItem) => {
       if (item.text === t('content.resume')) {
@@ -71,6 +71,23 @@ const WhoAmI: React.FC<WhoAmIProps> = () => {
             if (desktopContext) {
               const myProjectsItem = FileItems.find(i => i.id === 'my-projects');
               if (myProjectsItem) desktopContext.handleOpen(myProjectsItem);
+            }
+          }
+        };
+      }
+      // Add onClick handler for contact info folder (mobile only, see config.ts)
+      if (item.text === t('content.contactInfo')) {
+        return {
+          ...item,
+          onClick: () => {
+            if (desktopContext) {
+              desktopContext.handleOpen({
+                id: 'contact-info-folder',
+                type: 'folder',
+                label: t('content.contactInfo'),
+                translationKey: 'desktop.contactInfo',
+                children: []
+              });
             }
           }
         };

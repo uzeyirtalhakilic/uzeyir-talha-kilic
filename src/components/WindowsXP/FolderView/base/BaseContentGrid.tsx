@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Image from "next/image";
+import { DesktopContext } from "../../Desktop/DesktopContext";
 import "../../../../styles/desktop.css";
 
 export interface ContentItem {
@@ -30,6 +31,7 @@ const BaseContentGrid: React.FC<BaseContentGridProps> = ({
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastClickedItemRef = useRef<string | null>(null);
+  const isMobile = useContext(DesktopContext)?.isMobile;
 
   const handleItemClick = (item: ContentItem) => {
     // Single click - select item
@@ -48,6 +50,13 @@ const BaseContentGrid: React.FC<BaseContentGridProps> = ({
   };
 
   const handleItemMouseDown = (item: ContentItem) => {
+    // Mobilde çift tıklama/dokunma doğal bir hareket değil - tek dokunuşla aç
+    if (isMobile) {
+      setSelectedItem(item.text);
+      handleItemDoubleClick(item);
+      return;
+    }
+
     // Clear any existing timeout
     if (clickTimeoutRef.current) {
       clearTimeout(clickTimeoutRef.current);
