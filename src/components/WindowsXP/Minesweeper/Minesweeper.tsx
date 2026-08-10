@@ -200,9 +200,11 @@ interface MineSweeperProps {
   onGameResize?: (width: number, height: number) => void;
   // Sadece mobilde geçilir: sağ tık olmadığı için basılı tutma ipucunu boş alanda gösterir
   touchHint?: string;
+  // Mobilde Expert (16x30) ızgara ekrana sığmadığı için o zorluk seçeneği gizlenir
+  isMobile?: boolean;
 }
 
-function MineSweeper({ defaultDifficulty = 'Beginner', onClose, onGameResize, touchHint }: MineSweeperProps) {
+function MineSweeper({ defaultDifficulty = 'Beginner', onClose, onGameResize, touchHint, isMobile }: MineSweeperProps) {
   const [state, dispatch] = useReducer(reducer, getInitState(defaultDifficulty));
   const seconds = useTimer(state.status);
   const gameRef = useRef<HTMLDivElement>(null);
@@ -302,6 +304,7 @@ function MineSweeper({ defaultDifficulty = 'Beginner', onClose, onGameResize, to
           seconds={seconds}
           openingCeil={openingCeil}
           openingCeils={openingCeils}
+          isMobile={isMobile}
         />
       </div>
       {touchHint && <p className="xp-minesweeper-hint">{touchHint}</p>}

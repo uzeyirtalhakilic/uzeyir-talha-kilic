@@ -43,7 +43,7 @@ const MobileWindow: React.FC<MobileWindowProps> = ({ item, onClose }) => {
     } else if (item.translationKey === 'desktop.experienceTerminal') {
       return <Terminal item={item} />;
     } else if (item.translationKey === 'games.minesweeper') {
-      return <Minesweeper onClose={onClose} touchHint={tGames('minesweeperFlagHint')} />;
+      return <Minesweeper onClose={onClose} touchHint={tGames('minesweeperFlagHint')} isMobile />;
     } else if (item.translationKey === 'desktop.recycleBin') {
       return <RecycleBin onClose={onClose} />;
     } else if (item.translationKey === 'desktop.paint') {

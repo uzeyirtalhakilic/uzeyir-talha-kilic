@@ -25,9 +25,9 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
         icon: '/icons/mezunIcon.png',
         text: t('content.thesisProject'),
         displayText: withDate(t('content.thesisProject'), t('content.thesisProjectDate'), t('content.thesisProjectTag')),
-        href: '',
-        target: '',
-        rel: ''
+        href: 'https://github.com/uzeyirtalhakilic/multimodal-cxr-report-generation-tr',
+        target: '_blank',
+        rel: 'noopener noreferrer'
       },
     ]
   },
@@ -62,6 +62,14 @@ export const createMyProjectsContentConfig = (t: (key: string) => string): Conte
         icon: '/bestIzmirIcon.png',
         text: t('content.bestIzmir'),
         href: 'https://bestizmir.org',
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      },
+      {
+        icon: '/github-logo.png',
+        text: t('content.ringOfMiddleEarth'),
+        displayText: withDate(t('content.ringOfMiddleEarth'), undefined, t('content.ringOfMiddleEarthTag')),
+        href: 'https://github.com/uzeyirtalhakilic/ring-of-the-middle-earth',
         target: '_blank',
         rel: 'noopener noreferrer'
       },

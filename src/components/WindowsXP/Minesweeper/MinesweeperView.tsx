@@ -57,6 +57,7 @@ interface MinesweeperViewProps extends GameState {
   onClose: () => void;
   openingCeil: (index: number) => void;
   openingCeils: (index: number) => void;
+  isMobile?: boolean;
 }
 
 function MineSweeperView({
@@ -74,6 +75,7 @@ function MineSweeperView({
   columns,
   openingCeil,
   openingCeils,
+  isMobile,
 }: MinesweeperViewProps) {
   const face = useRef<HTMLButtonElement>(null);
   const dropDown = useRef<HTMLDivElement>(null);
@@ -209,19 +211,21 @@ function MineSweeperView({
               <span className="mine__drop-down__hot-key" />
               <div className="mine__drop-down__arrow" />
             </div>
-            <div
-              className="mine__drop-down__row"
-              onMouseUp={() => onReset('Expert')}
-            >
-              <div className="mine__drop-down__check">
-                {difficulty === 'Expert' && (
-                  <img src={`${A}/checked.png`} alt="checked" />
-                )}
+            {!isMobile && (
+              <div
+                className="mine__drop-down__row"
+                onMouseUp={() => onReset('Expert')}
+              >
+                <div className="mine__drop-down__check">
+                  {difficulty === 'Expert' && (
+                    <img src={`${A}/checked.png`} alt="checked" />
+                  )}
+                </div>
+                <span>Expert</span>
+                <span className="mine__drop-down__hot-key" />
+                <div className="mine__drop-down__arrow" />
               </div>
-              <span>Expert</span>
-              <span className="mine__drop-down__hot-key" />
-              <div className="mine__drop-down__arrow" />
-            </div>
+            )}
             <div className="mine__drop-down__row">
               <div className="mine__drop-down__check" />
               <span>Custom...</span>
