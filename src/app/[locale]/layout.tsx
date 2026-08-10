@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 import '../globals.css';
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import {getMessages, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import { Metadata } from 'next';
 import Script from 'next/script';
@@ -10,13 +10,22 @@ import { Analytics } from "@vercel/analytics/next"
 // Define supported locales
 const locales = ['en', 'tr'];
 
-export const metadata: Metadata = {
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ locale, namespace: 'layout' });
+  const title = t('title');
+  const description = t('description');
+  const ogLocale = locale === 'tr' ? 'tr_TR' : 'en_US';
+
+  return {
   metadataBase: new URL('https://uzeyirtalhakilic.dev'),
   title: {
-    default: 'Üzeyir Talha Kılıç',
+    default: title,
     template: '%s | Üzeyir Talha Kılıç'
   },
-  description: 'Üzeyir Talha Kılıç - Software Developer',
+  description,
   keywords: [
     'software developer', 'full stack developer', 'react', 'next.js', 'typescript', 'node.js', 'web development', 'frontend', 'backend', "üzeyir", "talha", "kılıç",
     'windows xp', 'winamp', 'paint', 'gta vice city', 'gta türk', 'özgeçmiş', 'cv', 'resume', 'linkedin', 'github', 'udemy', 'sertifika', "üzeyir talha", "üzeyir kılıç", "talha kılıç", "üzeyir talha kılıç",
@@ -43,10 +52,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'tr_TR',
-    url: 'https://uzeyirtalhakilic.dev',
-    title: 'Üzeyir Talha Kılıç',
-    description: 'Üzeyir Talha Kılıç - Software Developer',
+    locale: ogLocale,
+    url: `https://uzeyirtalhakilic.dev/${locale}`,
+    title,
+    description,
     siteName: 'Üzeyir Talha Kılıç',
     images: [
       {
@@ -59,15 +68,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Üzeyir Talha Kılıç',
-    description: 'Üzeyir Talha Kılıç - Software Developer',
+    title,
+    description,
     images: ['/github-logo.png'],
   },
   verification: {
     google: 'google77bf220c1b4bd1a2.html', // Google Search Console'dan alacağınız kod
   },
   alternates: {
-    canonical: 'https://uzeyirtalhakilic.dev',
+    canonical: `https://uzeyirtalhakilic.dev/${locale}`,
     languages: {
       'tr': 'https://uzeyirtalhakilic.dev/tr',
       'en': 'https://uzeyirtalhakilic.dev/en',
@@ -77,7 +86,8 @@ export const metadata: Metadata = {
     icon: '/icons/favicon.png',
     apple: '/icons/favicon.png',
   },
-};
+  };
+}
 
 export const viewport = {
   themeColor: '#000000',
@@ -101,7 +111,6 @@ export default async function LocaleLayout(props: {
   return (
     <html lang={locale}>
       <head>
-        <link rel="canonical" href={`https://uzeyirtalhakilic.dev/${locale}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/icons/favicon.png" />
