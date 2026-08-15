@@ -32,7 +32,18 @@
       "Bash(curl -s -o /dev/null -w \"server:%{http_code}\\\\n\" --max-time 5 http://localhost:3000/tr/mobile)",
       "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=5000 --dump-dom \"http://localhost:3000/tr/mobile\")",
       "Bash(npm run *)",
-      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/tr.json','utf8'\\)\\); JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/en.json','utf8'\\)\\); console.log\\('both valid JSON'\\)\")"
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/tr.json','utf8'\\)\\); JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/en.json','utf8'\\)\\); console.log\\('both valid JSON'\\)\")",
+      "PowerShell(npm run lint 2>&1)",
+      "PowerShell(npx tsc --noEmit 2>&1)",
+      "PowerShell(npx eslint src/components/WindowsXP/Minesweeper/ScoreSubmitModal.tsx src/components/WindowsXP/Minesweeper/Minesweeper.tsx 2>&1)",
+      "PowerShell(Get-Command chromium-cli -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command npx -ErrorAction SilentlyContinue)",
+      "Bash(npm ls *)",
+      "Bash(curl -sf http://localhost:3000)",
+      "Bash(break)",
+      "Bash(curl -sI http://localhost:3000)",
+      "Bash(npx --yes playwright@1 --version)",
+      "Read(//c/Users/uzeyi/AppData/Local/Temp/claude/screenshots/**)"
     ]
   }
 }

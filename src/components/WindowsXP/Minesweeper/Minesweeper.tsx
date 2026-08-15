@@ -2,6 +2,7 @@
 
 import React, { useReducer, useEffect, useState, useRef } from 'react';
 import MinesweeperView from './MinesweeperView';
+import ScoreSubmitModal from './ScoreSubmitModal';
 
 export type Difficulty = 'Beginner' | 'Intermediate' | 'Expert';
 export type CeilStateName =
@@ -208,6 +209,12 @@ function MineSweeper({ defaultDifficulty = 'Beginner', onClose, onGameResize, to
   const [state, dispatch] = useReducer(reducer, getInitState(defaultDifficulty));
   const seconds = useTimer(state.status);
   const gameRef = useRef<HTMLDivElement>(null);
+  const [showScoreModal, setShowScoreModal] = useState(false);
+
+  // Sadece kazanma anında (durum değişiminde) skor formunu bir kez göster
+  useEffect(() => {
+    if (state.status === 'won') setShowScoreModal(true);
+  }, [state.status]);
 
   // Oyun alanının boyutunu izle; değişince pencereyi oyuna göre boyutlandır
   useEffect(() => {
@@ -308,6 +315,13 @@ function MineSweeper({ defaultDifficulty = 'Beginner', onClose, onGameResize, to
         />
       </div>
       {touchHint && <p className="xp-minesweeper-hint">{touchHint}</p>}
+      {showScoreModal && (
+        <ScoreSubmitModal
+          difficulty={state.difficulty}
+          seconds={seconds}
+          onClose={() => setShowScoreModal(false)}
+        />
+      )}
     </div>
   );
 }

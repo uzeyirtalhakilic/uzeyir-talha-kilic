@@ -1590,6 +1590,148 @@
   background: rgb(220, 220, 220);
 }
 
+/* Mayın Tarlası Skor Paylaşım Modalı */
+.xp-score-modal {
+  font-family: Tahoma, 'Noto Sans', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2147483647;
+}
+
+.xp-score-modal .modal {
+  width: 320px;
+  border: 1px solid #0a246a;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.xp-score-modal .header {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 8px;
+  background: linear-gradient(to right, #0a246a, #3a6ea5 60%, #a6caf0);
+  color: #fff;
+}
+
+.xp-score-modal .header__text {
+  flex: 1;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.xp-score-modal .header__close {
+  width: 18px;
+  height: 16px;
+  line-height: 14px;
+  font-size: 13px;
+  color: #000;
+  background: #ece9d8;
+  border: 1px solid #003c74;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.xp-score-modal .header__close:hover {
+  background: #f6a6a6;
+}
+
+.xp-score-modal .content {
+  background: #ece9d8;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.xp-score-modal .congrats {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+.xp-score-modal label {
+  font-size: 11px;
+  color: #000;
+}
+
+.xp-score-modal input[type='text'],
+.xp-score-modal input[type='email'],
+.xp-score-modal textarea {
+  width: 100%;
+  font-family: Tahoma, 'Noto Sans', sans-serif;
+  font-size: 11px;
+  padding: 3px 4px;
+  border: 1px solid #7f9db9;
+  box-sizing: border-box;
+  background: #fff;
+  color: #000;
+}
+
+.xp-score-modal textarea {
+  resize: vertical;
+  min-height: 54px;
+}
+
+.xp-score-modal input:disabled,
+.xp-score-modal textarea:disabled {
+  background: #ddd;
+  color: #555;
+}
+
+.xp-score-modal .status-message {
+  margin: 2px 0 0;
+  font-size: 11px;
+}
+
+.xp-score-modal .status-message.success {
+  color: #0a6b0a;
+}
+
+.xp-score-modal .status-message.error {
+  color: #b00000;
+}
+
+.xp-score-modal .footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.xp-score-modal .footer__button {
+  font-size: 11px;
+  padding: 3px 14px;
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
+  cursor: pointer;
+  color: #000;
+}
+
+.xp-score-modal .footer__button:hover:not(:disabled) {
+  background: #dff0fe;
+}
+
+.xp-score-modal .footer__button--primary {
+  font-weight: bold;
+}
+
+.xp-score-modal .footer__button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* Görev Çubuğu (winXP-master referansına göre) */
 .xp-footer {
   height: 30px;

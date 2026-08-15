@@ -442,6 +442,22 @@
     "logOff": "Oturumu Kapat",
     "cancel": "İptal"
   },
+  "minesweeperScore": {
+    "title": "Skorunu Paylaş",
+    "congrats": "Tebrikler, mayın tarlasını temizledin!",
+    "autoMessageTemplate": "{difficulty} seviyede {seconds} saniyede bitirdim.",
+    "messageLabel": "Mesaj",
+    "messagePlaceholder": "İstersen birkaç kelime ekleyebilirsin...",
+    "nameLabel": "Ad Soyad",
+    "namePlaceholder": "Adın Soyadın",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "ornek@eposta.com",
+    "send": "Gönder",
+    "sending": "Gönderiliyor...",
+    "cancel": "Vazgeç",
+    "success": "Gönderildi, teşekkürler!",
+    "error": "Gönderilemedi, lütfen tekrar dene."
+  },
   "mobile": {
     "aboutme": "Merhabalar Ben Üzeyir,\n\nEge Üniversitesi Bilgisayar Mühendisliği mezunuyum. \nReact, Flutter, MongoDB, MySQL, Node.js vb teknolojilerde deneyimlerim bulunuyor.\nBitirme tezimi, akciğer röntgenlerinden otomatik Türkçe radyoloji raporu üretimine yönelik çok modlu derin öğrenme tabanlı bir çalışma üzerine yazdım.\nIBTECH'te (bir QNB Bank iştiraki) Stajyer Uygulama Mühendisi olarak, bankanın muhasebe ekosistemleri için C# ve Java ile kurumsal uygulamalar geliştirdim.\nSadece teknik becerilerimi geliştirmekle kalmayıp, iletişim yeteneklerimi, liderlik vasıflarımı ve takım çalışmasına olan uyumumu da aktif olarak katıldığım etkinliklerle güçlendiriyorum.\n\nÜniversite hayatım boyunca EKAMİT, IEEE ve BEST gibi kulüplerde aktif rol aldım. \nBu kulüplerle birlikte; organizasyon becerilerimi geliştirdim, farklı alanlardan insanlarla nasıl etkili çalışılacağını öğrendim ve bir sürü teknik/sosyal etkinliğe katkı sağladım.\n\nKişisel gelişime ve çok yönlü olmaya önem veriyorum. \nHobilerim arasında yüzme, koşu, basketbol; ayrıca müzik ve podcast dinlemek, film ve dizi izlemek yer alıyor.\nŞu an pek çok hobim var ama denemek ve öğrenmek istediğim yeni şeyler, elimdekilerden çok daha fazla.\n\nKariyer hedefim; büyük ve etkili projelerde yer almak, katkılarımın görünür olması ve adımın önemli başarılarla anılmasıdır.\n\nMottom: 'Gelişim, konforun bittiği yerde; denge ise her adımda gizlidir.'\n                                                                                                   -ChatGPT\n('Altın Orta Kuramı' ve 'konfor alanından çıkmak' ile ilgili motto üretmesini istedim.)\n\nDetaylar için 'özgeçmiş'imi inceleyebilir, 'Deneyim' kısmına göz atabilir veya menüdeki 'İletişim' kısmından bana ulaşabilirsiniz.",
     "warning": "Bu web sitesi sadece masaüstünde çalışıyor...Şimdilik... (Alttaki tuş çalışmıyor)",
